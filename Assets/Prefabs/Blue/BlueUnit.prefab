@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114706106170342134}
   - component: {fileID: 195622333629405232}
   m_Layer: 9
-  m_Name: Unit
+  m_Name: BlueUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   halo: {fileID: 1956576168258740}
+  iconPrefab: {fileID: 1861385107790818, guid: 1044d6eb72bff463ab278aa0d3614bfc, type: 2}
 --- !u!114 &114906827597866266
 MonoBehaviour:
   m_ObjectHideFlags: 1

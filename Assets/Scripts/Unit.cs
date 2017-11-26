@@ -8,6 +8,11 @@ public class Unit : MonoBehaviour {
 	[SerializeField]
 	private GameObject halo;
 
+	[SerializeField]
+	private GameObject iconPrefab;
+
+	private GameObject icon;
+
 	private NavMeshAgent navMeshAgent;
 
 	private bool isSelected = false;
@@ -18,6 +23,21 @@ public class Unit : MonoBehaviour {
 		}
 		set {
 			isSelected = value;
+		}
+	}
+
+	public GameObject IconPrefab {
+		get {
+			return iconPrefab;
+		}
+	}
+
+	public GameObject Icon {
+		get {
+			return icon;
+		}
+		set {
+			icon = value;
 		}
 	}
 

@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\SelectionHandler.cs" />
      <Compile Include="Assets\Scripts\UIUtils.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
+     <Compile Include="Assets\Scripts\UnitIcon.cs" />
      <Compile Include="Assets\Scripts\UnitMovementComponent.cs" />
      <None Include="Assets\Material\SelectShader.shader" />
  <Reference Include="UnityEngine.UI">

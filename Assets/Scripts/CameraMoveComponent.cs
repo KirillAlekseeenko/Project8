@@ -10,6 +10,9 @@ public class CameraMoveComponent : MonoBehaviour {
 	[SerializeField]
 	private float cameraZoomSpeed;
 
+	private float sideThickness = 0.01f;
+
+
 	[SerializeField]
 	private GameStateHandler gameStateHandler;
 
@@ -23,6 +26,8 @@ public class CameraMoveComponent : MonoBehaviour {
 			else
 				gameStateHandler.unpauseGame ();
 		}
+
+		//buttons
 
 		if(Input.GetKey(KeyCode.A)){
 			moveLeft ();
@@ -43,7 +48,20 @@ public class CameraMoveComponent : MonoBehaviour {
 			zoomOut ();
 		}
 
-			
+
+		// arrow is near one of the sides of the display
+
+		var mousePosition = Input.mousePosition;
+
+		if (mousePosition.x < Screen.width * sideThickness)
+			moveLeft ();
+		if (mousePosition.y < Screen.height * sideThickness)
+			moveBack ();
+		if (mousePosition.x > Screen.width * (1 - sideThickness))
+			moveRight ();
+		if (mousePosition.y > Screen.height * (1 - sideThickness))
+			moveForward ();
+
 		
 	}
 
