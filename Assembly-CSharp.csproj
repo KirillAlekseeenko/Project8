@@ -51,15 +51,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BuildingUnit.cs" />
      <Compile Include="Assets\Scripts\CameraMoveComponent.cs" />
+     <Compile Include="Assets\Scripts\CrowdZoneComponent.cs" />
      <Compile Include="Assets\Scripts\GameStateHandler.cs" />
      <Compile Include="Assets\Scripts\GameUIHandler.cs" />
      <Compile Include="Assets\Scripts\MainMenuUI\MainMenuUIHandler.cs" />
+     <Compile Include="Assets\Scripts\MovingUnit.cs" />
+     <Compile Include="Assets\Scripts\ResourceHandler.cs" />
      <Compile Include="Assets\Scripts\SelectionHandler.cs" />
+     <Compile Include="Assets\Scripts\Spawn.cs" />
      <Compile Include="Assets\Scripts\UIUtils.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
      <Compile Include="Assets\Scripts\UnitIcon.cs" />
+     <Compile Include="Assets\Scripts\UnitInteractionComponent.cs" />
      <Compile Include="Assets\Scripts\UnitMovementComponent.cs" />
+     <Compile Include="Assets\Scripts\UnitRecruitComponent.cs" />
+     <Compile Include="Assets\Scripts\University.cs" />
      <None Include="Assets\Material\SelectShader.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

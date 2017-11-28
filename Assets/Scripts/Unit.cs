@@ -1,21 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Unit : MonoBehaviour {
 
 	[SerializeField]
-	private GameObject halo;
+	protected GameObject haloPrefab;    
+
+	protected GameObject halo;
 
 	[SerializeField]
-	private GameObject iconPrefab;
+	protected GameObject iconPrefab;   
 
-	private GameObject icon;
+	[SerializeField]
+	protected List<GameObject> updateList;
 
-	private NavMeshAgent navMeshAgent;
+	[SerializeField]
+	protected GameObject downgradePrefab; 
 
-	private bool isSelected = false;
+	[SerializeField]
+	protected int price; 
+
+	protected GameObject icon;  
+
+	protected bool isSelected = false; 
+
+	[SerializeField]
+	protected bool isCapacious;
+
+	protected List<MovingUnit> unitsOnBoard;
 
 	public bool IsSelected {
 		get {
@@ -26,13 +39,25 @@ public class Unit : MonoBehaviour {
 		}
 	}
 
-	public GameObject IconPrefab {
+	public bool IsCapacious {
+		get {
+			return isCapacious;
+		}
+	}
+
+	public List<MovingUnit> UnitsOnBoard {
+		get {
+			return unitsOnBoard;
+		}
+	}
+
+	public GameObject IconPrefab { 
 		get {
 			return iconPrefab;
 		}
 	}
 
-	public GameObject Icon {
+	public GameObject Icon { 
 		get {
 			return icon;
 		}
@@ -41,23 +66,48 @@ public class Unit : MonoBehaviour {
 		}
 	}
 
-	void Start()
-	{
-		navMeshAgent = GetComponent<NavMeshAgent> ();
+	public List<GameObject> UpdateList { 
+		get {
+			return updateList;
+		}
 	}
 
-	public void showHalo()
+	public GameObject DowngradePrefab { 
+		get {
+			return downgradePrefab;
+		}
+	}
+
+	public int Price { 
+		get {
+			return price;
+		}
+	}
+
+
+	protected virtual void Awake()
+	{
+		halo = Instantiate (haloPrefab, gameObject.transform);
+		halo.SetActive (false);
+	}
+
+
+	public void showHalo() 
 	{
 		halo.SetActive (true);
 	}
-	public void hideHalo()
+	public void hideHalo() 
 	{
 		halo.SetActive (false);
 	}
 
-	public void moveTo(Vector3 goal) // destination in world's system 
+	public void getOnBoard(MovingUnit unit)
 	{
-		navMeshAgent.destination = goal;
+		unitsOnBoard.Add (unit);
+	}
+	public void takeFromBoard(MovingUnit unit)
+	{
+		unitsOnBoard.Remove (unit);
 	}
 
 }

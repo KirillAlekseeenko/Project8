@@ -27,7 +27,12 @@ public class UnitMovementComponent : MonoBehaviour {
 			if(Physics.Raycast(ray, out hit) && selectedUnits != null){
 				if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground")) {
 					// there should be a particle system or sprite to indicate the destination point
-					foreach (Unit unit in selectedUnits) {
+					foreach (MovingUnit unit in selectedUnits) {
+						unit.moveTo (hit.point); // for multiple selection there must be some formation to avoid crowding in this point
+					}
+				}
+				if (hit.collider.gameObject.layer == LayerMask.NameToLayer ("Selectable") && hit.collider.gameObject.GetComponent<Unit>().IsCapacious) {
+					foreach (MovingUnit unit in selectedUnits) {
 						unit.moveTo (hit.point); // for multiple selection there must be some formation to avoid crowding in this point
 					}
 				}

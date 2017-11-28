@@ -2,11 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SelectionHandler : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject iconPanel;
+
+	[SerializeField]
+	private GameObject singleUnitPanel;
+	[SerializeField]
+	private Image singleUnitImage;
+	[SerializeField]
+	private GameObject singleUnitUpdatePanel;
+	[SerializeField]
+	private Button singleUnitUpdateButton;
+	[SerializeField]
+	private GameObject singleUnitDowngradePanel;
+	[SerializeField]
+	private Button singleUnitDowngradeButton;
 
 	[SerializeField]
 	private EventSystem eventSystem;
@@ -76,7 +90,7 @@ public class SelectionHandler : MonoBehaviour {
 			selectedObjectsCount = 0;
 
 			foreach (Collider collider in selectableObjects) {
-				if (IsWithinSelectionBounds (collider.gameObject)) {
+				if (IsWithinSelectionBounds (collider.gameObject) && collider.gameObject.GetComponent<Unit>().GetType() == typeof(MovingUnit)) {
 					collider.gameObject.GetComponent<Unit> ().showHalo ();
 					collider.gameObject.GetComponent<Unit> ().IsSelected = true;
 					selectedObjectsCount++;
@@ -98,8 +112,93 @@ public class SelectionHandler : MonoBehaviour {
 			unit.Icon = Instantiate (unit.IconPrefab, iconPanel.transform);
 			unit.Icon.GetComponent<UnitIcon> ().Unit = unit;
 			unit.Icon.GetComponent<UnitIcon> ().SelectionHandler = GetComponent<SelectionHandler> ();
+			unit.showHalo ();
+			Debug.Log (unit.name);
+		}
+		Debug.Log ("");
+
+		if (selectedObjects.Length >= 1) {
+			singleUnitPanel.SetActive (true);
+			singleUnitImage.sprite = selectedObjects [0].IconPrefab.GetComponent<Image> ().sprite;
+
+			// update
+
+			foreach (GameObject updatePrefab in selectedObjects[0].UpdateList) {
+				var upgradeButton = Instantiate (singleUnitUpdateButton, singleUnitUpdatePanel.transform);
+				upgradeButton.GetComponentInChildren<Text> ().text = updatePrefab.name;
+				upgradeButton.onClick.AddListener (() => {
+
+					if(!ResourceHandler.GetResourceHandler.isAffordable(updatePrefab.GetComponent<Unit>().Price))
+						return;
+
+					ResourceHandler.GetResourceHandler.takeGold(updatePrefab.GetComponent<Unit>().Price);
+					
+					var pos = selectedObjects[0].transform.position;
+					var toDestroy = selectedObjects[0];
+
+					Destroy(toDestroy.Icon);
+					Destroy(toDestroy.gameObject);
+
+					selectedObjects[0] = Instantiate(updatePrefab, pos, Quaternion.identity).GetComponent<Unit>();
+					selectedObjects[0].showHalo();
+					selectedObjects[0].IsSelected = true;
+
+					resetSelection();
+					showUnitImages();
+				});
+			}
+
+			//downgrade
+
+			if (selectedObjects [0].DowngradePrefab == null)
+				return;
+
+			var downgradeButton = Instantiate (singleUnitDowngradeButton, singleUnitDowngradePanel.transform);
+			downgradeButton.GetComponentInChildren<Text> ().text = selectedObjects [0].DowngradePrefab.name;
+			downgradeButton.onClick.AddListener (() => {
+
+				var pos = selectedObjects[0].transform.position;
+				var toDestroy = selectedObjects[0];
+				var downgradePrefab = selectedObjects[0].DowngradePrefab;
+
+				Destroy(toDestroy.Icon);
+				Destroy(toDestroy.gameObject);
+
+				selectedObjects[0] = Instantiate(downgradePrefab, pos, Quaternion.identity).GetComponent<Unit>();
+				selectedObjects[0].showHalo();
+				selectedObjects[0].IsSelected = true;
+
+				resetSelection();
+				showUnitImages();
+
+
+
+			});
+
+			if (selectedObjects.Length == 1) {
+				if (selectedObjects [0].IsCapacious) {
+					foreach (MovingUnit unit in selectedObjects[0].UnitsOnBoard) {
+						unit.Icon = Instantiate (unit.IconPrefab, iconPanel.transform);
+						unit.Icon.GetComponent<UnitIcon> ().Unit = unit;
+						unit.Icon.GetComponent<UnitIcon> ().SelectionHandler = GetComponent<SelectionHandler> ();
+					}
+				}
+			}
+
+		}
+
+	}
+
+	private void cleanSingleUnitUpdatePanel()
+	{
+		foreach (Transform button in singleUnitUpdatePanel.transform) {
+			Destroy (button.gameObject);
+		}
+		foreach (Transform button in singleUnitDowngradePanel.transform) {
+			Destroy (button.gameObject);
 		}
 	}
+
 	private void resetSelection()
 	{
 		if (selectedObjects != null) {
@@ -110,6 +209,10 @@ public class SelectionHandler : MonoBehaviour {
 			}
 		}
 
+		cleanSingleUnitUpdatePanel ();
+
+
+		singleUnitPanel.SetActive (false);
 		selectedObjectsCount = 0;
 	}
 

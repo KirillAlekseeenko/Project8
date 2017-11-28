@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: ebe312b552bec471394f979e5db4bbd3
+timeCreated: 1511860777
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - haloPrefab: {fileID: 1546556071653546, guid: b7e44e4541f1f4731b420591ac62519c,
+      type: 2}
+  - iconPrefab: {instanceID: 0}
+  - downgradePrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

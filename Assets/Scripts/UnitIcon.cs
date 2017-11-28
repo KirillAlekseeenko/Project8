@@ -29,7 +29,7 @@ public class UnitIcon : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 	#region IPointerClickHandler implementation
 	public void OnPointerClick (PointerEventData eventData)
 	{
-		Debug.Log ("IconClick");
+		
 		selectionHandler.selectOneUnit (unit);
 		selectionHandler.confirmSelection ();
 	}
