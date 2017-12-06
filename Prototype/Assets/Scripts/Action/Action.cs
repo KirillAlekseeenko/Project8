@@ -9,6 +9,7 @@ public abstract class Action {
 
 	public abstract ActionState Finished { get; }
 	public abstract void Perform ();
+	public abstract void Finish ();
 
 }
 

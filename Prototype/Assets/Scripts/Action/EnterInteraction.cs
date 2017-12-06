@@ -24,6 +24,11 @@ public class EnterInteraction : Interaction {
 		navMeshAgentComponent.SetDestination (actionReceiver.transform.position);
 	}
 
+	public override void Finish ()
+	{
+		navMeshAgentComponent.ResetPath ();
+	}
+
 	public override ActionState Finished {
 		get {
 			if (Vector3.Distance (actionOwner.transform.position, actionReceiver.transform.position) < enterRadius) {

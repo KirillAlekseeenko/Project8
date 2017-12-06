@@ -11,6 +11,11 @@ public class AttackInteraction : Interaction {
 		throw new System.NotImplementedException ();
 	}
 
+	public override void Finish ()
+	{
+		throw new System.NotImplementedException ();
+	}
+
 	public override ActionState Finished {
 		get {
 			throw new System.NotImplementedException ();
