@@ -1,16 +1,10 @@
 ﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WorldObject/Building.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WorldObject/Building/Building.cs">
     <Files>
-      <File FileName="Assets/Scripts/Action/Action.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Action/AttackInteraction.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Action/EnterInteraction.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Action/Interaction.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Action/MoveAction.cs" Line="18" Column="67" />
-      <File FileName="Assets/Scripts/Player/Player.cs" Line="11" Column="23" />
-      <File FileName="Assets/Scripts/WorldObject/Building.cs" Line="54" Column="43" />
-      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/WorldObject/WorldObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/Building/Building.cs" Line="102" Column="15" />
+      <File FileName="Assets/Scripts/WorldObject/Building/Entrance.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

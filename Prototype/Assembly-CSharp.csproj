@@ -57,7 +57,9 @@
      <Compile Include="Assets\Scripts\Action\Interaction.cs" />
      <Compile Include="Assets\Scripts\Action\MoveAction.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
-     <Compile Include="Assets\Scripts\WorldObject\Building.cs" />
+     <Compile Include="Assets\Scripts\WorldObject\Building\Building.cs" />
+     <Compile Include="Assets\Scripts\WorldObject\Building\BuildingUI.cs" />
+     <Compile Include="Assets\Scripts\WorldObject\Building\Entrance.cs" />
      <Compile Include="Assets\Scripts\WorldObject\Unit.cs" />
      <Compile Include="Assets\Scripts\WorldObject\WorldObject.cs" />
  <Reference Include="Facebook.Unity.Settings">
