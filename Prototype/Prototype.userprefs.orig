@@ -1,0 +1,40 @@
+﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+<<<<<<< HEAD
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="Assets/Scripts/AI/Director.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Action/Action.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Player/Player.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Action/AttackInteraction.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Action/EnterInteraction.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Action/Interaction.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Action/MoveAction.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/Building.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/WorldObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UserInput/CameraMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Static/Constants.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UserInput/MouseInput.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Selection/SelectionHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UserInput/KeyboardInput.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Action/ActionHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AI/Path.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AI/LocalAI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AI/PlayerLocalAI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/VisionArcComponent.cs" Line="1" Column="1" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WorldObject/Building/BuildingUI.cs">
+    <Files>
+      <File FileName="Assets/Scripts/WorldObject/WorldObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/Building/BuildingUI.cs" Line="64" Column="3" />
+      <File FileName="Assets/Scripts/WorldObject/Building/Building.cs" Line="104" Column="34" />
+      <File FileName="Assets/Scripts/WorldObject/Building/Entrance.cs" Line="22" Column="32" />
+>>>>>>> ac254b46079c9b1285d16d4f4f7b4acf04ebc63c
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

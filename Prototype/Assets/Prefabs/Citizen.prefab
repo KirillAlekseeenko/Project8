@@ -227,6 +227,7 @@ MonoBehaviour:
   speed: 3
   meleeAttackRadius: 0
   longRangeAttackRadius: 5
+  sneak: 0.1
   LOS: 10
   canvas: {fileID: 223041209263437868}
   healthBar: {fileID: 114862651122302068}
