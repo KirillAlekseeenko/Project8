@@ -30,7 +30,7 @@ public class MoveAction : Action {
 		navMeshAgentComponent.ResetPath ();
 	}
 
-	public override ActionState Finished {
+	public override ActionState State {
 		get {
 			return new ActionState (navMeshAgentComponent.remainingDistance < threshold, -1);
 		}

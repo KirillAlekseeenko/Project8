@@ -8,12 +8,23 @@ public class Player : MonoBehaviour {
 	[SerializeField]
 	private string username;  // задел по мультиплеер ))0)
 	[SerializeField]
-	private bool isHuman;
+	private bool isHuman; 
+	[SerializeField]
+	private Team team; // мб в будущем будут союзники
+	[SerializeField]
+	private Color color;
 
-	void Start()
-	{
-		if (isHuman) {
-			// user input and camera
+	public bool IsHuman {
+		get {
+			return isHuman;
+		}
+	}
+
+	public Color Color {
+		get {
+			return color;
 		}
 	}
 }
+
+public enum Team{One, Two, Three, Four};

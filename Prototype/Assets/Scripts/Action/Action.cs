@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public abstract class Action {
 
 	protected WorldObject actionOwner;
 
-	public abstract ActionState Finished { get; }
+	public abstract ActionState State { get; }
 	public abstract void Perform ();
 	public abstract void Finish ();
 
 }
-
+	
 public struct ActionState
 {
 	bool isFinished;

@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 
 public abstract class WorldObject : MonoBehaviour {
 	
 	// mainFields
-
+	[SerializeField]
 	protected Player owner;
+
+	[SerializeField]
+	protected string currentActionType;
+
 	protected Queue<Action> actionQueue;
+
 	protected Action currentAction;
 
 	//common fields
@@ -25,7 +31,6 @@ public abstract class WorldObject : MonoBehaviour {
 
 	// hp, armor etc
 
-	protected RectTransform healthBarRectTransform;
 
 	public Player Owner {
 		get {
@@ -44,13 +49,11 @@ public abstract class WorldObject : MonoBehaviour {
 		get {
 			return isSelected;
 		}
-	}
-
-	public GameObject Halo {
-		get {
-			return halo; // setActive(true) when selected
+		set {
+			isSelected = value;
 		}
 	}
+		
 
 	public GameObject Icon {
 		get {
@@ -58,17 +61,75 @@ public abstract class WorldObject : MonoBehaviour {
 		}
 	}
 
+	public virtual void Highlight()
+	{
+		halo.SetActive (true);
+		// hp
+	}
+	public virtual void Dehighlight()
+	{
+		halo.SetActive (false);
+		// hp
+	}
+
 	protected void Awake()
 	{
-		
+		halo = Instantiate (haloPrefab, transform);
+		halo.SetActive (false);
+		isSelected = false;
+
+		actionQueue = new Queue<Action> ();
 	}
 
 	protected void Start()
 	{
-		
+		GetComponent<MeshRenderer> ().material.color = owner.Color;
 	}
 
 	protected void Update ()
+	{
+		try{
+			currentActionType = actionQueue.Peek().GetType().ToString();
+			if (actionQueue.Peek ().State.IsFinished) {
+				actionQueue.Dequeue ();
+				actionQueue.Peek ().Perform ();
+			}
+		}
+		catch(InvalidOperationException) {
+			
+		}
+	}
+
+	public bool isIdle()
+	{
+		return actionQueue.Count == 0;
+	}
+
+	public void AssignActionShift(Action action)
+	{
+		actionQueue.Enqueue (action);
+	}
+	public void AssignAction(Action action)
+	{
+		if (actionQueue.Count > 0) {
+			var lastAction = actionQueue.Peek ();
+			actionQueue.Clear ();
+			lastAction.Finish ();
+		}
+
+		action.Perform ();
+		actionQueue.Enqueue (action);
+	}
+
+	public override bool Equals (object other)
+	{
+		if (other == null || !(other is WorldObject))
+			return false;
+		WorldObject worldObject = (WorldObject)other;
+		return GetInstanceID () == worldObject.GetInstanceID ();
+	}
+
+	protected void OnDestroy()
 	{
 		
 	}
