@@ -7,18 +7,27 @@ public class Building : WorldObject {
 
 	private Renderer objRenderer;
 	private Color mainColor;
-	private bool exit;
 
-	private HashSet<GameObject> unitsInside;
+	private HashSet<GameObject> scientistsInside;
+	private HashSet<GameObject> hackersInside;
+	private HashSet<GameObject> warriorsInside;
 	private int buildingLevel;
 
 	private bool buildingMenuOpened;
 
-	private GameObject UIPanel;
-	private GameObject incomeField;
-	private GameObject[] rawImages;
-
 	private int resourcesCount;
+
+	private delegate void BuildingHandler(GameObject building);
+	private event BuildingHandler ShowMenu;
+
+	private delegate void InformUIAddUnit(GameObject building, GameObject unit);
+	private event InformUIAddUnit UIAddUnit;
+
+	private delegate void InformUIClearHouse();
+	private event InformUIClearHouse UIClearHouse;
+
+	private IEnumerator blink;
+	private IEnumerator counter;
 
 	public int increaseResourcesByUnit;
 	public int maxUnitsAllowed;
@@ -29,19 +38,18 @@ public class Building : WorldObject {
 		objRenderer = GetComponent<Renderer> ();
 		mainColor = objRenderer.material.color;
 
-		unitsInside = new HashSet<GameObject> ();
+		scientistsInside = new HashSet<GameObject> ();
+		hackersInside = new HashSet<GameObject> ();
+		warriorsInside = new HashSet<GameObject> ();
 
 		resourcesCount = 0;
-	}
 
-	private void Start(){
-		UIPanel = GameObject.Find ("BuildingPanel");
-		incomeField = GameObject.Find ("ResourceWidget");
-		rawImages = GameObject.FindGameObjectsWithTag ("UIPictures");
-		foreach(GameObject obj in rawImages){
-			obj.SetActive(false);
-		}
-		MenuClose ();
+		ShowMenu = new BuildingHandler(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().MenuOpen);
+		UIAddUnit = new InformUIAddUnit(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().AddUnit);
+		UIClearHouse = new InformUIClearHouse(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().RemoveAll);
+
+		blink = Blink ();
+		counter = IncreaseResources ();
 	}
 
 	private void Update(){
@@ -49,9 +57,8 @@ public class Building : WorldObject {
 	}
 
 	private void OnMouseDown(){
-		exit = false;
-		StartCoroutine(Blink());
-		MenuOpen();
+		isSelected = true;
+		ShowMenu (gameObject);
 	}
 		
 	private IEnumerator Blink() {
@@ -59,8 +66,6 @@ public class Building : WorldObject {
 		float minAlpha = 0.4f;
 		float alphaDelta = 0.01f;
 		while(true){
-			if (exit)
-				yield break;
 			if (objRenderer.material.color.a <= minAlpha || objRenderer.material.color.a >= maxAlpha)
 				alphaDelta = -alphaDelta;
 			objRenderer.material.SetColor("_Color", new Color(objRenderer.material.color.r,
@@ -73,50 +78,92 @@ public class Building : WorldObject {
 
 	private IEnumerator IncreaseResources() {
 		while(true){
-			if (unitsInside.Count == 0)
-				yield break;
-			resourcesCount += unitsInside.Count * increaseResourcesByUnit;
-			incomeField.GetComponent<Text>().text = resourcesCount.ToString ();
+			resourcesCount += (scientistsInside.Count + hackersInside.Count) * increaseResourcesByUnit;
 			yield return new WaitForSeconds(1);
 		}
 	}
 
 	public void AddUnit(GameObject unit){
-		if (unitsInside.Count < maxUnitsAllowed) {
-			rawImages[rawImages.Length - 1 - unitsInside.Count].SetActive(true);
-			unitsInside.Add (unit);
-			unit.SetActive (false);
-			if (unitsInside.Count == 1)
-				StartCoroutine (IncreaseResources ());
+		if (unit.name.Contains ("Scientist")) {
+			if (scientistsInside.Count < maxUnitsAllowed) {
+				scientistsInside.Add (unit);
+				UIAddUnit (gameObject, unit);
+				unit.SetActive (false);
+			}
+		} 
+		else if (unit.name.Contains ("Hacker")) {
+			if (hackersInside.Count < maxUnitsAllowed) {
+				hackersInside.Add (unit);
+				UIAddUnit (gameObject, unit);
+				unit.SetActive (false);
+			}
 		}
+		else if (unit.name.Contains ("Warrior")) {
+			if (warriorsInside.Count < maxUnitsAllowed) {
+				warriorsInside.Add (unit);
+				UIAddUnit (gameObject, unit);
+				unit.SetActive (false);
+			}
+		}
+		if (scientistsInside.Count + hackersInside.Count == 1)
+			StartCoroutine (counter);
+		
 	}
 
 	public void RemoveUnit(GameObject unit){
-		unitsInside.Remove (unit);
+		if (scientistsInside.Contains (unit)) {
+			scientistsInside.Remove (unit);
+		}
+		else if (hackersInside.Contains (unit)) {
+			hackersInside.Remove (unit);
+		}
+		else if (warriorsInside.Contains (unit)) {
+			warriorsInside.Remove (unit);
+		}
 	}
 
 	public void RemoveAllUnits(){
-		for(int i = 0; i < 5; i++)
-		{
-			rawImages[i].SetActive(false);
-		}
-		foreach(GameObject unit in unitsInside){
+		foreach(GameObject unit in scientistsInside){
 			unit.SetActive (true);
 			unit.transform.position = new Vector3(unit.transform.position.x, 
 												  unit.transform.position.y + 0.5f,
 												  unit.transform.position.z);
 		}
-		unitsInside.Clear ();
+		scientistsInside.Clear ();
+
+		foreach(GameObject unit in hackersInside){
+			unit.SetActive (true);
+			unit.transform.position = new Vector3(unit.transform.position.x, 
+				unit.transform.position.y + 0.5f,
+				unit.transform.position.z);
+		}
+		hackersInside.Clear ();
+
+		foreach(GameObject unit in warriorsInside){
+			unit.SetActive (true);
+			unit.transform.position = new Vector3(unit.transform.position.x, 
+				unit.transform.position.y + 0.5f,
+				unit.transform.position.z);
+		}
+		warriorsInside.Clear ();
+
+		StopCoroutine (counter);
+
+		UIClearHouse ();
+	}
+		
+	public void SetBlinking(bool blinking){
+		if (blinking)
+			StartCoroutine (blink);
+		else {
+			StopCoroutine (blink);
+			objRenderer.material.color = mainColor;
+			isSelected = false;
+		}
 	}
 
-	//UI
-	public void MenuOpen(){
-		UIPanel.SetActive (true);
-	} 
-
-	public void MenuClose(){
-		UIPanel.SetActive (false);
-		exit = true;
-		objRenderer.material.color = mainColor;
-	}
+	public int Recources { get { return resourcesCount; } }
+	public int ScientistsInside { get { return scientistsInside.Count; } }
+	public int HackersInside { get { return hackersInside.Count; } }
+	public int WarriorsInside { get { return warriorsInside.Count; } }
 }
