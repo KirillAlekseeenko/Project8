@@ -45,7 +45,7 @@ public abstract class WorldObject : MonoBehaviour {
 	}
 
 
-	public bool IsSelected {
+	public virtual bool IsSelected {
 		get {
 			return isSelected;
 		}

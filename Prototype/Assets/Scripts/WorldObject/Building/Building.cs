@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Building : WorldObject {
+interface IBuilding{
+
+	bool isUnitWithinTheEntrance (Unit unit);
+	bool AddUnit (Unit unit);
+}
+
+public class Building : WorldObject, IBuilding {
 
 	private Renderer objRenderer;
 	private Color mainColor;
@@ -26,6 +32,7 @@ public class Building : WorldObject {
 	private delegate void InformUIClearHouse();
 	private event InformUIClearHouse UIClearHouse;
 
+
 	private IEnumerator blink;
 	private IEnumerator counter;
 
@@ -36,7 +43,7 @@ public class Building : WorldObject {
 		base.Awake ();
 
 		objRenderer = GetComponent<Renderer> ();
-		mainColor = objRenderer.material.color;
+
 
 		scientistsInside = new HashSet<GameObject> ();
 		hackersInside = new HashSet<GameObject> ();
@@ -44,21 +51,49 @@ public class Building : WorldObject {
 
 		resourcesCount = 0;
 
-		ShowMenu = new BuildingHandler(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().MenuOpen);
-		UIAddUnit = new InformUIAddUnit(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().AddUnit);
-		UIClearHouse = new InformUIClearHouse(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().RemoveAll);
+		//ShowMenu = new BuildingHandler(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().MenuOpen);
+		//UIAddUnit = new InformUIAddUnit(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().AddUnit);
+		//UIClearHouse = new InformUIClearHouse(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().RemoveAll);
 
 		blink = Blink ();
 		counter = IncreaseResources ();
+	}
+
+	protected void Start()
+	{
+		base.Start ();
+
+		mainColor = objRenderer.material.color;
+
+		ShowMenu = new BuildingHandler(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().MenuOpen);
+		UIAddUnit = new InformUIAddUnit(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().AddUnit);
+		UIClearHouse = new InformUIClearHouse(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().RemoveAll);
 	}
 
 	private void Update(){
 		base.Update ();
 	}
 
-	private void OnMouseDown(){
+	/*
+	private void OnMouseDown(){ // 
 		isSelected = true;
 		ShowMenu (gameObject);
+	}*/
+	public override bool IsSelected {
+		get {
+			return base.IsSelected;
+		}
+		set {
+			base.IsSelected = value;
+			if (owner.IsHuman) {
+				if (value) {
+					ShowMenu (gameObject);
+				} else {
+					// hide menu
+				}
+			}
+
+		}
 	}
 		
 	private IEnumerator Blink() {
@@ -161,6 +196,20 @@ public class Building : WorldObject {
 			isSelected = false;
 		}
 	}
+
+	#region IBuilding implementation
+
+	public bool isUnitWithinTheEntrance (Unit unit)
+	{
+		throw new System.NotImplementedException ();
+	}
+
+	public bool AddUnit (Unit unit)
+	{
+		throw new System.NotImplementedException ();
+	}
+
+	#endregion
 
 	public int Recources { get { return resourcesCount; } }
 	public int ScientistsInside { get { return scientistsInside.Count; } }

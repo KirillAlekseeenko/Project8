@@ -31,9 +31,11 @@ public class EnterInteraction : Interaction {
 
 	public override ActionState State {
 		get {
-			if (Vector3.Distance (actionOwner.transform.position, actionReceiver.transform.position) < enterRadius) {
+			var building = actionReceiver as Building;
+			var unit = actionOwner as Unit;
+			if (building.isUnitWithinTheEntrance(unit)) {
 				navMeshAgentComponent.ResetPath ();
-				// здесь что-то вроде actionReceiver.getOnBoard(actionOwner)
+				building.AddUnit (unit);
 				return new ActionState (true, -1);
 			} else {
 				return new ActionState (false, -1);

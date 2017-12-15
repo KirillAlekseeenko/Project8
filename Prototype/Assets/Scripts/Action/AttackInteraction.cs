@@ -53,6 +53,7 @@ public class AttackInteraction : Interaction {
 				&& rayLength < longRangeAttackRadius) { 
 
 				navMeshAgentComponent.ResetPath (); // остановка
+				actionOwner.transform.LookAt(actionReceiver.transform.position); // поворот
 				if((actionOwner as Unit).Fire())
 					(actionReceiver as Unit).SufferDamage (longRangeAttackDamage);
 

@@ -46,7 +46,7 @@ public class LocalAI : MonoBehaviour {
 			if (unit.Owner.IsHuman) {
 				var vectorToEnemy = unit.transform.position - transform.position;
 				if (!Physics.Raycast (new Ray (transform.position, vectorToEnemy), unitComponent.pLOS, ~LayerMask.GetMask("Unit")) // проверка на отсутствие препятствий§
-					&& (vectorToEnemy.magnitude < unitComponent.pLOS * RTS.Constants.HearRadiusCoefficient || isObjectInsideTheArc(unitComponent, unit))) { // + еще условия связанные с конусом, кругом слышимости и инвизом у юнита
+					&& (vectorToEnemy.magnitude < unitComponent.pLOS * RTS.Constants.HearRadiusCoefficient || isObjectInsideTheArc(unitComponent, unit) || unit.isAttacking())) { // + еще условия связанные с конусом, кругом слышимости и инвизом у юнита
 
 					unitComponent.AssignAction (new AttackInteraction (unitComponent, unit));
 
@@ -75,7 +75,7 @@ public class LocalAI : MonoBehaviour {
 	private bool isObjectInsideTheArc(Unit unit, Unit enemy)
 	{
 		var vectorToEnemy = enemy.transform.position - unit.transform.position;
-		var direction = unit.transform.TransformDirection (Vector3.up);
+		var direction = unit.transform.TransformDirection (Vector3.forward);
 
 		return Vector3.Angle (vectorToEnemy, direction) < RTS.Constants.VisionArcAngle / 2;
 
