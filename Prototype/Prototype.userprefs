@@ -1,24 +1,29 @@
 ﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WorldObject/Building/Building.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/VisionArcComponent.cs">
     <Files>
+      <File FileName="Assets/Scripts/UI/VisionArcComponent.cs" Line="11" Column="2" />
+      <File FileName="Assets/Scripts/WorldObject/Building/Building.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/AI/LocalAI.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/AI/Director.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Player/Player.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WorldObject/WorldObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="12" Column="23" />
+      <File FileName="Assets/Scripts/WorldObject/WorldObject.cs" Line="134" Column="3" />
       <File FileName="Assets/Scripts/UserInput/CameraMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Static/Constants.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UserInput/MouseInput.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Selection/SelectionHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UserInput/KeyboardInput.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Static/Constants.cs" Line="10" Column="52" />
+      <File FileName="Assets/Scripts/UserInput/MouseInput.cs" Line="39" Column="33" />
+      <File FileName="Assets/Scripts/Selection/SelectionHandler.cs" Line="78" Column="3" />
+      <File FileName="Assets/Scripts/UserInput/KeyboardInput.cs" Line="23" Column="38" />
       <File FileName="Assets/Scripts/Action/ActionHandler.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/AI/Path.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/AI/PlayerLocalAI.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/VisionArcComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WorldObject/Building/Building.cs" Line="18" Column="29" />
-      <File FileName="Assets/Scripts/WorldObject/Building/BuildingUI.cs" Line="25" Column="52" />
-      <File FileName="Assets/Scripts/WorldObject/Building/Entrance.cs" Line="10" Column="32" />
+      <File FileName="Assets/Scripts/WorldObject/Building/BuildingUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/Building/Entrance.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Action/EnterInteraction.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Action/AttackInteraction.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Selection/FrustumCollider.cs" Line="49" Column="37" />
+      <File FileName="Assets/Scripts/UI/FieldOfViewHandler.cs" Line="45" Column="17" />
+      <File FileName="Assets/Scripts/Manager.cs" Line="31" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

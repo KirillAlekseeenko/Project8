@@ -18,6 +18,9 @@ public class Manager : MonoBehaviour {
 	[SerializeField]
 	private ActionHandler action;
 
+	[SerializeField]
+	private FieldOfViewHandler fieldOfView;
+
 	public SelectionHandler selectionHandler {
 		get {
 			return selection;
@@ -27,6 +30,12 @@ public class Manager : MonoBehaviour {
 	public ActionHandler actionHandler {
 		get {
 			return action;
+		}
+	}
+
+	public FieldOfViewHandler fieldOfViewHandler {
+		get {
+			return fieldOfView;
 		}
 	}
 

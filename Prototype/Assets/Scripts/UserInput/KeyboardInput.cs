@@ -7,6 +7,9 @@ public class KeyboardInput : MonoBehaviour { // hotkeys and shift-selection
 	[SerializeField]
 	private SelectionHandler selectionHandler;
 
+	[SerializeField]
+	private FieldOfViewHandler fieldOfViewHandler;
+
 	void Update()
 	{
 		if (Input.GetKeyDown (KeyCode.LeftShift)) {
@@ -15,6 +18,15 @@ public class KeyboardInput : MonoBehaviour { // hotkeys and shift-selection
 		if (Input.GetKeyUp (KeyCode.LeftShift)) {
 			selectionHandler.IsShiftDown = false;
 		}
+
+		if (Input.GetKeyDown (KeyCode.LeftAlt)) {
+			fieldOfViewHandler.IsAltOn = true;
+		}
+		if (Input.GetKeyUp (KeyCode.LeftAlt)) {
+			fieldOfViewHandler.IsAltOn = false;
+		}
+
+
 	}
 
 }

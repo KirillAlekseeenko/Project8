@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\Selection\SelectionHandler.cs" />
      <Compile Include="Assets\Scripts\Static\Constants.cs" />
      <Compile Include="Assets\Scripts\Static\UIUtils.cs" />
+     <Compile Include="Assets\Scripts\UI\FieldOfViewHandler.cs" />
      <Compile Include="Assets\Scripts\UI\SelectionBoxDrawComponent.cs" />
      <Compile Include="Assets\Scripts\UI\VisionArcComponent.cs" />
      <Compile Include="Assets\Scripts\UserInput\CameraMovement.cs" />

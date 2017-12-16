@@ -87,8 +87,10 @@ public class Unit : WorldObject {
 	protected void Awake()
 	{
 		base.Awake ();
-		if (!owner.IsHuman)
+		if (!owner.IsHuman) {
+			gameObject.AddComponent<VisionArcComponent> ();
 			gameObject.AddComponent<LocalAI> ();
+		}
 		else
 			gameObject.AddComponent<PlayerLocalAI> ();
 		hp = baseHP;
@@ -155,8 +157,14 @@ public class Unit : WorldObject {
 
 	private void die()
 	{
-		Manager.Instance.selectionHandler.ObjectsInsideFrustum.Remove (GetComponent<WorldObject> ());
+		if (owner.IsHuman) {
+			Manager.Instance.selectionHandler.ObjectsInsideFrustum.Remove (GetComponent<WorldObject> ());
+		} else {
+			Manager.Instance.fieldOfViewHandler.Remove (GetComponent<Unit> ());
+		}
+
 		Manager.Instance.selectionHandler.SelectedUnits.Remove (GetComponent<WorldObject> ());
+
 		Destroy (gameObject);
 	}
 

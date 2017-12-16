@@ -1,11 +1,15 @@
 fileFormatVersion: 2
 guid: 5d6cd159827d943249b85eccadb54451
-timeCreated: 1513208940
+timeCreated: 1513456614
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - viewMeshMaterial: {fileID: 2100000, guid: b7d2c7eafd15045048cc0460a815c04d, type: 2}
+  - viewPrefab: {fileID: 1260638884323276, guid: 7f0b1d8dc6afb43ee89dbeaf8670a61f,
+      type: 2}
+  - viewMeshFilter: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -10,7 +10,7 @@ namespace RTS
 		static float cameraMovementSideThickness = 0.01f;
 
 
-		static float visionArcAngle = 2.0f;
+		static float visionArcAngle = 160.0f;
 		static float hearRadiusCoefficient = 0.01f; // hearRadius = hearRadiusCoefficient * LOS
 
 
