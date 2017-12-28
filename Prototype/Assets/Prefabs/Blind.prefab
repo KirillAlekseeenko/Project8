@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 195069568803809198}
   - component: {fileID: 54923263804472566}
   - component: {fileID: 114487786595123568}
+  - component: {fileID: 114126926184327764}
   m_Layer: 10
   m_Name: Blind
   m_TagString: Untagged
@@ -91,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1002154715389562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1, y: 0.49, z: -24.91}
+  m_LocalPosition: {x: 0.34619522, y: 0.34, z: -27.361649}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 224322211608148784}
@@ -182,6 +183,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114126926184327764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1002154715389562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6cd159827d943249b85eccadb54451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshResolution: 0.5
+  edgeResolveIterations: 4
+  edgeDstThreshold: 0.5
 --- !u!114 &114487786595123568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,9 +222,10 @@ MonoBehaviour:
   meleeAttackRadius: 0
   longRangeAttackRadius: 5
   sneak: 0.1
-  LOS: 0.1
+  LOS: 30
   canvas: {fileID: 223633140919809780}
   healthBar: {fileID: 114945077170491394}
+  _isVisible: 0
 --- !u!114 &114691811147548172
 MonoBehaviour:
   m_ObjectHideFlags: 1

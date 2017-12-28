@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 195993500707976520}
   - component: {fileID: 54787467576126348}
   - component: {fileID: 114463450072784336}
+  - component: {fileID: 114270120706510296}
   m_Layer: 10
   m_Name: Citizen
   m_TagString: Untagged
@@ -203,6 +204,20 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114270120706510296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1161188522932336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6cd159827d943249b85eccadb54451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshResolution: 0.5
+  edgeResolveIterations: 4
+  edgeDstThreshold: 0.5
 --- !u!114 &114463450072784336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -228,9 +243,10 @@ MonoBehaviour:
   meleeAttackRadius: 0
   longRangeAttackRadius: 5
   sneak: 0.1
-  LOS: 10
+  LOS: 5
   canvas: {fileID: 223041209263437868}
   healthBar: {fileID: 114862651122302068}
+  _isVisible: 0
 --- !u!114 &114544651273229530
 MonoBehaviour:
   m_ObjectHideFlags: 1

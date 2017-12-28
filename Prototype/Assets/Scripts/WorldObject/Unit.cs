@@ -51,7 +51,14 @@ public class Unit : WorldObject {
 
 	// reloading
 	private float reloadTime;
-	private float time;
+	private float reloadCounter;
+
+	// visibility
+	[SerializeField]
+	private bool _isVisible = false;
+	protected MeshRenderer meshRenderer;
+	private float visibilityCounter;
+	private float visibilityUpdateTime = 0.5f;
 
 	public float Sneak {
 		get {
@@ -82,24 +89,48 @@ public class Unit : WorldObject {
 			return longRangeAttackRadius;
 		}
 	}
+
+	public override bool IsVisible {
+		get {
+			return _isVisible || owner.IsHuman;
+		}
+		protected set {
+			if (value != _isVisible) {
+				if (value) {
+					BecomeVisible ();
+				} else {
+					BecomeInvisible ();
+				}
+			}
+			_isVisible = value;
+		}
+	}	
+
+
 		
 
 	protected void Awake()
 	{
 		base.Awake ();
 		if (!owner.IsHuman) {
-			gameObject.AddComponent<VisionArcComponent> ();
+			//gameObject.AddComponent<VisionArcComponent> ();
 			gameObject.AddComponent<LocalAI> ();
 		}
 		else
 			gameObject.AddComponent<PlayerLocalAI> ();
 		hp = baseHP;
 		healthBarRectTransform = healthBar.GetComponent<RectTransform> ();
+		meshRenderer = GetComponent<MeshRenderer> ();
+
+		visibilityCounter = 0;
 	}
 
 	protected void Start()
 	{
 		base.Start ();
+
+		if (!owner.IsHuman)
+			GetComponent<MeshRenderer> ().enabled = false;
 
 		var navMesh = GetComponent<NavMeshAgent> ().speed = this.speed;
 		reloadTime = 1 / longRangeAttackPerSecond;
@@ -110,8 +141,15 @@ public class Unit : WorldObject {
 		base.Update ();
 
 		//reload
-		if (time < reloadTime) {
-			time += Time.deltaTime;
+		if (reloadCounter < reloadTime) {
+			reloadCounter += Time.deltaTime;
+		}
+
+		if (visibilityCounter < visibilityUpdateTime) {
+			visibilityCounter += Time.deltaTime;
+		} else {
+			visibilityCounter = 0;
+			IsVisible = false;
 		}
 
 		if (halo.activeInHierarchy) {
@@ -122,9 +160,9 @@ public class Unit : WorldObject {
 
 	public bool Fire()
 	{
-		bool result = (time >= reloadTime);
+		bool result = (reloadCounter >= reloadTime);
 		if (result) {
-			time = 0;
+			reloadCounter = 0;
 			return true;
 		} else
 			return false;
@@ -155,6 +193,25 @@ public class Unit : WorldObject {
 		return actionQueue.Count > 0 && actionQueue.Peek () is AttackInteraction;
 	}
 
+	public void SetVisible()
+	{
+		IsVisible = true;
+		visibilityCounter = 0;
+	}
+
+	private void BecomeVisible()
+	{
+		Manager.Instance.fieldOfViewHandler.Add (this);
+		meshRenderer.enabled = true;
+
+	}
+	private void BecomeInvisible()
+	{
+		Manager.Instance.fieldOfViewHandler.Remove (this);
+		meshRenderer.enabled = false;
+		Dehighlight ();
+	}
+
 	private void die()
 	{
 		if (owner.IsHuman) {
@@ -164,9 +221,12 @@ public class Unit : WorldObject {
 		}
 
 		Manager.Instance.selectionHandler.SelectedUnits.Remove (GetComponent<WorldObject> ());
+		Manager.Instance.fogOfWarHanlder.UpdateFogQuery ();
 
 		Destroy (gameObject);
 	}
+
+
 
 	private void updateUI()
 	{

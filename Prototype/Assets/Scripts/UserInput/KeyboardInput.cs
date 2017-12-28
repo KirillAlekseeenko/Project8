@@ -19,10 +19,10 @@ public class KeyboardInput : MonoBehaviour { // hotkeys and shift-selection
 			selectionHandler.IsShiftDown = false;
 		}
 
-		if (Input.GetKeyDown (KeyCode.LeftAlt)) {
+		if (Input.GetKeyDown (KeyCode.C)) {
 			fieldOfViewHandler.IsAltOn = true;
 		}
-		if (Input.GetKeyUp (KeyCode.LeftAlt)) {
+		if (Input.GetKeyUp (KeyCode.C)) {
 			fieldOfViewHandler.IsAltOn = false;
 		}
 

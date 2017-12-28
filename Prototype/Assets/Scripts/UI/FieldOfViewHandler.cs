@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class FieldOfViewHandler : MonoBehaviour {
 
+	[SerializeField]
+	private GameObject fieldOfViewPrefab;
+
 	private HashSet<Unit> objectsInsideTheFrustum;
+
+	private HashSet<Unit> visibleObjects;
 
 	private bool isAltOn;
 
 	void Awake()
 	{
 		objectsInsideTheFrustum = new HashSet<Unit> ();
+		visibleObjects = new HashSet<Unit> ();
+	}
+
+	public GameObject FieldOfViewPrefab {
+		get {
+			return fieldOfViewPrefab;
+		}
 	}
 
 	public bool IsAltOn {
@@ -18,12 +30,10 @@ public class FieldOfViewHandler : MonoBehaviour {
 			return isAltOn;
 		}
 		set {
-			foreach (Unit unit in objectsInsideTheFrustum) {
+			foreach (Unit unit in visibleObjects) {
 				if (value) {
-
 					unit.GetComponent<VisionArcComponent> ().IsTurnedOn = true;
 				} else {
-
 					unit.GetComponent<VisionArcComponent> ().IsTurnedOn = false;
 				}
 			}
@@ -33,19 +43,32 @@ public class FieldOfViewHandler : MonoBehaviour {
 
 	public void Add(Unit unit)
 	{
-		if (isAltOn) {
-			unit.GetComponent<VisionArcComponent> ().IsTurnedOn = true;
-		}
+		if (!visibleObjects.Contains (unit)) {
 
-		objectsInsideTheFrustum.Add (unit);
+			unit.GetComponent<MeshRenderer> ().enabled = true;
+
+			if (isAltOn) {
+				unit.GetComponent<VisionArcComponent> ().IsTurnedOn = true;
+			}
+
+			//objectsInsideTheFrustum.Add (unit);
+			visibleObjects.Add (unit);
+		}
 	}
 
 	public void Remove(Unit unit)
 	{
-		if (isAltOn) {
-			unit.GetComponent<VisionArcComponent> ().IsTurnedOn = false;
-		}
+		if (visibleObjects.Contains (unit)) {
 
-		objectsInsideTheFrustum.Remove (unit);
+			unit.GetComponent<MeshRenderer> ().enabled = false;
+
+			if (isAltOn) {
+				unit.GetComponent<VisionArcComponent> ().IsTurnedOn = false;
+			}
+
+			//objectsInsideTheFrustum.Remove (unit);
+			visibleObjects.Remove (unit);
+		}
 	}
+		
 }

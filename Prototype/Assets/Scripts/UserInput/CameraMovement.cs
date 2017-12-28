@@ -32,13 +32,13 @@ public class CameraMovement : MonoBehaviour {
 
 		moveFunction = null;
 
-		if (mousePosition.x < Screen.width * sideThickness)
+		if (mousePosition.x < Screen.width * sideThickness || Input.GetKey(KeyCode.A))
 			moveFunction += moveLeft;
-		if (mousePosition.y < Screen.height * sideThickness)
+		if (mousePosition.y < Screen.height * sideThickness || Input.GetKey(KeyCode.S))
 			moveFunction += moveBack;
-		if (mousePosition.x > Screen.width * (1 - sideThickness))
+		if (mousePosition.x > Screen.width * (1 - sideThickness) || Input.GetKey(KeyCode.D))
 			moveFunction += moveRight;
-		if (mousePosition.y > Screen.height * (1 - sideThickness))
+		if (mousePosition.y > Screen.height * (1 - sideThickness) || Input.GetKey(KeyCode.W))
 			moveFunction += moveForward;
 
 		if(moveFunction != null)

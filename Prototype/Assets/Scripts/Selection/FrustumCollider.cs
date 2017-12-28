@@ -31,10 +31,10 @@ public class FrustumCollider : MonoBehaviour {
 			selectionHandler.ObjectsInsideFrustum.Add (worldObject);
 		}
 
-		var unit = worldObject as Unit;
+		/*var unit = worldObject as Unit;
 		if (unit != null && !unit.Owner.IsHuman) {
 			fieldOfViewHandler.Add (unit);
-		}
+		}*/
 	}
 
 	void OnTriggerExit(Collider other)
@@ -44,10 +44,11 @@ public class FrustumCollider : MonoBehaviour {
 			selectionHandler.ObjectsInsideFrustum.Remove (worldObject);
 		}
 
+		/*
 		var unit = worldObject as Unit;
 		if (unit != null && !unit.Owner.IsHuman) {
 			fieldOfViewHandler.Remove (unit);
-		}
+		}*/
 	}
 
 	private void initializeFrustumCollider()
@@ -65,16 +66,16 @@ public class FrustumCollider : MonoBehaviour {
 		var right = Vector3.right;
 		var up = Vector3.up;
 
-		var x = Mathf.Tan (camera.fieldOfView * Mathf.Deg2Rad) * camera.farClipPlane;
+		var x = Mathf.Tan (camera.fieldOfView * Mathf.Deg2Rad) * camera.farClipPlane / 2;
 		var y = x / camera.aspect;
 
 
 
 		vertices [0] = Vector3.zero;
-		vertices [1] = direction * camera.farClipPlane + right * x / 2 + up * y / 2;
-		vertices [2] = direction * camera.farClipPlane + right * x / 2 - up * y / 2;
-		vertices [3] = direction * camera.farClipPlane - right * x / 2 - up * y / 2;
-		vertices [4] = direction * camera.farClipPlane - right * x / 2 + up * y / 2;
+		vertices [1] = direction * camera.farClipPlane + right * x + up * y;
+		vertices [2] = direction * camera.farClipPlane + right * x - up * y;
+		vertices [3] = direction * camera.farClipPlane - right * x - up * y;
+		vertices [4] = direction * camera.farClipPlane - right * x + up * y;
 
 		triangles = new int[] { 0, 1, 2, 0, 2, 3, 0, 3, 4, 0, 4, 1, 1, 2, 3, 1, 3, 4 };
 

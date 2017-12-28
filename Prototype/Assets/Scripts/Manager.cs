@@ -21,6 +21,9 @@ public class Manager : MonoBehaviour {
 	[SerializeField]
 	private FieldOfViewHandler fieldOfView;
 
+	[SerializeField]
+	private FogProjector fogOfWar;
+
 	public SelectionHandler selectionHandler {
 		get {
 			return selection;
@@ -36,6 +39,12 @@ public class Manager : MonoBehaviour {
 	public FieldOfViewHandler fieldOfViewHandler {
 		get {
 			return fieldOfView;
+		}
+	}
+
+	public FogProjector fogOfWarHanlder {
+		get {
+			return fogOfWar;
 		}
 	}
 

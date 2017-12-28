@@ -54,8 +54,12 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit)) {
 			var worldObject = hit.collider.gameObject.GetComponent<WorldObject> ();
+
 			if (worldObject != null && !selectedUnits.Contains(worldObject)) { // НАДО ЧТО-ТО ДЕЛАТЬ С КОДОМ В ЭТОМ IF!!11
-				
+
+				if (!worldObject.IsVisible)
+					return;
+
 				if (currentlyHighlightedObject != null && !selectedUnits.Contains(currentlyHighlightedObject)) {
 					currentlyHighlightedObject.Dehighlight ();
 				}
@@ -84,7 +88,7 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit)) {
 			var worldObject = hit.collider.gameObject.GetComponent<WorldObject> ();
-			if (worldObject != null) {
+			if (worldObject != null && worldObject.IsVisible) {
 				selectObject (worldObject);
 			}
 		}

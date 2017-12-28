@@ -11,47 +11,58 @@ public class VisionArcComponent : MonoBehaviour {
 
 	private LayerMask buildingMask;
 
-	private float meshResolution = 0.7f;
+	[SerializeField]
+	private float meshResolution = 0.3f;
+	[SerializeField]
 	private int edgeResolveIterations = 4;
+	[SerializeField]
 	private float edgeDstThreshold = 0.5f;
 
-	[SerializeField]
-	private Material viewMeshMaterial;
-	[SerializeField]
-	private GameObject viewPrefab;
+	private float updateDistance = 0.1f;
+
+	private Vector3 lastPosition;
 
 
 	private MeshFilter viewMeshFilter;
 	private Mesh viewMesh;
 
 	private GameObject viewGameObject;
+	private Vector3 viewGameObjectLocalPosition;
 
 
 	private bool isTurnedOn;
 
 	// Use this for initialization
+
+
 	void Start () {
 
 		unitComponent = GetComponent<Unit> ();
 
 		viewRadius = unitComponent.pLOS;
-		viewAngle = RTS.Constants.VisionArcAngle;
+		viewAngle = unitComponent.Owner.IsHuman ? 360.0f : RTS.Constants.VisionArcAngle;
+
+		if (unitComponent.Owner.IsHuman) {
+			meshResolution = 0.2f;
+		}
+			
 
 		buildingMask = LayerMask.GetMask ("Building");
 
-		viewGameObject = Instantiate (viewPrefab, gameObject.transform);
-		viewMeshFilter = viewGameObject.AddComponent<MeshFilter> ();
-		var meshRenderer = viewGameObject.AddComponent<MeshRenderer> ();
-		viewGameObject.layer = LayerMask.NameToLayer ("ViewMesh");
-		viewGameObject.transform.Translate (new Vector3 (0,-0.3f,0));
+		viewGameObject = Instantiate (Manager.Instance.fieldOfViewHandler.FieldOfViewPrefab, gameObject.transform);
+
+		viewGameObject.layer = unitComponent.Owner.IsHuman ? LayerMask.NameToLayer ("Vision") : LayerMask.NameToLayer("ViewMesh");
 		viewGameObject.name = "viewGameObject";
 
-		meshRenderer.material = viewMeshMaterial;
-		meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-		meshRenderer.receiveShadows = false;
+		viewGameObjectLocalPosition = new Vector3 (0, -transform.position.y, 0);
 
+		viewMeshFilter = viewGameObject.GetComponent<MeshFilter> ();
 		viewMesh = new Mesh ();
 		viewMeshFilter.mesh = viewMesh;
+
+		lastPosition = transform.position;
+
+		IsTurnedOn = unitComponent.Owner.IsHuman;
 		
 	}
 	
@@ -60,9 +71,14 @@ public class VisionArcComponent : MonoBehaviour {
 
 	void LateUpdate()
 	{
-		viewGameObject.transform.localPosition = Vector3.zero;
-		if(isTurnedOn)
+		if(isTurnedOn || unitComponent.Owner.IsHuman)
 			DrawFieldOfView ();
+		if(viewGameObject != null)
+			viewGameObject.transform.localPosition = viewGameObjectLocalPosition;
+		if (Vector3.Distance (lastPosition, transform.position) > updateDistance && unitComponent.Owner.IsHuman) {
+			lastPosition = transform.position;
+			Manager.Instance.fogOfWarHanlder.UpdateFogQuery ();
+		}
 	}
 
 	public bool IsTurnedOn {

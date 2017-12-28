@@ -61,11 +61,11 @@ public class ActionHandler : MonoBehaviour {
 		}
 
 
-		Debug.Log (rightForward);
-		Debug.Log (rotation.eulerAngles);
-		Debug.DrawLine (center, position, Color.green);
-		Debug.DrawLine (position, position + rightForward, Color.green);
-		Debug.DrawLine (position, position + rotation * rightForward, Color.red);
+		//Debug.Log (rightForward);
+		//Debug.Log (rotation.eulerAngles);
+		//Debug.DrawLine (center, position, Color.green);
+		//Debug.DrawLine (position, position + rightForward, Color.green);
+		//Debug.DrawLine (position, position + rotation * rightForward, Color.red);
 
 
 		int horizontal = 0;

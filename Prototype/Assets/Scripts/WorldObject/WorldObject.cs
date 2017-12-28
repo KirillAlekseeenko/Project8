@@ -53,6 +53,8 @@ public abstract class WorldObject : MonoBehaviour {
 			isSelected = value;
 		}
 	}
+
+	public virtual bool IsVisible { get; protected set;}
 		
 
 	public GameObject Icon {
