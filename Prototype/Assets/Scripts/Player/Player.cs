@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	[SerializeField]
-	private string username;  // задел по мультиплеер ))0)
+	private string username;  // задел под мультиплеер ))0)
 	[SerializeField]
 	private bool isHuman; 
 	[SerializeField]

@@ -30,11 +30,7 @@ public class FrustumCollider : MonoBehaviour {
 		if (worldObject != null && worldObject.Owner.IsHuman) {
 			selectionHandler.ObjectsInsideFrustum.Add (worldObject);
 		}
-
-		/*var unit = worldObject as Unit;
-		if (unit != null && !unit.Owner.IsHuman) {
-			fieldOfViewHandler.Add (unit);
-		}*/
+			
 	}
 
 	void OnTriggerExit(Collider other)
@@ -43,12 +39,7 @@ public class FrustumCollider : MonoBehaviour {
 		if (worldObject != null && worldObject.Owner.IsHuman) {
 			selectionHandler.ObjectsInsideFrustum.Remove (worldObject);
 		}
-
-		/*
-		var unit = worldObject as Unit;
-		if (unit != null && !unit.Owner.IsHuman) {
-			fieldOfViewHandler.Remove (unit);
-		}*/
+			
 	}
 
 	private void initializeFrustumCollider()
@@ -57,10 +48,6 @@ public class FrustumCollider : MonoBehaviour {
 		int[] triangles;
 
 		var camera = Camera.main;
-
-		//var direction = transform.TransformDirection (Vector3.forward);
-		//var right = transform.TransformDirection (Vector3.right);
-		//var up = transform.TransformDirection (Vector3.up);
 
 		var direction = Vector3.forward;
 		var right = Vector3.right;

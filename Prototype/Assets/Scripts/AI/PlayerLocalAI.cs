@@ -15,6 +15,8 @@ public class PlayerLocalAI : MonoBehaviour {
 		}
 	}
 
+	private bool canHeal;
+
 	void Awake()
 	{
 		visibleObjects = new HashSet<Unit> ();
@@ -22,6 +24,7 @@ public class PlayerLocalAI : MonoBehaviour {
 
 	void Start()
 	{
+		canHeal = (GetComponent<Scientist> () != null);
 		unitComponent = GetComponent<Unit> ();
 		StartCoroutine (updateCoroutine());
 	}
@@ -52,28 +55,36 @@ public class PlayerLocalAI : MonoBehaviour {
 	{
 		var colliders = Physics.OverlapSphere (transform.position, unitComponent.pLOS, LayerMask.GetMask ("Unit"));
 
-		var visible = 0;
+		Unit closestEnemyUnit = null;
+		Unit closestFriendlyUnit = null;
+
 
 		foreach (var collider in colliders) {
-			var unit = collider.gameObject.GetComponent<Unit> ();
-			if (unit == null)
-				continue;
-			if (!unit.Owner.IsHuman) {
-				var vectorToEnemy = unit.transform.position - unitComponent.transform.position;
+			Unit unit = collider.gameObject.GetComponent<Unit> ();
+			if (unit != null) {
+				var vectorToUnit = unit.transform.position - transform.position;
 				RaycastHit hit;
-				if (!Physics.Raycast (new Ray (transform.position, vectorToEnemy),out hit, vectorToEnemy.magnitude,LayerMask.GetMask ("Building"))) {
-
-					if (unitComponent.isIdle ()) {
-						unitComponent.AssignAction (new AttackInteraction (unitComponent, unit));
-					}
-					unit.SetVisible ();
-					visible++;
-
-				} 
+				if (unit.Owner.IsHuman ) {
+					if(!unit.IsHealthy() && canHeal)
+						if (closestFriendlyUnit == null || vectorToUnit.magnitude < (closestFriendlyUnit.transform.position - transform.position).magnitude)
+							closestFriendlyUnit = unit;
+				} else {
+					if (!Physics.Raycast (new Ray (transform.position, vectorToUnit),out hit, vectorToUnit.magnitude,LayerMask.GetMask ("Building"))) {
+						unit.SetVisible ();
+						if (closestEnemyUnit == null || vectorToUnit.magnitude < (closestEnemyUnit.transform.position - transform.position).magnitude)
+							closestEnemyUnit = unit;
+					} 
+				}
+			}
+		}
+		if (unitComponent.isIdle ()) {
+			if (closestFriendlyUnit != null) {
+				unitComponent.AssignAction (new HealInteraction (unitComponent, closestFriendlyUnit));
+			} else if (closestEnemyUnit != null) {
+				unitComponent.AssignAction (new AttackInteraction (unitComponent, closestEnemyUnit));
 			}
 		}
 
-		visibleObjectCount = visible;
 	}
 		
 		

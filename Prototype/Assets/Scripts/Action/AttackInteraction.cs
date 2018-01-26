@@ -5,8 +5,17 @@ using UnityEngine.AI;
 
 public class AttackInteraction : Interaction {
 
-	private float longRangeAttackRadius;
-	private int longRangeAttackDamage;
+	private float rangeAttackRadius;
+	private int rangeAttackDamage;
+
+	private float meleeAttackRadius;
+	private int meleeAttackDamage;
+
+	private delegate bool AttackCheck();
+	private AttackCheck canAttack;
+
+	private delegate void Attack();
+	private Attack attack;
 
 	private NavMeshAgent navMeshAgentComponent;
 
@@ -16,8 +25,12 @@ public class AttackInteraction : Interaction {
 	{
 		this.actionOwner = actionOwner;
 		this.actionReceiver = actionReceiver;
-		this.longRangeAttackRadius = actionOwner.LongRangeAttackRadius;
-		this.longRangeAttackDamage = actionOwner.RangeAttack;
+
+		this.rangeAttackRadius = actionOwner.RangeAttackRadius;
+		this.rangeAttackDamage = actionOwner.RangeAttack;
+		this.meleeAttackDamage = actionOwner.MeleeAttack;
+		this.meleeAttackRadius = actionOwner.MeleeAttackRadius;
+
 		this.navMeshAgentComponent = actionOwner.GetComponent<NavMeshAgent> ();
 		this.targetPosition = actionReceiver.transform.position;
 	}
@@ -41,21 +54,23 @@ public class AttackInteraction : Interaction {
 				return new ActionState (true, -1);
 			}
 				
-
 			var vectorToTarget = actionReceiver.transform.position - actionOwner.transform.position;
 			float unitWidth = 0.5f;
 
 			var ray = new Ray (actionOwner.transform.position, vectorToTarget);
-			var rayLength = Mathf.Min (longRangeAttackRadius, vectorToTarget.magnitude + unitWidth);
+			var rayLength = Mathf.Min (rangeAttackRadius, vectorToTarget.magnitude + unitWidth);
 			RaycastHit hit;
 
-			if (!Physics.Raycast (ray, out hit, rayLength, ~LayerMask.GetMask("Unit")) // проверка на отсутствие препятствий
-				&& rayLength < longRangeAttackRadius) { 
+			if (!Physics.Raycast (ray, out hit, rayLength, ~LayerMask.GetMask("Unit")) && rayLength < rangeAttackRadius) { // проверка на отсутствие препятствий
 
 				navMeshAgentComponent.ResetPath (); // остановка
-				actionOwner.transform.LookAt(actionReceiver.transform.position); // поворот
-				if((actionOwner as Unit).Fire())
-					(actionReceiver as Unit).SufferDamage (longRangeAttackDamage);
+				actionOwner.transform.LookAt(actionReceiver.transform.position);  // поворот
+
+				if (rayLength < meleeAttackRadius || !(actionOwner as Unit).IsRange) {
+					(actionOwner as Unit).PerformMeleeAttack (actionReceiver as Unit);
+				} else {
+					(actionOwner as Unit).PerformRangeAttack (actionReceiver as Unit);
+				}
 
 			} else { 
 				if (targetPosition != actionReceiver.transform.position || !navMeshAgentComponent.hasPath) { // положение цели изменилось или юнит не имеет никаких указаний

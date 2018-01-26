@@ -23,8 +23,12 @@ public class ActionHandler : MonoBehaviour {
 				moveObjets (hit.point);
 			} else {
 				var enemyUnit = hit.collider.gameObject.GetComponent<Unit> ();
-				if (enemyUnit != null && !enemyUnit.Owner.IsHuman) {
-					attack (enemyUnit);
+				if (enemyUnit != null && enemyUnit.IsVisible) {
+					if (!enemyUnit.Owner.IsHuman) {
+						attack (enemyUnit);
+					} else {
+						heal (enemyUnit);
+					}
 				}
 			}
 
@@ -60,14 +64,6 @@ public class ActionHandler : MonoBehaviour {
 			rightForward = new Vector3 (formationShift * (squareSize / 2), height, formationShift * (squareSize / 2));
 		}
 
-
-		//Debug.Log (rightForward);
-		//Debug.Log (rotation.eulerAngles);
-		//Debug.DrawLine (center, position, Color.green);
-		//Debug.DrawLine (position, position + rightForward, Color.green);
-		//Debug.DrawLine (position, position + rotation * rightForward, Color.red);
-
-
 		int horizontal = 0;
 		int vertical = 0;
 
@@ -75,7 +71,7 @@ public class ActionHandler : MonoBehaviour {
 			if (worldObject is Unit && worldObject.Owner.IsHuman) {
 				
 				Vector3 unitPos = new Vector3 (rightForward.x - vertical * formationShift, height, rightForward.z - horizontal * formationShift);
-				//unitPos = rotation * unitPos;
+
 				unitPos += position;
 				horizontal++;
 				if (horizontal == squareSize) {
@@ -95,6 +91,15 @@ public class ActionHandler : MonoBehaviour {
 		foreach (WorldObject worldObject in selectionHandler.SelectedUnits) {
 			if (worldObject is Unit && worldObject.Owner.IsHuman) {
 				AttackInteraction action = new AttackInteraction (worldObject as Unit, unit);
+				worldObject.AssignAction (action);
+			}
+		}
+	}
+	private void heal(Unit unit)
+	{
+		foreach (WorldObject worldObject in selectionHandler.SelectedUnits) {
+			if (worldObject is Unit && worldObject.Owner.IsHuman && worldObject.GetComponent<Scientist>() != null) {
+				HealInteraction action = new HealInteraction (worldObject as Unit, unit);
 				worldObject.AssignAction (action);
 			}
 		}

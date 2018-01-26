@@ -79,6 +79,16 @@ public class Building : WorldObject, IBuilding {
 		isSelected = true;
 		ShowMenu (gameObject);
 	}*/
+
+	public override bool IsVisible {
+		get {
+			return base.IsVisible || owner.IsHuman;
+		}
+		protected set {
+			base.IsVisible = value;
+		}
+	}
+
 	public override bool IsSelected {
 		get {
 			return base.IsSelected;

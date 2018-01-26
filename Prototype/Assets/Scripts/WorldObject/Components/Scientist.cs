@@ -4,13 +4,51 @@ using UnityEngine;
 
 public class Scientist : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	// mining
+
+	[SerializeField] private int income;
+
+	//healing
+
+	[SerializeField] private int healAmount;
+	[SerializeField] private float healPerSecond;
+	[SerializeField] private float healRadius;
+
+	[SerializeField] private ParticleSystem healEffect;
+
+	private float healReloadTime;
+	private float reloadCounter;
+
+	public float HealRadius {
+		get {
+			return healRadius;
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void Start()
+	{
+		healReloadTime = 1 / healPerSecond;
+	}
+
+	void Update()
+	{
+		reloadCounter += Time.deltaTime;
+	}
+
+	public void PerformHeal(Unit friendlyUnit)
+	{
+		if (isReadyToHeal ()) {
+			friendlyUnit.Heal (healAmount);
+
+			
+			// HealEffect
+		}
+	}
+	private bool isReadyToHeal()
+	{
+		bool result = (reloadCounter >= healReloadTime);
+		if (result)
+			reloadCounter = 0;
+		return result;
 	}
 }

@@ -8,53 +8,45 @@ public class Unit : WorldObject {
 
 	[Header("Stats:")]
 
-	[SerializeField]
-	protected int baseHP;
+	[SerializeField] protected int baseHP;
 	protected int hp;
 
-	[SerializeField]
-	protected int meleeAttack;
-	[SerializeField]
-	protected float meleeAttackPerSecond;
-	[SerializeField]
-	protected int rangeAttack;
-	[SerializeField]
-	protected float longRangeAttackPerSecond;
-	[SerializeField]
-	protected float assaultSkill; // for buildings
+	[SerializeField] protected bool isRange;
+	[SerializeField] protected int meleeAttack;
+	[SerializeField] protected float meleeAttackPerSecond;
+	[SerializeField] protected float meleeAttackRadius;
+	[SerializeField] protected int rangeAttack;
+	[SerializeField] protected float rangeAttackPerSecond;
+	[SerializeField] protected float rangeAttackRadius;
 
-	[SerializeField]
-	protected float speed;
+	[SerializeField] protected float assaultSkill; // for buildings
 
-	[SerializeField]
-	protected float meleeAttackRadius;
-	[SerializeField]
-	protected float longRangeAttackRadius;
+	[SerializeField] protected float speed;
 
-	[SerializeField]
-	protected float sneak; // 0 to 1
+	[SerializeField] protected float sneak; // 0 to 1
+	[SerializeField] protected bool halfVisible;
 
+	[SerializeField] protected float LOS; // line of sight
 
-
-	[SerializeField]
-	protected float LOS; // line of sight
+	// buffs or debuffs
+	public float SufferDamageMultiplier { get; set; }
+	public float MakeDamageMultiplier { get; set; }
 
 	[Header("UI")]
-	[SerializeField]
-	protected Canvas canvas;
-
-	[SerializeField]
-	protected Image healthBar;
-
+	[SerializeField] protected Canvas canvas;
+	[SerializeField] protected Image healthBar;
 	protected RectTransform healthBarRectTransform;
+
+	[Header("Perks")]
+	[SerializeField] protected List<Perk> perkList;
+	[SerializeField] protected ParticleSystem traceParticle;
 
 
 	// reloading
-	private float reloadTime;
+	private float rangeReloadTime;
+	private float meleeReloadTime;
 	private float reloadCounter;
 
-	// visibility
-	[SerializeField]
 	private bool _isVisible = false;
 	protected MeshRenderer meshRenderer;
 	private float visibilityCounter;
@@ -63,6 +55,24 @@ public class Unit : WorldObject {
 	public float Sneak {
 		get {
 			return sneak;
+		}
+	}
+
+	public bool HalfVisible {
+		get {
+			return halfVisible;
+		}
+	}
+
+	public bool IsRange {
+		get {
+			return isRange;
+		}
+	}
+
+	public int MeleeAttack {
+		get {
+			return meleeAttack;
 		}
 	}
 
@@ -78,15 +88,21 @@ public class Unit : WorldObject {
 		}
 	}
 
-	public float LongRangeAttackPerSecond {
+	public float RangeAttackPerSecond {
 		get {
-			return longRangeAttackPerSecond;
+			return rangeAttackPerSecond;
 		}
 	}
 
-	public float LongRangeAttackRadius {
+	public float RangeAttackRadius {
 		get {
-			return longRangeAttackRadius;
+			return rangeAttackRadius;
+		}
+	}
+
+	public float MeleeAttackRadius {
+		get {
+			return meleeAttackRadius;
 		}
 	}
 
@@ -106,14 +122,16 @@ public class Unit : WorldObject {
 		}
 	}	
 
-
+	public List<Perk> PerkList {
+		get {
+			return perkList;
+		}
+	}
 		
-
 	protected void Awake()
 	{
 		base.Awake ();
 		if (!owner.IsHuman) {
-			//gameObject.AddComponent<VisionArcComponent> ();
 			gameObject.AddComponent<LocalAI> ();
 		}
 		else
@@ -121,6 +139,9 @@ public class Unit : WorldObject {
 		hp = baseHP;
 		healthBarRectTransform = healthBar.GetComponent<RectTransform> ();
 		meshRenderer = GetComponent<MeshRenderer> ();
+
+		SufferDamageMultiplier = 1.0f;
+		MakeDamageMultiplier = 1.0f;
 
 		visibilityCounter = 0;
 	}
@@ -133,15 +154,21 @@ public class Unit : WorldObject {
 			GetComponent<MeshRenderer> ().enabled = false;
 
 		var navMesh = GetComponent<NavMeshAgent> ().speed = this.speed;
-		reloadTime = 1 / longRangeAttackPerSecond;
+
+		rangeReloadTime = 1 / rangeAttackPerSecond;
+		meleeReloadTime = 1 / meleeAttackPerSecond;
+
+		initializePerks ();
 	}
+
+
 
 	protected void Update()
 	{
 		base.Update ();
 
 		//reload
-		if (reloadCounter < reloadTime) {
+		if (reloadCounter < rangeReloadTime) {
 			reloadCounter += Time.deltaTime;
 		}
 
@@ -158,14 +185,81 @@ public class Unit : WorldObject {
 		}
 	}
 
-	public bool Fire()
+	private void initializePerks()
 	{
-		bool result = (reloadCounter >= reloadTime);
-		if (result) {
+		var perksParent = Instantiate (new GameObject (), gameObject.transform);
+		perksParent.name = "Perks";
+		List<Perk> activeList = new List<Perk> ();
+		foreach (var perk in perkList) {
+			var newPerk = Instantiate (perk.gameObject, perksParent.transform).GetComponent<Perk>();
+			activeList.Add (newPerk);
+		}
+		perkList = activeList;
+	}
+
+	private bool isReadyToFire()
+	{
+		bool result = (reloadCounter >= rangeReloadTime);
+		if (result)
 			reloadCounter = 0;
-			return true;
-		} else
-			return false;
+		return result;
+	}
+	private bool isReadyToBeat()
+	{
+		bool result = (reloadCounter >= meleeReloadTime);
+		if (result)
+			reloadCounter = 0;
+		return result;
+	}
+
+	public void PerformRangeAttack(Unit enemyUnit)
+	{
+		if (isReadyToFire ()) {
+			enemyUnit.SufferDamage ((int)(rangeAttack * MakeDamageMultiplier));
+			spawnParticleEffect (enemyUnit);
+			// sound
+		}
+	}
+
+	private void spawnParticleEffect(Unit enemyUnit)
+	{
+		Quaternion rotation = Quaternion.LookRotation (enemyUnit.transform.position);// particle's rotation
+		ParticleSystem trace = Instantiate (traceParticle.gameObject, transform.position, Quaternion.identity, transform ).GetComponent<ParticleSystem>();
+
+
+		float length = (enemyUnit.transform.position - transform.position).magnitude; // length of the particle
+		trace.startLifetime = length / trace.main.startSpeed.constant;
+		trace.transform.localRotation = Quaternion.identity;
+
+	}
+	public void PerformMeleeAttack(Unit enemyUnit)
+	{
+		if (isReadyToBeat ()) {
+			enemyUnit.SufferDamage ((int)(meleeAttack * MakeDamageMultiplier));
+		}
+	}
+
+	public void SufferDamage(int damage)
+	{
+		hp -= (int)(damage * SufferDamageMultiplier);
+		updateUI ();
+		if (hp <= 0)
+			die ();
+	}
+	public void Heal(int healAmount)
+	{
+		hp += healAmount;
+		Mathf.Clamp (hp, 0, baseHP);
+		updateUI ();
+	}
+	public bool IsHealthy()
+	{
+		return baseHP == hp;
+	}
+
+	public bool isAttacking()
+	{
+		return actionQueue.Count > 0 && actionQueue.Peek () is AttackInteraction;
 	}
 
 	public override void Highlight ()
@@ -178,21 +272,7 @@ public class Unit : WorldObject {
 		base.Dehighlight ();
 		canvas.gameObject.SetActive (false);
 	}
-
-	public void SufferDamage(int damage)
-	{
-		hp -= damage;
-		updateUI ();
-		if (hp <= 0)
-			die ();
-
-	}
-
-	public bool isAttacking()
-	{
-		return actionQueue.Count > 0 && actionQueue.Peek () is AttackInteraction;
-	}
-
+		
 	public void SetVisible()
 	{
 		IsVisible = true;
@@ -215,12 +295,12 @@ public class Unit : WorldObject {
 	private void die()
 	{
 		if (owner.IsHuman) {
-			Manager.Instance.selectionHandler.ObjectsInsideFrustum.Remove (GetComponent<WorldObject> ());
+			Manager.Instance.selectionHandler.ObjectsInsideFrustum.Remove (this);
 		} else {
-			Manager.Instance.fieldOfViewHandler.Remove (GetComponent<Unit> ());
+			Manager.Instance.fieldOfViewHandler.Remove (this);
 		}
 
-		Manager.Instance.selectionHandler.SelectedUnits.Remove (GetComponent<WorldObject> ());
+		Manager.Instance.selectionHandler.UnselectObject (this);
 		Manager.Instance.fogOfWarHanlder.UpdateFogQuery ();
 
 		Destroy (gameObject);

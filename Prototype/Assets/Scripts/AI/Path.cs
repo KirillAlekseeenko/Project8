@@ -12,13 +12,6 @@ public class Path {
 
 
 
-	/*public Path(bool isCyclic, bool isEnclosed, params Vector3[] nodes)
-	{
-		foreach (var node in nodes) {
-			pathNodes.Add (node);
-		}
-	}*/
-
 	public void assignPath(Unit unit)
 	{
 

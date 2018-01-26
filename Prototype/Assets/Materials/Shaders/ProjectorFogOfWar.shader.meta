@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: f36dadb0ef4d0443e849d2c7c264b244
-timeCreated: 1513960072
+timeCreated: 1515868500
 licenseType: Free
 ShaderImporter:
   externalObjects: {}
-  defaultTextures: []
+  defaultTextures:
+  - _OldFogTex: {fileID: 8400000, guid: d5105ee30dcec4a59a09f9cb6811dff1, type: 2}
+  - _FogTex: {fileID: 8400000, guid: d5105ee30dcec4a59a09f9cb6811dff1, type: 2}
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -29,7 +29,7 @@ public class FogProjector : MonoBehaviour
 	// update time
 	private float timeSinceLastUpdate = 0.0f;
 	[SerializeField]
-	private float fastUpdateTime = 0.1f;
+	private float fastUpdateTime = 0.2f;
 	private float slowUpdateTime = 0.5f;
 
 	void OnEnable()
@@ -68,6 +68,7 @@ public class FogProjector : MonoBehaviour
 	{
 		timeSinceLastUpdate += Time.deltaTime;
 		if (timeSinceLastUpdate > slowUpdateTime) {
+			timeSinceLastUpdate = 0;
 			UpdateFog ();
 		}
 	}

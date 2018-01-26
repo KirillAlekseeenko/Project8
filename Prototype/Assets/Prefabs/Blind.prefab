@@ -213,19 +213,21 @@ MonoBehaviour:
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
   iconPrefab: {fileID: 0}
   baseHP: 20
-  meleeAttack: 0
-  meleeAttackPerSecond: 0
+  isRange: 1
+  meleeAttack: 1
+  meleeAttackPerSecond: 1
+  meleeAttackRadius: 1
   rangeAttack: 2
-  longRangeAttackPerSecond: 1
+  rangeAttackPerSecond: 1
+  rangeAttackRadius: 30
   assaultSkill: 0
   speed: 3
-  meleeAttackRadius: 0
-  longRangeAttackRadius: 5
   sneak: 0.1
   LOS: 30
   canvas: {fileID: 223633140919809780}
   healthBar: {fileID: 114945077170491394}
-  _isVisible: 0
+  traceParticle: {fileID: 198000012673436980, guid: 95cb411de706c4776aeeca3940672625,
+    type: 2}
 --- !u!114 &114691811147548172
 MonoBehaviour:
   m_ObjectHideFlags: 1

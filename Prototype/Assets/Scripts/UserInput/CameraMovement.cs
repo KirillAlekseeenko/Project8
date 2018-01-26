@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
 
-	[SerializeField]
-	Camera camera; 
+	[SerializeField] Camera camera; 
 
 	private float movementSpeed;
 	private float sideThickness;
@@ -18,12 +17,19 @@ public class CameraMovement : MonoBehaviour {
 		movementSpeed = RTS.Constants.CameraMovementSpeed;
 		sideThickness = RTS.Constants.CameraMovementSideThickness;
 	}
+
+	public float MovementSpeed {
+		get {
+			return movementSpeed;
+		}
+		set {
+			movementSpeed = value;
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
-		
 		moveCamera ();
-		
 	}
 
 	private void moveCamera()
@@ -43,7 +49,6 @@ public class CameraMovement : MonoBehaviour {
 
 		if(moveFunction != null)
 			moveFunction ();
-
 	}
 
 	private void moveRight ()

@@ -19,13 +19,13 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _FogTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 8400000, guid: d5105ee30dcec4a59a09f9cb6811dff1, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OldFogTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 8400000, guid: d5105ee30dcec4a59a09f9cb6811dff1, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.17647058, g: 0.17647058, b: 0.17647058, a: 0}

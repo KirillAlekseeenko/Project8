@@ -37,7 +37,7 @@ public class LocalAI : MonoBehaviour {
 	private void checkForEnemies()
 	{
 		
-		var colliders = Physics.OverlapSphere (transform.position, unitComponent.pLOS, LayerMask.GetMask("Unit")); 
+		var colliders = Physics.OverlapSphere (transform.position, unitComponent.pLOS, LayerMask.GetMask("Unit"));
 
 		foreach (var collider in colliders) {
 			var unit = collider.gameObject.GetComponent<Unit> ();
@@ -50,7 +50,7 @@ public class LocalAI : MonoBehaviour {
 
 					unitComponent.AssignAction (new AttackInteraction (unitComponent, unit));
 
-					director.Alarm (unit, unitComponent.transform); // зовет всех на помощь (радиус у всех одинаковый и является свойством экземпляра Director
+					director.Alarm (unit, unitComponent.transform); // зовет всех на помощь (радиус у всех одинаковый и является свойством экземпляра Director)
 					
 				}
 			}
@@ -63,7 +63,7 @@ public class LocalAI : MonoBehaviour {
 		if (unitComponent.isIdle ()) {
 			time += Time.deltaTime;
 			if (time >= timeForIdleness) {
-				director.becomeIdle (unitComponent);
+				director.becameIdle (unitComponent);
 				time = 0;
 			}
 		} else {
@@ -75,8 +75,10 @@ public class LocalAI : MonoBehaviour {
 	private bool isObjectInsideTheArc(Unit unit, Unit enemy)
 	{
 		var vectorToEnemy = enemy.transform.position - unit.transform.position;
+		if (unit.HalfVisible && vectorToEnemy.magnitude > unit.pLOS / 2)
+			return false;
+		
 		var direction = unit.transform.TransformDirection (Vector3.forward);
-
 		return Vector3.Angle (vectorToEnemy, direction) < RTS.Constants.VisionArcAngle / 2;
 
 	}

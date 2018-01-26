@@ -43,7 +43,7 @@ public class VisionArcComponent : MonoBehaviour {
 		viewAngle = unitComponent.Owner.IsHuman ? 360.0f : RTS.Constants.VisionArcAngle;
 
 		if (unitComponent.Owner.IsHuman) {
-			meshResolution = 0.2f;
+			meshResolution = 0.05f;
 		}
 			
 

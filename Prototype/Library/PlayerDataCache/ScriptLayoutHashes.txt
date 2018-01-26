@@ -120,7 +120,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 00f23c0fed0528f9972faefcac492acb Assembly-CSharp.dll:.PlayerLocalAI
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LocalAI
 e54581f4f0965d7f56216a5751f4b45d Assembly-CSharp.dll:.FogProjector
-aea8daf4c3e0f28a4f0fa811baecafa9 Assembly-CSharp.dll:.Unit
+82c24eff4dd929e0ee159cc04611627b Assembly-CSharp.dll:.Unit
 32e8fe00b63ed946490b898f6024a2f2 Facebook.Unity.Settings.dll:Facebook.Unity.Settings.FacebookSettings
 2eaec8e941ab21d9c8ef241f9a1b509f Assembly-CSharp.dll:.VisionArcComponent
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
@@ -157,3 +157,4 @@ f90c5547da4a6bf78c9f01d423c35266 Assembly-CSharp.dll:.CameraMovement
 5368f3e67e47252d8cc75a95feb44f63 Assembly-CSharp.dll:.FrustumCollider
 091927439b93f38abe4a2d74b3671791 Assembly-CSharp.dll:.Solidify
 9f920e84182f79c61b4387a506ab6427 Assembly-CSharp.dll:.ActionHandler
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Trace

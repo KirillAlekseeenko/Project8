@@ -68,7 +68,7 @@ public class Director : MonoBehaviour {
 		units.Add (unit);
 	}
 
-	public void becomeIdle(Unit unit)
+	public void becameIdle(Unit unit)
 	{
 		int i = Random.Range(0, patrolPaths.Count);
 		patrolPaths [i].assignPath (unit);

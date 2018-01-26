@@ -26,6 +26,17 @@ public class KeyboardInput : MonoBehaviour { // hotkeys and shift-selection
 			fieldOfViewHandler.IsAltOn = false;
 		}
 
+		if (Input.GetKeyDown (KeyCode.E)) {
+			selectionHandler.Perks.ActivatePerk (0);
+		}
+		if (Input.GetKeyDown (KeyCode.R)) {
+			selectionHandler.Perks.ActivatePerk (1);
+		}
+		if (Input.GetKeyDown (KeyCode.T)) {
+			// third perk
+		}
+
+
 
 	}
 
