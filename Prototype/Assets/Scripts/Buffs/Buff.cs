@@ -6,12 +6,14 @@ public abstract class Buff : MonoBehaviour {
 
 	protected float time;
 	protected Unit unit;
+	protected ParticleSystem buffParticle;
 
 	public static Buff AddBuff<T> (Unit unit, float time) where T : Buff
 	{
 		var buff = unit.gameObject.AddComponent<T> ();
 		buff.time = time;
 		buff.unit = unit;
+		buff.buffParticle = null;
 		return buff;
 	}
 

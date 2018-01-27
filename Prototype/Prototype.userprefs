@@ -1,18 +1,17 @@
 ﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/VisionArcComponent.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Buffs/ShockedDebuff.cs">
     <Files>
-      <File FileName="Assets/Scripts/WorldObject/Components/Recruiter.cs" Line="5" Column="41" />
-      <File FileName="Assets/Scripts/WorldObject/Components/Scientist.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Perks/Perk.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Perks/PerkGrenade.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AI/LocalAI.cs" Line="66" Column="41" />
-      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="304" Column="36" />
-      <File FileName="Assets/Scripts/WorldObject/CrowdZone.cs" Line="40" Column="30" />
-      <File FileName="Assets/Scripts/WorldObject/Spawn.cs" Line="11" Column="74" />
-      <File FileName="Assets/Scripts/UI/Solidify.cs" Line="6" Column="38" />
-      <File FileName="Assets/Scripts/UI/FogProjector.cs" Line="76" Column="24" />
-      <File FileName="Assets/Scripts/UI/VisionArcComponent.cs" Line="72" Column="19" />
+      <File FileName="Assets/Scripts/WorldObject/Components/Scientist.cs" Line="33" Column="15" />
+      <File FileName="Assets/Scripts/AI/LocalAI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Perks/PerkShockwave.cs" Line="14" Column="70" />
+      <File FileName="Assets/Scripts/Buffs/ShockedDebuff.cs" Line="17" Column="39" />
+      <File FileName="Assets/Scripts/Buffs/Buff.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="254" Column="36" />
+      <File FileName="Assets/Scripts/UI/VisionArcComponent.cs" Line="74" Column="1" />
+      <File FileName="Assets/Scripts/AI/PlayerLocalAI.cs" Line="67" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/Building/BuildingUI.cs" Line="10" Column="1" />
+      <File FileName="Assets/Scripts/Action/HealInteraction.cs" Line="40" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -37,7 +37,7 @@ public class HealInteraction : Interaction {
 
 	public override ActionState State {
 		get {
-			if ((actionReceiver as Unit).IsHealthy()) {
+			if (actionReceiver == null || (actionReceiver as Unit).IsHealthy()) {
 				navMeshAgentComponent.ResetPath ();
 				return new ActionState (true, -1);
 			}

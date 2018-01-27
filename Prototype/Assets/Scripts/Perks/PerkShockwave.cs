@@ -20,7 +20,7 @@ public class PerkShockwave : Perk {
 		while (time >= 1.0f) {
 			if (preUnit == null || currentUnit == null)
 				break;
-			spawnLightning (preUnit.transform.position, currentUnit.transform.position);
+			//spawnLightning (preUnit.transform.position, currentUnit.transform.position); пока не нужно, т.к. нет нормального партикла))
 			Buff.AddBuff<ShockedDebuff> (currentUnit, time);
 			time -= 1.0f;
 			var colliders = Physics.OverlapSphere (currentUnit.transform.position, waveRange, LayerMask.GetMask ("Unit"));

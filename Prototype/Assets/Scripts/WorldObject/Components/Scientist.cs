@@ -14,7 +14,7 @@ public class Scientist : MonoBehaviour {
 	[SerializeField] private float healPerSecond;
 	[SerializeField] private float healRadius;
 
-	[SerializeField] private ParticleSystem healEffect;
+	[SerializeField] private ParticleSystem healTrace;
 
 	private float healReloadTime;
 	private float reloadCounter;
@@ -39,10 +39,17 @@ public class Scientist : MonoBehaviour {
 	{
 		if (isReadyToHeal ()) {
 			friendlyUnit.Heal (healAmount);
-
-			
-			// HealEffect
+			spawnTrace (friendlyUnit);
 		}
+	}
+	private void spawnTrace(Unit friendlyUnit)
+	{
+		Quaternion rotation = Quaternion.LookRotation (Utils.Direction(GetComponent<Unit>(), friendlyUnit));// particle's rotation
+		ParticleSystem trace = Instantiate (healTrace.gameObject, transform.position, Quaternion.identity, transform ).GetComponent<ParticleSystem>();
+
+		float length = Utils.Distance (GetComponent<Unit> (), friendlyUnit); // length of the particle
+		trace.startLifetime = length / trace.main.startSpeed.constant;
+		trace.transform.rotation = rotation;
 	}
 	private bool isReadyToHeal()
 	{

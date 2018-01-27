@@ -148,6 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1b792ed0ce54eaa9542c42396d499c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recruitmentTime: 20
+  recruitmentTime: 5
   attachedSpawn: {fileID: 114079831419230866}
   baseUnit: {fileID: 114463450072784336, guid: 440262e3110dc41e6bebdf99ecbeb72b, type: 2}

@@ -106,8 +106,8 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1978328407142092}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -298,6 +298,7 @@ MonoBehaviour:
   assaultSkill: 0
   speed: 3
   sneak: 0.1
+  halfVisible: 0
   LOS: 10
   canvas: {fileID: 223439067955302778}
   healthBar: {fileID: 114288530985921474}

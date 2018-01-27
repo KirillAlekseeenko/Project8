@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\AI\Path.cs" />
      <Compile Include="Assets\Scripts\AI\PlayerLocalAI.cs" />
      <Compile Include="Assets\Scripts\Buffs\Buff.cs" />
+     <Compile Include="Assets\Scripts\Buffs\BuffInfo.cs" />
      <Compile Include="Assets\Scripts\Buffs\ShockedDebuff.cs" />
      <Compile Include="Assets\Scripts\Manager.cs" />
      <Compile Include="Assets\Scripts\NonInteractableObjects\Grenade.cs" />

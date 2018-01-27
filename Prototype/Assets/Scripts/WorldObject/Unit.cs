@@ -187,7 +187,9 @@ public class Unit : WorldObject {
 
 	private void initializePerks()
 	{
-		var perksParent = Instantiate (new GameObject (), gameObject.transform);
+		//var perksParent = Instantiate (new GameObject (), gameObject.transform);
+		var perksParent = new GameObject();
+		perksParent.transform.parent = gameObject.transform;
 		perksParent.name = "Perks";
 		List<Perk> activeList = new List<Perk> ();
 		foreach (var perk in perkList) {
@@ -249,12 +251,14 @@ public class Unit : WorldObject {
 	public void Heal(int healAmount)
 	{
 		hp += healAmount;
-		Mathf.Clamp (hp, 0, baseHP);
+		hp = Mathf.Clamp (hp, 0, baseHP);
 		updateUI ();
 	}
 	public bool IsHealthy()
 	{
-		return baseHP == hp;
+		if (hp > baseHP)
+			Debug.LogError ("hp more than base hp");
+		return hp == baseHP;
 	}
 
 	public bool isAttacking()
