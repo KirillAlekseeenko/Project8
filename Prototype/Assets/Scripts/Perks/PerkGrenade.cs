@@ -28,6 +28,8 @@ public class PerkGrenade : Perk {
 
 	protected override void initialize (Unit performer, Vector3? place = null, Unit target = null)
 	{
+		if (!place.HasValue)
+			Debug.LogError ("missing parameter");
 		performer.GetComponent<NavMeshAgent> ().SetDestination (place.Value);
 	}
 
@@ -56,13 +58,6 @@ public class PerkGrenade : Perk {
 	#endregion
 
 	#region implemented abstract members of Perk
-	public override void Run (Unit performer, Vector3? place = default(Vector3?), Unit target = null)
-	{
-		if (!place.HasValue)
-			Debug.LogError ("missing parameter");
-		var action = new PerkAction (perform, isReadyToPerform, finish, initialize, performer, place, target);
-		performer.AssignAction (action);
-	}
 	public override PerkType Type {
 		get {
 			return PerkType.Ground;

@@ -48,7 +48,7 @@ public class PerkShockwave : Perk {
 		Quaternion rotation = Quaternion.LookRotation (end - begin);
 		var lightning = Instantiate (lightningPrefab.gameObject, begin, Quaternion.identity).GetComponent<ParticleSystem> ();
 
-		float length = (end - begin).magnitude; // length of the particle
+		float length = (end - begin).magnitude;
 		lightning.startLifetime = length / lightning.main.startSpeed.constant;
 		lightning.transform.localRotation = rotation;
 		// setting up parameters
@@ -58,6 +58,8 @@ public class PerkShockwave : Perk {
 
 	protected override void initialize (Unit performer, Vector3? place = null, Unit target = null)
 	{
+		if (target == null)
+			Debug.LogError ("missing parameter");
 		performer.GetComponent<NavMeshAgent> ().SetDestination (target.transform.position);
 	}
 
@@ -84,13 +86,6 @@ public class PerkShockwave : Perk {
 	#endregion
 
 	#region implemented abstract members of Perk
-	public override void Run (Unit performer, Vector3? place = default(Vector3?), Unit target = null)
-	{
-		if (target == null)
-			Debug.LogError ("missing parameter");
-		var action = new PerkAction (perform, isReadyToPerform, finish, initialize, performer, place, target);
-		performer.AssignAction (action);
-	}
 	public override PerkType Type {
 		get {
 			return PerkType.Target;

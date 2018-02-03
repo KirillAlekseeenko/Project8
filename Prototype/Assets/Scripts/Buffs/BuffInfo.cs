@@ -22,4 +22,5 @@ public class BuffInfo : MonoBehaviour {
 	}
 
 	public ParticleSystem ShockedParticle;
+	public ParticleSystem RagedParticle;
 }

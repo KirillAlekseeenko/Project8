@@ -31,6 +31,8 @@ public class Unit : WorldObject {
 	// buffs or debuffs
 	public float SufferDamageMultiplier { get; set; }
 	public float MakeDamageMultiplier { get; set; }
+	public float LifeSteal { get; set; }
+	public float AttackSpeedModifier{ get; set; }
 
 	[Header("UI")]
 	[SerializeField] protected Canvas canvas;
@@ -142,6 +144,8 @@ public class Unit : WorldObject {
 
 		SufferDamageMultiplier = 1.0f;
 		MakeDamageMultiplier = 1.0f;
+		AttackSpeedModifier = 1.0f;
+		LifeSteal = 0;
 
 		visibilityCounter = 0;
 	}
@@ -160,8 +164,6 @@ public class Unit : WorldObject {
 
 		initializePerks ();
 	}
-
-
 
 	protected void Update()
 	{
@@ -201,14 +203,14 @@ public class Unit : WorldObject {
 
 	private bool isReadyToFire()
 	{
-		bool result = (reloadCounter >= rangeReloadTime);
+		bool result = (reloadCounter >= rangeReloadTime / AttackSpeedModifier);
 		if (result)
 			reloadCounter = 0;
 		return result;
 	}
 	private bool isReadyToBeat()
 	{
-		bool result = (reloadCounter >= meleeReloadTime);
+		bool result = (reloadCounter >= meleeReloadTime / AttackSpeedModifier);
 		if (result)
 			reloadCounter = 0;
 		return result;
@@ -238,6 +240,7 @@ public class Unit : WorldObject {
 	{
 		if (isReadyToBeat ()) {
 			enemyUnit.SufferDamage ((int)(meleeAttack * MakeDamageMultiplier));
+			Heal ((int)Mathf.Floor (LifeSteal * meleeAttack));
 		}
 	}
 

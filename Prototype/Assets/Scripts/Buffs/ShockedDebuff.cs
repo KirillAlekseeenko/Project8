@@ -7,6 +7,7 @@ public class ShockedDebuff : Buff {
 	private float multiplier = 1.5f;
 	private int damage = 1;
 
+	private Coroutine damageCoroutine;
 
 	#region implemented abstract members of Buff
 
@@ -14,12 +15,12 @@ public class ShockedDebuff : Buff {
 	{
 		buffParticle = Instantiate (BuffInfo.Instance.ShockedParticle, gameObject.transform).GetComponent<ParticleSystem>();
 		unit.SufferDamageMultiplier *= multiplier;
-		StartCoroutine (damageCoroutine ());
+		damageCoroutine = StartCoroutine (sufferDamage ());
 	}
 
 	protected override void removeEffect ()
 	{
-		StopCoroutine (damageCoroutine ());
+		StopCoroutine (damageCoroutine);
 		unit.SufferDamageMultiplier /= multiplier;
 		if(buffParticle != null)
 			Destroy (buffParticle.gameObject);
@@ -27,7 +28,7 @@ public class ShockedDebuff : Buff {
 
 	#endregion
 
-	private IEnumerator damageCoroutine()
+	private IEnumerator sufferDamage()
 	{
 		while (true) {
 			unit.SufferDamage (damage);

@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\AI\PlayerLocalAI.cs" />
      <Compile Include="Assets\Scripts\Buffs\Buff.cs" />
      <Compile Include="Assets\Scripts\Buffs\BuffInfo.cs" />
+     <Compile Include="Assets\Scripts\Buffs\RageBuff.cs" />
      <Compile Include="Assets\Scripts\Buffs\ShockedDebuff.cs" />
      <Compile Include="Assets\Scripts\Manager.cs" />
      <Compile Include="Assets\Scripts\NonInteractableObjects\Grenade.cs" />
@@ -72,6 +73,7 @@
      <Compile Include="Assets\Scripts\Particle\Trace.cs" />
      <Compile Include="Assets\Scripts\Perks\Perk.cs" />
      <Compile Include="Assets\Scripts\Perks\PerkGrenade.cs" />
+     <Compile Include="Assets\Scripts\Perks\PerkRage.cs" />
      <Compile Include="Assets\Scripts\Perks\PerkShockwave.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Selection\FrustumCollider.cs" />

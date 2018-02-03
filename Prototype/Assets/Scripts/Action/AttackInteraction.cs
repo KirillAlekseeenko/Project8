@@ -39,6 +39,9 @@ public class AttackInteraction : Interaction {
 
 	public override void Perform ()
 	{
+		if (actionReceiver == null) {
+			return;
+		}
 		navMeshAgentComponent.SetDestination (actionReceiver.transform.position);
 	}
 
@@ -57,11 +60,12 @@ public class AttackInteraction : Interaction {
 			var vectorToTarget = actionReceiver.transform.position - actionOwner.transform.position;
 			float unitWidth = 0.5f;
 
+			var attackRadius = (actionOwner as Unit).IsRange ? rangeAttackRadius : meleeAttackRadius;
 			var ray = new Ray (actionOwner.transform.position, vectorToTarget);
-			var rayLength = Mathf.Min (rangeAttackRadius, vectorToTarget.magnitude + unitWidth);
+			var rayLength = Mathf.Min (attackRadius, vectorToTarget.magnitude + unitWidth);
 			RaycastHit hit;
 
-			if (!Physics.Raycast (ray, out hit, rayLength, ~LayerMask.GetMask("Unit")) && rayLength < rangeAttackRadius) { // проверка на отсутствие препятствий
+			if (!Physics.Raycast (ray, out hit, rayLength, ~LayerMask.GetMask("Unit")) && rayLength < attackRadius) { // проверка на отсутствие препятствий
 
 				navMeshAgentComponent.ResetPath (); // остановка
 				actionOwner.transform.LookAt(actionReceiver.transform.position);  // поворот
