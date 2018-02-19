@@ -108,6 +108,27 @@ public class Unit : WorldObject {
 		}
 	}
 
+	public float BaseHP
+	{
+		get{
+			return baseHP;
+		}
+	}
+
+	public float HP
+	{
+		get{
+			return hp;
+		}
+	}
+
+	public float AssaultSkill
+	{
+		get{
+			return assaultSkill;
+		}
+	}
+
 	public override bool IsVisible {
 		get {
 			return _isVisible || owner.IsHuman;

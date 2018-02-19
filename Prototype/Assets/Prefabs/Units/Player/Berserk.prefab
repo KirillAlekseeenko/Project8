@@ -223,7 +223,7 @@ MonoBehaviour:
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
   iconPrefab: {fileID: 0}
-  baseHP: 40
+  baseHP: 20
   isRange: 0
   meleeAttack: 6
   meleeAttackPerSecond: 1
