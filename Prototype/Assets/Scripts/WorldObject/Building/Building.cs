@@ -11,82 +11,92 @@ interface IBuilding{
 
 public class Building : WorldObject, IBuilding {
 
-	private Renderer objRenderer;
-	private Color mainColor;
+	[SerializeField]
+	protected int Level;
 
-	private HashSet<GameObject> scientistsInside;
-	private HashSet<GameObject> hackersInside;
-	private HashSet<GameObject> warriorsInside;
-	private int buildingLevel;
+	[Header("Units Inside")]
 
-	private bool buildingMenuOpened;
+	[SerializeField]
+	protected Vector3Int AmountOfHackersByLevel;
+	[SerializeField]
+	protected Vector3Int AmountOfScientistsByLevel;
+	[SerializeField]
+	protected Vector3Int AmountOfWarriorsByLevel;
+	[SerializeField]
+	protected List<GameObject> WarriorList;
+	[SerializeField]
+	protected List<GameObject> ScientistList;
+	[SerializeField]
+	protected List<GameObject> HackerList;
 
-	private int resourcesCount;
+	protected VisualisationTools vTools;
 
-	private delegate void BuildingHandler(GameObject building);
-	private event BuildingHandler ShowMenu;
+	protected Color mainColor;
 
-	private delegate void InformUIAddUnit(GameObject building, GameObject unit);
-	private event InformUIAddUnit UIAddUnit;
+	protected HashSet<GameObject> scientistsInside;
+	protected HashSet<GameObject> hackersInside;
+	protected HashSet<GameObject> warriorsInside;
 
-	private delegate void InformUIClearHouse();
-	private event InformUIClearHouse UIClearHouse;
+	protected bool buildingMenuOpened;
 
+	protected delegate void BuildingHandler(GameObject building);
+	protected event BuildingHandler ShowMenu;
 
-	private IEnumerator blink;
-	private IEnumerator counter;
+	protected delegate void InformUIAddUnit(GameObject building, GameObject unit);
+	protected event InformUIAddUnit UIAddUnit;
 
-	public int increaseResourcesByUnit;
-	public int maxUnitsAllowed;
+	protected delegate void InformUIClearHouse();
+	protected event InformUIClearHouse UIClearHouse;
 
-	private void Awake(){
+	protected int money;
+	protected int scientificResources;
+
+	protected Battle battlePlan;
+	protected bool battlePrepares;
+
+	protected void Awake(){
+
 		base.Awake ();
 
-		objRenderer = GetComponent<Renderer> ();
+		vTools = gameObject.AddComponent<VisualisationTools>();
 
+		battlePlan = gameObject.AddComponent<Battle>();
+		battlePlan.BuildingOwner = Owner;
+	}
+
+	protected void Start(){
+		base.Start ();
+
+		ShowMenu = new BuildingHandler(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().MenuOpen);
+		UIAddUnit = new InformUIAddUnit(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().AddUnit);
+		UIClearHouse = new InformUIClearHouse(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().RemoveAll);
 
 		scientistsInside = new HashSet<GameObject> ();
 		hackersInside = new HashSet<GameObject> ();
 		warriorsInside = new HashSet<GameObject> ();
 
-		resourcesCount = 0;
-
-		//ShowMenu = new BuildingHandler(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().MenuOpen);
-		//UIAddUnit = new InformUIAddUnit(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().AddUnit);
-		//UIClearHouse = new InformUIClearHouse(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().RemoveAll);
-
-		blink = Blink ();
-		counter = IncreaseResources ();
+		Invoke ("AddUnitsWhenStarts", 0.1f);
 	}
 
-	protected void Start()
-	{
-		base.Start ();
-
-		mainColor = objRenderer.material.color;
-
-		ShowMenu = new BuildingHandler(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().MenuOpen);
-		UIAddUnit = new InformUIAddUnit(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().AddUnit);
-		UIClearHouse = new InformUIClearHouse(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().RemoveAll);
+	protected void AddUnitsWhenStarts(){
+		foreach (GameObject unit in WarriorList) {
+			AddUnit (unit);
+		}
+		foreach (GameObject unit in ScientistList) {
+			AddUnit (unit);
+		}
+		foreach (GameObject unit in HackerList) {
+			AddUnit (unit);
+		}
 	}
 
-	private void Update(){
+	protected void Update(){
 		base.Update ();
+		IsVisible = true;
 	}
 
-	/*
-	private void OnMouseDown(){ // 
-		isSelected = true;
-		ShowMenu (gameObject);
-	}*/
-
-	public override bool IsVisible {
-		get {
-			return base.IsVisible || owner.IsHuman;
-		}
-		protected set {
-			base.IsVisible = value;
-		}
+	protected void startBattle(){
+		battlePlan.StartBattle();
 	}
 
 	public override bool IsSelected {
@@ -98,61 +108,77 @@ public class Building : WorldObject, IBuilding {
 			if (owner.IsHuman) {
 				if (value) {
 					ShowMenu (gameObject);
+					vTools.SetBlinking (true);
 				} else {
+					vTools.SetBlinking (false);
 					// hide menu
 				}
 			}
 
 		}
 	}
-		
-	private IEnumerator Blink() {
-		float maxAlpha = 1f;
-		float minAlpha = 0.4f;
-		float alphaDelta = 0.01f;
-		while(true){
-			if (objRenderer.material.color.a <= minAlpha || objRenderer.material.color.a >= maxAlpha)
-				alphaDelta = -alphaDelta;
-			objRenderer.material.SetColor("_Color", new Color(objRenderer.material.color.r,
-				objRenderer.material.color.g,
-				objRenderer.material.color.b,
-				objRenderer.material.color.a + alphaDelta));
-			yield return new WaitForSeconds(0.02f);
-		}
+
+	public override void Highlight(){
+		//StartCoroutine (blink);
 	}
 
-	private IEnumerator IncreaseResources() {
-		while(true){
-			resourcesCount += (scientistsInside.Count + hackersInside.Count) * increaseResourcesByUnit;
-			yield return new WaitForSeconds(1);
+	public override void Dehighlight(){
+		//StopCoroutine (blink);
+	}
+
+	#region IBuilding implementation
+
+	public bool isUnitWithinTheEntrance (Unit unit){
+		throw new System.NotImplementedException ();
+	}
+
+	public bool AddUnit (Unit unit){
+		throw new System.NotImplementedException ();
+	}
+
+	#endregion
+
+	public void EndAutoBattle(int result, Player newOwner, List<Unit> units){
+		if (result == 1) {
+			this.Owner = newOwner;
+			GetComponent<MeshRenderer> ().material.color = owner.Color;
 		}
 	}
 
 	public void AddUnit(GameObject unit){
-		if (unit.name.Contains ("Scientist")) {
-			if (scientistsInside.Count < maxUnitsAllowed) {
+		if (unit.gameObject.GetComponent<Scientist>() != null) {
+			if (scientistsInside.Count < AmountOfScientistsByLevel[Level]) {
 				scientistsInside.Add (unit);
 				UIAddUnit (gameObject, unit);
 				unit.SetActive (false);
 			}
 		} 
-		else if (unit.name.Contains ("Hacker")) {
-			if (hackersInside.Count < maxUnitsAllowed) {
+		else if (unit.gameObject.GetComponent<Scientist>() != null) {
+			if (hackersInside.Count < AmountOfHackersByLevel[Level]) {
 				hackersInside.Add (unit);
 				UIAddUnit (gameObject, unit);
 				unit.SetActive (false);
 			}
 		}
-		else if (unit.name.Contains ("Warrior")) {
-			if (warriorsInside.Count < maxUnitsAllowed) {
+		else{
+			if (warriorsInside.Count < AmountOfWarriorsByLevel[Level]) {
 				warriorsInside.Add (unit);
 				UIAddUnit (gameObject, unit);
 				unit.SetActive (false);
 			}
 		}
-		if (scientistsInside.Count + hackersInside.Count == 1)
-			StartCoroutine (counter);
-		
+	}
+
+	public void InvadeUnit(GameObject unit){
+		if (!battlePrepares) {
+			battlePrepares = true;
+			//Add all defender troops 
+			foreach (GameObject obj in warriorsInside)
+				battlePlan.AddToBattlePlan (obj);
+			Invoke ("startBattle", 5f);
+		}
+		battlePlan.AddToBattlePlan (unit);
+		unit.SetActive (false);
 	}
 
 	public void RemoveUnit(GameObject unit){
@@ -168,60 +194,32 @@ public class Building : WorldObject, IBuilding {
 	}
 
 	public void RemoveAllUnits(){
+		Vector3 coords = new Vector3(
+			gameObject.GetComponentInChildren<Entrance> ().Coordinates.x - 5,
+			gameObject.GetComponentInChildren<Entrance> ().Coordinates.y,
+			gameObject.GetComponentInChildren<Entrance> ().Coordinates.z
+		);
 		foreach(GameObject unit in scientistsInside){
+			unit.transform.position = coords;
 			unit.SetActive (true);
-			unit.transform.position = new Vector3(unit.transform.position.x, 
-												  unit.transform.position.y + 0.5f,
-												  unit.transform.position.z);
 		}
 		scientistsInside.Clear ();
 
 		foreach(GameObject unit in hackersInside){
+			unit.transform.position = coords;
 			unit.SetActive (true);
-			unit.transform.position = new Vector3(unit.transform.position.x, 
-				unit.transform.position.y + 0.5f,
-				unit.transform.position.z);
 		}
 		hackersInside.Clear ();
 
 		foreach(GameObject unit in warriorsInside){
+			unit.transform.position = coords;
 			unit.SetActive (true);
-			unit.transform.position = new Vector3(unit.transform.position.x, 
-				unit.transform.position.y + 0.5f,
-				unit.transform.position.z);
 		}
 		warriorsInside.Clear ();
-
-		StopCoroutine (counter);
-
-		UIClearHouse ();
-	}
-		
-	public void SetBlinking(bool blinking){
-		if (blinking)
-			StartCoroutine (blink);
-		else {
-			StopCoroutine (blink);
-			objRenderer.material.color = mainColor;
-			isSelected = false;
-		}
 	}
 
-	#region IBuilding implementation
-
-	public bool isUnitWithinTheEntrance (Unit unit)
-	{
-		throw new System.NotImplementedException ();
-	}
-
-	public bool AddUnit (Unit unit)
-	{
-		throw new System.NotImplementedException ();
-	}
-
-	#endregion
-
-	public int Recources { get { return resourcesCount; } }
+	public int Money { get { return money; } }
+	public int ScientificRes { get { return scientificResources; } }
 	public int ScientistsInside { get { return scientistsInside.Count; } }
 	public int HackersInside { get { return hackersInside.Count; } }
 	public int WarriorsInside { get { return warriorsInside.Count; } }
