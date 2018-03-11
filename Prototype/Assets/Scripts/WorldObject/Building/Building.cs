@@ -55,7 +55,7 @@ public class Building : WorldObject, IBuilding {
 	protected bool battlePrepares;
 
 	protected void Awake(){
-
+		//Anything to add to commit
 		base.Awake ();
 
 		vTools = gameObject.AddComponent<VisualisationTools>();
