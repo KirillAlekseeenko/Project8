@@ -13,7 +13,7 @@ public class PerkGrenade : Perk {
 	private void throwGrenade(Unit performer, Vector3 targetPos)
 	{
 		var grenadeRigidbody = Instantiate (grenadePrefab, performer.transform.position, Quaternion.identity).GetComponent<Rigidbody> ();
-		grenadeRigidbody.gameObject.GetComponent<Grenade> ().IsHuman = performer.Owner.IsHuman;
+		grenadeRigidbody.gameObject.GetComponent<Grenade> ().Owner = performer.Owner;
 		var vectorToTarget = targetPos - performer.transform.position;
 		var distance = vectorToTarget.magnitude;
 		var g = Physics.gravity.magnitude;

@@ -13,7 +13,7 @@ public class PerkShockwave : Perk {
 
 	private IEnumerator waveSpreadCoroutine(Unit performer, Unit target)
 	{
-		var isHuman = performer.Owner.IsHuman;
+		var owner = performer.Owner;
 		var currentUnit = target;
 		Unit preUnit = performer;
 		var time = initialTime;
@@ -27,7 +27,7 @@ public class PerkShockwave : Perk {
 			Unit closestUnit = null;
 			foreach (var collider in colliders) {
 				var unit = collider.gameObject.GetComponent<Unit> ();
-				if (unit != null && unit.Owner.IsHuman != isHuman && unit.GetComponent<ShockedDebuff>() == null) {
+				if (unit != null && owner.isEnemy(unit.Owner) && unit.GetComponent<ShockedDebuff>() == null) {
 					if (closestUnit == null || Utils.Distance (closestUnit, currentUnit) > Utils.Distance (unit, currentUnit)) { // здесь мб еще добавить учет препятствий
 						closestUnit = unit;
 					}

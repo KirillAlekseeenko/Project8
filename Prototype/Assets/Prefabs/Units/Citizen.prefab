@@ -92,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1161188522932336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.3376822, y: 0.56, z: 1.86}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 224720471922492564}
@@ -251,6 +251,7 @@ MonoBehaviour:
   perkList: []
   traceParticle: {fileID: 198000012673436980, guid: 95cb411de706c4776aeeca3940672625,
     type: 2}
+  _isVisible: 0
 --- !u!114 &114544651273229530
 MonoBehaviour:
   m_ObjectHideFlags: 1

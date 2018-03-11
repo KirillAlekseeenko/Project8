@@ -9,7 +9,7 @@ public class Grenade : MonoBehaviour {
 	[SerializeField] private int damage;
 	[SerializeField] private ParticleSystem explosionPrefab;
 
-	public bool IsHuman{ get; set; }
+	public Player Owner { get; set; }
 
 	void OnCollisionEnter(Collision other)
 	{
@@ -41,7 +41,7 @@ public class Grenade : MonoBehaviour {
 		foreach (var collider in colliders) {
 			var unit = collider.gameObject.GetComponent<Unit> ();
 			if (unit != null) {
-				if (unit.Owner.IsHuman != IsHuman) {
+				if (Owner.isEnemy(unit.Owner)) {
 					unit.SufferDamage (damage);
 				}
 			}

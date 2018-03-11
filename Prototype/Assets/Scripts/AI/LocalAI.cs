@@ -19,8 +19,6 @@ public class LocalAI : MonoBehaviour {
 		}
 	}
 
-
-
 	void Update()
 	{
 		if (!unitComponent.isAttacking ()) {
@@ -43,7 +41,7 @@ public class LocalAI : MonoBehaviour {
 			var unit = collider.gameObject.GetComponent<Unit> ();
 			if (unit == null)
 				continue;
-			if (unit.Owner.IsHuman) {
+			if (unitComponent.isEnemy(unit)) {
 				var vectorToEnemy = unit.transform.position - transform.position;
 				if (!Physics.Raycast (new Ray (transform.position, vectorToEnemy), vectorToEnemy.magnitude, LayerMask.GetMask("Building")) // проверка на отсутствие препятствий
 					&& (vectorToEnemy.magnitude < unitComponent.pLOS * RTS.Constants.HearRadiusCoefficient || isObjectInsideTheArc(unitComponent, unit) || unit.isAttacking())) { // + еще условия связанные с конусом, кругом слышимости и инвизом у юнита
@@ -55,7 +53,6 @@ public class LocalAI : MonoBehaviour {
 				}
 			}
 		}
-
 	}
 
 	private void checkIdleness()

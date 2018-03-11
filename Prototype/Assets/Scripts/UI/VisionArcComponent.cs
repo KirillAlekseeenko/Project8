@@ -40,9 +40,9 @@ public class VisionArcComponent : MonoBehaviour {
 		unitComponent = GetComponent<Unit> ();
 
 		viewRadius = unitComponent.pLOS;
-		viewAngle = unitComponent.Owner.IsHuman ? 360.0f : RTS.Constants.VisionArcAngle;
+		viewAngle = Player.HumanPlayer.isFriend(unitComponent.Owner) ? 360.0f : RTS.Constants.VisionArcAngle;
 
-		if (unitComponent.Owner.IsHuman) {
+		if (Player.HumanPlayer.isFriend(unitComponent.Owner)) {
 			meshResolution = 0.05f;
 		}
 			
@@ -51,7 +51,7 @@ public class VisionArcComponent : MonoBehaviour {
 
 		viewGameObject = Instantiate (Manager.Instance.fieldOfViewHandler.FieldOfViewPrefab, gameObject.transform);
 
-		viewGameObject.layer = unitComponent.Owner.IsHuman ? LayerMask.NameToLayer ("Vision") : LayerMask.NameToLayer("ViewMesh");
+		viewGameObject.layer = Player.HumanPlayer.isFriend(unitComponent.Owner) ? LayerMask.NameToLayer ("Vision") : LayerMask.NameToLayer("ViewMesh");
 		viewGameObject.name = "viewGameObject";
 
 		viewGameObjectLocalPosition = new Vector3 (0, -transform.position.y, 0);
@@ -62,7 +62,7 @@ public class VisionArcComponent : MonoBehaviour {
 
 		lastPosition = transform.position;
 
-		IsTurnedOn = unitComponent.Owner.IsHuman;
+		IsTurnedOn = Player.HumanPlayer.isFriend(unitComponent.Owner);
 		
 	}
 	
@@ -71,11 +71,11 @@ public class VisionArcComponent : MonoBehaviour {
 
 	void LateUpdate()
 	{
-		if(isTurnedOn || unitComponent.Owner.IsHuman)
+		if(isTurnedOn || Player.HumanPlayer.isFriend(unitComponent.Owner))
 			DrawFieldOfView ();
 		if(viewGameObject != null)
 			viewGameObject.transform.localPosition = viewGameObjectLocalPosition;
-		if (Vector3.Distance (lastPosition, transform.position) > updateDistance && unitComponent.Owner.IsHuman) {
+		if (Vector3.Distance (lastPosition, transform.position) > updateDistance && Player.HumanPlayer.isFriend(unitComponent.Owner)) {
 			lastPosition = transform.position;
 			Manager.Instance.fogOfWarHanlder.UpdateFogQuery ();
 		}

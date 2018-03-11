@@ -1,10 +1,23 @@
 ﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WorldObject/Unit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AI/LocalAI.cs">
     <Files>
-      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="15" Column="45" />
-      <File FileName="Assets/Scripts/Perks/Perk.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AI/LocalAI.cs" Line="38" Column="108" />
+      <File FileName="Assets/Scripts/Player/Diplomacy.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/AI/PlayerLocalAI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Player/Player.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/WorldObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Selection/FrustumCollider.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Action/ActionHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/NonInteractableObjects/Grenade.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Perks/PerkGrenade.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Selection/SelectionHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Perks/PerkShockwave.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/VisionArcComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/Building/Building.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AI/Director.cs" Line="1" Column="1" />
+      <File FileName="../../Arkanoid/Arkanoid/Assets/Scripts/UserInput/MobileInput.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

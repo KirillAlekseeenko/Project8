@@ -11,12 +11,6 @@ public class AttackInteraction : Interaction {
 	private float meleeAttackRadius;
 	private int meleeAttackDamage;
 
-	private delegate bool AttackCheck();
-	private AttackCheck canAttack;
-
-	private delegate void Attack();
-	private Attack attack;
-
 	private NavMeshAgent navMeshAgentComponent;
 
 	private Vector3 targetPosition;

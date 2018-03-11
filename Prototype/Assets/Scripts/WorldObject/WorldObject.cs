@@ -107,6 +107,20 @@ public abstract class WorldObject : MonoBehaviour {
 		return actionQueue.Count == 0;
 	}
 
+	public void DoAction(Action action)
+	{
+		var copy = actionQueue.ToArray ();
+		if (actionQueue.Count > 0) {
+			var lastAction = actionQueue.Peek ();
+			actionQueue.Clear ();
+			lastAction.Finish ();
+		}
+
+		action.Perform ();
+		actionQueue.Enqueue (action);
+		foreach(var _action in copy)
+			actionQueue.Enqueue(_action);
+	}
 	public void AssignActionShift(Action action)
 	{
 		actionQueue.Enqueue (action);

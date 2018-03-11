@@ -22,11 +22,6 @@ public class Director : MonoBehaviour {
 		idleUnits = new HashSet<Unit> ();
 	}
 
-	void Start()
-	{
-		
-	}
-
 	void Update()
 	{
 		if (idleUnits.Count > 0) {
@@ -70,6 +65,8 @@ public class Director : MonoBehaviour {
 
 	public void becameIdle(Unit unit)
 	{
+		if (patrolPaths.Count == 0)
+			return;
 		int i = Random.Range(0, patrolPaths.Count);
 		patrolPaths [i].assignPath (unit);
 	}

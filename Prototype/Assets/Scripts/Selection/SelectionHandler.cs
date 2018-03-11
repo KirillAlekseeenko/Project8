@@ -80,6 +80,7 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 				if (perkInfo != null) {
 					perkInfo.PerkCount--;
 					if (perkInfo.PerkCount <= 0) {
+						Debug.Log ("Remove");
 						unitPerks.Remove (perkInfo);
 					}
 				}
@@ -92,15 +93,19 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 		}
 		public void ActivatePerk(int index)
 		{
-			if (index >= unitPerks.Count)
+			if (index >= unitPerks.Count) {
+				Debug.Log (unitPerks);
 				return;
+			}
 			deactivate ();
 			PerkInfo perk = unitPerks [index];
 			currentPerk = perk;
+			Debug.Log (selectionHandler.SelectedUnits.Count);
 			foreach (var worldObject in selectionHandler.SelectedUnits) {
 				if (worldObject is Unit) {
 					var unit = worldObject as Unit; 
 					var perkToActivate = unit.PerkList.Find (x => x.Name.Equals(perk.Name));
+					//Debug.Log (perkToActivate);
 					if (perkToActivate != null) {
 						if (perk.Type == PerkType.Itself) {
 							perkToActivate.Run (unit);
@@ -143,7 +148,7 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit)) {
 				var unit = hit.collider.gameObject.GetComponent<Unit> ();
-				if (unit != null && unit.IsVisible && !unit.Owner.IsHuman) {
+				if (unit != null && unit.IsVisible && Player.HumanPlayer.isEnemy(unit.Owner)) {
 					performPerk (unit.transform.position, unit);
 				} else {
 					performPerk (hit.point);
@@ -293,6 +298,9 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 	}
 	public void UnselectObject(WorldObject worldObject)
 	{
+		if (!selectedUnits.Contains (worldObject))
+			return;
+		
 		worldObject.IsSelected = false;
 		worldObject.Dehighlight ();
 		selectedUnits.Remove(worldObject);

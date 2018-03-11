@@ -5,14 +5,27 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+	Diplomacy diplomacy;
+
 	[SerializeField]
 	private string username;  // задел под мультиплеер ))0)
 	[SerializeField]
 	private bool isHuman; 
 	[SerializeField]
-	private Team team; // мб в будущем будут союзники
+	private Team team;
 	[SerializeField]
 	private Color color;
+
+	private static Player humanPlayer;
+
+	public static Player HumanPlayer { get { return humanPlayer; } }
+
+	void Awake()
+	{
+		diplomacy = transform.parent.GetComponent<Diplomacy> ();
+		if (isHuman)
+			humanPlayer = this;
+	}
 
 	public bool IsHuman {
 		get {
@@ -25,6 +38,15 @@ public class Player : MonoBehaviour {
 			return color;
 		}
 	}
+
+	public bool isEnemy(Player player)
+	{
+		return diplomacy.getRelation (team, player.team) == Relation.Enemy;
+	}
+
+	public bool isFriend(Player player)
+	{
+		return diplomacy.getRelation (team, player.team) == Relation.Friend;
+	}
 }
 
-public enum Team{One, Two, Three, Four};

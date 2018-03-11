@@ -24,9 +24,9 @@ public class ActionHandler : MonoBehaviour {
 			} else {
 				var enemyUnit = hit.collider.gameObject.GetComponent<Unit> ();
 				if (enemyUnit != null && enemyUnit.IsVisible) {
-					if (!enemyUnit.Owner.IsHuman) {
+					if (Player.HumanPlayer.isEnemy(enemyUnit.Owner)) {
 						attack (enemyUnit);
-					} else {
+					} else if(Player.HumanPlayer.isFriend(enemyUnit.Owner)) {
 						heal (enemyUnit);
 					}
 				}

@@ -15,6 +15,8 @@ public class PlayerLocalAI : MonoBehaviour {
 		}
 	}
 
+	private Stack<Unit> alarmStack;
+
 	private bool canHeal;
 
 	void Awake()
@@ -24,6 +26,7 @@ public class PlayerLocalAI : MonoBehaviour {
 
 	void Start()
 	{
+		alarmStack = new Stack<Unit> ();
 		canHeal = (GetComponent<Scientist> () != null);
 		unitComponent = GetComponent<Unit> ();
 		StartCoroutine (updateCoroutine());
@@ -33,21 +36,11 @@ public class PlayerLocalAI : MonoBehaviour {
 	private IEnumerator updateCoroutine()
 	{
 		while (true) {
-			checkForEnemies ();
 			yield return new WaitForSeconds (0.2f);
+			checkForEnemies ();
 		}
 	}
-
-
-	void Update()
-	{
-		//if (unitComponent.isIdle ()) {
-			//checkForEnemies ();
-		//}
-	}
-
-	// debug
-
+		
 	[SerializeField]
 	private int visibleObjectCount;
 
@@ -58,21 +51,22 @@ public class PlayerLocalAI : MonoBehaviour {
 		Unit closestEnemyUnit = null;
 		Unit closestFriendlyUnit = null;
 
-
 		foreach (var collider in colliders) {
 			Unit unit = collider.gameObject.GetComponent<Unit> ();
 			if (unit != null) {
 				var vectorToUnit = unit.transform.position - transform.position;
 				RaycastHit hit;
-				if (unit.Owner.IsHuman ) {
+				if (unitComponent.isFriend(unit)) {
+					alarmStack.Push (unit);
 					if(!unit.IsHealthy() && canHeal)
 						if (closestFriendlyUnit == null || vectorToUnit.magnitude < (closestFriendlyUnit.transform.position - transform.position).magnitude)
 							closestFriendlyUnit = unit;
 				} else {
-					if (!Physics.Raycast (new Ray (transform.position, vectorToUnit),out hit, vectorToUnit.magnitude,LayerMask.GetMask ("Building"))) {
+					if (!Physics.Raycast (new Ray (transform.position, vectorToUnit), out hit, vectorToUnit.magnitude,LayerMask.GetMask ("Building"))) {
 						unit.SetVisible ();
-						if (closestEnemyUnit == null || vectorToUnit.magnitude < (closestEnemyUnit.transform.position - transform.position).magnitude)
-							closestEnemyUnit = unit;
+						if(unitComponent.isEnemy(unit)) 
+							if (closestEnemyUnit == null || vectorToUnit.magnitude < (closestEnemyUnit.transform.position - transform.position).magnitude)
+								closestEnemyUnit = unit;
 					} 
 				}
 			}
@@ -81,11 +75,18 @@ public class PlayerLocalAI : MonoBehaviour {
 			if (closestFriendlyUnit != null) {
 				unitComponent.AssignAction (new HealInteraction (unitComponent, closestFriendlyUnit));
 			} else if (closestEnemyUnit != null) {
+				foreach (var unit in alarmStack) {
+					if (unit.isIdle ()) {
+						unit.AssignAction (new AttackInteraction(unit, closestEnemyUnit));
+					}
+				}
 				unitComponent.AssignAction (new AttackInteraction (unitComponent, closestEnemyUnit));
 			}
 		}
 
+
+
+		alarmStack.Clear ();
 	}
-		
 		
 }

@@ -18,7 +18,11 @@ public abstract class Perk : MonoBehaviour {
 	public void Run (Unit performer, Vector3? place = null, Unit target = null)
 	{
 		var action = new PerkAction (perform, isReadyToPerform, finish, initialize, performer, place, target);
-		performer.AssignAction (action);
+		if (Type == PerkType.Itself) {
+			performer.DoAction (action);
+		} else {
+			performer.AssignAction (action);
+		}
 	}
 
 	protected abstract void initialize (Unit performer, Vector3? place = null, Unit target = null);

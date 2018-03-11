@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\Perks\PerkGrenade.cs" />
      <Compile Include="Assets\Scripts\Perks\PerkRage.cs" />
      <Compile Include="Assets\Scripts\Perks\PerkShockwave.cs" />
+     <Compile Include="Assets\Scripts\Player\Diplomacy.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Selection\FrustumCollider.cs" />
      <Compile Include="Assets\Scripts\Selection\SelectionHandler.cs" />

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Unit
   - UIPictures
+  - crowd
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - ViewMesh
   - Vision
   - NonInteractable
-  - 
+  - NeutralUnit
   - 
   - 
   - 

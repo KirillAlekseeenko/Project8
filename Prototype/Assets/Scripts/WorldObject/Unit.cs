@@ -49,7 +49,7 @@ public class Unit : WorldObject {
 	private float meleeReloadTime;
 	private float reloadCounter;
 
-	private bool _isVisible = false;
+	[SerializeField] private bool _isVisible = false;
 	protected MeshRenderer meshRenderer;
 	private float visibilityCounter;
 	private float visibilityUpdateTime = 0.5f;
@@ -131,7 +131,7 @@ public class Unit : WorldObject {
 
 	public override bool IsVisible {
 		get {
-			return _isVisible || owner.IsHuman;
+			return _isVisible || Player.HumanPlayer.isFriend(owner);
 		}
 		protected set {
 			if (value != _isVisible) {
@@ -175,8 +175,9 @@ public class Unit : WorldObject {
 	{
 		base.Start ();
 
-		if (!owner.IsHuman)
+		if (!Player.HumanPlayer.isFriend(owner)) {
 			GetComponent<MeshRenderer> ().enabled = false;
+		}
 
 		var navMesh = GetComponent<NavMeshAgent> ().speed = this.speed;
 
@@ -210,7 +211,6 @@ public class Unit : WorldObject {
 
 	private void initializePerks()
 	{
-		//var perksParent = Instantiate (new GameObject (), gameObject.transform);
 		var perksParent = new GameObject();
 		perksParent.transform.parent = gameObject.transform;
 		perksParent.name = "Perks";
@@ -272,6 +272,7 @@ public class Unit : WorldObject {
 		if (hp <= 0)
 			die ();
 	}
+
 	public void Heal(int healAmount)
 	{
 		hp += healAmount;
@@ -311,8 +312,8 @@ public class Unit : WorldObject {
 	{
 		Manager.Instance.fieldOfViewHandler.Add (this);
 		meshRenderer.enabled = true;
-
 	}
+
 	private void BecomeInvisible()
 	{
 		Manager.Instance.fieldOfViewHandler.Remove (this);
@@ -333,15 +334,26 @@ public class Unit : WorldObject {
 
 		Destroy (gameObject);
 	}
-
-
-
+		
 	private void updateUI()
 	{
 		healthBarRectTransform.localScale = new Vector3 ((float)hp / (float)baseHP, 1, 1);
 	}
 
+	public bool isEnemy(Unit otherUnit)
+	{
+		return owner.isEnemy (otherUnit.owner);
+	}
 
+	public bool isFriend(Unit otherUnit)
+	{
+		return owner.isFriend (otherUnit.owner);
+	}
 
+	public void changeOwner(Player newOwner)
+	{
+		owner = newOwner;
+		GetComponent<MeshRenderer> ().material.color = owner.Color;
+	}
 
 }

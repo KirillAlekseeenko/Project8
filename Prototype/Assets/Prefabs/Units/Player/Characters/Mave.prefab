@@ -93,7 +93,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1294771910492742}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.56, z: -27.9}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 224198625034194280}
@@ -229,6 +229,7 @@ MonoBehaviour:
   - {fileID: 114607219969554542, guid: 26562a81efdd64bbeb4397add53431f3, type: 2}
   traceParticle: {fileID: 198000012673436980, guid: 95cb411de706c4776aeeca3940672625,
     type: 2}
+  _isVisible: 0
 --- !u!114 &114303616250266914
 MonoBehaviour:
   m_ObjectHideFlags: 1
