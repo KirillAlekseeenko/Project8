@@ -39,7 +39,7 @@ public class BuildingUI : MonoBehaviour {
 
 	private void FixedUpdate () {
 		try{
-			incomeField.GetComponent<Text>().text = buildingScript.Recources.ToString ();
+			incomeField.GetComponent<Text>().text = buildingScript.Money.ToString ();
 		}catch(Exception e){
 		}
 	}
@@ -47,14 +47,16 @@ public class BuildingUI : MonoBehaviour {
 	public void MenuOpen(GameObject bld){
 		objBuilding = bld;
 		buildingScript = bld.GetComponent<Building>();
-		buildingScript.SetBlinking (true);
 		UIBuilding.SetActive (true);
+		scientistsCount.GetComponent<Text>().text = "(" + buildingScript.ScientistsInside.ToString() + ")";
+		hackersCount.GetComponent<Text>().text = "(" + buildingScript.HackersInside.ToString() + ")";
+		warriorsCount.GetComponent<Text>().text = "(" + buildingScript.WarriorsInside.ToString() + ")";
 	} 
 
 	public void MenuClose(){
 		UIBuilding.SetActive (false);
 		try{
-			buildingScript.SetBlinking(false);
+			buildingScript.IsSelected = false;
 		}catch(Exception e){}
 	}
 
@@ -62,15 +64,15 @@ public class BuildingUI : MonoBehaviour {
 		objBuilding = bld;
 		buildingScript = bld.GetComponent<Building>();
 
-		if (unit.name.Contains ("Scientist")) {
+		if (unit.gameObject.GetComponent<Scientist>() != null) {
 			scientistImage.GetComponent<RawImage>().color = new Color(255, 255, 255, 255);
 			scientistsCount.GetComponent<Text>().text = "(" + buildingScript.ScientistsInside.ToString() + ")";
 		} 
-		else if (unit.name.Contains ("Hacker")) {
+		else if (unit.gameObject.GetComponent<Hacker>() != null) {
 			hackerImage.GetComponent<RawImage>().color = new Color(255, 255, 255, 255);
 			hackersCount.GetComponent<Text>().text = "(" + buildingScript.HackersInside.ToString() + ")";
 		}
-		else if (unit.name.Contains ("Warrior")) {
+		else if (unit.gameObject.GetComponent<Unit>() != null) {
 			warriorImage.GetComponent<RawImage>().color = new Color(255, 255, 255, 255);
 			warriorsCount.GetComponent<Text>().text = "(" + buildingScript.WarriorsInside.ToString() + ")";
 		}
@@ -83,5 +85,6 @@ public class BuildingUI : MonoBehaviour {
 		hackersCount.GetComponent<Text>().text = "(0)";
 		warriorImage.GetComponent<RawImage>().color = new Color(0, 0, 0, 255);
 		warriorsCount.GetComponent<Text>().text = "(0)";
+		buildingScript.RemoveAllUnits ();
 	}
 }

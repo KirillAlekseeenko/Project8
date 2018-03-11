@@ -36,6 +36,9 @@ public abstract class WorldObject : MonoBehaviour {
 		get {
 			return owner;
 		}
+		set{ 
+			owner = value;
+		}
 	}
 
 	public Queue<Action> ActionQueue {
