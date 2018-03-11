@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class VisualisationTools : MonoBehaviour {
 
+	[SerializeField]
+	private Mesh Level1Model; 
+	[SerializeField]
+	private Mesh Level2Model;
+	[SerializeField]
+	private Mesh Level3Model;
+
 	private Renderer objRenderer;
 	private Color mainColor;
 	private IEnumerator blink;
@@ -13,14 +20,24 @@ public class VisualisationTools : MonoBehaviour {
 	private void Awake(){
 		blink = Blink ();
 		objRenderer = GetComponent<MeshRenderer> ();
+		SetModel (0);
 	}
 
-	// Update is called once per frame
-	private void Update () {
-		
-	}
-
-	private void tryToCatchMe(){
+	public void SetModel(int level){
+		switch (level) {
+			case 0:{
+				gameObject.GetComponent<MeshFilter> ().mesh = Level1Model;
+				break;
+			}
+			case 1:{
+				gameObject.GetComponent<MeshFilter> ().mesh = Level2Model;
+				break;
+			}
+			case 2:{
+				gameObject.GetComponent<MeshFilter> ().mesh = Level3Model;
+				break;
+			}
+		}
 	}
 
 	private IEnumerator Blink() {
@@ -43,7 +60,11 @@ public class VisualisationTools : MonoBehaviour {
 			StartCoroutine (blink);
 		else {
 			StopCoroutine (blink);
-			objRenderer.material.color = gameObject.GetComponent<MeshRenderer>().material.color;
+			//objRenderer.material.color = gameObject.GetComponent<MeshRenderer>().material.color;
+			objRenderer.material.SetColor("_Color", new Color(gameObject.GetComponent<MeshRenderer>().material.color.r,
+				gameObject.GetComponent<MeshRenderer>().material.color.g,
+				gameObject.GetComponent<MeshRenderer>().material.color.b,
+				1));
 		}
 	}
 }

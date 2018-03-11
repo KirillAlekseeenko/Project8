@@ -8,7 +8,6 @@ public class BuildingUI : MonoBehaviour {
 
 	private GameObject UIBuilding;
 	private GameObject objBuilding;
-	private Building buildingScript;
 
 	private GameObject incomeField;
 
@@ -39,52 +38,55 @@ public class BuildingUI : MonoBehaviour {
 
 	private void FixedUpdate () {
 		try{
-			incomeField.GetComponent<Text>().text = buildingScript.Money.ToString ();
+			incomeField.GetComponent<Text>().text = objBuilding.GetComponent<Building>().Money.ToString ();
 		}catch(Exception e){
 		}
+		if(Input.GetMouseButtonDown(0) && 
+			!RectTransformUtility.RectangleContainsScreenPoint(
+				UIBuilding.GetComponent<RectTransform>(), 
+				Input.mousePosition)) {
+				MenuClose ();
+		}
+	}
+
+	private void UpdateUnitsInsideInfo(){
+		if (objBuilding.GetComponent<Building>().ScientistsInside > 0)
+			scientistImage.GetComponent<RawImage>().color = new Color(1, 1, 1, 1); 
+		else
+			scientistImage.GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
+		if (objBuilding.GetComponent<Building>().HackersInside > 0)
+			hackerImage.GetComponent<RawImage>().color = new Color(1, 1, 1, 1);
+		else
+			hackerImage.GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
+		if (objBuilding.GetComponent<Building>().WarriorsInside > 0)
+			warriorImage.GetComponent<RawImage>().color = new Color(1, 1, 1, 1);
+		else
+			warriorImage.GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
+		scientistsCount.GetComponent<Text>().text = "(" + objBuilding.GetComponent<Building>().ScientistsInside.ToString() + ")";
+		hackersCount.GetComponent<Text>().text = "(" + objBuilding.GetComponent<Building>().HackersInside.ToString() + ")";
+		warriorsCount.GetComponent<Text>().text = "(" + objBuilding.GetComponent<Building>().WarriorsInside.ToString() + ")";
+
 	}
 
 	public void MenuOpen(GameObject bld){
 		objBuilding = bld;
-		buildingScript = bld.GetComponent<Building>();
 		UIBuilding.SetActive (true);
-		scientistsCount.GetComponent<Text>().text = "(" + buildingScript.ScientistsInside.ToString() + ")";
-		hackersCount.GetComponent<Text>().text = "(" + buildingScript.HackersInside.ToString() + ")";
-		warriorsCount.GetComponent<Text>().text = "(" + buildingScript.WarriorsInside.ToString() + ")";
+		UpdateUnitsInsideInfo ();
 	} 
 
 	public void MenuClose(){
 		UIBuilding.SetActive (false);
 		try{
-			buildingScript.IsSelected = false;
+			objBuilding.GetComponent<Building>().IsSelected = false;
 		}catch(Exception e){}
 	}
 
-	public void AddUnit(GameObject bld, GameObject unit){
-		objBuilding = bld;
-		buildingScript = bld.GetComponent<Building>();
-
-		if (unit.gameObject.GetComponent<Scientist>() != null) {
-			scientistImage.GetComponent<RawImage>().color = new Color(255, 255, 255, 255);
-			scientistsCount.GetComponent<Text>().text = "(" + buildingScript.ScientistsInside.ToString() + ")";
-		} 
-		else if (unit.gameObject.GetComponent<Hacker>() != null) {
-			hackerImage.GetComponent<RawImage>().color = new Color(255, 255, 255, 255);
-			hackersCount.GetComponent<Text>().text = "(" + buildingScript.HackersInside.ToString() + ")";
-		}
-		else if (unit.gameObject.GetComponent<Unit>() != null) {
-			warriorImage.GetComponent<RawImage>().color = new Color(255, 255, 255, 255);
-			warriorsCount.GetComponent<Text>().text = "(" + buildingScript.WarriorsInside.ToString() + ")";
-		}
+	public void UpgradeBuilding(){
+		objBuilding.GetComponent<Building>().CurrentLevel = objBuilding.GetComponent<Building>().CurrentLevel + 1;
 	}
-
+		
 	public void RemoveAll(){
-		scientistImage.GetComponent<RawImage>().color = new Color(0, 0, 0, 255);
-		scientistsCount.GetComponent<Text>().text = "(0)";
-		hackerImage.GetComponent<RawImage>().color = new Color(0, 0, 0, 255);
-		hackersCount.GetComponent<Text>().text = "(0)";
-		warriorImage.GetComponent<RawImage>().color = new Color(0, 0, 0, 255);
-		warriorsCount.GetComponent<Text>().text = "(0)";
-		buildingScript.RemoveAllUnits ();
+		objBuilding.GetComponent<Building>().RemoveAllUnits ();
+		UpdateUnitsInsideInfo ();
 	}
 }

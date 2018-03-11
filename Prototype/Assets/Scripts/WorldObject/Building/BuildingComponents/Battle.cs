@@ -14,26 +14,14 @@ public class Battle : MonoBehaviour{
 	private List<Unit> defenders;
 
 	private Player buildingOwner;
-	private Player attackerowner;
+	private Player attackerOwner;
 
 	private bool startBattle;
 
-	private int attackersRangePower;
-	private int defendersRangePower;
-
-	private int attackersMeleePower;
-	private int defendersMeleePower;
-
-	//Сколько range damage получает каждый атакующий за этот раунд
-	private ArrayList attackersRangeDamadeDistribution;
-	//Сколько range damage получает каждый защитник за этот раунд
-	private ArrayList defendersRangeDamadeDistribution;
-
-	//The same with Melee attack
-	private ArrayList attackersMeleeDamadeDistribution;
-
-	private ArrayList defendersMeleeDamadeDistribution;
-
+	private int attackersPower;
+	private int defendersPower;
+	private ArrayList defendersDamageDistribution;
+	private ArrayList attackersDamageDistribution;
 
 	private void Awake(){
 		Building thisBuilding = gameObject.GetComponent <Building>();
@@ -42,89 +30,69 @@ public class Battle : MonoBehaviour{
 		attackers = new List<Unit> ();
 		defenders = new List<Unit> ();
 
-		attackersRangeDamadeDistribution = new ArrayList ();
-		defendersRangeDamadeDistribution = new ArrayList ();
-
-		attackersMeleeDamadeDistribution = new ArrayList ();
-		defendersMeleeDamadeDistribution = new ArrayList ();
+		attackersDamageDistribution = new ArrayList();
+		defendersDamageDistribution = new ArrayList ();
 	}
 
 	private void PlayRound(){
 		int i;
 
-		attackersRangePower = 0;
-		defendersRangePower = 0;
-		attackersMeleePower = 0;
-		defendersMeleePower = 0;
-		attackersRangeDamadeDistribution.Clear ();
-		defendersRangeDamadeDistribution.Clear ();
-		attackersMeleeDamadeDistribution.Clear ();
-		defendersMeleeDamadeDistribution.Clear ();
+		attackerOwner = attackers [0].Owner;
+
+		attackersPower = 0;
+		defendersPower = 0;
+		attackersDamageDistribution.Clear ();
+		defendersDamageDistribution.Clear ();
 
 		foreach (Unit att in attackers) {
-			attackersRangePower += att.RangeAttack;
-			attackersMeleePower += att.MeleeAttack;
+			//Элемент случайности - увеличить или уменьшить силу атаки в этом раунде
+			attackersPower += (int)(att.RangeAttack * (1 - UnityEngine.Random.Range (-0.3f, 0.3f)));
+			attackersPower += (int)(att.MeleeAttack * (1 - UnityEngine.Random.Range (-0.3f, 0.3f)));;
 		}
-		//Элемент случайности - увеличить или уменьшить силу атаки в этом раунде
-		attackersRangePower = (int)(attackersRangePower * (1 - UnityEngine.Random.Range (-0.3f, 0.3f)));
-		attackersMeleePower = (int)(attackersMeleePower * (1 - UnityEngine.Random.Range (-0.3f, 0.3f)));
-
+			
 		foreach (Unit def in defenders) {
-			defendersRangePower += def.RangeAttack;
-			defendersMeleePower += def.MeleeAttack;
+			defendersPower += (int)(def.RangeAttack * (1 - UnityEngine.Random.Range (-0.3f, 0.3f)));
+			defendersPower += (int)(def.MeleeAttack * (1 - UnityEngine.Random.Range (-0.3f, 0.3f)));;
 		}
-		defendersRangePower = (int)(defendersRangePower * (1 - UnityEngine.Random.Range (-0.3f, 0.3f)));
-		defendersMeleePower = (int)(defendersMeleePower * (1 - UnityEngine.Random.Range (-0.3f, 0.3f)));
 
-		for (i = 0; i < defenders.Count - 1; i++) {
-			defendersRangeDamadeDistribution.Add (UnityEngine.Random.Range (0, attackersRangePower));
-			defendersMeleeDamadeDistribution.Add (UnityEngine.Random.Range (0, attackersMeleePower));
-		}
-		defendersMeleeDamadeDistribution.Add (0);
-		defendersMeleeDamadeDistribution.Add (attackersMeleePower);
-		defendersMeleeDamadeDistribution.Sort ();
-		defendersRangeDamadeDistribution.Add (0);
-		defendersRangeDamadeDistribution.Add (attackersRangePower);
-		defendersRangeDamadeDistribution.Sort ();
+		for (i = 0; i < defenders.Count - 1; i++)
+			defendersDamageDistribution.Add(UnityEngine.Random.Range (0, attackersPower));
+		defendersDamageDistribution.Add (0);
+		defendersDamageDistribution.Add (attackersPower);
+		defendersDamageDistribution.Sort ();
 
-
-		for (i = 0; i < attackers.Count - 1; i++) {
-			attackersRangeDamadeDistribution.Add (UnityEngine.Random.Range (0, defendersRangePower));
-			attackersMeleeDamadeDistribution.Add (UnityEngine.Random.Range (0, defendersMeleePower));
-		}
-		attackersMeleeDamadeDistribution.Add (0);
-		attackersMeleeDamadeDistribution.Add (defendersMeleePower);
-		attackersMeleeDamadeDistribution.Sort ();
-		attackersRangeDamadeDistribution.Add (0);
-		attackersRangeDamadeDistribution.Add (defendersRangePower);
-		attackersRangeDamadeDistribution.Sort ();
+		for (i = 0; i < attackers.Count - 1; i++)
+			attackersDamageDistribution.Add (UnityEngine.Random.Range (0, defendersPower));
+		attackersDamageDistribution.Add (0);
+		attackersDamageDistribution.Add (defendersPower);
 
 		i = 0;
-		//Debug.Log (attackersDamadeDistribution[0]);
 		foreach (Unit att in attackers) {
-			att.SufferDamage ((int)attackersRangeDamadeDistribution[i + 1] - (int)attackersRangeDamadeDistribution[i]);
-			att.SufferDamage ((int)attackersMeleeDamadeDistribution[i + 1] - (int)attackersMeleeDamadeDistribution[i]);
+			att.SufferDamage((int)attackersDamageDistribution[i + 1] - (int)attackersDamageDistribution[i]);
+			i++;
 		}
+		i = 0;
 		foreach (Unit def in defenders) {
-			def.SufferDamage ((int)defendersRangeDamadeDistribution[i + 1] - (int)defendersRangeDamadeDistribution[i]);
-			def.SufferDamage ((int)defendersMeleeDamadeDistribution[i + 1] - (int)defendersMeleeDamadeDistribution[i]);
+			def.SufferDamage((int)defendersDamageDistribution[i + 1] - (int)defendersDamageDistribution[i]);
+			i++;
 		}
 	}
 
 	private void checkRound(){
 		roundChecker++;
 		PlayRound ();
-		attackers.RemoveAll (item => item.HP < 0);
-		defenders.RemoveAll (item => item.HP < 0);
-		Debug.Log (attackers.Count);
-		Debug.Log (defenders.Count);
+		attackers.RemoveAll (item => item.HP <= 0);
+		defenders.RemoveAll (item => item.HP <= 0);
 		if (attackers.Count > 0 && defenders.Count > 0)
 			Invoke ("checkRound", 0.5f);
 		else {
 			if (defenders.Count <= 0) {
-				Debug.Log ("All defenders died");
-				endBattleEvent (1, attackers[0].Owner, attackers);	
+				endBattleEvent (1, attackerOwner, attackers);	
+			} else {
+				endBattleEvent (0, buildingOwner, defenders);
 			}
+			attackers.Clear ();
+			defenders.Clear ();
 		}
 	}
 
