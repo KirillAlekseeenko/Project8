@@ -1,24 +1,13 @@
 ﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AI/LocalAI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/VisionArcComponent.cs">
     <Files>
-      <File FileName="Assets/Scripts/Action/EnterInteraction.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AI/LocalAI.cs" Line="38" Column="108" />
-      <File FileName="Assets/Scripts/Player/Diplomacy.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AI/PlayerLocalAI.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Player/Player.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WorldObject/WorldObject.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Selection/FrustumCollider.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Action/ActionHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/NonInteractableObjects/Grenade.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Perks/PerkGrenade.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Selection/SelectionHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Perks/PerkShockwave.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/VisionArcComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WorldObject/Building/Building.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AI/Director.cs" Line="1" Column="1" />
-      <File FileName="../../Arkanoid/Arkanoid/Assets/Scripts/UserInput/MobileInput.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldObject/CrowdZone.cs" Line="101" Column="42" />
+      <File FileName="Assets/Scripts/WorldObject/Components/Recruiter.cs" Line="9" Column="58" />
+      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="365" Column="62" />
+      <File FileName="Assets/Scripts/Player/Player.cs" Line="10" Column="43" />
+      <File FileName="Assets/Scripts/WorldObject/Spawn.cs" Line="9" Column="33" />
+      <File FileName="Assets/Scripts/UI/VisionArcComponent.cs" Line="65" Column="65" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

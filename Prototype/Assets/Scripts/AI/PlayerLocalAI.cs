@@ -7,22 +7,9 @@ public class PlayerLocalAI : MonoBehaviour {
 
 	private Unit unitComponent;
 
-	private HashSet<Unit> visibleObjects;
-
-	public HashSet<Unit> VisibleObjects {
-		get {
-			return visibleObjects;
-		}
-	}
-
 	private Stack<Unit> alarmStack;
 
 	private bool canHeal;
-
-	void Awake()
-	{
-		visibleObjects = new HashSet<Unit> ();
-	}
 
 	void Start()
 	{

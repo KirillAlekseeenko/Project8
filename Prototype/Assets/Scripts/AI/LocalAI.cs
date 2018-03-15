@@ -41,14 +41,20 @@ public class LocalAI : MonoBehaviour {
 			var unit = collider.gameObject.GetComponent<Unit> ();
 			if (unit == null)
 				continue;
-			if (unitComponent.isEnemy(unit)) {
+			if (unitComponent.Owner != unit.Owner) { // DANGER если юнит не принадлежит к той же фракции
 				var vectorToEnemy = unit.transform.position - transform.position;
 				if (!Physics.Raycast (new Ray (transform.position, vectorToEnemy), vectorToEnemy.magnitude, LayerMask.GetMask("Building")) // проверка на отсутствие препятствий
 					&& (vectorToEnemy.magnitude < unitComponent.pLOS * RTS.Constants.HearRadiusCoefficient || isObjectInsideTheArc(unitComponent, unit) || unit.isAttacking())) { // + еще условия связанные с конусом, кругом слышимости и инвизом у юнита
 
-					unitComponent.AssignAction (new AttackInteraction (unitComponent, unit));
+					if (Player.HumanPlayer.isFriend (unitComponent.Owner) && !Player.HumanPlayer.isFriend(unit.Owner)) {
+						unit.SetVisible (); // если это союзник игрока и он видит не союзника игрока
+					}
 
-					director.Alarm (unit, unitComponent.transform); // зовет всех на помощь (радиус у всех одинаковый и является свойством экземпляра Director)
+					if(unitComponent.isEnemy(unit))
+					{
+						unitComponent.AssignAction (new AttackInteraction (unitComponent, unit));
+						director.Alarm (unit, unitComponent.transform); // зовет всех на помощь (радиус у всех одинаковый и является свойством экземпляра Director)
+					}
 					
 				}
 			}
@@ -72,7 +78,7 @@ public class LocalAI : MonoBehaviour {
 	private bool isObjectInsideTheArc(Unit unit, Unit enemy)
 	{
 		var vectorToEnemy = enemy.transform.position - unit.transform.position;
-		if (unit.HalfVisible && vectorToEnemy.magnitude > unit.pLOS / 2)
+		if (unitComponent.isEnemy(unit) && unit.HalfVisible && vectorToEnemy.magnitude > unit.pLOS / 2)
 			return false;
 		
 		var direction = unit.transform.TransformDirection (Vector3.forward);

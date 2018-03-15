@@ -80,7 +80,6 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 				if (perkInfo != null) {
 					perkInfo.PerkCount--;
 					if (perkInfo.PerkCount <= 0) {
-						Debug.Log ("Remove");
 						unitPerks.Remove (perkInfo);
 					}
 				}
@@ -100,12 +99,10 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 			deactivate ();
 			PerkInfo perk = unitPerks [index];
 			currentPerk = perk;
-			Debug.Log (selectionHandler.SelectedUnits.Count);
 			foreach (var worldObject in selectionHandler.SelectedUnits) {
 				if (worldObject is Unit) {
 					var unit = worldObject as Unit; 
 					var perkToActivate = unit.PerkList.Find (x => x.Name.Equals(perk.Name));
-					//Debug.Log (perkToActivate);
 					if (perkToActivate != null) {
 						if (perk.Type == PerkType.Itself) {
 							perkToActivate.Run (unit);

@@ -7,14 +7,11 @@ public class Player : MonoBehaviour {
 
 	Diplomacy diplomacy;
 
-	[SerializeField]
-	private string username;  // задел под мультиплеер ))0)
-	[SerializeField]
-	private bool isHuman; 
-	[SerializeField]
-	private Team team;
-	[SerializeField]
-	private Color color;
+	[SerializeField] private string username;  // задел под мультиплеер ))0)
+	[SerializeField] private bool isHuman;
+	[SerializeField] private bool citizen;
+	[SerializeField] private Team team;
+	[SerializeField] private Color color;
 
 	private static Player humanPlayer;
 
@@ -27,17 +24,9 @@ public class Player : MonoBehaviour {
 			humanPlayer = this;
 	}
 
-	public bool IsHuman {
-		get {
-			return isHuman;
-		}
-	}
-
-	public Color Color {
-		get {
-			return color;
-		}
-	}
+	public bool IsHuman { get { return isHuman; } }
+	public bool Citizen { get { return citizen; } }
+	public Color Color { get { return color; } }
 
 	public bool isEnemy(Player player)
 	{

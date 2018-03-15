@@ -40,7 +40,7 @@ public class VisionArcComponent : MonoBehaviour {
 		unitComponent = GetComponent<Unit> ();
 
 		viewRadius = unitComponent.pLOS;
-		viewAngle = Player.HumanPlayer.isFriend(unitComponent.Owner) ? 360.0f : RTS.Constants.VisionArcAngle;
+		viewAngle = unitComponent.Owner.IsHuman ? 360.0f : RTS.Constants.VisionArcAngle;
 
 		if (Player.HumanPlayer.isFriend(unitComponent.Owner)) {
 			meshResolution = 0.05f;

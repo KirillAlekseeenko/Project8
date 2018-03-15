@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 public class Unit : WorldObject {
 
+	public delegate void UnitEvent(Unit unit);
+
+	public static event UnitEvent Dead;
+	public static event UnitEvent EnteredBuilding;
+	public static event UnitEvent LeftBuilding;
+
 	[Header("Stats:")]
 
 	[SerializeField] protected int baseHP;
@@ -331,6 +337,9 @@ public class Unit : WorldObject {
 
 		Manager.Instance.selectionHandler.UnselectObject (this);
 		Manager.Instance.fogOfWarHanlder.UpdateFogQuery ();
+
+		if (Dead != null)
+			Dead (this);
 
 		Destroy (gameObject);
 	}
