@@ -141,6 +141,8 @@ public class Unit : WorldObject {
 		}
 		protected set {
 			if (value != _isVisible) {
+				if (Player.HumanPlayer.isFriend(owner))
+					return;
 				if (value) {
 					BecomeVisible ();
 				} else {
@@ -344,6 +346,7 @@ public class Unit : WorldObject {
 		Destroy (gameObject);
 	}
 		
+		
 	private void updateUI()
 	{
 		healthBarRectTransform.localScale = new Vector3 ((float)hp / (float)baseHP, 1, 1);
@@ -363,6 +366,24 @@ public class Unit : WorldObject {
 	{
 		owner = newOwner;
 		GetComponent<MeshRenderer> ().material.color = owner.Color;
+
+		Stop ();
+
+		if (newOwner.IsHuman) {                                   // осторожно, говнокод
+			Destroy (GetComponent<LocalAI> ());
+			gameObject.AddComponent<PlayerLocalAI> ();
+			Manager.Instance.selectionHandler.ObjectsInsideFrustum.Add (this);
+
+		} else {
+			Destroy (GetComponent<PlayerLocalAI> ());
+			gameObject.AddComponent<LocalAI> ();
+			Manager.Instance.selectionHandler.ObjectsInsideFrustum.Remove (this);
+		}
+
+
+
+		Destroy (GetComponent<VisionArcComponent> ());
+		gameObject.AddComponent<VisionArcComponent>();
 	}
 
 }

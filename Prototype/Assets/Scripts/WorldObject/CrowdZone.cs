@@ -116,6 +116,10 @@ public class CrowdZone : MonoBehaviour {
 
 	private Unit findCitizen()
 	{
+		foreach (var unit in unitsInside) {
+			if (unit.Owner.Citizen)
+				return unit;
+		}
 		return null;
 	}
 

@@ -140,6 +140,17 @@ public abstract class WorldObject : MonoBehaviour {
 		actionQueue.Enqueue (action);
 	}
 
+	public void Stop()
+	{
+		if (actionQueue.Count == 0)
+			return;
+		var lastAction = actionQueue.Peek ();
+		if (lastAction != null) {
+			lastAction.Finish ();
+			actionQueue.Clear ();
+		}
+	}
+
 	public override bool Equals (object other)
 	{
 		if (other == null || !(other is WorldObject))

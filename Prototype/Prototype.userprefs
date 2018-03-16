@@ -1,13 +1,13 @@
 ﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/VisionArcComponent.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WorldObject/Unit.cs">
     <Files>
-      <File FileName="Assets/Scripts/WorldObject/CrowdZone.cs" Line="101" Column="42" />
-      <File FileName="Assets/Scripts/WorldObject/Components/Recruiter.cs" Line="9" Column="58" />
-      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="365" Column="62" />
-      <File FileName="Assets/Scripts/Player/Player.cs" Line="10" Column="43" />
-      <File FileName="Assets/Scripts/WorldObject/Spawn.cs" Line="9" Column="33" />
-      <File FileName="Assets/Scripts/UI/VisionArcComponent.cs" Line="65" Column="65" />
+      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="378" Column="45" />
+      <File FileName="Assets/Scripts/Selection/SelectionHandler.cs" Line="250" Column="54" />
+      <File FileName="Assets/Scripts/Action/ActionHandler.cs" Line="17" Column="58" />
+      <File FileName="Assets/Scripts/Action/EnterInteraction.cs" Line="22" Column="88" />
+      <File FileName="Assets/Scripts/Manager.cs" Line="39" Column="34" />
+      <File FileName="Assets/Scripts/UI/FieldOfViewHandler.cs" Line="55" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

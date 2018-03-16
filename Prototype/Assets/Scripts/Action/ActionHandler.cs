@@ -23,12 +23,16 @@ public class ActionHandler : MonoBehaviour {
 				moveObjets (hit.point);
 			} else {
 				var enemyUnit = hit.collider.gameObject.GetComponent<Unit> ();
+				var building = hit.collider.gameObject.GetComponent<Building> ();
 				if (enemyUnit != null && enemyUnit.IsVisible) {
 					if (Player.HumanPlayer.isEnemy(enemyUnit.Owner)) {
 						attack (enemyUnit);
 					} else if(Player.HumanPlayer.isFriend(enemyUnit.Owner)) {
 						heal (enemyUnit);
 					}
+				}
+				if (building != null) {
+					enter (building);
 				}
 			}
 
@@ -100,6 +104,15 @@ public class ActionHandler : MonoBehaviour {
 		foreach (WorldObject worldObject in selectionHandler.SelectedUnits) {
 			if (worldObject is Unit && worldObject.Owner.IsHuman && worldObject.GetComponent<Scientist>() != null) {
 				HealInteraction action = new HealInteraction (worldObject as Unit, unit);
+				worldObject.AssignAction (action);
+			}
+		}
+	}
+	private void enter(Building building)
+	{
+		foreach (WorldObject worldObject in selectionHandler.SelectedUnits) {
+			if (worldObject is Unit && worldObject.Owner.IsHuman) {
+				EnterInteraction action = new EnterInteraction (worldObject as Unit, building);
 				worldObject.AssignAction (action);
 			}
 		}

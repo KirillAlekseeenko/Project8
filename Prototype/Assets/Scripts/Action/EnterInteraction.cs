@@ -5,14 +5,12 @@ using UnityEngine.AI;
 
 public class EnterInteraction : Interaction {
 
-	private float enterRadius; // вместо такого решения можно использовать свой collider для каждого здания
 	private NavMeshAgent navMeshAgentComponent;
 
-	public EnterInteraction(Unit unit, Building building, float enterRadius)
+	public EnterInteraction(Unit unit, Building building)
 	{
 		this.actionOwner = unit;
 		this.actionReceiver = building;
-		this.enterRadius = enterRadius;
 
 		this.navMeshAgentComponent = unit.GetComponent<NavMeshAgent> ();
 	}
@@ -21,7 +19,7 @@ public class EnterInteraction : Interaction {
 
 	public override void Perform ()
 	{
-		navMeshAgentComponent.SetDestination (actionReceiver.transform.position);
+		navMeshAgentComponent.SetDestination ((actionReceiver as Building).transform.position); // здесь нужно что-то вроде .EntrancePosition 
 	}
 
 	public override void Finish ()

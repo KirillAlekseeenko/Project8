@@ -42,7 +42,7 @@ public class VisionArcComponent : MonoBehaviour {
 		viewRadius = unitComponent.pLOS;
 		viewAngle = unitComponent.Owner.IsHuman ? 360.0f : RTS.Constants.VisionArcAngle;
 
-		if (Player.HumanPlayer.isFriend(unitComponent.Owner)) {
+		if (unitComponent.Owner.IsHuman) {
 			meshResolution = 0.05f;
 		}
 			
@@ -86,6 +86,8 @@ public class VisionArcComponent : MonoBehaviour {
 			return isTurnedOn;
 		}
 		set {
+			if (!Player.HumanPlayer.isEnemy (unitComponent.Owner))
+				return;
 			if (value) {
 				viewGameObject.SetActive (true);
 			} else {
