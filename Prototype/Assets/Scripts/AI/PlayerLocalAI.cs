@@ -11,9 +11,13 @@ public class PlayerLocalAI : MonoBehaviour {
 
 	private bool canHeal;
 
-	void Start()
+	void Awake()
 	{
 		alarmStack = new Stack<Unit> ();
+	}
+
+	void Start()
+	{
 		canHeal = (GetComponent<Scientist> () != null);
 		unitComponent = GetComponent<Unit> ();
 		StartCoroutine (updateCoroutine());

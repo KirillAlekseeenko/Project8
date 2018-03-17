@@ -8,7 +8,7 @@ public class Unit : WorldObject {
 
 	public delegate void UnitEvent(Unit unit);
 
-	public static event UnitEvent Dead;
+	public static event UnitEvent Disable;
 	public static event UnitEvent EnteredBuilding;
 	public static event UnitEvent LeftBuilding;
 
@@ -157,6 +157,21 @@ public class Unit : WorldObject {
 		get {
 			return perkList;
 		}
+	}
+
+	protected void OnDisable()
+	{
+		if (owner.IsHuman) {
+			Manager.Instance.selectionHandler.ObjectsInsideFrustum.Remove (this);
+		} else {
+			Manager.Instance.fieldOfViewHandler.Remove (this);
+		}
+
+		Manager.Instance.selectionHandler.UnselectObject (this);
+		Manager.Instance.fogOfWarHanlder.UpdateFogQuery ();
+
+		if (Disable != null)
+			Disable (this);
 	}
 		
 	protected void Awake()
@@ -331,18 +346,6 @@ public class Unit : WorldObject {
 
 	private void die()
 	{
-		if (owner.IsHuman) {
-			Manager.Instance.selectionHandler.ObjectsInsideFrustum.Remove (this);
-		} else {
-			Manager.Instance.fieldOfViewHandler.Remove (this);
-		}
-
-		Manager.Instance.selectionHandler.UnselectObject (this);
-		Manager.Instance.fogOfWarHanlder.UpdateFogQuery ();
-
-		if (Dead != null)
-			Dead (this);
-
 		Destroy (gameObject);
 	}
 		

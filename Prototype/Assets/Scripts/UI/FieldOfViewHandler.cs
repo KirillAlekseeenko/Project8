@@ -50,8 +50,7 @@ public class FieldOfViewHandler : MonoBehaviour {
 			if (isAltOn) {
 				unit.GetComponent<VisionArcComponent> ().IsTurnedOn = true;
 			}
-
-			//objectsInsideTheFrustum.Add (unit);
+				
 			visibleObjects.Add (unit);
 		}
 	}
@@ -65,8 +64,7 @@ public class FieldOfViewHandler : MonoBehaviour {
 			if (isAltOn) {
 				unit.GetComponent<VisionArcComponent> ().IsTurnedOn = false;
 			}
-
-			//objectsInsideTheFrustum.Remove (unit);
+				
 			visibleObjects.Remove (unit);
 		}
 	}

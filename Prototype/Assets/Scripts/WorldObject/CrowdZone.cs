@@ -28,13 +28,13 @@ public class CrowdZone : MonoBehaviour {
 
 	void OnEnable()
 	{
-		Unit.Dead += onUnitDissapear;
+		Unit.Disable += onUnitDissapear;
 		Unit.EnteredBuilding += onUnitDissapear;
 	}
 
 	void OnDisable()
 	{
-		Unit.Dead -= onUnitDissapear;
+		Unit.Disable -= onUnitDissapear;
 		Unit.EnteredBuilding -= onUnitDissapear;
 	}
 

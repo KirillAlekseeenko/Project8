@@ -10,9 +10,13 @@ public class LocalAI : MonoBehaviour {
 	private float timeForIdleness = 1.0f;
 	private float time = 0;
 
-	void Start()
+	void Awake()
 	{
 		unitComponent = GetComponent<Unit> ();
+	}
+
+	void OnEnable()
+	{
 		if (!unitComponent.Owner.IsHuman) {
 			director = unitComponent.Owner.GetComponent<Director> ();
 			director.spawnedUnit (unitComponent);
