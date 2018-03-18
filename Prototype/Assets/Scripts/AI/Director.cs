@@ -13,13 +13,18 @@ public class Director : MonoBehaviour {
 	HashSet<Building> buildingsOnLevel;
 	HashSet<Building> capturedBuildings;
 
+
 	[SerializeField]
 	List<Path> patrolPaths;
 
 	void Awake()
 	{
-		units = new HashSet<Unit> ();
 		idleUnits = new HashSet<Unit> ();
+	}
+
+	void Start()
+	{
+		
 	}
 
 	void Update()
@@ -52,15 +57,20 @@ public class Director : MonoBehaviour {
 	{
 		foreach (Unit unit in units) {
 			if (Vector3.Distance (unit.transform.position, origin.transform.position) < alarmRadius) {
-				if(!unit.isAttacking())
-					unit.AssignAction(new AttackInteraction(unit, enemy));
+				if (!unit.isAttacking ()) {
+					unit.AssignAction (new AttackInteraction (unit, enemy));
+				}
 			}
 		}
 	}
 
 	public void spawnedUnit(Unit unit)
 	{
-		units.Add (unit);
+		if (units == null) {
+			units = new HashSet<Unit> ();
+		} else {
+			units.Add (unit);
+		}
 	}
 
 	public void becameIdle(Unit unit)

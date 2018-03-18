@@ -1,13 +1,10 @@
 ﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WorldObject/Unit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Selection/SelectionHandler.cs">
     <Files>
-      <File FileName="Assets/Scripts/WorldObject/Unit.cs" Line="378" Column="45" />
-      <File FileName="Assets/Scripts/Selection/SelectionHandler.cs" Line="250" Column="54" />
-      <File FileName="Assets/Scripts/Action/ActionHandler.cs" Line="17" Column="58" />
-      <File FileName="Assets/Scripts/Action/EnterInteraction.cs" Line="22" Column="88" />
-      <File FileName="Assets/Scripts/Manager.cs" Line="39" Column="34" />
-      <File FileName="Assets/Scripts/UI/FieldOfViewHandler.cs" Line="55" Column="16" />
+      <File FileName="Assets/Scripts/Selection/SelectionHandler.cs" Line="224" Column="40" />
+      <File FileName="Assets/Scripts/AI/LocalAI.cs" Line="18" Column="17" />
+      <File FileName="Assets/Scripts/AI/Director.cs" Line="61" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

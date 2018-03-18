@@ -23,6 +23,11 @@ public class LocalAI : MonoBehaviour {
 		}
 	}
 
+	void OnDisable()
+	{
+		director.deadUnit (unitComponent);
+	}
+
 	void Update()
 	{
 		if (!unitComponent.isAttacking ()) {
@@ -33,7 +38,7 @@ public class LocalAI : MonoBehaviour {
 
 	void OnDestroy()
 	{
-		director.deadUnit (unitComponent);
+		
 	}
 
 	private void checkForEnemies()
