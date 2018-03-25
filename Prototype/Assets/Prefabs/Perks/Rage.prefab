@@ -52,4 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkName: Rage
+  reloadTime: 10
   time: 10

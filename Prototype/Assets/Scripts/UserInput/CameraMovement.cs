@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
 
-	[SerializeField] Camera camera; 
+	[SerializeField] Camera camera;
+
+    [SerializeField] Vector3 cameraConstraints;
 
 	private float movementSpeed;
 	private float sideThickness;
@@ -49,6 +51,9 @@ public class CameraMovement : MonoBehaviour {
 
 		if(moveFunction != null)
 			moveFunction ();
+
+        clampCameraPosition();
+
 	}
 
 	private void moveRight ()
@@ -67,4 +72,13 @@ public class CameraMovement : MonoBehaviour {
 	{
 		camera.transform.Translate (Vector3.forward * movementSpeed * Time.deltaTime, Space.World);
 	}
+
+    private void clampCameraPosition()
+    {
+        var currentPos = camera.transform.position;
+        var x = Mathf.Clamp(currentPos.x, -cameraConstraints.x, cameraConstraints.x);
+        var y = Mathf.Clamp(currentPos.y, -cameraConstraints.y, cameraConstraints.y);
+        var z = Mathf.Clamp(currentPos.z, -cameraConstraints.z, cameraConstraints.z);
+        camera.transform.position = new Vector3(x, y, z);
+    }
 }

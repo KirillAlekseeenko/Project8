@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkName: Grenade
+  reloadTime: 10
   throwRange: 20
   throwAngle: 60
   grenadePrefab: {fileID: 1132610966165284, guid: caf1f6e041b75474b86685567441146b,

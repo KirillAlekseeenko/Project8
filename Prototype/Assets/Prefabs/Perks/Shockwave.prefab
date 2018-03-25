@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkName: Shockwave
+  reloadTime: 10
   range: 10
   waveRange: 10
   damage: 0
