@@ -15,7 +15,7 @@ public class PerkRage : Perk {
 		return;
 	}
 
-	protected override void perform (Unit performer, Vector3? place = default(Vector3?), Unit target = null)
+	protected override void derivedPerform (Unit performer, Vector3? place = default(Vector3?), Unit target = null)
 	{
 		Buff.AddBuff<RageBuff>(performer, time);
 	}
@@ -30,17 +30,13 @@ public class PerkRage : Perk {
 		return;
 	}
 
-	public override PerkType Type {
-		get {
-			return PerkType.Itself;
-		}
-	}
-
-	public override bool isReadyToFire {
-		get {
-			return true;
-		}
-	}
+	public override PerkType Type
+    {
+        get
+        {
+            return PerkType.Itself;
+        }
+    }
 
 	#endregion
 

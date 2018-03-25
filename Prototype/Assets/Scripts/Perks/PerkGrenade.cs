@@ -33,7 +33,7 @@ public class PerkGrenade : Perk {
 		performer.GetComponent<NavMeshAgent> ().SetDestination (place.Value);
 	}
 
-	protected override void perform (Unit performer, Vector3? place = default(Vector3?), Unit target = null)
+	protected override void derivedPerform (Unit performer, Vector3? place = default(Vector3?), Unit target = null)
 	{
 		performer.GetComponent<NavMeshAgent> ().ResetPath (); // stop
 		performer.transform.LookAt(new Vector3(place.Value.x, performer.transform.position.y, place.Value.z));
@@ -61,11 +61,6 @@ public class PerkGrenade : Perk {
 	public override PerkType Type {
 		get {
 			return PerkType.Ground;
-		}
-	}
-	public override bool isReadyToFire {
-		get {
-			return true;
 		}
 	}
 	#endregion

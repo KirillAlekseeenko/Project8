@@ -121,9 +121,14 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 		{
 			if (activatedUnits.Count > 0) {
 				int index = 0;
-				while (index < activatedUnits.Count && !activatedUnits [index].PerkList.Find (x => x.Name.Equals (currentPerk.Name)).isReadyToFire) { // first reloaded
+				while (index < activatedUnits.Count && !activatedUnits [index].PerkList.Find (x => x.Name.Equals (currentPerk.Name)).IsReadyToFire) { // first reloaded
 					index++;
 				}
+                if (index == activatedUnits.Count)
+                {
+                    deactivate();
+                    return;
+                }
 				var unit = activatedUnits [index]; 
 				var perkToActivate = unit.PerkList.Find (x => x.Name.Equals (currentPerk.Name));
 				if (perkToActivate != null) {

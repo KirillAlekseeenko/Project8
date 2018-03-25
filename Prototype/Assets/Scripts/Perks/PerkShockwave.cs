@@ -63,7 +63,7 @@ public class PerkShockwave : Perk {
 		performer.GetComponent<NavMeshAgent> ().SetDestination (target.transform.position);
 	}
 
-	protected override void perform (Unit performer, Vector3? place = default(Vector3?), Unit target = null)
+	protected override void derivedPerform (Unit performer, Vector3? place = default(Vector3?), Unit target = null)
 	{
 		StartCoroutine (waveSpreadCoroutine (performer, target));
 	}
@@ -91,10 +91,6 @@ public class PerkShockwave : Perk {
 			return PerkType.Target;
 		}
 	}
-	public override bool isReadyToFire {
-		get {
-			return true;
-		}
-	}
+
 	#endregion
 }

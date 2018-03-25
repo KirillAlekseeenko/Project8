@@ -5,19 +5,41 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Perk : MonoBehaviour {
 	[SerializeField] private string perkName;
+    [SerializeField] private float reloadTime;
 
-	public string Name {
-		get {
-			return perkName;
-		}
-	}
+    protected Timer perkTimer;
+
+	public string Name { get { return perkName; } }
 
 	public abstract PerkType Type { get; }
-	public abstract bool isReadyToFire{ get; }
-		
+
+	public bool IsReadyToFire { get { return perkTimer.IsSet; } }
+    public float CurrentProgress { get { return perkTimer.CurrentProgress; } }
+
+    #region MonoBehaviour
+
+    void Start()
+	{
+        perkTimer = new Timer(reloadTime);
+	}
+
+	void Update()
+	{
+        perkTimer.UpdateTimer(Time.deltaTime);
+	}
+
+	#endregion
+
+	public override bool Equals(object other)
+    {
+        if (other == null || !(other is Perk))
+            return false;
+        return (other as Perk).perkName == perkName;
+    }
+
 	public void Run (Unit performer, Vector3? place = null, Unit target = null)
 	{
-		var action = new PerkAction (perform, isReadyToPerform, finish, initialize, performer, place, target);
+        var action = new PerkAction (perform, isReadyToPerform, finish, initialize, performer, place, target);
 		if (Type == PerkType.Itself) {
 			performer.DoAction (action);
 		} else {
@@ -26,16 +48,16 @@ public abstract class Perk : MonoBehaviour {
 	}
 
 	protected abstract void initialize (Unit performer, Vector3? place = null, Unit target = null);
-	protected abstract void perform (Unit performer, Vector3? place = null, Unit target = null);
+	protected abstract void derivedPerform (Unit performer, Vector3? place = null, Unit target = null);
 	protected abstract bool isReadyToPerform (Unit performer, Vector3? place = null, Unit target = null);
 	protected abstract void finish (Unit performer, Vector3? place = null, Unit target = null);
 
-	public override bool Equals (object other)
-	{
-		if (other == null || !(other is Perk))
-			return false;
-		return (other as Perk).perkName == perkName;
-	}
+    private void perform(Unit performer, Vector3? place = null, Unit target = null)
+    {
+        derivedPerform(performer, place, target);
+        perkTimer.Reset();
+    }
+
 }
 
 public enum PerkType{Itself, Ground, Target};
