@@ -6,6 +6,7 @@ using UnityEngine.UI;
 interface IBuilding{
 	bool isUnitWithinTheEntrance (Unit unit);
 	bool AddUnit (Unit unit);
+	Vector3 entrancePosition();
 }
 
 public class Building : WorldObject, IBuilding{
@@ -141,28 +142,36 @@ public class Building : WorldObject, IBuilding{
 	}
 
 	public bool AddUnit(Unit unit){
-		if (unit.gameObject.GetComponent<Scientist>() != null) {
-			if (ScientistList.Count < AmountOfScientistsByLevel[Level]) {
-				ScientistList.Add (unit.gameObject);
-				unit.gameObject.SetActive (false);
-				return true;
+		if (GetComponent<Collider>().gameObject.GetComponent<Unit> ().Owner ==
+		    gameObject.GetComponentInParent<Building> ().Owner) {
+
+			if (unit.gameObject.GetComponent<Scientist> () != null) {
+				if (ScientistList.Count < AmountOfScientistsByLevel [Level]) {
+					ScientistList.Add (unit.gameObject);
+					unit.gameObject.SetActive (false);
+					return true;
+				}
+			} else if (unit.gameObject.GetComponent<Hacker> () != null) {
+				if (HackerList.Count < AmountOfHackersByLevel [Level]) {
+					HackerList.Add (unit.gameObject);
+					unit.gameObject.SetActive (false);
+					return true;
+				}
+			} else {
+				if (WarriorList.Count < AmountOfWarriorsByLevel [Level]) {
+					WarriorList.Add (unit.gameObject);
+					unit.gameObject.SetActive (false);
+					return true;
+				}
 			}
-		} 
-		else if (unit.gameObject.GetComponent<Hacker>() != null) {
-			if (HackerList.Count < AmountOfHackersByLevel[Level]) {
-				HackerList.Add (unit.gameObject);
-				unit.gameObject.SetActive (false);
-				return true;
-			}
-		}
-		else{
-			if (WarriorList.Count < AmountOfWarriorsByLevel[Level]) {
-				WarriorList.Add (unit.gameObject);
-				unit.gameObject.SetActive (false);
-				return true;
-			}
+		} else {
+			InvadeUnit (unit);
 		}
 		return false;
+	}
+		
+	public Vector3 entrancePosition(){
+		return entrance.transform.position;
 	}
 	#endregion
 

@@ -19,8 +19,9 @@ public class ManAnimations : MonoBehaviour {
 	private Sex sex;
 	[SerializeField]
 	private PeopleWeapon weapon;
-
 	public Animator animator;
+
+	private bool canAction;
 
 	private void Awake(){
 		if (weapon == PeopleWeapon.NONE) {
@@ -39,60 +40,115 @@ public class ManAnimations : MonoBehaviour {
 	}
 
 	private void Update(){
-		if (Input.GetKeyDown (KeyCode.T)) {
+		if (Input.GetKeyDown (KeyCode.Y)) {
 			Talk (true);
 		}
 
-		if (Input.GetKeyDown (KeyCode.W)) {
-			Speed (2f);
+		if (Input.GetKeyDown (KeyCode.H)) {
+			Idle ();
+		}
+
+		if (Input.GetKeyDown (KeyCode.J)) {
+			SlowWalk ();
+		}
+
+		if (Input.GetKeyDown (KeyCode.K)) {
+			Walk ();
+		}
+
+		if (Input.GetKeyDown (KeyCode.L)) {
+			Run ();
 		}
 
 		if (Input.GetKeyDown (KeyCode.I)) {
 			ReceivedDamage ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.A)) {
+		if (Input.GetKeyDown (KeyCode.O)) {
 			Attack (true);
 		}
 
-		if (Input.GetKeyDown (KeyCode.D)) {
+		if (Input.GetKeyDown (KeyCode.P)) {
 			Dead ();
+		}
+	
+		if (!canAction) {
+			animator.SetBool ("Animate", false);
 		}
 	}
 
-	public void Speed(float speed){
-		animator.SetFloat ("Speed", speed);
+	private void startRandCoroutine(string animatorParam, int numsCount, float time){
+		StopAllCoroutines ();
+		StartCoroutine (resetRandomNum(animatorParam, numsCount, time));
 	}
 
+	private IEnumerator resetRandomNum(string animatorParam, int numsCount, float time){
+		while (true) {
+			animator.SetInteger (animatorParam, Random.Range (1, numsCount));
+			yield return new WaitForSeconds (time);
+		}
+	}
+
+	public void Idle(){
+		Debug.Log ("hesoyam");
+		animator.SetTrigger ("Interrupt");
+		animator.SetInteger ("Speed", 0);
+	}
+
+	public void SlowWalk(){
+		animator.SetTrigger ("Interrupt");
+		animator.SetInteger ("Speed", 1);
+	}
+
+	public void Walk(){
+		animator.SetTrigger ("Interrupt");
+		animator.SetInteger ("Speed", 2);
+	}
+
+	public void Run(){
+		animator.SetTrigger ("Interrupt");
+		animator.SetInteger ("Speed", 3);
+	} 
+
 	public void ReceivedDamage(){
+		animator.SetTrigger ("Interrupt");
 		animator.SetTrigger ("Damage");
 		if (weapon == PeopleWeapon.NONE) {
-			animator.SetInteger ("UnarmedHit", Random.Range (1, 7));
+			startRandCoroutine ("UnarmedHit", 6, 0.4f);
 		} else {
-			animator.SetInteger ("ArmedHit", Random.Range (1, 7));
+			startRandCoroutine ("ArmedHit", 6, 0.4f);
 		}
 	}
 
 	public void Attack(bool fighting){
-		animator.SetBool ("Fight", fighting);
-		if (fighting) {
-			
-			if (weapon == PeopleWeapon.NONE) {
-				animator.SetInteger ("HandAttack", Random.Range (1, 7));
-			} else {
-				animator.SetInteger ("PistolAttack", Random.Range (1, 4));
+		animator.SetTrigger ("Interrupt");
+		animator.SetInteger ("Speed", 0);
+		animator.SetTrigger ("Fight");
+		if (fighting){
+			switch (weapon) {
+				case PeopleWeapon.NONE:{
+					startRandCoroutine ("HandAttack", 7, 0.4f);	
+					break;
+				}
+				case PeopleWeapon.PISTOL:{
+					startRandCoroutine ("PistolAttack", 4, 0.4f);	
+					break;
+				}
 			}
 		}
 	}
 
 	public void Dead(){
+		animator.SetTrigger ("Interrupt");
 		animator.SetBool ("Death", true);
+		canAction = false;
 	}
 
 	public void Talk(bool talking){
+		animator.SetTrigger ("Interrupt");
 		animator.SetBool ("Conversation", talking);
 		if(talking)
-			animator.SetInteger ("ConversationVariant", Random.Range(1, 9));
+			startRandCoroutine ("ConversationVariant", 9, 0.4f);
 	}
 
 	//Placeholder functions for Animation events

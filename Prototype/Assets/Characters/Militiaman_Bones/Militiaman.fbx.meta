@@ -1,0 +1,672 @@
+fileFormatVersion: 2
+guid: d9b877756d6c941449db3ce44c7d0ba9
+timeCreated: 1521801176
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: milit1:Head
+    100002: milit1:HeadTop_End
+    100004: milit1:Hips
+    100006: milit1:LeftArm
+    100008: milit1:LeftFoot
+    100010: milit1:LeftForeArm
+    100012: milit1:LeftHand
+    100014: milit1:LeftHandIndex1
+    100016: milit1:LeftHandIndex2
+    100018: milit1:LeftHandIndex3
+    100020: milit1:LeftHandIndex4
+    100022: milit1:LeftHandThumb1
+    100024: milit1:LeftHandThumb2
+    100026: milit1:LeftHandThumb3
+    100028: milit1:LeftHandThumb4
+    100030: milit1:LeftLeg
+    100032: milit1:LeftShoulder
+    100034: milit1:LeftToe_End
+    100036: milit1:LeftToeBase
+    100038: milit1:LeftUpLeg
+    100040: milit1:man
+    100042: milit1:Neck
+    100044: milit1:RightArm
+    100046: milit1:RightFoot
+    100048: milit1:RightForeArm
+    100050: milit1:RightHand
+    100052: milit1:RightHandIndex1
+    100054: milit1:RightHandIndex2
+    100056: milit1:RightHandIndex3
+    100058: milit1:RightHandIndex4
+    100060: milit1:RightHandThumb1
+    100062: milit1:RightHandThumb2
+    100064: milit1:RightHandThumb3
+    100066: milit1:RightHandThumb4
+    100068: milit1:RightLeg
+    100070: milit1:RightShoulder
+    100072: milit1:RightToe_End
+    100074: milit1:RightToeBase
+    100076: milit1:RightUpLeg
+    100078: milit1:Spine
+    100080: milit1:Spine1
+    100082: milit1:Spine2
+    100084: //RootNode
+    400000: milit1:Head
+    400002: milit1:HeadTop_End
+    400004: milit1:Hips
+    400006: milit1:LeftArm
+    400008: milit1:LeftFoot
+    400010: milit1:LeftForeArm
+    400012: milit1:LeftHand
+    400014: milit1:LeftHandIndex1
+    400016: milit1:LeftHandIndex2
+    400018: milit1:LeftHandIndex3
+    400020: milit1:LeftHandIndex4
+    400022: milit1:LeftHandThumb1
+    400024: milit1:LeftHandThumb2
+    400026: milit1:LeftHandThumb3
+    400028: milit1:LeftHandThumb4
+    400030: milit1:LeftLeg
+    400032: milit1:LeftShoulder
+    400034: milit1:LeftToe_End
+    400036: milit1:LeftToeBase
+    400038: milit1:LeftUpLeg
+    400040: milit1:man
+    400042: milit1:Neck
+    400044: milit1:RightArm
+    400046: milit1:RightFoot
+    400048: milit1:RightForeArm
+    400050: milit1:RightHand
+    400052: milit1:RightHandIndex1
+    400054: milit1:RightHandIndex2
+    400056: milit1:RightHandIndex3
+    400058: milit1:RightHandIndex4
+    400060: milit1:RightHandThumb1
+    400062: milit1:RightHandThumb2
+    400064: milit1:RightHandThumb3
+    400066: milit1:RightHandThumb4
+    400068: milit1:RightLeg
+    400070: milit1:RightShoulder
+    400072: milit1:RightToe_End
+    400074: milit1:RightToeBase
+    400076: milit1:RightUpLeg
+    400078: milit1:Spine
+    400080: milit1:Spine1
+    400082: milit1:Spine2
+    400084: //RootNode
+    2100000: lambert2
+    4300000: milit1:man
+    7400000: mixamo.com
+    9500000: //RootNode
+    13700000: milit1:man
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: ad75e5ad424d3447f8be896edc5baa10, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: "Copied Avatar Rig Configuration mis-match. Transform hierarchy
+      does not match:\n\tTransform 'mixamorig:Hips' for human bone 'Hips' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 20
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human:
+    - boneName: milit1:Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftHandIndex3
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftHandThumb1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftHandThumb2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:LeftHandThumb3
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightHandIndex3
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightHandThumb1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightHandThumb2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:RightHandThumb3
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: milit1:Spine2
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Militiaman(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:man
+      parentName: Militiaman(Clone)
+      position: {x: -0, y: -1.1431277, z: 1.1476442}
+      rotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:Hips
+      parentName: Militiaman(Clone)
+      position: {x: -0.000006132769, y: 1.1354142, z: -0.025424626}
+      rotation: {x: -0.7071065, y: -0.000039366918, z: 0.000036797916, w: 0.70710707}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:Spine
+      parentName: milit1:Hips
+      position: {x: -0, y: 0.014209243, z: 0.10265035}
+      rotation: {x: 0.656842, y: 0.00004180262, z: -0.000034005618, w: 0.75402826}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:Spine1
+      parentName: milit1:Spine
+      position: {x: -0, y: 0.12090061, z: 0}
+      rotation: {x: 9.0936255e-26, y: -1.3575965e-13, z: 6.6983273e-13, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:Spine2
+      parentName: milit1:Spine1
+      position: {x: -0, y: 0.13817218, z: 2.2204459e-17}
+      rotation: {x: 0, y: 0, z: 3.1554436e-30, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftShoulder
+      parentName: milit1:Spine2
+      position: {x: -0.081327826, y: 0.13601017, z: -0.0038335847}
+      rotation: {x: 0.51600134, y: -0.4793523, z: 0.5334376, w: 0.46841052}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftArm
+      parentName: milit1:LeftShoulder
+      position: {x: -4.4408918e-17, y: 0.16404979, z: -3.5527135e-16}
+      rotation: {x: -0.0507115, y: 0.0053422917, z: -0.014626235, w: 0.99859196}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftForeArm
+      parentName: milit1:LeftArm
+      position: {x: -0, y: 0.21771084, z: 1.7763567e-16}
+      rotation: {x: -0.0000004691672, y: -0.000055805718, z: 0.000000309599, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftHand
+      parentName: milit1:LeftForeArm
+      position: {x: -0, y: 0.26577416, z: 1.7763567e-16}
+      rotation: {x: -0.00000024558327, y: 0.57671493, z: 0.00000015202325, w: 0.8169455}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftHandIndex1
+      parentName: milit1:LeftHand
+      position: {x: -0, y: 0.07213574, z: -0.000000004632308}
+      rotation: {x: -0.00008855115, y: 0.05954719, z: -0.0014857734, w: 0.9982244}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftHandIndex2
+      parentName: milit1:LeftHandIndex1
+      position: {x: -0.00018993743, y: 0.060479376, z: 0}
+      rotation: {x: -0.000000897855, y: 0.00015594634, z: -0.0006405016, w: 0.9999998}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftHandIndex3
+      parentName: milit1:LeftHandIndex2
+      position: {x: -0.00018372099, y: 0.042289145, z: 0}
+      rotation: {x: 0.00000043754997, y: 0.0003083695, z: 0.006671634, w: 0.9999777}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftHandIndex4
+      parentName: milit1:LeftHandIndex3
+      position: {x: 0.00037365843, y: 0.04181593, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftHandThumb1
+      parentName: milit1:LeftHand
+      position: {x: 0.013231358, y: 0.04713895, z: -0.0000000030816343}
+      rotation: {x: 0.05771286, y: -0.042577133, z: 0.048775885, w: 0.99623156}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftHandThumb2
+      parentName: milit1:LeftHandThumb1
+      position: {x: 0.0009110561, y: 0.039157975, z: 0}
+      rotation: {x: 0.000070194765, y: -0.0022579574, z: -0.054501463, w: 0.99851114}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftHandThumb3
+      parentName: milit1:LeftHandThumb2
+      position: {x: -0.0038572764, y: 0.044994123, z: -8.8817837e-17}
+      rotation: {x: 0.00000043467256, y: -0.000038876016, z: 0.08460839, w: 0.9964143}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftHandThumb4
+      parentName: milit1:LeftHandThumb3
+      position: {x: 0.00294622, y: 0.03497697, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightShoulder
+      parentName: milit1:Spine2
+      position: {x: 0.081327826, y: 0.13569954, z: -0.0015895051}
+      rotation: {x: -0.5250487, y: -0.47266558, z: 0.526311, w: -0.47318903}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightArm
+      parentName: milit1:RightShoulder
+      position: {x: -2.2204459e-17, y: 0.16404979, z: 3.5527135e-16}
+      rotation: {x: -0.052751135, y: -0.0071456297, z: 0.00079418963, w: 0.9985818}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightForeArm
+      parentName: milit1:RightArm
+      position: {x: 2.2204459e-17, y: 0.2177122, z: 0}
+      rotation: {x: -0.000000056081888, y: 0.0000024143885, z: 0.0000005026509, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightHand
+      parentName: milit1:RightForeArm
+      position: {x: -0, y: 0.26569965, z: 0}
+      rotation: {x: 0.00000061084006, y: -0.650269, z: 0.00000083788296, w: 0.75970405}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightHandIndex1
+      parentName: milit1:RightHand
+      position: {x: -0, y: 0.0905433, z: 0.0000000011083023}
+      rotation: {x: -0.0000027988358, y: -0.0049551977, z: 0.00053699565, w: 0.9999876}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightHandIndex2
+      parentName: milit1:RightHandIndex1
+      position: {x: 0.000033312674, y: 0.037230168, z: -2.2204459e-17}
+      rotation: {x: 0.0000004459393, y: 0.0000039315228, z: -0.000329935, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightHandIndex3
+      parentName: milit1:RightHandIndex2
+      position: {x: 0.000011470796, y: 0.048278745, z: 0}
+      rotation: {x: -0.00000003069618, y: 0.000072520794, z: -0.0007847514, w: 0.9999997}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightHandIndex4
+      parentName: milit1:RightHandIndex3
+      position: {x: -0.00004478347, y: 0.034617066, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightHandThumb1
+      parentName: milit1:RightHand
+      position: {x: -0.03060353, y: 0.03884015, z: 0.000000004655655}
+      rotation: {x: 0.05383828, y: 0.09573818, z: -0.060947195, w: 0.9920792}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightHandThumb2
+      parentName: milit1:RightHandThumb1
+      position: {x: -0.0013042098, y: 0.039537173, z: 1.11022296e-17}
+      rotation: {x: 0.000010553911, y: -0.00047482288, z: 0.010483444, w: 0.9999449}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightHandThumb3
+      parentName: milit1:RightHandThumb2
+      position: {x: -0.00051614334, y: 0.043696072, z: 0}
+      rotation: {x: 0.000074440606, y: 0.0033518227, z: 0.034138504, w: 0.9994115}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightHandThumb4
+      parentName: milit1:RightHandThumb3
+      position: {x: 0.0018203533, y: 0.03223022, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:Neck
+      parentName: milit1:Spine2
+      position: {x: -0, y: 0.15544365, z: 0.0000000115432925}
+      rotation: {x: -0.65684235, y: 4.591888e-21, z: 4.6537e-20, w: 0.754028}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:Head
+      parentName: milit1:Neck
+      position: {x: -0, y: -0.00071751804, z: 0.07511863}
+      rotation: {x: 0, y: -2.4166806e-30, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:HeadTop_End
+      parentName: milit1:Head
+      position: {x: -0, y: -0.0027423506, z: 0.28710267}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightUpLeg
+      parentName: milit1:Hips
+      position: {x: 0.11395592, y: -0.025970561, z: -0.05717277}
+      rotation: {x: -0.0113408975, y: -0.70629984, z: 0.7077458, w: -0.010390429}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightLeg
+      parentName: milit1:RightUpLeg
+      position: {x: -0, y: 0.50120586, z: 0}
+      rotation: {x: -0.03434769, y: 0.0008430703, z: -0.030744042, w: 0.9989366}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightFoot
+      parentName: milit1:RightLeg
+      position: {x: -0, y: 0.505999, z: 0}
+      rotation: {x: 0.63738424, y: 0.021992745, z: 0.056024007, w: 0.768192}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightToeBase
+      parentName: milit1:RightFoot
+      position: {x: 4.4408918e-17, y: 0.16651307, z: 0}
+      rotation: {x: 0.15284516, y: 0.010993311, z: 0.07089182, w: 0.9856429}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:RightToe_End
+      parentName: milit1:RightToeBase
+      position: {x: -0, y: 0.06979605, z: 2.2204459e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftUpLeg
+      parentName: milit1:Hips
+      position: {x: -0.11395592, y: -0.027881686, z: -0.05717277}
+      rotation: {x: -0.011504051, y: 0.7089972, z: -0.7050411, w: -0.010376297}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftLeg
+      parentName: milit1:LeftUpLeg
+      position: {x: -0, y: 0.50121266, z: 0}
+      rotation: {x: -0.028628362, y: -0.00076676527, z: 0.03074465, w: 0.99911696}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftFoot
+      parentName: milit1:LeftLeg
+      position: {x: -0, y: 0.5057913, z: 1.11022296e-17}
+      rotation: {x: 0.63528275, y: -0.021874791, z: -0.05604193, w: 0.76993287}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftToeBase
+      parentName: milit1:LeftFoot
+      position: {x: -4.4408918e-17, y: 0.16539721, z: 0}
+      rotation: {x: 0.15350832, y: -0.010910211, z: -0.07004905, w: 0.985601}
+      scale: {x: 1, y: 1, z: 1}
+    - name: milit1:LeftToe_End
+      parentName: milit1:LeftToeBase
+      position: {x: -0, y: 0.07039239, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: ba5b8379373794f4e8ecee10d4541dfd,
+    type: 3}
+  animationType: 3
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -20,7 +20,7 @@ public class Entrance : MonoBehaviour {
 		unitsWithin = new List<GameObject> ();
 	}
 
-	private void OnTriggerEnter(Collider collider){
+	/*private void OnTriggerEnter(Collider collider){
 		
 		if (collider.gameObject.GetComponent<Unit> () != null) {
 			if (collider.gameObject.GetComponent<Unit> ().Owner !=
@@ -32,7 +32,7 @@ public class Entrance : MonoBehaviour {
 				entranceHandler (collider.gameObject.GetComponent<Unit>());
 		}
 		unitsWithin.Add (collider.gameObject);
-	}
+	}*/
 
 	public bool UnitWithin(Unit unit){
 		if (unitsWithin.Contains (unit.gameObject)) {

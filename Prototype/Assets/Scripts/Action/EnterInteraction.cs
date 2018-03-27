@@ -19,7 +19,7 @@ public class EnterInteraction : Interaction {
 
 	public override void Perform ()
 	{
-		navMeshAgentComponent.SetDestination ((actionReceiver as Building).transform.position); // здесь нужно что-то вроде .EntrancePosition 
+		navMeshAgentComponent.SetDestination ((actionReceiver as Building).entrancePosition()); // здесь нужно что-то вроде .EntrancePosition 
 	}
 
 	public override void Finish ()
