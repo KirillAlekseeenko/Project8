@@ -159,7 +159,7 @@ MonoBehaviour:
   diplomacyData:
     rows:
     - rowData: 
-    - rowData: 01000000
+    - rowData: 00000000
     - rowData: 0000000000000000
     - rowData: 000000000000000000000000
     - rowData: 00000000000000000000000000000000
@@ -2292,7 +2292,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 729934254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -381.5, y: 0, z: 0}
+  m_LocalPosition: {x: -155.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 588829973}
@@ -4475,7 +4475,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1578795883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 501.5, y: 376, z: 0}
+  m_LocalPosition: {x: 275.5, y: 332.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 729934255}
@@ -4926,7 +4926,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1701023653}
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: -0.2, y: 12.4, z: 40}
+  m_LocalPosition: {x: -0.2, y: 12.4, z: -18.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

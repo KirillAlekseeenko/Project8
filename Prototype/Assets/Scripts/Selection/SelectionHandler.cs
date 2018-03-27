@@ -2,216 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectionHandler : MonoBehaviour { // selection and actions
-
-	[System.Serializable]
-	public class PerkInfo
-	{
-		[SerializeField] int perkCount = 1;
-		[SerializeField] string name;
-		[SerializeField] PerkType type;
-
-		public PerkInfo(string name, Perk perk)
-		{
-			this.name = name;
-			type = perk.Type;
-		}
-
-		public string Name {
-			get {
-				return name;
-			}
-		}
-
-		public PerkType Type {
-			get {
-				return type;
-			}
-		}
-
-		public int PerkCount {
-			get {
-				return perkCount;
-			}
-			set {
-				perkCount = value;
-			}
-		}
-	}
+public class SelectionHandler : MonoBehaviour
+{ // selection and actions
 
 
+    [SerializeField] private Camera camera;
+    [SerializeField] private MouseInput mouseInput;
 
+    HashSet<WorldObject> objectsInsideFrustum;
+    HashSet<WorldObject> selectedUnits;
+    WorldObject currentlyHighlightedObject; // onMouseHover
 
-	[System.Serializable]
-	public class PerkHandler
-	{
-		private SelectionHandler selectionHandler;
-		[SerializeField] private List<PerkInfo> unitPerks;
-		[SerializeField] private List<Unit> activatedUnits;
-		private PerkInfo currentPerk;
+    [SerializeField] private PerkHandler perks;
+    private CitizenUpgradeHandler citizenUpgradeHandler;
 
-		public PerkInfo CurrentPerk {
-			get {
-				return currentPerk;
-			}
-		}
+    private bool isNeutralObjectSelected;
+    private bool isShiftDown = false;
 
-		public PerkHandler(SelectionHandler selectionHandler)
-		{
-			unitPerks = new List<PerkInfo>();
-			activatedUnits = new List<Unit>();
-			this.selectionHandler = selectionHandler;
-		}
-		public void AddPerks(Unit unit)
-		{
-			foreach (var perk in unit.PerkList) {
-				var perkInfo = unitPerks.Find (x => x.Name.Equals (perk.Name));
-				if (perkInfo != null) {
-					perkInfo.PerkCount++;
-				} else {
-					unitPerks.Add (new PerkInfo (perk.Name, perk));
-				}
-			}
-		}
-		public void RemovePerks(Unit unit)
-		{
-			foreach (var perk in unit.PerkList) {
-				var perkInfo = unitPerks.Find (x => x.Name.Equals (perk.Name));
-				if (perkInfo != null) {
-					perkInfo.PerkCount--;
-					if (perkInfo.PerkCount <= 0) {
-						unitPerks.Remove (perkInfo);
-					}
-				}
-			}
-			if (activatedUnits.Contains (unit)) {
-				activatedUnits.Remove (unit);
-				if (activatedUnits.Count == 0)
-					deactivate ();
-			}
-		}
-		public void ActivatePerk(int index)
-		{
-			if (index >= unitPerks.Count) {
-				Debug.Log (unitPerks);
-				return;
-			}
-			deactivate ();
-			PerkInfo perk = unitPerks [index];
-			currentPerk = perk;
-			foreach (var worldObject in selectionHandler.SelectedUnits) {
-				if (worldObject is Unit) {
-					var unit = worldObject as Unit; 
-					var perkToActivate = unit.PerkList.Find (x => x.Name.Equals(perk.Name));
-					if (perkToActivate != null) {
-						if (perk.Type == PerkType.Itself) {
-							perkToActivate.Run (unit);
-						} else {
-							activatedUnits.Add (unit);
-						}
-					}
-				}
-			}
+    public bool IsShiftDown { get { return isShiftDown; } set { isShiftDown = value; } }
 
-			if (!(perk.Type == PerkType.Itself)) {
-				selectionHandler.mouseInput.PerkModeOn ();
-			}
-		}
-		private void performPerk(Vector3? place = null, Unit target = null)
-		{
-			if (activatedUnits.Count > 0) {
-				int index = 0;
-				while (index < activatedUnits.Count && !activatedUnits [index].PerkList.Find (x => x.Name.Equals (currentPerk.Name)).IsReadyToFire) { // first reloaded
-					index++;
-				}
-                if (index == activatedUnits.Count)
-                {
-                    deactivate();
-                    return;
-                }
-				var unit = activatedUnits [index]; 
-				var perkToActivate = unit.PerkList.Find (x => x.Name.Equals (currentPerk.Name));
-				if (perkToActivate != null) {
-					if (target == null && currentPerk.Type == PerkType.Target)
-						return;
-					if (currentPerk.Type == PerkType.Ground) {
-						perkToActivate.Run (unit, place: place);
-					} else if (currentPerk.Type == PerkType.Target) {
-						perkToActivate.Run (unit, target: target);
-					}
-				}
-			}
-			deactivate ();
-		}
-		public void OnLeftButtonDown(Vector3 mousePosition)
-		{
-			var ray = Camera.main.ScreenPointToRay (mousePosition);
-
-			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit)) {
-				var unit = hit.collider.gameObject.GetComponent<Unit> ();
-				if (unit != null && unit.IsVisible && Player.HumanPlayer.isEnemy(unit.Owner)) {
-					performPerk (unit.transform.position, unit);
-				} else {
-					performPerk (hit.point);
-				}
-			}
-		}
-		public void OnRightButtonDown(Vector3 mousePosition)
-		{
-			deactivate ();
-		}
-
-		private void deactivate()
-		{
-			activatedUnits.Clear ();
-			currentPerk = null;
-			selectionHandler.mouseInput.PerkModeOff ();
-		}
-	}
-
-
-
-
-
-	[SerializeField] private Camera camera;
-	[SerializeField] private MouseInput mouseInput;
-
-	HashSet<WorldObject> objectsInsideFrustum;
-	HashSet<WorldObject> selectedUnits;
-	WorldObject currentlyHighlightedObject; // onMouseHover
-
-	[SerializeField] private PerkHandler perks;
-
-	private bool isNeutralObjectSelected;
-	private bool isShiftDown = false;
-
-	public bool IsShiftDown {
-		get {
-			return isShiftDown;
-		}
-		set {
-			isShiftDown = value;
-		}
-	}
-
-	public HashSet<WorldObject> ObjectsInsideFrustum {
-		get {
-			return objectsInsideFrustum;
-		}
-	}
-
-	public HashSet<WorldObject> SelectedUnits {
-		get {
-			return selectedUnits;
-		}
-	}
-
-	public PerkHandler Perks {
-		get {
-			return perks;
-		}
-	}
+    public HashSet<WorldObject> ObjectsInsideFrustum { get { return objectsInsideFrustum; } }
+    public HashSet<WorldObject> SelectedUnits { get { return selectedUnits; } }
+    public PerkHandler Perks { get { return perks; } }
+    public CitizenUpgradeHandler CitizenUpgradeHandler { get { return citizenUpgradeHandler; } }
+    public MouseInput MouseInput { get { return mouseInput; } }
 
 
 	void Awake()
@@ -219,6 +33,7 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 		objectsInsideFrustum = new HashSet<WorldObject> ();
 		selectedUnits = new HashSet<WorldObject> ();
 		perks = new PerkHandler (this);
+        citizenUpgradeHandler = new CitizenUpgradeHandler(this);
 	}
 
 	public void OnMouseHover (Vector3 mousePosition)
@@ -263,7 +78,7 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 		if (Physics.Raycast (ray, out hit)) {
 			var worldObject = hit.collider.gameObject.GetComponent<WorldObject> ();
 			if (worldObject != null && worldObject.IsVisible) {
-				selectObject (worldObject);
+				SelectObject (worldObject);
 			}
 		}
 
@@ -278,7 +93,7 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 			
 			if (IsWithinSelectionBounds (worldObject, clickPosition, mousePosition) && worldObject.Owner.IsHuman && worldObject is Unit) {
 				if (!worldObject.IsSelected) {
-					selectObject (worldObject);
+					SelectObject (worldObject);
 				}
 			} else {
 				if (worldObject.IsSelected) {
@@ -288,7 +103,7 @@ public class SelectionHandler : MonoBehaviour { // selection and actions
 		}
 	}
 
-	private void selectObject(WorldObject worldObject)
+    public void SelectObject(WorldObject worldObject)
 	{
 		worldObject.IsSelected = true;
 		worldObject.Highlight ();
