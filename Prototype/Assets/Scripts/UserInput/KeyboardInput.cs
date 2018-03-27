@@ -36,7 +36,18 @@ public class KeyboardInput : MonoBehaviour { // hotkeys and shift-selection
 			// third perk
 		}
 
-
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            selectionHandler.CitizenUpgradeHandler.UpdateUnits(UpgradeType.Militia);
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            selectionHandler.CitizenUpgradeHandler.UpdateUnits(UpgradeType.Hacker);
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            selectionHandler.CitizenUpgradeHandler.UpdateUnits(UpgradeType.Scientist);
+        }
 
 	}
 
