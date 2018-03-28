@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class BuildingUI : MonoBehaviour {
 
+	private bool menuOpened;
+	private short clicks;
+
 	private GameObject UIBuilding;
 	private GameObject objBuilding;
 
@@ -41,11 +44,18 @@ public class BuildingUI : MonoBehaviour {
 			incomeField.GetComponent<Text>().text = objBuilding.GetComponent<Building>().Money.ToString ();
 		}catch(Exception e){
 		}
-		if(Input.GetMouseButtonDown(0) && 
-			!RectTransformUtility.RectangleContainsScreenPoint(
-				UIBuilding.GetComponent<RectTransform>(), 
-				Input.mousePosition)) {
-				MenuClose ();
+		if (Input.GetMouseButtonDown (0) && clicks < 2) {
+			clicks++;
+		}
+		if (clicks > 1 && !RectTransformUtility.RectangleContainsScreenPoint(
+			UIBuilding.GetComponent<RectTransform>(), 
+			Input.mousePosition)) {
+			clicks = 0;
+			MenuClose ();
+		}
+
+		if(UIBuilding.activeSelf){
+			UpdateUnitsInsideInfo ();
 		}
 	}
 
@@ -64,8 +74,7 @@ public class BuildingUI : MonoBehaviour {
 			warriorImage.GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
 		scientistsCount.GetComponent<Text>().text = "(" + objBuilding.GetComponent<Building>().ScientistsInside.ToString() + ")";
 		hackersCount.GetComponent<Text>().text = "(" + objBuilding.GetComponent<Building>().HackersInside.ToString() + ")";
-		warriorsCount.GetComponent<Text>().text = "(" + objBuilding.GetComponent<Building>().WarriorsInside.ToString() + ")";
-
+		warriorsCount.GetComponent<Text>().text = "(" + objBuilding.GetComponent<Building>().WarriorsInside.ToString() + ")"; 
 	}
 
 	public void MenuOpen(GameObject bld){
@@ -87,6 +96,18 @@ public class BuildingUI : MonoBehaviour {
 		
 	public void RemoveAll(){
 		objBuilding.GetComponent<Building>().RemoveAllUnits ();
-		UpdateUnitsInsideInfo ();
 	}
+
+	public void BanishScientist(){
+		objBuilding.GetComponent<Building> ().RemoveUnit (0);
+	}
+
+	public void BanishHacker(){
+		objBuilding.GetComponent<Building> ().RemoveUnit (1);
+	}
+
+	public void BanishWarrior(){
+		objBuilding.GetComponent<Building> ().RemoveUnit (2);
+	}
+
 }

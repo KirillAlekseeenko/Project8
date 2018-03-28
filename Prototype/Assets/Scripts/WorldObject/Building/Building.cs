@@ -32,12 +32,6 @@ public class Building : WorldObject, IBuilding{
 	protected VisualisationTools vTools;
 
 	protected Color mainColor;
-	[SerializeField]
-	protected HashSet<GameObject> scientistsInside;
-	[SerializeField]
-	protected HashSet<GameObject> hackersInside;
-	[SerializeField]
-	protected HashSet<GameObject> warriorsInside;
 
 	protected bool buildingMenuOpened;
 
@@ -54,6 +48,12 @@ public class Building : WorldObject, IBuilding{
 	protected bool battlePrepares;
 
 	protected Entrance entrance;
+
+	//Для случая вытаскивания юнитов из здания
+	protected bool banishOneUnit;
+	protected GameObject banishedOne;
+	protected bool banishUnits;
+	protected int unbanishedYet;
 
 	protected void Awake(){
 
@@ -81,6 +81,55 @@ public class Building : WorldObject, IBuilding{
 	protected void Update(){
 		base.Update ();
 		IsVisible = true;
+		unbanishedYet = 0;
+		if (banishUnits) {
+			foreach (GameObject unit in ScientistList) {
+				if (Vector3.Distance (unit.transform.position, entrance.transform.position) > 1) {
+					unit.gameObject.GetComponent<Rigidbody> ().MovePosition (entrance.transform.position);
+					unbanishedYet++;
+				} else {
+					unit.SetActive (true);
+				}
+					
+			}
+			foreach (GameObject unit in HackerList) {
+				if (Vector3.Distance (unit.transform.position, entrance.transform.position) > 1) {
+					unit.GetComponent<Rigidbody> ().MovePosition (entrance.transform.position);
+					unbanishedYet++;
+				} else {
+					unit.SetActive (true);
+				}
+			}
+			foreach (GameObject unit in WarriorList) {
+				if (Vector3.Distance (unit.transform.position, entrance.transform.position) > 1) {
+					unit.GetComponent<Rigidbody> ().MovePosition (entrance.transform.position);
+					unbanishedYet++;
+				} else {
+					unit.SetActive (true);
+				}
+			}
+			if (unbanishedYet == 0) {
+				banishUnits = false;
+				HackerList.Clear ();
+				ScientistList.Clear ();
+				WarriorList.Clear ();
+			}
+		} else if (banishOneUnit) {
+			if (Vector3.Distance (banishedOne.transform.position, entrance.transform.position) > 1) {
+				banishedOne.GetComponent<Rigidbody> ().MovePosition (entrance.transform.position);
+				unbanishedYet++;
+			} else {
+				banishedOne.SetActive (true);
+				banishOneUnit = false;
+				if (banishedOne.GetComponent<Scientist> () != null) {
+					ScientistList.Remove (banishedOne);
+				} else if (banishedOne.GetComponent<Hacker> () != null) {
+					HackerList.Remove (banishedOne);
+				} else {
+					WarriorList.Remove (banishedOne);
+				}
+			}
+		}
 	}
 
 	private void addMoney(){
@@ -142,8 +191,7 @@ public class Building : WorldObject, IBuilding{
 	}
 
 	public bool AddUnit(Unit unit){
-		if (GetComponent<Collider>().gameObject.GetComponent<Unit> ().Owner ==
-		    gameObject.GetComponentInParent<Building> ().Owner) {
+		if (unit.Owner == gameObject.GetComponentInParent<Building> ().Owner) {
 
 			if (unit.gameObject.GetComponent<Scientist> () != null) {
 				if (ScientistList.Count < AmountOfScientistsByLevel [Level]) {
@@ -201,38 +249,18 @@ public class Building : WorldObject, IBuilding{
 		return true;
 	}
 
-	public void RemoveUnit(GameObject unit){
-		if (ScientistList.Contains (unit))
-			ScientistList.Remove (unit);
-		else if (HackerList.Contains (unit))
-			HackerList.Remove (unit);
-		else if (WarriorList.Contains (unit))
-			WarriorList.Remove (unit);
+	public void RemoveUnit(int unitClass){
+		banishOneUnit = true;
+		if (unitClass == 0 && ScientistList.Count > 0)
+			banishedOne = ScientistList [0];
+		else if (unitClass == 1 && HackerList.Count > 0)
+			banishedOne = HackerList [0];
+		else if (unitClass == 2 && WarriorList.Count > 0)
+			banishedOne = WarriorList [0];
 	}
 
 	public void RemoveAllUnits(){
-		Vector3 coords = new Vector3(
-			gameObject.GetComponentInChildren<Entrance> ().Coordinates.x - 5,
-			gameObject.GetComponentInChildren<Entrance> ().Coordinates.y,
-			gameObject.GetComponentInChildren<Entrance> ().Coordinates.z
-		);
-		foreach(GameObject unit in ScientistList){
-			unit.transform.position = coords;
-			unit.SetActive (true);
-		}
-		ScientistList.Clear ();
-
-		foreach(GameObject unit in HackerList){
-			unit.transform.position = coords;
-			unit.SetActive (true);
-		}
-		HackerList.Clear ();
-
-		foreach(GameObject unit in WarriorList){
-			unit.transform.position = coords;
-			unit.SetActive (true);
-		}
-		WarriorList.Clear ();
+		banishUnits = true;
 	}
 
 	public int CurrentLevel { 

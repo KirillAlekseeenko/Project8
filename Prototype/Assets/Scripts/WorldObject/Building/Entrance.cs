@@ -35,13 +35,20 @@ public class Entrance : MonoBehaviour {
 	}*/
 
 	public bool UnitWithin(Unit unit){
+		if (Vector3.Distance (unit.gameObject.transform.position, gameObject.transform.position) <= 1f)
+			return true;
+		else
+			return false;
+	}
+
+/*	public bool UnitWithin(Unit unit){
 		if (unitsWithin.Contains (unit.gameObject)) {
 			unitsWithin.Remove (unit.gameObject);
 			return true;
 		} else {
 			return false;
 		}
-	}
+	}*/
 
 	public Vector3 Coordinates { get { return gameObject.transform.position; } }
 }
