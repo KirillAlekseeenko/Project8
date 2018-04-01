@@ -14,6 +14,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile></TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
+    <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneOSXIntel:4</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
@@ -265,6 +266,8 @@
     <Compile Include="Assets\Scripts\Buffs\BuffInfo.cs" />
     <Compile Include="Assets\Scripts\Buffs\RageBuff.cs" />
     <Compile Include="Assets\Scripts\Buffs\ShockedDebuff.cs" />
+    <Compile Include="Assets\Scripts\CinematicCamera\CinematicCamera.cs" />
+    <Compile Include="Assets\Scripts\CinematicCamera\OverviewCamera.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\ManAnimations.cs" />
     <Compile Include="Assets\Scripts\NonInteractableObjects\Grenade.cs" />
