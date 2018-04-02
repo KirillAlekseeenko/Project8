@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FieldOfViewHandler : MonoBehaviour {
 
+	public delegate void HideMinimapMark(GameObject unit, bool isHide);
+	public static event HideMinimapMark OnUnitHide;
 	[SerializeField]
 	private GameObject fieldOfViewPrefab;
 
@@ -46,6 +48,8 @@ public class FieldOfViewHandler : MonoBehaviour {
 		if (!visibleObjects.Contains (unit)) {
 
 			unit.GetComponent<MeshRenderer> ().enabled = true;
+			if(OnUnitHide!=null)
+				OnUnitHide(unit.gameObject, false);
 
 			if (isAltOn) {
 				unit.GetComponent<VisionArcComponent> ().IsTurnedOn = true;
@@ -60,6 +64,8 @@ public class FieldOfViewHandler : MonoBehaviour {
 		if (visibleObjects.Contains (unit)) {
 
 			unit.GetComponent<MeshRenderer> ().enabled = false;
+			if(OnUnitHide!=null)
+				OnUnitHide(unit.gameObject, true);
 
 			if (isAltOn) {
 				unit.GetComponent<VisionArcComponent> ().IsTurnedOn = false;

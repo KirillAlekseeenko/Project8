@@ -10,7 +10,7 @@ public abstract class WorldObject : MonoBehaviour {
 	// mainFields
 	[SerializeField]
 	protected Player owner;
-
+	public int unitClassID;
 	[SerializeField]
 	protected string currentActionType;
 
@@ -27,7 +27,7 @@ public abstract class WorldObject : MonoBehaviour {
 	[SerializeField]
 	protected GameObject haloPrefab;
 	[SerializeField]
-	protected GameObject iconPrefab;
+	public Sprite iconPrefab;
 
 	// hp, armor etc
 

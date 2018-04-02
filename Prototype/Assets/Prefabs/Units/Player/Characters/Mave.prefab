@@ -207,9 +207,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
+  unitClassID: 2
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
-  iconPrefab: {fileID: 0}
+  iconPrefab: {fileID: 21300000, guid: 5f047337f95a16542a877f4639476ca7, type: 3}
   baseHP: 200
   isRange: 1
   meleeAttack: 1
@@ -380,7 +381,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930315066731562}
   m_LocalRotation: {x: 0.3749303, y: 0, z: 0, w: 0.92705303}
-  m_LocalPosition: {x: 0, y: 0.99, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224956548195845068}
@@ -400,7 +401,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1857922817134044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9999976, y: 0.00000008940697, z: -0.00000008286959}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00000008286959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224198625034194280}
