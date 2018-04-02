@@ -28,6 +28,7 @@ public class CameraMovement : MonoBehaviour {
 			movementSpeed = value;
 		}
 	}
+    public Vector3 ForwardVector { get { return Vector3.Cross(camera.transform.right, Vector3.up).normalized; } }
 	
 	// Update is called once per frame
 	void Update () {
@@ -48,6 +49,14 @@ public class CameraMovement : MonoBehaviour {
 			moveFunction += moveRight;
 		if (mousePosition.y > Screen.height * (1 - sideThickness) || Input.GetKey(KeyCode.W))
 			moveFunction += moveForward;
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            moveFunction += zoomIn;
+        else if(Input.GetAxis("Mouse ScrollWheel") < 0)
+            moveFunction += zoomOut;
+        if(Input.GetMouseButton(2) || Input.GetKey(KeyCode.Q))
+        {
+            moveFunction += rotate;
+        }
 
 		if(moveFunction != null)
 			moveFunction ();
@@ -58,20 +67,34 @@ public class CameraMovement : MonoBehaviour {
 
 	private void moveRight ()
 	{
-		camera.transform.Translate (Vector3.right * movementSpeed * Time.deltaTime, Space.World);
+        camera.transform.Translate (Vector3.right * movementSpeed * Time.deltaTime, Space.Self);
 	}
 	private void moveLeft ()
 	{
-		camera.transform.Translate (Vector3.left * movementSpeed * Time.deltaTime, Space.World);
+        camera.transform.Translate (Vector3.left * movementSpeed * Time.deltaTime, Space.Self);
 	}
 	private void moveBack ()
 	{
-		camera.transform.Translate (Vector3.back * movementSpeed * Time.deltaTime, Space.World);
+        camera.transform.Translate (-ForwardVector * movementSpeed * Time.deltaTime, Space.World);
 	}
 	private void moveForward ()
 	{
-		camera.transform.Translate (Vector3.forward * movementSpeed * Time.deltaTime, Space.World);
+        camera.transform.Translate (ForwardVector * movementSpeed * Time.deltaTime, Space.World);
 	}
+    private void zoomIn()
+    {
+        camera.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime, Space.Self);
+    }
+    private void zoomOut()
+    {
+        camera.transform.Translate(Vector3.back * movementSpeed * Time.deltaTime, Space.Self);
+    }
+    private void rotate()
+    {
+        camera.transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * MovementSpeed, Space.World);
+        Debug.Log(transform.TransformDirection(transform.right));
+    }
+
 
     private void clampCameraPosition()
     {

@@ -226,10 +226,7 @@ public class Unit : WorldObject {
 			IsVisible = false;
 		}
 
-		if (halo.activeInHierarchy) {
-			var x = canvas.transform.rotation.eulerAngles.x;
-			canvas.transform.rotation = Quaternion.Euler(x, 0, 0);
-		}
+        updateCanvasPosition();
 	}
 
 	private void initializePerks()
@@ -244,6 +241,12 @@ public class Unit : WorldObject {
 		}
 		perkList = activeList;
 	}
+
+    private void updateCanvasPosition()
+    {
+        var cameraLook = -Camera.main.transform.forward;
+        canvas.transform.rotation = Quaternion.LookRotation(-cameraLook);
+    }
 
 	private bool isReadyToFire()
 	{
