@@ -5,7 +5,9 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Unit : WorldObject {
-
+	
+	public delegate void AddMinimapMark(GameObject unit);
+	public static event AddMinimapMark OnStart;
 	public delegate void UnitEvent(Unit unit);
 
 	public static event UnitEvent Disable;
@@ -197,7 +199,8 @@ public class Unit : WorldObject {
 	protected void Start()
 	{
 		base.Start ();
-
+		if(OnStart!=null)
+			OnStart(gameObject);
 		if (!Player.HumanPlayer.isFriend(owner)) {
 			GetComponent<MeshRenderer> ().enabled = false;
 		}

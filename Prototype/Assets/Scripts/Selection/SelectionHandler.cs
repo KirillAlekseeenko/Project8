@@ -5,7 +5,11 @@ using UnityEngine;
 public class SelectionHandler : MonoBehaviour
 { // selection and actions
 
+	public delegate void ClearUnitbyID(int unitClassID);
+	public static event ClearUnitbyID OnDragCancel;
 
+	public delegate void AddInPanel(int unitClassID, Sprite IconPrefab);
+	public static event AddInPanel OnUnitSelected;
     [SerializeField] private Camera camera;
     [SerializeField] private MouseInput mouseInput;
 
@@ -108,7 +112,9 @@ public class SelectionHandler : MonoBehaviour
 		worldObject.IsSelected = true;
 		worldObject.Highlight ();
 		selectedUnits.Add(worldObject);
-
+		if(OnUnitSelected!=null)
+			OnUnitSelected(worldObject.unitClassID, worldObject.iconPrefab);
+		
 		if (worldObject is Unit && worldObject.Owner.IsHuman) {
 			perks.AddPerks (worldObject as Unit);
 		}
@@ -121,7 +127,9 @@ public class SelectionHandler : MonoBehaviour
 		worldObject.IsSelected = false;
 		worldObject.Dehighlight ();
 		selectedUnits.Remove(worldObject);
-
+		if(OnDragCancel!=null)
+			OnDragCancel(worldObject.unitClassID);
+		
 		if (worldObject is Unit && worldObject.Owner.IsHuman) {
 			perks.RemovePerks (worldObject as Unit);
 		}

@@ -216,6 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b35ae6d14f8435c885e2c9287e21e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  militiaPrefab: {fileID: 0}
+  scientistPrefab: {fileID: 0}
+  hackerPrefab: {fileID: 0}
 --- !u!114 &114761224266290188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -254,10 +257,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8373fa886ee2457bae85a8ca74005f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitClassID: 102
   owner: {fileID: 0}
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
-  iconPrefab: {fileID: 0}
+  iconPrefab: {fileID: 21300000, guid: 74d1bcfc6b6e3b241a7faeb14cca3669, type: 3}
   baseHP: 20
   isRange: 1
   meleeAttack: 1

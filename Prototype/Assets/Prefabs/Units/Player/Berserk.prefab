@@ -219,10 +219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8373fa886ee2457bae85a8ca74005f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitClassID: 106
   owner: {fileID: 0}
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
-  iconPrefab: {fileID: 0}
+  iconPrefab: {fileID: 21300000, guid: 3df1b17f4814fb44babcf357bae932a9, type: 3}
   baseHP: 20
   isRange: 0
   meleeAttack: 6
