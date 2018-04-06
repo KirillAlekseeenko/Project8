@@ -5,6 +5,29 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Unit : WorldObject {
+
+	//////////////////////////////////////////////////////////////
+	public enum PeopleWeapon{
+		NONE,
+		PISTOL,
+		FISTS
+	};
+
+	public enum Sex{
+		MALE,
+		FEMALE
+	};
+	protected bool stopped;
+	protected Unit currentEnemyUnit;
+		
+	//Placeholder functions for Animation events
+	public void Hit(){}
+	public void Shoot(){}
+	public void FootR(){}
+	public void FootL(){}
+	public void Land(){}
+	public void WeaponSwitch(){}
+	///////////////////////////////////////////////////////////////
 	
 	public delegate void AddMinimapMark(GameObject unit);
 	public static event AddMinimapMark OnStart;
@@ -15,6 +38,12 @@ public class Unit : WorldObject {
 	public static event UnitEvent LeftBuilding;
 
 	[Header("Stats:")]
+
+	/////////////////////////////////////////////////////////////////
+	public Sex sex;
+	public PeopleWeapon weapon;
+	public Animator animator;
+	/////////////////////////////////////////////////////////////////
 
 	[SerializeField] protected int baseHP;
 	protected int hp;
@@ -50,6 +79,8 @@ public class Unit : WorldObject {
 	[Header("Perks")]
 	[SerializeField] protected List<Perk> perkList;
 	[SerializeField] protected ParticleSystem traceParticle;
+	/////////////////////////////////////////////////////////////
+	[SerializeField] protected GameObject Weapon;
 
 
 	// reloading
@@ -194,6 +225,11 @@ public class Unit : WorldObject {
 		LifeSteal = 0;
 
 		visibilityCounter = 0;
+
+		//////////////////////////////////From Nikita animations
+		if(animator != null)
+			this.SetStartConditions();
+		///////////////////////////////////////////////////
 	}
 
 	protected void Start()
@@ -230,6 +266,18 @@ public class Unit : WorldObject {
 		}
 
         updateCanvasPosition();
+
+        ////////////////////////////////////////////////////////////////////////////////
+		if (!isIdle ()) {
+			if (animator != null) {
+				this.Run (GetComponent<NavMeshAgent> ().velocity, GetComponent<NavMeshAgent> ().speed);
+			}
+		} else {
+			if (animator != null) {
+				this.Idle ();
+			}
+		}
+		//////////////////////////////////////////////////////////////////////////////////
 	}
 
 	private void initializePerks()
@@ -269,17 +317,37 @@ public class Unit : WorldObject {
 	public void PerformRangeAttack(Unit enemyUnit)
 	{
 		if (isReadyToFire ()) {
-			enemyUnit.SufferDamage ((int)(rangeAttack * MakeDamageMultiplier));
-			spawnParticleEffect (enemyUnit);
+			currentEnemyUnit = enemyUnit;
+			//enemyUnit.SufferDamage ((int)(rangeAttack * MakeDamageMultiplier));
+			//spawnParticleEffect (enemyUnit);
+			//////////From Nikita animations
+			if (animator != null) {
+					this.Attack ();
+			}
+			Invoke ("checkIfStopped", 0.1f);
 			// sound
+		}
+	}
+	/// ////////////////////////////////////////////////////
+	private void checkIfStopped(){
+		if (!stopped) {
+			currentEnemyUnit.SufferDamage ((int)(rangeAttack * MakeDamageMultiplier));
+			spawnParticleEffect (currentEnemyUnit);
+		} else {
+			stopped = false;
 		}
 	}
 
 	private void spawnParticleEffect(Unit enemyUnit)
 	{
 		Quaternion rotation = Quaternion.LookRotation (enemyUnit.transform.position);// particle's rotation
-		ParticleSystem trace = Instantiate (traceParticle.gameObject, transform.position, Quaternion.identity, transform ).GetComponent<ParticleSystem>();
-
+		/////////////////////////////////////////////////////////////////
+		//Поменял transform.position на координаты оружия
+		ParticleSystem trace;
+		if(Weapon != null)
+			trace = Instantiate (traceParticle.gameObject, Weapon.transform.position, Quaternion.identity, transform ).GetComponent<ParticleSystem>();
+		else
+			trace = Instantiate (traceParticle.gameObject, transform.position, Quaternion.identity, transform ).GetComponent<ParticleSystem>();
 
 		float length = (enemyUnit.transform.position - transform.position).magnitude; // length of the particle
 		trace.startLifetime = length / trace.main.startSpeed.constant;
@@ -289,6 +357,10 @@ public class Unit : WorldObject {
 	public void PerformMeleeAttack(Unit enemyUnit)
 	{
 		if (isReadyToBeat ()) {
+			//////////From Nikita animations
+			if (animator != null) {
+				this.Attack ();
+			}
 			enemyUnit.SufferDamage ((int)(meleeAttack * MakeDamageMultiplier));
 			Heal ((int)Mathf.Floor (LifeSteal * meleeAttack));
 		}
@@ -297,9 +369,19 @@ public class Unit : WorldObject {
 	public void SufferDamage(int damage)
 	{
 		hp -= (int)(damage * SufferDamageMultiplier);
+		//////////From Nikita animations
+		if (animator != null) {
+			this.ReceivedDamage ();
+			stopped = true;
+		}
 		updateUI ();
-		if (hp <= 0)
-			die ();
+		if (hp <= 0) {
+			Invoke ("die", 5f);
+			//die ();
+			//////////From Nikita animations
+			if(animator != null)
+				this.Dead ();
+		}
 	}
 
 	public void Heal(int healAmount)
