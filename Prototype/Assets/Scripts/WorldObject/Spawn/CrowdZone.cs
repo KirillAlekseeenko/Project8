@@ -73,6 +73,8 @@ public class CrowdZone : MonoBehaviour {
 			players.Add (owner, new RecruitmentData (owner));
 		}
 		players [owner].AddRecruiter (recruiter);
+        findFreeCitizens(recruiter, 3); // магическое число )))
+
 	}
 
 	public void StopRecruiting(Recruiter recruiter)
@@ -96,6 +98,7 @@ public class CrowdZone : MonoBehaviour {
 					var citizen = findCitizen ();
 					if (citizen != null) {
 						citizen.changeOwner (recrData.Player);
+                        findFreeCitizens(recrData.getRandomRecruiter(), 1);
 					} else {
 						baseUnit.Owner = recrData.Player;
 						attachedSpawn.SpawnUnit (baseUnit);
@@ -117,24 +120,46 @@ public class CrowdZone : MonoBehaviour {
 	private Unit findCitizen()
 	{
 		foreach (var unit in unitsInside) {
-			if (unit.Owner.Citizen)
+            if (unit.Owner.Citizen && !unit.GetComponent<Citizen>().IsFree)
 				return unit;
 		}
 		return null;
 	}
 
+    private void findFreeCitizens(Recruiter recruiter, int number)
+    {
+        var freeCitizens = new List<Unit>();
+        foreach (var unit in unitsInside)
+        {
+            if (unit.Owner.Citizen && unit.GetComponent<Citizen>().IsFree)
+            {
+                freeCitizens.Add(unit);
+                if(freeCitizens.Count >= number)
+                {
+                    break;
+                }
+            }
+        }
+
+        foreach (var citizen in freeCitizens)
+        {
+            citizen.AssignAction(new RecruiteeInteraction(citizen, recruiter.GetComponent<Unit>()));
+        }
+    }
+
 	private class RecruitmentData
 	{
 		Player player;
 		int recruitmentPower;
-
 		int currentProgress;
+        readonly List<Recruiter> recruiters;
 
 		public RecruitmentData (Player player)
 		{
 			this.player = player;
 			this.recruitmentPower = 0;
 			RecruiterCount = 0;
+            recruiters = new List<Recruiter>();
 		}
 
 		public Player Player { get { return player; } }
@@ -157,14 +182,22 @@ public class CrowdZone : MonoBehaviour {
 
 		public void AddRecruiter(Recruiter recruiter)
 		{
+            recruiters.Add(recruiter);
 			recruitmentPower += recruiter.RecruitPower;
 			RecruiterCount++;
 		}
 
 		public void RemoveRecruiter(Recruiter recruiter)
 		{
+            recruiters.Remove(recruiter);
 			recruitmentPower -= recruiter.RecruitPower;
 			RecruiterCount--;
 		}
+
+        public Recruiter getRandomRecruiter()
+        {
+            return recruiters[UnityEngine.Random.Range(0, recruiters.Count)];
+        }
+
 	}
 }

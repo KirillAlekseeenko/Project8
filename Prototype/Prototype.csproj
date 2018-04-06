@@ -291,8 +291,17 @@
     <Compile Include="Assets\Scripts\UI\FieldOfViewHandler.cs" />
     <Compile Include="Assets\Scripts\UI\FogProjector.cs" />
     <Compile Include="Assets\Scripts\UI\ForceAspect.cs" />
+    <Compile Include="Assets\Scripts\UI\Minimap\Blip.cs" />
+    <Compile Include="Assets\Scripts\UI\Minimap\CameraFrustumCameraFrustum.cs" />
+    <Compile Include="Assets\Scripts\UI\Minimap\MiniMap.cs" />
+    <Compile Include="Assets\Scripts\UI\Minimap\MinimapMark.cs" />
+    <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\UI\SelectionBoxDrawComponent.cs" />
     <Compile Include="Assets\Scripts\UI\Solidify.cs" />
+    <Compile Include="Assets\Scripts\UI\Tasks\FirstTask.cs" />
+    <Compile Include="Assets\Scripts\UI\Tasks\TaskDisplay.cs" />
+    <Compile Include="Assets\Scripts\UI\Tasks\TaskRecieve.cs" />
+    <Compile Include="Assets\Scripts\UI\UPManager.cs" />
     <Compile Include="Assets\Scripts\UI\VisionArcComponent.cs" />
     <Compile Include="Assets\Scripts\UserInput\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\UserInput\KeyboardInput.cs" />
@@ -316,6 +325,8 @@
     <Compile Include="Assets\Scripts\WorldObject\Unit\CitizenUpgradeHandler.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Unit\Unit.cs" />
     <Compile Include="Assets\Scripts\WorldObject\WorldObject.cs" />
+    <Compile Include="Assets\Scripts\Action\RecruiteeInteraction.cs" />
+    <Compile Include="Assets\Scripts\WorldObject\Components\Citizen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Shaders\MobileBlur.shader" />
