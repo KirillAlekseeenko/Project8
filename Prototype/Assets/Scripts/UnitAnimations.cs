@@ -10,15 +10,22 @@ public static class UnitAnimations {
 		} else {
 			unit.animator.SetBool ("IsArmed", true);
 			switch (unit.weapon) {
-			case Unit.PeopleWeapon.PISTOL:{
+			case Unit.PeopleWeapon.PISTOL:
+				{
 					unit.animator.SetBool ("HasPistol", true);	
 					break;
 				}
-			case Unit.PeopleWeapon.FISTS:{
+			case Unit.PeopleWeapon.FISTS:
+				{
 					unit.animator.SetBool ("HasFists", true);	
 					break;
 				}
-			}				
+			case Unit.PeopleWeapon.RIFLE:
+				{
+					unit.animator.SetBool ("HasRifle", true);	
+					break;
+				}
+			}
 		}
 
 		if (unit.sex == Unit.Sex.MALE) {
@@ -47,11 +54,15 @@ public static class UnitAnimations {
 	}
 
 	public static void Run(this Unit unit, Vector3 velocity, float speed){
-		unit.animator.SetInteger ("Speed", 3);
-		float velX = unit.transform.InverseTransformDirection (velocity).x / speed;
-		float velZ = unit.transform.InverseTransformDirection (velocity).z / speed;
-		unit.animator.SetFloat ("VelocityX", velX);
-		unit.animator.SetFloat ("VelocityZ", velZ);
+		if (unit.gameObject.GetComponent<Citizen> () != null) {
+			SlowWalk (unit);
+		} else {
+			unit.animator.SetInteger ("Speed", 3);
+			float velX = unit.transform.InverseTransformDirection (velocity).x / speed;
+			float velZ = unit.transform.InverseTransformDirection (velocity).z / speed;
+			unit.animator.SetFloat ("VelocityX", velX);
+			unit.animator.SetFloat ("VelocityZ", velZ);
+		}
 	} 
 
 	public static void ReceivedDamage(this Unit unit){
@@ -74,4 +85,10 @@ public static class UnitAnimations {
 		unit.animator.SetInteger ("Speed", 0);
 		unit.animator.SetTrigger ("Conversation");
 	}
+
+	public static void DistanceHack(this Unit unit){
+		
+	}
+
+
 }

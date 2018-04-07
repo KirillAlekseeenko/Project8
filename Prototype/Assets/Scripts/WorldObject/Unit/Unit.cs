@@ -10,7 +10,8 @@ public class Unit : WorldObject {
 	public enum PeopleWeapon{
 		NONE,
 		PISTOL,
-		FISTS
+		FISTS,
+		RIFLE
 	};
 
 	public enum Sex{
