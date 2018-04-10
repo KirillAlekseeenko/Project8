@@ -70,8 +70,6 @@ public class AttackInteraction : Interaction {
 				}
 
 			} else { 
-				if((actionOwner as Unit).weapon == Unit.PeopleWeapon.RIFLE)
-					Debug.Log(rayLength);
 				if (targetPosition != actionReceiver.transform.position || !navMeshAgentComponent.hasPath) { // положение цели изменилось или юнит не имеет никаких указаний
 					targetPosition = actionReceiver.transform.position;
 					navMeshAgentComponent.SetDestination (targetPosition);
