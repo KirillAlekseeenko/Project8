@@ -43,14 +43,9 @@ public static class UnitAnimations {
 		unit.animator.SetInteger ("Speed", 0);
 	}
 
-	public static void SlowWalk(this Unit unit){
+	public static void UsePerk(this Unit unit){
 		unit.animator.SetTrigger ("Interrupt");
-		unit.animator.SetInteger ("Speed", 1);
-	}
-
-	public static void Walk(this Unit unit){
-		unit.animator.SetTrigger ("Interrupt");
-		unit.animator.SetInteger ("Speed", 2);
+		unit.animator.SetTrigger ("UsePerk");
 	}
 
 	public static void Run(this Unit unit, Vector3 velocity, float speed){

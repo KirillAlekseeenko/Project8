@@ -10,8 +10,23 @@ public class PerkGrenade : Perk {
 
 	[SerializeField] private GameObject grenadePrefab;
 
-	private void throwGrenade(Unit performer, Vector3 targetPos)
+	/*private void throwGrenade(Unit performer, Vector3 targetPos)
 	{
+		var grenadeRigidbody = Instantiate (grenadePrefab, performer.transform.position, Quaternion.identity).GetComponent<Rigidbody> ();
+		grenadeRigidbody.gameObject.GetComponent<Grenade> ().Owner = performer.Owner;
+		var vectorToTarget = targetPos - performer.transform.position;
+		var distance = vectorToTarget.magnitude;
+		var g = Physics.gravity.magnitude;
+		var angleInRadians = throwAngle * Mathf.Deg2Rad;
+		var velocityMagnitute = Mathf.Sqrt (g * distance / (2 * Mathf.Sin (angleInRadians) * Mathf.Cos (angleInRadians)));
+
+		vectorToTarget = new Vector3(targetPos.x, Mathf.Tan(angleInRadians) * distance, targetPos.z) - performer.transform.position;
+		grenadeRigidbody.velocity = vectorToTarget.normalized * velocityMagnitute;
+	}*/
+	//нужно было запустить через какое-то время
+	private IEnumerator throwGrenade(Unit performer, Vector3 targetPos)
+	{
+		yield return new WaitForSeconds (1.5f);
 		var grenadeRigidbody = Instantiate (grenadePrefab, performer.transform.position, Quaternion.identity).GetComponent<Rigidbody> ();
 		grenadeRigidbody.gameObject.GetComponent<Grenade> ().Owner = performer.Owner;
 		var vectorToTarget = targetPos - performer.transform.position;
@@ -37,7 +52,11 @@ public class PerkGrenade : Perk {
 	{
 		performer.GetComponent<NavMeshAgent> ().ResetPath (); // stop
 		performer.transform.LookAt(new Vector3(place.Value.x, performer.transform.position.y, place.Value.z));
-		throwGrenade(performer, new Vector3(place.Value.x, performer.transform.position.y, place.Value.z)); // для простоты одинаковая высота
+
+		//////////////////////////////////Animation
+		performer.UsePerk();
+		StartCoroutine (throwGrenade (performer, new Vector3(place.Value.x, performer.transform.position.y, place.Value.z)));
+		//throwGrenade(performer, new Vector3(place.Value.x, performer.transform.position.y, place.Value.z)); // для простоты одинаковая высота
 	}
 
 	protected override bool isReadyToPerform (Unit performer, Vector3? place = default(Vector3?), Unit target = null)
