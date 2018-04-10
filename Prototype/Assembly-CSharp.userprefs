@@ -1,8 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WorldObject/Unit/Unit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Action/AttackInteraction.cs">
     <Files>
-      <File FileName="Assets/Scripts/WorldObject/Unit/Unit.cs" Line="349" Column="99" />
+      <File FileName="Assets/Scripts/WorldObject/Unit/Unit.cs" Line="318" Column="22" />
+      <File FileName="Assets/Scripts/UnitAnimations.cs" Line="56" Column="72" />
+      <File FileName="Assets/Scripts/Action/AttackInteraction.cs" Line="74" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

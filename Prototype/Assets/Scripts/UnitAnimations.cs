@@ -54,7 +54,6 @@ public static class UnitAnimations {
 	}
 
 	public static void Run(this Unit unit, Vector3 velocity, float speed){
-		Debug.Log (speed);
 		if(speed < 0.5f)
 			unit.animator.SetInteger ("Speed", 0);
 		else if(speed > 0.5f && speed <= 1.5f)

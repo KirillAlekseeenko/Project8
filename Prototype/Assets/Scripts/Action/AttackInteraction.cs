@@ -63,7 +63,6 @@ public class AttackInteraction : Interaction {
 
 				navMeshAgentComponent.ResetPath (); // остановка
 				actionOwner.transform.LookAt(actionReceiver.transform.position);  // поворот
-
 				if (rayLength < meleeAttackRadius || !(actionOwner as Unit).IsRange) {
 					(actionOwner as Unit).PerformMeleeAttack (actionReceiver as Unit);
 				} else {
@@ -71,6 +70,8 @@ public class AttackInteraction : Interaction {
 				}
 
 			} else { 
+				if((actionOwner as Unit).weapon == Unit.PeopleWeapon.RIFLE)
+					Debug.Log(rayLength);
 				if (targetPosition != actionReceiver.transform.position || !navMeshAgentComponent.hasPath) { // положение цели изменилось или юнит не имеет никаких указаний
 					targetPosition = actionReceiver.transform.position;
 					navMeshAgentComponent.SetDestination (targetPosition);
