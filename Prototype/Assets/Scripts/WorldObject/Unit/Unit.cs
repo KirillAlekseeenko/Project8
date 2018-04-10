@@ -244,8 +244,8 @@ public class Unit : WorldObject {
 
 		var navMesh = GetComponent<NavMeshAgent> ().speed = this.speed;
 
-		rangeReloadTime = 1 / rangeAttackPerSecond;
-		meleeReloadTime = 1 / meleeAttackPerSecond;
+		rangeReloadTime = 1f / rangeAttackPerSecond;
+		meleeReloadTime = 1f / meleeAttackPerSecond;
 
 		initializePerks ();
 	}
@@ -325,7 +325,7 @@ public class Unit : WorldObject {
 			if (animator != null) {
 					this.Attack ();
 			}
-			Invoke ("checkIfStopped", 0.1f);
+			Invoke ("checkIfStopped", 0.4f);
 			// sound
 		}
 	}
@@ -345,11 +345,11 @@ public class Unit : WorldObject {
 		/////////////////////////////////////////////////////////////////
 		//Поменял transform.position на координаты оружия
 		ParticleSystem trace;
-		if(Weapon != null)
-			trace = Instantiate (traceParticle.gameObject, Weapon.transform.position, Quaternion.identity, transform ).GetComponent<ParticleSystem>();
-		else
-			trace = Instantiate (traceParticle.gameObject, transform.position, Quaternion.identity, transform ).GetComponent<ParticleSystem>();
-
+		if (Weapon != null) {
+			trace = Instantiate (traceParticle.gameObject, Weapon.transform.position, Quaternion.identity, transform).GetComponent<ParticleSystem> ();
+		} else {
+			trace = Instantiate (traceParticle.gameObject, transform.position, Quaternion.identity, transform).GetComponent<ParticleSystem> ();
+		}
 		float length = (enemyUnit.transform.position - transform.position).magnitude; // length of the particle
 		trace.startLifetime = length / trace.main.startSpeed.constant;
 		trace.transform.localRotation = Quaternion.identity;

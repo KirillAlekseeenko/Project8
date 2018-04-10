@@ -54,15 +54,20 @@ public static class UnitAnimations {
 	}
 
 	public static void Run(this Unit unit, Vector3 velocity, float speed){
-		if (unit.gameObject.GetComponent<Citizen> () != null) {
-			SlowWalk (unit);
-		} else {
+		Debug.Log (speed);
+		if(speed < 0.5f)
+			unit.animator.SetInteger ("Speed", 0);
+		else if(speed > 0.5f && speed <= 1.5f)
+			unit.animator.SetInteger ("Speed", 1);
+		else if(speed > 1.5f && speed <= 2.5f)
+			unit.animator.SetInteger ("Speed", 2);
+		else if(speed > 2.5f)
 			unit.animator.SetInteger ("Speed", 3);
-			float velX = unit.transform.InverseTransformDirection (velocity).x / speed;
-			float velZ = unit.transform.InverseTransformDirection (velocity).z / speed;
-			unit.animator.SetFloat ("VelocityX", velX);
-			unit.animator.SetFloat ("VelocityZ", velZ);
-		}
+			
+		float velX = unit.transform.InverseTransformDirection (velocity).x / speed;
+		float velZ = unit.transform.InverseTransformDirection (velocity).z / speed;
+		unit.animator.SetFloat ("VelocityX", velX);
+		unit.animator.SetFloat ("VelocityZ", velZ);
 	} 
 
 	public static void ReceivedDamage(this Unit unit){
