@@ -275,7 +275,11 @@ public class Unit : WorldObject {
 			}
 		} else {
 			if (animator != null) {
-				this.Idle ();
+				if (GetComponent<Recruiter> () != null && GetComponent<Recruiter> ().IsRecruiting) {
+					this.Talk ();
+				} else {
+					this.Idle ();
+				}
 			}
 		}
 		//////////////////////////////////////////////////////////////////////////////////

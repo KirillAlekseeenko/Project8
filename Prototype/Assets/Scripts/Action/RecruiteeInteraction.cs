@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class RecruiteeInteraction : Interaction
 {
-    const float distanceToRecruiter = 1.2f;
+    const float distanceToRecruiter = 2f;
 
     NavMeshAgent navMeshAgent;
     Citizen citizenComponent;

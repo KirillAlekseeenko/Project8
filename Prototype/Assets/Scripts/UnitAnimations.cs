@@ -37,6 +37,12 @@ public static class UnitAnimations {
 
 	public static void HearAgitator(this Unit unit){
 		unit.animator.SetTrigger ("Interrupt");
+		unit.animator.SetInteger ("HearAgitVariants", 1);
+		unit.animator.SetTrigger ("HearAgit");
+	}
+
+	public static void Interrupt(this Unit unit){
+		unit.animator.SetTrigger ("Interrupt");
 	}
 
 	public static void Idle(this Unit unit){
