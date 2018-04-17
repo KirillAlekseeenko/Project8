@@ -46,6 +46,13 @@ public class SkillsPanelManager : MonoBehaviour {
     {
         var selectAllButton = Instantiate(buttonPrefab, transform);
         selectAllButton.interactable = true;
+        selectAllButton.onClick.AddListener(() =>
+        {
+            foreach(var unit in selectionHandler.AllUnits)
+            {
+                selectionHandler.SelectObject(unit);
+            }
+        });
 
         for (int i = 0; i < perkButtonsCount;i++)
         {

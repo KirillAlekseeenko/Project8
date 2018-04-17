@@ -94,6 +94,8 @@ public class Unit : WorldObject {
 	private float visibilityCounter;
 	private float visibilityUpdateTime = 0.5f;
 
+    private bool firstEnableCalled = false;
+
 	public float Sneak {
 		get {
 			return sneak;
@@ -197,6 +199,7 @@ public class Unit : WorldObject {
 	{
 		if (owner.IsHuman) {
 			Manager.Instance.selectionHandler.ObjectsInsideFrustum.Remove (this);
+            Manager.Instance.selectionHandler.AllUnits.Remove(this);
 		} else {
 			Manager.Instance.fieldOfViewHandler.Remove (this);
 		}
@@ -207,7 +210,15 @@ public class Unit : WorldObject {
 		if (Disable != null)
 			Disable (this);
 	}
-		
+
+	protected void OnEnable()
+	{
+        if (firstEnableCalled && Owner.IsHuman)
+            Manager.Instance.selectionHandler.AllUnits.Add(this);
+        
+        firstEnableCalled = true;
+	}
+
 	protected void Awake()
 	{
 		base.Awake ();
@@ -241,6 +252,10 @@ public class Unit : WorldObject {
 		if (!Player.HumanPlayer.isFriend(owner)) {
 			GetComponent<MeshRenderer> ().enabled = false;
 		}
+
+        if (Owner.IsHuman)
+            Manager.Instance.selectionHandler.AllUnits.Add(this);
+
 
 		var navMesh = GetComponent<NavMeshAgent> ().speed = this.speed;
 

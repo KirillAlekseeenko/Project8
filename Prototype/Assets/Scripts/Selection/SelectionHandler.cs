@@ -13,6 +13,7 @@ public class SelectionHandler : MonoBehaviour
     [SerializeField] private Camera camera;
     [SerializeField] private MouseInput mouseInput;
 
+    HashSet<WorldObject> allUnits;
     HashSet<WorldObject> objectsInsideFrustum;
     HashSet<WorldObject> selectedUnits;
     WorldObject currentlyHighlightedObject; // onMouseHover
@@ -28,6 +29,7 @@ public class SelectionHandler : MonoBehaviour
 
     public HashSet<WorldObject> ObjectsInsideFrustum { get { return objectsInsideFrustum; } }
     public HashSet<WorldObject> SelectedUnits { get { return selectedUnits; } }
+    public HashSet<WorldObject> AllUnits { get { return allUnits; } }
     public PerkHandler Perks { get { return perks; } }
     public CitizenUpgradeHandler CitizenUpgradeHandler { get { return citizenUpgradeHandler; } }
     public MouseInput MouseInput { get { return mouseInput; } }
@@ -37,6 +39,7 @@ public class SelectionHandler : MonoBehaviour
 	{
 		objectsInsideFrustum = new HashSet<WorldObject> ();
 		selectedUnits = new HashSet<WorldObject> ();
+        allUnits = new HashSet<WorldObject>();
         perks = new PerkHandler (this, skillsPanelManager);
         citizenUpgradeHandler = new CitizenUpgradeHandler(this);
 	}
