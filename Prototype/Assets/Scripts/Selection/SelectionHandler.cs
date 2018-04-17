@@ -18,6 +18,7 @@ public class SelectionHandler : MonoBehaviour
     WorldObject currentlyHighlightedObject; // onMouseHover
 
     [SerializeField] private PerkHandler perks;
+    [SerializeField] private SkillsPanelManager skillsPanelManager;
     private CitizenUpgradeHandler citizenUpgradeHandler;
 
     private bool isNeutralObjectSelected;
@@ -36,7 +37,7 @@ public class SelectionHandler : MonoBehaviour
 	{
 		objectsInsideFrustum = new HashSet<WorldObject> ();
 		selectedUnits = new HashSet<WorldObject> ();
-		perks = new PerkHandler (this);
+        perks = new PerkHandler (this, skillsPanelManager);
         citizenUpgradeHandler = new CitizenUpgradeHandler(this);
 	}
 

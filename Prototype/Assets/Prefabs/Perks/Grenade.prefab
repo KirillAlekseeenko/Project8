@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkName: Grenade
+  perkImage: {fileID: 21300000, guid: 55b85545a8d95434ea46043f11bdb470, type: 3}
   reloadTime: 10
   throwRange: 20
   throwAngle: 60

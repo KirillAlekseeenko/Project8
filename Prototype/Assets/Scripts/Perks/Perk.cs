@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public abstract class Perk : MonoBehaviour {
 	[SerializeField] private string perkName;
+    [SerializeField] private Sprite perkImage;
     [SerializeField] private float reloadTime;
 
     protected Timer perkTimer;
 
 	public string Name { get { return perkName; } }
+    public Sprite Image { get { return perkImage; } }
 
 	public abstract PerkType Type { get; }
 

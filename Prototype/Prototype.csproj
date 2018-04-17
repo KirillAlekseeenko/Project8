@@ -258,6 +258,7 @@
     <Compile Include="Assets\Scripts\Action\Interaction.cs" />
     <Compile Include="Assets\Scripts\Action\MoveAction.cs" />
     <Compile Include="Assets\Scripts\Action\PerkAction.cs" />
+    <Compile Include="Assets\Scripts\Action\RecruiteeInteraction.cs" />
     <Compile Include="Assets\Scripts\AI\Director.cs" />
     <Compile Include="Assets\Scripts\AI\LocalAI.cs" />
     <Compile Include="Assets\Scripts\AI\Path.cs" />
@@ -269,7 +270,6 @@
     <Compile Include="Assets\Scripts\CinematicCamera\CinematicCamera.cs" />
     <Compile Include="Assets\Scripts\CinematicCamera\OverviewCamera.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
-    <Compile Include="Assets\Scripts\ManAnimations.cs" />
     <Compile Include="Assets\Scripts\NonInteractableObjects\Grenade.cs" />
     <Compile Include="Assets\Scripts\Particle\Explosion.cs" />
     <Compile Include="Assets\Scripts\Particle\Trace.cs" />
@@ -282,6 +282,9 @@
     <Compile Include="Assets\Scripts\Player\Diplomacy.cs" />
     <Compile Include="Assets\Scripts\Player\DiplomacyData.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\RandomAnim.cs" />
+    <Compile Include="Assets\Scripts\RandomAnimationStart.cs" />
+    <Compile Include="Assets\Scripts\RandomStateMashineAnim.cs" />
     <Compile Include="Assets\Scripts\Selection\FrustumCollider.cs" />
     <Compile Include="Assets\Scripts\Selection\SelectionHandler.cs" />
     <Compile Include="Assets\Scripts\Static\Constants.cs" />
@@ -297,24 +300,28 @@
     <Compile Include="Assets\Scripts\UI\Minimap\MinimapMark.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\UI\SelectionBoxDrawComponent.cs" />
+    <Compile Include="Assets\Scripts\UI\SkillsPanelManager.cs" />
     <Compile Include="Assets\Scripts\UI\Solidify.cs" />
     <Compile Include="Assets\Scripts\UI\Tasks\FirstTask.cs" />
     <Compile Include="Assets\Scripts\UI\Tasks\TaskDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Tasks\TaskRecieve.cs" />
     <Compile Include="Assets\Scripts\UI\UPManager.cs" />
     <Compile Include="Assets\Scripts\UI\VisionArcComponent.cs" />
+    <Compile Include="Assets\Scripts\UnitAnimations.cs" />
     <Compile Include="Assets\Scripts\UserInput\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\UserInput\KeyboardInput.cs" />
     <Compile Include="Assets\Scripts\UserInput\MouseInput.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Building\Building.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Building\BuildingComponents\Battle.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Building\BuildingComponents\BuildingEvents.cs" />
+    <Compile Include="Assets\Scripts\WorldObject\Building\BuildingComponents\CommCenter.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Building\BuildingComponents\InternalActions.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Building\BuildingComponents\VisualisationTools.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Building\BuildingUI.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Building\Entrance.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Building\HackerBuilding.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Building\ScientistBuilding.cs" />
+    <Compile Include="Assets\Scripts\WorldObject\Components\Citizen.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Components\CitizenUpgrade.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Components\Hacker.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Components\Recruiter.cs" />
@@ -325,8 +332,6 @@
     <Compile Include="Assets\Scripts\WorldObject\Unit\CitizenUpgradeHandler.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Unit\Unit.cs" />
     <Compile Include="Assets\Scripts\WorldObject\WorldObject.cs" />
-    <Compile Include="Assets\Scripts\Action\RecruiteeInteraction.cs" />
-    <Compile Include="Assets\Scripts\WorldObject\Components\Citizen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Shaders\MobileBlur.shader" />

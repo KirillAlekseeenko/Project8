@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class PerkInfo
@@ -8,10 +9,12 @@ public class PerkInfo
     [SerializeField] int perkCount = 1;
     [SerializeField] string name;
     [SerializeField] PerkType type;
+    [SerializeField] Sprite image;
 
     public PerkInfo(string name, Perk perk)
     {
         this.name = name;
+        this.image = perk.Image;
         type = perk.Type;
     }
 
@@ -40,6 +43,14 @@ public class PerkInfo
         set
         {
             perkCount = value;
+        }
+    }
+
+    public Sprite Image
+    {
+        get
+        {
+            return image;
         }
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine;
 public class PerkHandler
 {
     private SelectionHandler selectionHandler;
+    private SkillsPanelManager skillsPanelManager;
+
     [SerializeField] private List<PerkInfo> unitPerks;
     [SerializeField] private List<Unit> activatedUnits;
     private PerkInfo currentPerk;
@@ -18,11 +20,12 @@ public class PerkHandler
         }
     }
 
-    public PerkHandler(SelectionHandler selectionHandler)
+    public PerkHandler(SelectionHandler selectionHandler, SkillsPanelManager skillsPanelManager)
     {
         unitPerks = new List<PerkInfo>();
         activatedUnits = new List<Unit>();
         this.selectionHandler = selectionHandler;
+        this.skillsPanelManager = skillsPanelManager;
     }
 
     public void AddPerks(Unit unit)
@@ -37,6 +40,7 @@ public class PerkHandler
             else
             {
                 unitPerks.Add(new PerkInfo(perk.Name, perk));
+                skillsPanelManager.AddPerk(new PerkInfo(perk.Name, perk));
             }
         }
     }
@@ -51,7 +55,9 @@ public class PerkHandler
                 perkInfo.PerkCount--;
                 if (perkInfo.PerkCount <= 0)
                 {
+                    int index = unitPerks.IndexOf(perkInfo);
                     unitPerks.Remove(perkInfo);
+                    skillsPanelManager.RemovePerk(perkInfo, index);
                 }
             }
         }

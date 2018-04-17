@@ -52,5 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkName: Rage
+  perkImage: {fileID: 21300000, guid: 185c5521a59dc46b7970ed0b81933862, type: 3}
   reloadTime: 10
   time: 10
