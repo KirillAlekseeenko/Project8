@@ -5,11 +5,10 @@ using UnityEngine;
 public class SelectionHandler : MonoBehaviour
 { // selection and actions
 
-	public delegate void ClearUnitbyID(int unitClassID);
-	public static event ClearUnitbyID OnDragCancel;
+	public delegate void UIPanelOperation(Unit unit);
+	public static event UIPanelOperation OnUnitUnselected;
+    public static event UIPanelOperation OnUnitSelected;
 
-	public delegate void AddInPanel(int unitClassID, Sprite IconPrefab);
-	public static event AddInPanel OnUnitSelected;
     [SerializeField] private Camera camera;
     [SerializeField] private MouseInput mouseInput;
 
@@ -78,17 +77,20 @@ public class SelectionHandler : MonoBehaviour
 	public void OnLeftButtonDown (Vector3 mousePosition)
 	{
 		var ray = camera.ScreenPointToRay (mousePosition);
-
-		if (!isShiftDown)
-			removeSelection ();
+        WorldObject currentlySelected = null;
 
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit)) {
 			var worldObject = hit.collider.gameObject.GetComponent<WorldObject> ();
-			if (worldObject != null && worldObject.IsVisible) {
-				SelectObject (worldObject);
+            if (worldObject != null && worldObject.IsVisible) {
+                if (!worldObject.IsSelected)
+                    SelectObject(worldObject);
+                currentlySelected = worldObject;
 			}
 		}
+
+        if (!isShiftDown)
+            removeSelection(currentlySelected);
 
 	}
 	public void OnLeftButtonUp (Vector3 mousePosition)
@@ -116,11 +118,12 @@ public class SelectionHandler : MonoBehaviour
 		worldObject.IsSelected = true;
 		worldObject.Highlight ();
 		selectedUnits.Add(worldObject);
-		if(OnUnitSelected!=null)
-			OnUnitSelected(worldObject.unitClassID, worldObject.iconPrefab);
-		
-		if (worldObject is Unit && worldObject.Owner.IsHuman) {
-			perks.AddPerks (worldObject as Unit);
+
+		if (worldObject is Unit) {
+            if (OnUnitSelected != null)
+                OnUnitSelected(worldObject as Unit);
+            if(worldObject.Owner.IsHuman)
+			    perks.AddPerks (worldObject as Unit);
 		}
 	}
 	public void UnselectObject(WorldObject worldObject)
@@ -131,19 +134,21 @@ public class SelectionHandler : MonoBehaviour
 		worldObject.IsSelected = false;
 		worldObject.Dehighlight ();
 		selectedUnits.Remove(worldObject);
-		if(OnDragCancel!=null)
-			OnDragCancel(worldObject.unitClassID);
 		
-		if (worldObject is Unit && worldObject.Owner.IsHuman) {
-			perks.RemovePerks (worldObject as Unit);
+		if (worldObject is Unit) {
+            if (OnUnitUnselected != null)
+                OnUnitUnselected(worldObject as Unit);
+            if (worldObject.Owner.IsHuman)
+			    perks.RemovePerks (worldObject as Unit);
 		}
 	}
 
 
-	private void removeSelection()
+    private void removeSelection(WorldObject exception = null)
 	{
 		List<WorldObject> deletionList = new List<WorldObject>(selectedUnits);
 		foreach (WorldObject worldObject in deletionList) {
+            if(exception == null || !exception.Equals(worldObject))
 			UnselectObject (worldObject);
 		}
 	}

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class KeyboardInput : MonoBehaviour { // hotkeys and shift-selection
 
+    public delegate void UpgradeModeEvents();
+    public static event UpgradeModeEvents DecreaseCount;
+    public static event UpgradeModeEvents IncreaseCount;
+
 	[SerializeField]
 	private SelectionHandler selectionHandler;
 
@@ -12,29 +16,53 @@ public class KeyboardInput : MonoBehaviour { // hotkeys and shift-selection
 
 	void Update()
 	{
-		if (Input.GetKeyDown (KeyCode.LeftShift)) {
-			selectionHandler.IsShiftDown = true;
-		}
-		if (Input.GetKeyUp (KeyCode.LeftShift)) {
-			selectionHandler.IsShiftDown = false;
-		}
+        switch(InputModesHandler.CurrentMode) // плохо, потом надо переделать
+        {
+            case InputMode.Default:
+                {
+                    DefaultInput();
+                    break;
+                }
+            case InputMode.UpgradeMode:
+                {
+                    UpgradeModeInput();
+                    break;
+                }
+        }
+	}
 
-		if (Input.GetKeyDown (KeyCode.C)) {
-			fieldOfViewHandler.IsAltOn = true;
-		}
-		if (Input.GetKeyUp (KeyCode.C)) {
-			fieldOfViewHandler.IsAltOn = false;
-		}
+    private void DefaultInput()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            selectionHandler.IsShiftDown = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            selectionHandler.IsShiftDown = false;
+        }
 
-		if (Input.GetKeyDown (KeyCode.E)) {
-			selectionHandler.Perks.ActivatePerk (0);
-		}
-		if (Input.GetKeyDown (KeyCode.R)) {
-			selectionHandler.Perks.ActivatePerk (1);
-		}
-		if (Input.GetKeyDown (KeyCode.T)) {
-			// third perk
-		}
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            fieldOfViewHandler.IsAltOn = true;
+        }
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            fieldOfViewHandler.IsAltOn = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            selectionHandler.Perks.ActivatePerk(0);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            selectionHandler.Perks.ActivatePerk(1);
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            // third perk
+        }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -48,7 +76,19 @@ public class KeyboardInput : MonoBehaviour { // hotkeys and shift-selection
         {
             selectionHandler.CitizenUpgradeHandler.UpdateUnits(UpgradeType.Scientist);
         }
+    }
 
-	}
+    private void UpgradeModeInput()
+    {
+        if(Input.GetKeyDown(KeyCode.A) && DecreaseCount != null)
+        {
+            DecreaseCount();
+        }
+        if (Input.GetKeyDown(KeyCode.D) && IncreaseCount != null)
+        {
+            IncreaseCount();
+        }
+    }
+
 
 }

@@ -22,12 +22,9 @@ public abstract class WorldObject : MonoBehaviour {
 
 	protected bool isSelected;
 	protected GameObject halo;
-	protected GameObject icon;
 
-	[SerializeField]
-	protected GameObject haloPrefab;
-	[SerializeField]
-	public Sprite iconPrefab;
+	[SerializeField] protected GameObject haloPrefab;
+	[SerializeField] protected Sprite icon;
 
 	// hp, armor etc
 
@@ -60,7 +57,7 @@ public abstract class WorldObject : MonoBehaviour {
 	public virtual bool IsVisible { get; protected set;}
 		
 
-	public GameObject Icon {
+    public Sprite Icon {
 		get {
 			return icon; 
 		}

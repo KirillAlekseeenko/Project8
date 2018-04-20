@@ -19,7 +19,7 @@ public class MinimapMark : MonoBehaviour {
 	public void createMark(GameObject unit){
 		
 
-		minimapMark = Instantiate(markPref, parent: unit.transform) as GameObject;
+		minimapMark = Instantiate(markPref, unit.transform) as GameObject;
 		minimapMark.transform.SetSiblingIndex(0);
 		minimapMark.transform.localPosition = new Vector3(0, 5, 0);
 		minimapMark.transform.localScale = new Vector3(2,2,2);

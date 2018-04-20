@@ -72,6 +72,9 @@ public class Unit : WorldObject {
 	public float LifeSteal { get; set; }
 	public float AttackSpeedModifier{ get; set; }
 
+    [Header("Update")]
+    [SerializeField] List<UpgradeInfo> possibleUpgrades;
+
 	[Header("UI")]
 	[SerializeField] protected Canvas canvas;
 	[SerializeField] protected Image healthBar;
@@ -189,11 +192,8 @@ public class Unit : WorldObject {
 		}
 	}	
 
-	public List<Perk> PerkList {
-		get {
-			return perkList;
-		}
-	}
+	public List<Perk> PerkList { get { return perkList; } }
+    public List<UpgradeInfo> PossibleUpgrades { get { return possibleUpgrades; } }
 
 	protected void OnDisable()
 	{

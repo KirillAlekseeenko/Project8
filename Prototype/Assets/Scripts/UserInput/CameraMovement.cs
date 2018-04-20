@@ -32,7 +32,8 @@ public class CameraMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		moveCamera ();
+        if(InputModesHandler.CurrentMode != InputMode.UpgradeMode)
+		    moveCamera ();
 	}
 
 	private void moveCamera()

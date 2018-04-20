@@ -1221,11 +1221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8373fa886ee2457bae85a8ca74005f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitClassID: 0
+  unitClassID: 5
   owner: {fileID: 0}
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
-  iconPrefab: {fileID: 0}
+  icon: {fileID: 21300000, guid: e03d607419b88b942ae5861e4fcffd07, type: 3}
   sex: 0
   weapon: 0
   animator: {fileID: 95961284371509320}
@@ -1242,6 +1242,7 @@ MonoBehaviour:
   sneak: 10
   halfVisible: 1
   LOS: 12
+  possibleUpgrades: []
   canvas: {fileID: 223232549096917184}
   healthBar: {fileID: 114714467651696136}
   perkList: []
@@ -1443,7 +1444,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1794200471308268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.00000008286959}
+  m_LocalPosition: {x: -0.9999976, y: 0.00000008940697, z: -0.00000008286959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224681233181827762}
@@ -1479,7 +1480,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1215274852296690}
   m_LocalRotation: {x: 0.3749303, y: -0, z: -0, w: 0.92705303}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.27, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 224393038954381264}

@@ -1,16 +1,12 @@
 ﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupConfiguration="{A27304BD-9C53-7A14-F678-8A75BAF0DBBD}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WorldObject/Unit/Unit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UserInput/KeyboardInput.cs">
     <Files>
-      <File FileName="Assets/Scripts/Selection/SelectionHandler.cs" Line="13" Column="44" />
-      <File FileName="Assets/Scripts/UI/SkillsPanelManager.cs" Line="35" Column="57" />
-      <File FileName="Assets/Scripts/Perks/PerkHandler.cs" Line="43" Column="54" />
-      <File FileName="Assets/Scripts/Perks/Perk.cs" Line="16" Column="5" />
-      <File FileName="Assets/Scripts/Perks/PerkInfo.cs" Line="28" Column="5" />
-      <File FileName="Assets/Scripts/Selection/FrustumCollider.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WorldObject/Unit/Unit.cs" Line="217" Column="66" />
-      <File FileName="Assets/Scripts/WorldObject/WorldObject.cs" Line="91" Column="62" />
-      <File FileName="Assets/Scripts/AI/PlayerLocalAI.cs" Line="6" Column="14" />
-      <File FileName="Assets/Scripts/WorldObject/Spawn/CrowdZone.cs" Line="31" Column="35" />
+      <File FileName="Assets/Scripts/UserInput/InputModesHandler.cs" Line="17" Column="50" />
+      <File FileName="Assets/Scripts/UI/UpgradePanel/UpgradeInfo.cs" Line="11" Column="52" />
+      <File FileName="Assets/Scripts/UI/UpgradePanel/UpgradePanel.cs" Line="9" Column="54" />
+      <File FileName="Assets/Scripts/UI/UpgradePanel/UpgradeIcon.cs" Line="84" Column="26" />
+      <File FileName="Assets/Scripts/UI/UnitPanel/UnitIcon.cs" Line="16" Column="27" />
+      <File FileName="Assets/Scripts/UserInput/KeyboardInput.cs" Line="7" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

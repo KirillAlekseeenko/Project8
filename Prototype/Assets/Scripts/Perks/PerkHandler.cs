@@ -5,6 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class PerkHandler
 {
+    public delegate void PerkEvents();
+    public static event PerkEvents TurnOnPerkMode;
+    public static event PerkEvents TurnOffPerkMode;
+
     private SelectionHandler selectionHandler;
     private SkillsPanelManager skillsPanelManager;
 
@@ -101,7 +105,8 @@ public class PerkHandler
 
         if (!(perk.Type == PerkType.Itself))
         {
-            selectionHandler.MouseInput.PerkModeOn();
+            if (TurnOnPerkMode != null)
+                TurnOnPerkMode();
         }
     }
 
@@ -166,6 +171,7 @@ public class PerkHandler
     {
         activatedUnits.Clear();
         currentPerk = null;
-        selectionHandler.MouseInput.PerkModeOff();
+        if (TurnOffPerkMode != null)
+            TurnOffPerkMode();
     }
 }

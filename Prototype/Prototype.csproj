@@ -305,10 +305,15 @@
     <Compile Include="Assets\Scripts\UI\Tasks\FirstTask.cs" />
     <Compile Include="Assets\Scripts\UI\Tasks\TaskDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Tasks\TaskRecieve.cs" />
-    <Compile Include="Assets\Scripts\UI\UPManager.cs" />
+    <Compile Include="Assets\Scripts\UI\UnitPanel\UnitIcon.cs" />
+    <Compile Include="Assets\Scripts\UI\UnitPanel\UPManager.cs" />
+    <Compile Include="Assets\Scripts\UI\UpgradePanel\UpgradeIcon.cs" />
+    <Compile Include="Assets\Scripts\UI\UpgradePanel\UpgradeInfo.cs" />
+    <Compile Include="Assets\Scripts\UI\UpgradePanel\UpgradePanel.cs" />
     <Compile Include="Assets\Scripts\UI\VisionArcComponent.cs" />
     <Compile Include="Assets\Scripts\UnitAnimations.cs" />
     <Compile Include="Assets\Scripts\UserInput\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\UserInput\InputModesHandler.cs" />
     <Compile Include="Assets\Scripts\UserInput\KeyboardInput.cs" />
     <Compile Include="Assets\Scripts\UserInput\MouseInput.cs" />
     <Compile Include="Assets\Scripts\WorldObject\Building\Building.cs" />
