@@ -269,6 +269,10 @@
     <Compile Include="Assets\Scripts\Buffs\ShockedDebuff.cs" />
     <Compile Include="Assets\Scripts\CinematicCamera\CinematicCamera.cs" />
     <Compile Include="Assets\Scripts\CinematicCamera\OverviewCamera.cs" />
+    <Compile Include="Assets\Scripts\Grades\Grade.cs" />
+    <Compile Include="Assets\Scripts\Grades\GradesSettings.cs" />
+    <Compile Include="Assets\Scripts\Grades\PopularityGrade.cs" />
+    <Compile Include="Assets\Scripts\Grades\RevealGrade.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\NonInteractableObjects\Grenade.cs" />
     <Compile Include="Assets\Scripts\Particle\Explosion.cs" />
@@ -294,6 +298,7 @@
     <Compile Include="Assets\Scripts\UI\FieldOfViewHandler.cs" />
     <Compile Include="Assets\Scripts\UI\FogProjector.cs" />
     <Compile Include="Assets\Scripts\UI\ForceAspect.cs" />
+    <Compile Include="Assets\Scripts\UI\GradesViewController.cs" />
     <Compile Include="Assets\Scripts\UI\Minimap\Blip.cs" />
     <Compile Include="Assets\Scripts\UI\Minimap\CameraFrustumCameraFrustum.cs" />
     <Compile Include="Assets\Scripts\UI\Minimap\MiniMap.cs" />
