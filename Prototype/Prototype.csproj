@@ -269,6 +269,7 @@
     <Compile Include="Assets\Scripts\Buffs\ShockedDebuff.cs" />
     <Compile Include="Assets\Scripts\CinematicCamera\CinematicCamera.cs" />
     <Compile Include="Assets\Scripts\CinematicCamera\OverviewCamera.cs" />
+    <Compile Include="Assets\Scripts\Economy\ResourcesManager.cs" />
     <Compile Include="Assets\Scripts\Grades\Grade.cs" />
     <Compile Include="Assets\Scripts\Grades\GradesSettings.cs" />
     <Compile Include="Assets\Scripts\Grades\PopularityGrade.cs" />
@@ -304,6 +305,7 @@
     <Compile Include="Assets\Scripts\UI\Minimap\MiniMap.cs" />
     <Compile Include="Assets\Scripts\UI\Minimap\MinimapMark.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\ResourcesViewController.cs" />
     <Compile Include="Assets\Scripts\UI\SelectionBoxDrawComponent.cs" />
     <Compile Include="Assets\Scripts\UI\SkillsPanelManager.cs" />
     <Compile Include="Assets\Scripts\UI\Solidify.cs" />

@@ -58,8 +58,9 @@ public class UpgradeIcon : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public void IncreaseCounter()
     {
         count++;
-        if (count > upgradePanel.CurrentUnitSet.Count)
-            count = upgradePanel.CurrentUnitSet.Count;
+        var maxCount = Mathf.Min(Player.HumanPlayer.ResourcesManager.Money / Cost, upgradePanel.CurrentUnitSet.Count);
+        if (count > maxCount)
+            count = maxCount;
         UpdateTextInfo();
     }
 
@@ -94,7 +95,7 @@ public class UpgradeIcon : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         if(value)
         {
-            count = 0;
+            count = Mathf.Min(Player.HumanPlayer.ResourcesManager.Money / Cost, upgradePanel.CurrentUnitSet.Count);
             AddCounter();
             UpdateTextInfo();
             SubscribeToInputEvents();

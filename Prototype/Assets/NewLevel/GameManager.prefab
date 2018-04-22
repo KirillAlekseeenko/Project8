@@ -11,6 +11,23 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1621527771959086}
   m_IsPrefabParent: 1
+--- !u!1 &1197839977277584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4203556230300188}
+  - component: {fileID: 114006262259050258}
+  - component: {fileID: 114869091297566464}
+  m_Layer: 0
+  m_Name: GradesHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1333567750079772
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,6 +169,19 @@ Transform:
   m_Father: {fileID: 4488131192969922}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4203556230300188
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1197839977277584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4488131192969922}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4365142488577014
 Transform:
   m_ObjectHideFlags: 1
@@ -180,6 +210,7 @@ Transform:
   - {fileID: 4925482030282956}
   - {fileID: 4490846013309422}
   - {fileID: 4915433975094046}
+  - {fileID: 4203556230300188}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -190,7 +221,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1622715695679664}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 45.596893, z: 0}
+  m_LocalPosition: {x: -51.6, y: 45.6, z: -28.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4365142488577014}
@@ -254,11 +285,45 @@ Camera:
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &114006262259050258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1197839977277584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8b4afb6b9e043f09d93ec0c94a6448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gradesSettings:
+    maxValue: 100
+    decayRate1: 0.083
+    decayRate2: 0.083
+    decayRate3: 0.083
+    citizenKilled: -10
+    policeKilled: -5
+    DALYKilled: 0
+    neutralUnitKilled: 5
+    battle: 0
+    buildingCapture: 0.5
+    buildingCaptureWithHacker: 0.5
+    retreiveFromBuilding: -0.5
+    policeAttention: 0
+    DALYAttention: 0
+    droneCaptured: 0
+    turretCaptured: 0
+    agitation: 10
+    armedUnit: 0
+    unarmedUnit: 5
+    buildingImproved: 10
+    buildingLost: -20
+    underCamera: 0.5
+  gradesViewController: {fileID: 0}
 --- !u!114 &114148627466582456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -289,6 +354,8 @@ MonoBehaviour:
   action: {fileID: 114949620840042558}
   fieldOfView: {fileID: 114354713161154716}
   fogOfWar: {fileID: 114981903655480522}
+  resourcesManager:
+    resourcesViewController: {fileID: 0}
 --- !u!114 &114265717929533006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -342,6 +409,42 @@ MonoBehaviour:
   perks:
     unitPerks: []
     activatedUnits: []
+  skillsPanelManager: {fileID: 0}
+--- !u!114 &114869091297566464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1197839977277584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a5ad50f372247999e3b085150da75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gradesSettings:
+    maxValue: 100
+    decayRate1: 0.083
+    decayRate2: 0.133
+    decayRate3: 0.2
+    citizenKilled: 2
+    policeKilled: 3
+    DALYKilled: 5
+    neutralUnitKilled: 0
+    battle: 0.5
+    buildingCapture: 0.5
+    buildingCaptureWithHacker: 0.25
+    retreiveFromBuilding: 1
+    policeAttention: 5
+    DALYAttention: 10
+    droneCaptured: 5
+    turretCaptured: 7
+    agitation: 5
+    armedUnit: 10
+    unarmedUnit: 0
+    buildingImproved: 0
+    buildingLost: 10
+    underCamera: 0.5
+  gradesViewController: {fileID: 0}
 --- !u!114 &114949620840042558
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -12,41 +12,15 @@ public class Manager : MonoBehaviour {
 		}
 	}
 		
-	[SerializeField]
-	private SelectionHandler selection;
+	[SerializeField] private SelectionHandler selection;
+	[SerializeField] private ActionHandler action;
+	[SerializeField] private FieldOfViewHandler fieldOfView;
+    [SerializeField] private FogProjector fogOfWar;
 
-	[SerializeField]
-	private ActionHandler action;
-
-	[SerializeField]
-	private FieldOfViewHandler fieldOfView;
-
-	[SerializeField]
-	private FogProjector fogOfWar;
-
-	public SelectionHandler selectionHandler {
-		get {
-			return selection;
-		}
-	}
-
-	public ActionHandler actionHandler {
-		get {
-			return action;
-		}
-	}
-
-	public FieldOfViewHandler fieldOfViewHandler {
-		get {
-			return fieldOfView;
-		}
-	}
-
-	public FogProjector fogOfWarHanlder {
-		get {
-			return fogOfWar;
-		}
-	}
+	public SelectionHandler selectionHandler { get { return selection; } }
+	public ActionHandler actionHandler { get { return action; } }
+	public FieldOfViewHandler fieldOfViewHandler { get { return fieldOfView; } }
+	public FogProjector fogOfWarHanlder { get { return fogOfWar; } }
 
 	void Awake()
 	{
@@ -56,5 +30,4 @@ public class Manager : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
-
 }
