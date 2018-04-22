@@ -70,6 +70,12 @@
      <Compile Include="Assets\Scripts\Buffs\ShockedDebuff.cs" />
      <Compile Include="Assets\Scripts\CinematicCamera\CinematicCamera.cs" />
      <Compile Include="Assets\Scripts\CinematicCamera\OverviewCamera.cs" />
+     <Compile Include="Assets\Scripts\Economy\ResourcesManager.cs" />
+     <Compile Include="Assets\Scripts\Grades\Grade.cs" />
+     <Compile Include="Assets\Scripts\Grades\GradesSettings.cs" />
+     <Compile Include="Assets\Scripts\Grades\PopularityGrade.cs" />
+     <Compile Include="Assets\Scripts\Grades\RevealGrade.cs" />
+     <Compile Include="Assets\Scripts\LevelStatistics.cs" />
      <Compile Include="Assets\Scripts\Manager.cs" />
      <Compile Include="Assets\Scripts\NonInteractableObjects\Grenade.cs" />
      <Compile Include="Assets\Scripts\Particle\Explosion.cs" />
@@ -83,6 +89,17 @@
      <Compile Include="Assets\Scripts\Player\Diplomacy.cs" />
      <Compile Include="Assets\Scripts\Player\DiplomacyData.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
+     <Compile Include="Assets\Scripts\QuestSystem\Quest.cs" />
+     <Compile Include="Assets\Scripts\QuestSystem\QuestManager.cs" />
+     <Compile Include="Assets\Scripts\QuestSystem\Task.cs" />
+     <Compile Include="Assets\Scripts\QuestSystem\TaskResolvers\Task_CaptureBuilding.cs" />
+     <Compile Include="Assets\Scripts\QuestSystem\TaskResolvers\Task_ClickOnObject.cs" />
+     <Compile Include="Assets\Scripts\QuestSystem\TaskResolvers\Task_KillEnemies.cs" />
+     <Compile Include="Assets\Scripts\QuestSystem\TaskResolvers\Task_ObjectsAndNumbers.cs" />
+     <Compile Include="Assets\Scripts\QuestSystem\TaskResolvers\Task_ReachDestinationPoint.cs" />
+     <Compile Include="Assets\Scripts\QuestSystem\TaskResolvers\Task_ReceiveUnits.cs" />
+     <Compile Include="Assets\Scripts\QuestSystem\TaskResolvers\Task_UpgradeBuilding.cs" />
+     <Compile Include="Assets\Scripts\QuestSystem\TaskResolvers\TaskResolver.cs" />
      <Compile Include="Assets\Scripts\RandomAnim.cs" />
      <Compile Include="Assets\Scripts\RandomAnimationStart.cs" />
      <Compile Include="Assets\Scripts\RandomStateMashineAnim.cs" />
@@ -95,20 +112,29 @@
      <Compile Include="Assets\Scripts\UI\FieldOfViewHandler.cs" />
      <Compile Include="Assets\Scripts\UI\FogProjector.cs" />
      <Compile Include="Assets\Scripts\UI\ForceAspect.cs" />
+     <Compile Include="Assets\Scripts\UI\GradesViewController.cs" />
      <Compile Include="Assets\Scripts\UI\Minimap\Blip.cs" />
      <Compile Include="Assets\Scripts\UI\Minimap\CameraFrustumCameraFrustum.cs" />
      <Compile Include="Assets\Scripts\UI\Minimap\MiniMap.cs" />
      <Compile Include="Assets\Scripts\UI\Minimap\MinimapMark.cs" />
      <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
+     <Compile Include="Assets\Scripts\UI\ResourcesViewController.cs" />
      <Compile Include="Assets\Scripts\UI\SelectionBoxDrawComponent.cs" />
+     <Compile Include="Assets\Scripts\UI\SkillsPanelManager.cs" />
      <Compile Include="Assets\Scripts\UI\Solidify.cs" />
      <Compile Include="Assets\Scripts\UI\Tasks\FirstTask.cs" />
+     <Compile Include="Assets\Scripts\UI\Tasks\QuestUIPanel.cs" />
      <Compile Include="Assets\Scripts\UI\Tasks\TaskDisplay.cs" />
      <Compile Include="Assets\Scripts\UI\Tasks\TaskRecieve.cs" />
-     <Compile Include="Assets\Scripts\UI\UPManager.cs" />
+     <Compile Include="Assets\Scripts\UI\UnitPanel\UnitIcon.cs" />
+     <Compile Include="Assets\Scripts\UI\UnitPanel\UPManager.cs" />
+     <Compile Include="Assets\Scripts\UI\UpgradePanel\UpgradeIcon.cs" />
+     <Compile Include="Assets\Scripts\UI\UpgradePanel\UpgradeInfo.cs" />
+     <Compile Include="Assets\Scripts\UI\UpgradePanel\UpgradePanel.cs" />
      <Compile Include="Assets\Scripts\UI\VisionArcComponent.cs" />
      <Compile Include="Assets\Scripts\UnitAnimations.cs" />
      <Compile Include="Assets\Scripts\UserInput\CameraMovement.cs" />
+     <Compile Include="Assets\Scripts\UserInput\InputModesHandler.cs" />
      <Compile Include="Assets\Scripts\UserInput\KeyboardInput.cs" />
      <Compile Include="Assets\Scripts\UserInput\MouseInput.cs" />
      <Compile Include="Assets\Scripts\WorldObject\Building\Building.cs" />
@@ -136,7 +162,7 @@
      <None Include="Assets\Materials\Shaders\MobileBlur.shader" />
      <None Include="Assets\Materials\Shaders\SelectShader.shader" />
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>/home/wailful/Proj8/Prototype/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>/home/wailful/Proj8/New/Prototype/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/home/wailful/Unity-2017.3.1f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

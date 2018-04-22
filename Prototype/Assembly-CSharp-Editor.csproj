@@ -54,7 +54,7 @@
      <Compile Include="Assets\Editor\Instant Screenshot\ScreenshotTaker.cs" />
      <Compile Include="Assets\Scripts\Editor\CustomDiplomacyEditor.cs" />
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>/home/wailful/Proj8/Prototype/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>/home/wailful/Proj8/New/Prototype/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/home/wailful/Unity-2017.3.1f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
