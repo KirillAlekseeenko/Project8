@@ -8,11 +8,13 @@ public abstract class Perk : MonoBehaviour {
 	[SerializeField] private string perkName;
     [SerializeField] private Sprite perkImage;
     [SerializeField] private float reloadTime;
+    [SerializeField] private string description;
 
     protected Timer perkTimer;
 
 	public string Name { get { return perkName; } }
     public Sprite Image { get { return perkImage; } }
+    public string Description { get { return description; } }
 
 	public abstract PerkType Type { get; }
 

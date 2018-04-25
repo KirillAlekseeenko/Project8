@@ -73,6 +73,15 @@ public class PerkHandler
         }
     }
 
+    public string GetPerkDescription(int index)
+    {
+        if (index >= unitPerks.Count)
+        {
+            throw new UnityException("Perk index is out of range");
+        }
+        return unitPerks[index].Description;
+    }
+
     public void ActivatePerk(int index)
     {
         if (index >= unitPerks.Count)

@@ -10,6 +10,7 @@ public class SkillsPanelManager : MonoBehaviour {
     [SerializeField] private int perkButtonsCount;
     [SerializeField] private Button buttonPrefab;
     [SerializeField] private SelectionHandler selectionHandler;
+    [SerializeField] private List<string> actionDescriptions;
 
 
     private int lastActiveIndex = PerkButtonsOffset - 1;
@@ -40,6 +41,18 @@ public class SkillsPanelManager : MonoBehaviour {
         var newButton = Instantiate(buttonPrefab, transform);
         newButton.interactable = false;
         lastActiveIndex--;
+    }
+
+    public string GetPerkDescription(int siblingIndex)
+    {
+        var index = siblingIndex - PerkButtonsOffset;
+        var description = "";
+        if (index >= 0)
+            description = selectionHandler.Perks.GetPerkDescription(siblingIndex - PerkButtonsOffset);
+        else
+            description = actionDescriptions[siblingIndex];
+
+        return description;
     }
 
     private void PlaceButtons()
