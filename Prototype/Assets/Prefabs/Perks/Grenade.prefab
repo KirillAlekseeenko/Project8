@@ -54,7 +54,10 @@ MonoBehaviour:
   perkName: Grenade
   perkImage: {fileID: 21300000, guid: 55b85545a8d95434ea46043f11bdb470, type: 3}
   reloadTime: 10
-  description: AOE damage
+  description: "\u0413\u0440\u0430\u043D\u0430\u0442\u0430. \u0428\u0442\u0443\u0440\u043C\u043E\u0432\u0438\u043A
+    \u0431\u0440\u043E\u0441\u0430\u0435\u0442 \u0433\u0440\u0430\u043D\u0430\u0442\u0443,
+    \u043A\u043E\u0442\u043E\u0440\u0430\u044F \u043D\u0430\u043D\u043E\u0441\u0438\u0442
+    \u0443\u0440\u043E\u043D \u0430\u043E\u0435"
   throwRange: 20
   throwAngle: 60
   grenadePrefab: {fileID: 1132610966165284, guid: caf1f6e041b75474b86685567441146b,

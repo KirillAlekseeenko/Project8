@@ -11,7 +11,7 @@ public class SkillsPanelManager : MonoBehaviour {
     [SerializeField] private Button buttonPrefab;
     [SerializeField] private SelectionHandler selectionHandler;
     [SerializeField] private List<string> actionDescriptions;
-
+    [SerializeField] public Text PerkInfoPanel;
 
     private int lastActiveIndex = PerkButtonsOffset - 1;
 
@@ -51,7 +51,7 @@ public class SkillsPanelManager : MonoBehaviour {
             description = selectionHandler.Perks.GetPerkDescription(siblingIndex - PerkButtonsOffset);
         else
             description = actionDescriptions[siblingIndex];
-
+       
         return description;
     }
 

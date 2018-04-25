@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private SkillsPanelManager skillsPanel;
+    private Text SkillInfoPanel;
     private Button button;
 
     private void Start()
@@ -21,11 +22,14 @@ public class SkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             return;
         var skillDescription = skillsPanel.GetPerkDescription(transform.GetSiblingIndex());
         Debug.Log(skillDescription);
-        // дальше выводить в подсказки skillDescription
+       
+        skillsPanel.PerkInfoPanel.text = skillDescription;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        skillsPanel.PerkInfoPanel.text = "";
+        skillsPanel.PerkInfoPanel.transform.parent.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 15f);
         if (!button.interactable)
             return;
     }

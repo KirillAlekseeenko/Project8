@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 224221539009726054}
   - component: {fileID: 222260922001627152}
   - component: {fileID: 114489449275030348}
-  - component: {fileID: 114505469348039694}
   - component: {fileID: 114519802299086896}
+  - component: {fileID: 114708424240741444}
   m_Layer: 5
   m_Name: SkillButton
   m_TagString: Untagged
@@ -57,17 +57,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114505469348039694
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1293240433510806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3ad1d32f9ffe4dd8b8ec596717205ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114519802299086896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,6 +98,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114708424240741444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1293240433510806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349e1bb8ea9073b4d8f482111d8d0873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillInfoPanel: {fileID: 0}
 --- !u!222 &222260922001627152
 CanvasRenderer:
   m_ObjectHideFlags: 1
