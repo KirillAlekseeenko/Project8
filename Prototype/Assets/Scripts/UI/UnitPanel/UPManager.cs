@@ -43,7 +43,7 @@ public class UPManager : MonoBehaviour
 
     public void DeleteIcon(Unit unit)
     {
-        var icon = icons[unit.unitClassID];
+        var icon = icons[unit.UnitClassID];
         icon.RemoveUnit(unit);
         if (icon.Count == 0)
         {
@@ -54,19 +54,19 @@ public class UPManager : MonoBehaviour
 
     public void AddIcon(Unit unit)
     {
-        if(!icons.ContainsKey(unit.unitClassID))
+        if(!icons.ContainsKey(unit.UnitClassID))
         {
             var newIcon = CreateNewIcon(unit);
-            icons.Add(unit.unitClassID, newIcon);
+            icons.Add(unit.UnitClassID, newIcon);
         }
 
-        icons[unit.unitClassID].AddUnit(unit);
+        icons[unit.UnitClassID].AddUnit(unit);
     }
 
     private UnitIcon CreateNewIcon(Unit unit)
     {
         var newIcon = Instantiate(unitIconPref, gameObject.transform);
-        newIcon.name = (unit.unitClassID).ToString();
+        newIcon.name = (unit.UnitClassID).ToString();
         newIcon.IconImage.sprite = unit.Icon;
         newIcon.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
         newIcon.GetComponent<RectTransform>().pivot = new Vector2(0, 0);

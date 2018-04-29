@@ -17,7 +17,7 @@ public class UnitIcon : MonoBehaviour, IPointerClickHandler
     UpgradePanel upgradePanel;
 
     public Image IconImage { get { return iconImage; } }
-    public int ClassID { get { return currentUnitType.unitClassID; } }
+    public int ClassID { get { return currentUnitType.UnitClassID; } }
 
 	private void Awake()
 	{

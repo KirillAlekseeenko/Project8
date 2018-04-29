@@ -18,9 +18,9 @@ public class LevelStatistics : MonoBehaviour {
 
 	public void AddToDeadList(Unit unit){
 		if (unit.Owner.IsHuman)
-			deadPlayerUnitsIds.Add (unit.unitClassID);
+			deadPlayerUnitsIds.Add (unit.UnitClassID);
 		else
-			deadEnemyUnitsIds.Add (unit.unitClassID);
+			deadEnemyUnitsIds.Add (unit.UnitClassID);
 	}
 
 	public void LevelCompleteEvent(bool success){

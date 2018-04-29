@@ -21,7 +21,6 @@ public class SkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (!button.interactable)
             return;
         var skillDescription = skillsPanel.GetPerkDescription(transform.GetSiblingIndex());
-        Debug.Log(skillDescription);
        
         skillsPanel.PerkInfoPanel.text = skillDescription;
     }

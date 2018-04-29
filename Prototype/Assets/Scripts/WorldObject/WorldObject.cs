@@ -6,7 +6,7 @@ using System;
 
 
 public abstract class WorldObject : MonoBehaviour {
-	public int unitClassID;
+    
 	// mainFields
 	[SerializeField]
 	protected Player owner;

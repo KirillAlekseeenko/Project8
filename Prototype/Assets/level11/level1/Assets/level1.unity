@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -5090,6 +5090,7 @@ MonoBehaviour:
   initialMoney: 0
   initialSciencePoints: 0
   resourcesViewController: {fileID: 0}
+  upgradesFromStart: []
 --- !u!1001 &130709727
 Prefab:
   m_ObjectHideFlags: 0
@@ -18021,7 +18022,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 425077238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 391.78076, y: -149.8936, z: 0}
+  m_LocalPosition: {x: 419.57147, y: -137.25648, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1523083253}
@@ -21719,7 +21720,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 528029478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -224.48076, y: -108.89361, z: 0}
+  m_LocalPosition: {x: -252.27147, y: -96.25649, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1129414614}
@@ -26854,6 +26855,11 @@ Prefab:
       propertyPath: patrolPaths.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114488704000037226, guid: 947eb80223e724d6994dc3aa1c98720a,
+        type: 2}
+      propertyPath: upgradesFromStart.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 114888451830721364, guid: 947eb80223e724d6994dc3aa1c98720a,
         type: 2}
       propertyPath: patrolPaths.Array.data[0].pathNodes.Array.size
@@ -26986,6 +26992,24 @@ Prefab:
       propertyPath: resourcesViewController
       value: 
       objectReference: {fileID: 165358213}
+    - target: {fileID: 114488704000037226, guid: 947eb80223e724d6994dc3aa1c98720a,
+        type: 2}
+      propertyPath: upgradesFromStart.Array.data[0]
+      value: 
+      objectReference: {fileID: 114501977895378182, guid: e47b0342d1a7449ff9d52af86f9cddb7,
+        type: 2}
+    - target: {fileID: 114488704000037226, guid: 947eb80223e724d6994dc3aa1c98720a,
+        type: 2}
+      propertyPath: upgradesFromStart.Array.data[1]
+      value: 
+      objectReference: {fileID: 114371201249206468, guid: 10ca7d8765761471cb917c0562cd2fe9,
+        type: 2}
+    - target: {fileID: 114488704000037226, guid: 947eb80223e724d6994dc3aa1c98720a,
+        type: 2}
+      propertyPath: upgradesFromStart.Array.data[2]
+      value: 
+      objectReference: {fileID: 114800059867602912, guid: e1b4de1810848476a952b30886393a86,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 947eb80223e724d6994dc3aa1c98720a, type: 2}
   m_IsPrefabParent: 0
@@ -38426,12 +38450,12 @@ Prefab:
     - target: {fileID: 224806156618117110, guid: 7669a69dd08e64e5b90973e86a8bb8ba,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -467.78076
+      value: -495.57147
       objectReference: {fileID: 0}
     - target: {fileID: 224806156618117110, guid: 7669a69dd08e64e5b90973e86a8bb8ba,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 224.8936
+      value: 212.25648
       objectReference: {fileID: 0}
     - target: {fileID: 224806156618117110, guid: 7669a69dd08e64e5b90973e86a8bb8ba,
         type: 2}
@@ -39836,7 +39860,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 948195176}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 9.14661, z: 0}
+  m_LocalPosition: {x: 5, y: 7.8555408, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1307183042}
@@ -44926,7 +44950,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1073226927}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -348.19067, y: -149.89359, z: 0}
+  m_LocalPosition: {x: -375.98138, y: -137.25647, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2049743546}
@@ -47450,8 +47474,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1129414613}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 645.5, y: 311, z: 0}
-  m_LocalScale: {x: 1.3828762, y: 1.3828762, z: 1.3828762}
+  m_LocalPosition: {x: 356.5, y: 153, z: 0}
+  m_LocalScale: {x: 0.720826, y: 0.720826, z: 0.720826}
   m_Children:
   - {fileID: 1419895883}
   - {fileID: 425077239}
@@ -54076,7 +54100,8 @@ MonoBehaviour:
   buttonPrefab: {fileID: 114519802299086896, guid: da58e8f65b28645e7b7916c4399dfcd1,
     type: 2}
   selectionHandler: {fileID: 1452378246}
-  actionDescriptions: []
+  actionDescriptions:
+  - "\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u0432\u0441\u0435\u0445 \u044E\u043D\u0438\u0442\u043E\u0432"
   PerkInfoPanel: {fileID: 948195178}
 --- !u!1 &1280688420 stripped
 GameObject:
@@ -59949,7 +59974,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1419895882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -224.48076, y: -186.49359, z: 0}
+  m_LocalPosition: {x: -252.27147, y: -173.85648, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1129414614}
@@ -65398,6 +65423,7 @@ MonoBehaviour:
   initialMoney: 0
   initialSciencePoints: 0
   resourcesViewController: {fileID: 0}
+  upgradesFromStart: []
 --- !u!4 &1549679972 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4152866031250278, guid: 805aff8d53f2541c09cbf237143adeb1,
@@ -83052,6 +83078,7 @@ MonoBehaviour:
   initialMoney: 0
   initialSciencePoints: 0
   resourcesViewController: {fileID: 0}
+  upgradesFromStart: []
 --- !u!1 &1984383475 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 662fa101c9ab2784c89f9a9c260768e8, type: 3}
@@ -89084,7 +89111,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2117382506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 213.41862, z: 0}
+  m_LocalPosition: {x: 0, y: 200.78151, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 358419884}

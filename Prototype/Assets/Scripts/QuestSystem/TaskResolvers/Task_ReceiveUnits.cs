@@ -14,7 +14,7 @@ public class Task_ReceiveUnits : Task_ObjectsAndNumbers {
 	protected override int getNecessaryNumber (){
 		int n = 0;
 		foreach (Unit unit in sHandler.AllUnits) {
-			if (unit.unitClassID == checkedUnitID)
+			if (unit.UnitClassID == checkedUnitID)
 				n++;
 		}
 		return n;

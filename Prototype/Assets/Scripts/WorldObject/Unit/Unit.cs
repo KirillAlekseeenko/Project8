@@ -38,6 +38,8 @@ public class Unit : WorldObject {
 	public static event UnitEvent EnteredBuilding;
 	public static event UnitEvent LeftBuilding;
 
+    [SerializeField] private int unitClassID;
+
 	[Header("Stats:")]
 
 	/////////////////////////////////////////////////////////////////
@@ -72,8 +74,9 @@ public class Unit : WorldObject {
 	public float LifeSteal { get; set; }
 	public float AttackSpeedModifier{ get; set; }
 
-    [Header("Update")]
-    [SerializeField] List<UpgradeInfo> possibleUpgrades;
+    [Header("Upgrade")]
+    [SerializeField] private List<UpgradeInfo> possibleUpgrades;
+    [SerializeField] private List<UpgradeInfo> possibleRetrainning;
 
 	[Header("UI")]
 	[SerializeField] protected Canvas canvas;
@@ -99,80 +102,19 @@ public class Unit : WorldObject {
 
     private bool firstEnableCalled = false;
 
-	public float Sneak {
-		get {
-			return sneak;
-		}
-	}
-
-	public bool HalfVisible {
-		get {
-			return halfVisible;
-		}
-	}
-
-	public bool IsRange {
-		get {
-			return isRange;
-		}
-	}
-
-	public int MeleeAttack {
-		get {
-			return meleeAttack;
-		}
-	}
-
-	public int RangeAttack {
-		get {
-			return rangeAttack;
-		}
-	}
-
-	public float pLOS {
-		get {
-			return LOS;
-		}
-	}
-
-	public float RangeAttackPerSecond {
-		get {
-			return rangeAttackPerSecond;
-		}
-	}
-
-	public float RangeAttackRadius {
-		get {
-			return rangeAttackRadius;
-		}
-	}
-
-	public float MeleeAttackRadius {
-		get {
-			return meleeAttackRadius;
-		}
-	}
-
-	public float BaseHP
-	{
-		get{
-			return baseHP;
-		}
-	}
-
-	public float HP
-	{
-		get{
-			return hp;
-		}
-	}
-
-	public float AssaultSkill
-	{
-		get{
-			return assaultSkill;
-		}
-	}
+    public int UnitClassID {get { return unitClassID; } }
+	public float Sneak { get { return sneak; } }
+	public bool HalfVisible { get { return halfVisible; } }
+	public bool IsRange { get { return isRange; } }
+	public int MeleeAttack { get { return meleeAttack; } }
+	public int RangeAttack { get { return rangeAttack; } }
+	public float pLOS { get { return LOS; } }
+	public float RangeAttackPerSecond { get { return rangeAttackPerSecond; } }
+	public float RangeAttackRadius { get { return rangeAttackRadius; } }
+	public float MeleeAttackRadius { get { return meleeAttackRadius; } }
+	public float BaseHP { get{ return baseHP; } }
+	public float HP { get{ return hp; } }
+	public float AssaultSkill { get{ return assaultSkill; } }
 
 	public override bool IsVisible {
 		get {
@@ -194,6 +136,7 @@ public class Unit : WorldObject {
 
 	public List<Perk> PerkList { get { return perkList; } }
     public List<UpgradeInfo> PossibleUpgrades { get { return possibleUpgrades; } }
+    public List<UpgradeInfo> PossibleRetrainings { get { return possibleRetrainning; } }
 
 	protected void OnDisable()
 	{

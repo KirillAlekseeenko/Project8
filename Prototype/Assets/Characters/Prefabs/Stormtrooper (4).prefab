@@ -1661,11 +1661,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8373fa886ee2457bae85a8ca74005f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitClassID: 9
   owner: {fileID: 0}
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
   icon: {fileID: 21300000, guid: d2f6291ca0a1dca47a9a84b2e787f6fa, type: 3}
+  unitClassID: 9
   sex: 0
   weapon: 3
   animator: {fileID: 95777953841643108}
@@ -1689,6 +1689,10 @@ MonoBehaviour:
   - upgrade: {fileID: 114662132891414694, guid: 54ea3982b276041c1a26760fb92c1a0b,
       type: 2}
     cost: 30
+  possibleRetrainning:
+  - upgrade: {fileID: 114063933726814638, guid: 832ea08adf1504003a9cdda2996dd455,
+      type: 2}
+    cost: 10
   canvas: {fileID: 223454740895434240}
   healthBar: {fileID: 114001805049606638}
   perkList: []

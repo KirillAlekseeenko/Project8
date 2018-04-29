@@ -21,6 +21,7 @@ public class UpgradeIcon : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public bool Active { get; private set; }
     public Image IconImage { get { return iconImage; } }
     public int Cost { get; private set; }
+    public Unit Unit { get; set; }
 
 	private void OnEnable()
 	{
@@ -42,7 +43,7 @@ public class UpgradeIcon : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         if (Active && TurnOffUpgradeMode != null)
             TurnOffUpgradeMode();
         SetActive(false);
-        upgradePanel.Upgrade(count);
+        upgradePanel.Upgrade(Unit, count, Cost);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
