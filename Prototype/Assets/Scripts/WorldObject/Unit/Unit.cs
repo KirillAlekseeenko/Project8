@@ -101,7 +101,7 @@ public class Unit : WorldObject {
 	private float visibilityUpdateTime = 0.5f;
 
     private bool firstEnableCalled = false;
-
+	public float Speed{ get { return speed; } }
     public int UnitClassID {get { return unitClassID; } }
 	public float Sneak { get { return sneak; } }
 	public bool HalfVisible { get { return halfVisible; } }

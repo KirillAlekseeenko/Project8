@@ -11,7 +11,8 @@ public class UnitIcon : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private Image iconImage;
     [SerializeField] private Text unitsCount;
-
+    //private GameObject unitPanel;
+    [SerializeField] private UPManager unitPanel;
     Unit currentUnitType;
     HashSet<Unit> unitSet;
     UpgradePanel upgradePanel;
@@ -27,6 +28,7 @@ public class UnitIcon : MonoBehaviour, IPointerClickHandler
 	private void Start()
 	{
         upgradePanel = GetComponentInParent<UPManager>().UpgradePanel;
+        unitPanel = GetComponentInParent<UPManager>();
 	}
 
 	public int Count { get { return unitSet.Count; } }
@@ -48,9 +50,21 @@ public class UnitIcon : MonoBehaviour, IPointerClickHandler
 
 	public void OnPointerClick(PointerEventData eventData)
     {
-        upgradePanel.ShowUpgradeIcons(currentUnitType, unitSet);
-        if (TurnOnUpgradeMode != null)
-            TurnOnUpgradeMode();
+        if(eventData.button == PointerEventData.InputButton.Right){
+            unitPanel.unitInfoPanel.SetActive(true);
+            unitPanel.unitInfoImage.sprite = currentUnitType.Icon;
+            unitPanel.HPOut.text = currentUnitType.HP.ToString();
+            unitPanel.MAOut.text = currentUnitType.MeleeAttack.ToString();
+            unitPanel.RAOut.text = currentUnitType.RangeAttack.ToString();
+            unitPanel.RADOunt.text = currentUnitType.RangeAttackRadius.ToString();
+            unitPanel.SPOut.text = currentUnitType.Speed.ToString();
+            Debug.Log(currentUnitType.HP);
+        }
+        if(eventData.button == PointerEventData.InputButton.Left){
+            upgradePanel.ShowUpgradeIcons(currentUnitType, unitSet);
+            if (TurnOnUpgradeMode != null)
+                TurnOnUpgradeMode();
+        }
     }
 
     private void UpdateUnitsCountText()

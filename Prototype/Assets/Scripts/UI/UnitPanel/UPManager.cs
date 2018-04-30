@@ -7,6 +7,13 @@ using System.Linq;
 public class UPManager : MonoBehaviour
 {
     [SerializeField] private UnitIcon unitIconPref;
+    public GameObject unitInfoPanel;
+    public Image unitInfoImage;
+    public Text HPOut;
+    public Text MAOut;
+    public Text RAOut;
+    public Text RADOunt;
+    public Text SPOut;
     [SerializeField] private UpgradePanel upgradePanel;
 
     Dictionary<int, UnitIcon> icons;
@@ -48,6 +55,7 @@ public class UPManager : MonoBehaviour
         if (icon.Count == 0)
         {
             icons.Remove(icon.ClassID);
+            unitInfoPanel.SetActive(false);
             Destroy(icon.gameObject);
         }
     }
