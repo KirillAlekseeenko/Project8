@@ -4,8 +4,20 @@ using UnityEngine;
 
 public class HackerBuilding : Building {
 
-	// Use this for initialization
+	[SerializeField]
+	private float moneyUpdateTime;
+	[SerializeField]
+	private int moneyPerUpdate;
+
 	private void Start () {
 		base.Start ();
+		StartCoroutine (increaseMoney());
+	}
+
+	private IEnumerator increaseMoney(){
+		while (true) {
+			yield return new WaitForSeconds (moneyUpdateTime);
+			Player.HumanPlayer.ResourcesManager.AddSciencePoints (moneyPerUpdate);
+		}
 	}
 }

@@ -8,7 +8,7 @@ public class UPManager : MonoBehaviour
 {
     [SerializeField] private UnitIcon unitIconPref;
     public GameObject unitInfoPanel;
-    public Image unitInfoImage;
+	public Image unitInfoImage;
     public Text HPOut;
     public Text MAOut;
     public Text RAOut;
@@ -34,12 +34,18 @@ public class UPManager : MonoBehaviour
     {
         SelectionHandler.OnUnitSelected += AddIcon;
         SelectionHandler.OnUnitUnselected += DeleteIcon;
+
+		BuildingPanelManager.OnUnitAdded += AddIcon;
+		BuildingPanelManager.OnUnitRemoved += DeleteIcon;
     }
 
     void OnDisable()
     {
         SelectionHandler.OnUnitSelected -= AddIcon;
         SelectionHandler.OnUnitUnselected -= DeleteIcon;
+
+		BuildingPanelManager.OnUnitAdded -= AddIcon;
+		BuildingPanelManager.OnUnitRemoved -= AddIcon;
     }
 
     public void DeleteIcon()

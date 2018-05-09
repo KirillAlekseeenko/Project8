@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using System.Runtime.InteropServices;
 
 interface IBuilding{
 	bool isUnitWithinTheEntrance (Unit unit);
@@ -11,56 +13,49 @@ interface IBuilding{
 
 public class Building : WorldObject, IBuilding{
 
-	[SerializeField]
-	protected int Level;
-
 	[Header("Units Inside")]
-
 	[SerializeField]
 	protected Vector3Int AmountOfHackersByLevel;
 	[SerializeField]
 	protected Vector3Int AmountOfScientistsByLevel;
 	[SerializeField]
 	protected Vector3Int AmountOfWarriorsByLevel;
+
 	[SerializeField]
-	protected List<GameObject> WarriorList;
+	protected List<Unit> unitsInside;
+
+	[Header("Technologies")]
+	[SerializeField] 
+	protected int connectedTechnologyID;
+	[SerializeField] 
+	protected TechTree techTree;
 	[SerializeField]
-	protected List<GameObject> ScientistList;
-	[SerializeField]
-	protected List<GameObject> HackerList;
-
-	protected VisualisationTools vTools;
-
-	protected Color mainColor;
-
-	protected bool buildingMenuOpened;
-
-	protected delegate void BuildingHandler(GameObject building);
-	protected event BuildingHandler ShowMenu;
-
-	protected delegate void InformUIClearHouse();
-	protected event InformUIClearHouse UIClearHouse;
-
-	protected int money;
-	protected int scientificResources;
+	protected int Level;
 
 	protected Battle battlePlan;
 	protected bool battlePrepares;
 
 	protected Entrance entrance;
 
+	protected BuildingPanelManager uiHandler;
+
 	//Для случая вытаскивания юнитов из здания
 	protected bool banishOneUnit;
-	protected GameObject banishedOne;
+	protected Unit banishedOne;
 	protected bool banishUnits;
 	protected int unbanishedYet;
+
+	protected int scientistID = 3;
+	protected int hackerID = 4;
+
+	[HideInInspector]
+	public VisualisationTools vTools;
 
 	protected void Awake(){
 
 		base.Awake ();
 
 		vTools = gameObject.GetComponent<VisualisationTools>();
-
 		battlePlan = gameObject.AddComponent<Battle>();
 		battlePlan.BuildingOwner = Owner;
 	}
@@ -68,73 +63,43 @@ public class Building : WorldObject, IBuilding{
 	protected void Start(){
 		base.Start ();
 
-		ShowMenu = new BuildingHandler(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().MenuOpen);
-		UIClearHouse = new InformUIClearHouse(GameObject.Find("UIBuildingHandler").GetComponent<BuildingUI>().RemoveAll);
-
 		entrance = gameObject.GetComponentInChildren<Entrance> ();
 
-		RefreshUnitsInside ();
+		uiHandler = GameObject.FindObjectOfType<BuildingPanelManager> ();
 
-		addMoney ();
+		RefreshUnitsInside ();
 	}
 
 	protected void Update(){
 		base.Update ();
 		IsVisible = true;
 		unbanishedYet = 0;
+		//После того, как мы нажимаем кнопку "выгнать всех юнитов из здания"
 		if (banishUnits) {
-			foreach (GameObject unit in ScientistList) {
-				if (Vector3.Distance (unit.transform.position, entrance.transform.position) > 1) {
+			foreach(Unit unit in unitsInside){
+				if (Vector3.Distance (unit.gameObject.transform.position, entrance.transform.position) > 1) {
 					unit.gameObject.GetComponent<Rigidbody> ().MovePosition (entrance.transform.position);
 					unbanishedYet++;
 				} else {
-					unit.SetActive (true);
-				}
-					
-			}
-			foreach (GameObject unit in HackerList) {
-				if (Vector3.Distance (unit.transform.position, entrance.transform.position) > 1) {
-					unit.GetComponent<Rigidbody> ().MovePosition (entrance.transform.position);
-					unbanishedYet++;
-				} else {
-					unit.SetActive (true);
-				}
-			}
-			foreach (GameObject unit in WarriorList) {
-				if (Vector3.Distance (unit.transform.position, entrance.transform.position) > 1) {
-					unit.GetComponent<Rigidbody> ().MovePosition (entrance.transform.position);
-					unbanishedYet++;
-				} else {
-					unit.SetActive (true);
+					unit.gameObject.SetActive (true);
 				}
 			}
 			if (unbanishedYet == 0) {
 				banishUnits = false;
-				HackerList.Clear ();
-				ScientistList.Clear ();
-				WarriorList.Clear ();
+				unitsInside.Clear ();
 			}
-		} else if (banishOneUnit) {
+		}
+		//После того, как выгоняем только одного из юнитов
+		else if (banishOneUnit) {
 			if (Vector3.Distance (banishedOne.transform.position, entrance.transform.position) > 1) {
 				banishedOne.GetComponent<Rigidbody> ().MovePosition (entrance.transform.position);
 				unbanishedYet++;
 			} else {
-				banishedOne.SetActive (true);
+				banishedOne.gameObject.SetActive (true);
 				banishOneUnit = false;
-				if (banishedOne.GetComponent<Scientist> () != null) {
-					ScientistList.Remove (banishedOne);
-				} else if (banishedOne.GetComponent<Hacker> () != null) {
-					HackerList.Remove (banishedOne);
-				} else {
-					WarriorList.Remove (banishedOne);
-				}
+				unitsInside.Remove (banishedOne);
 			}
 		}
-	}
-
-	private void addMoney(){
-		money += ScientistList.Count * 5;
-		Invoke ("addMoney", 1f);
 	}
 
 	protected void startBattle(){
@@ -142,15 +107,8 @@ public class Building : WorldObject, IBuilding{
 	}
 
 	protected void RefreshUnitsInside(){
-		foreach (GameObject obj in WarriorList) {
-			obj.SetActive (false);
-		}
-		foreach (GameObject obj in ScientistList) {
-			obj.SetActive (false);
-		}
-		foreach (GameObject obj in HackerList) {
-			obj.SetActive (false);
-		}
+		foreach (Unit unit in unitsInside)
+			unit.gameObject.SetActive (false);
 	}
 
 	public override bool IsSelected {
@@ -161,11 +119,10 @@ public class Building : WorldObject, IBuilding{
 			base.IsSelected = value;
 			if (owner.IsHuman) {
 				if (value) {
-					ShowMenu (gameObject);
+					uiHandler.showPanel(true, this);
 					vTools.SetBlinking (true);
 				} else {
 					vTools.SetBlinking (false);
-					// hide menu
 				}
 			}
 
@@ -187,30 +144,20 @@ public class Building : WorldObject, IBuilding{
 			return true;
 		else
 			return false;
-		//throw new System.NotImplementedException ();
 	}
 
 	public bool AddUnit(Unit unit){
 		if (unit.Owner == gameObject.GetComponentInParent<Building> ().Owner) {
-
-			if (unit.gameObject.GetComponent<Scientist> () != null) {
-				if (ScientistList.Count < AmountOfScientistsByLevel [Level]) {
-					ScientistList.Add (unit.gameObject);
-					unit.gameObject.SetActive (false);
-					return true;
-				}
-			} else if (unit.gameObject.GetComponent<Hacker> () != null) {
-				if (HackerList.Count < AmountOfHackersByLevel [Level]) {
-					HackerList.Add (unit.gameObject);
-					unit.gameObject.SetActive (false);
-					return true;
-				}
-			} else {
-				if (WarriorList.Count < AmountOfWarriorsByLevel [Level]) {
-					WarriorList.Add (unit.gameObject);
-					unit.gameObject.SetActive (false);
-					return true;
-				}
+			if((unit.UnitClassID == scientistID
+				&& unitsInside.FindAll(x => x.UnitClassID == scientistID).Count < AmountOfScientistsByLevel[Level]) ||
+				(unit.UnitClassID == hackerID
+					&& unitsInside.FindAll(x => x.UnitClassID == hackerID).Count < AmountOfHackersByLevel[Level]) ||
+				(unit.UnitClassID != scientistID && unit.UnitClassID != hackerID
+					&& unitsInside.FindAll(x => x.UnitClassID != scientistID && x.UnitClassID != hackerID).Count < AmountOfWarriorsByLevel[Level])
+			){
+				unitsInside.Add (unit);
+				unit.gameObject.SetActive (false);
+				return true;
 			}
 		} else {
 			InvadeUnit (unit);
@@ -228,9 +175,15 @@ public class Building : WorldObject, IBuilding{
 		if (result == 1) {
 			this.Owner = newOwner;
 			GetComponent<MeshRenderer> ().material.color = owner.Color;
-			WarriorList.Clear ();
-			foreach (Unit obj in units)
-				WarriorList.Add (obj.gameObject);
+
+			unitsInside.Clear ();
+			foreach(Unit unit in units){
+				unitsInside.Add (unit);
+			}
+			if(this.Owner.IsHuman)
+				techTree.UnblockTechnology (connectedTechnologyID, true);
+			else
+				techTree.UnblockTechnology (connectedTechnologyID, false);
 		}
 	}
 		
@@ -238,25 +191,19 @@ public class Building : WorldObject, IBuilding{
 		if (!battlePrepares) {
 			battlePrepares = true;
 			//Add all defender troops 
-			foreach (GameObject obj in WarriorList) {
-				battlePlan.AddToBattlePlan (obj);
+			foreach(Unit u in unitsInside){
+				battlePlan.AddToBattlePlan(u);
 			}
 			Invoke ("startBattle", 5f);
 		}
-		battlePlan.AddToBattlePlan (unit.gameObject);
+		battlePlan.AddToBattlePlan(unit);
 		unit.gameObject.SetActive (false);
-
 		return true;
 	}
 
 	public void RemoveUnit(int unitClass){
 		banishOneUnit = true;
-		if (unitClass == 0 && ScientistList.Count > 0)
-			banishedOne = ScientistList [0];
-		else if (unitClass == 1 && HackerList.Count > 0)
-			banishedOne = HackerList [0];
-		else if (unitClass == 2 && WarriorList.Count > 0)
-			banishedOne = WarriorList [0];
+		banishedOne = unitsInside.Find (x => x.UnitClassID == unitClass);
 	}
 
 	public void RemoveAllUnits(){
@@ -266,12 +213,17 @@ public class Building : WorldObject, IBuilding{
 	public int CurrentLevel { 
 		get { return Level; }
 		set{
-			Level = value;
-			vTools.SetModel (Level);
+			Debug.Log (value);
+			if (Player.HumanPlayer.ResourcesManager.IsEnoughMoney (vTools.buildingLevels [value - 1].cost)) {
+				Player.HumanPlayer.ResourcesManager.SpendMoney (vTools.buildingLevels [value - 1].cost);
+				Level = value;
+				vTools.SetModel (Level);
+			}
 		}}
-	public int Money { get { return money; } }
-	public int ScientificRes { get { return scientificResources; } }
-	public int ScientistsInside { get { return ScientistList.Count; } }
-	public int HackersInside { get { return HackerList.Count; } }
-	public int WarriorsInside { get { return WarriorList.Count; } }
+
+	public List<Unit> UnitsInside { get{ return unitsInside;}}
+
+	public List<Unit> ScientistsInside { get { return unitsInside.FindAll(x => x.UnitClassID == scientistID); } }
+	public List<Unit> HackersInside { get { return unitsInside.FindAll (x => x.UnitClassID == hackerID);} }
+	public List<Unit> WarriorsInside { get { return unitsInside.FindAll (x => x.UnitClassID != scientistID && x.UnitClassID != hackerID);} }
 }

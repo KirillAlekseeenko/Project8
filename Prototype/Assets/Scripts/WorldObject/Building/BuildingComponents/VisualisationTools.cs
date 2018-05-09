@@ -1,57 +1,76 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using NUnit.Framework;
+
+[System.Serializable]
+public class BuildingLevelParams{
+	public Sprite image;
+	public GameObject model;
+	public int cost;
+}
 
 public class VisualisationTools : MonoBehaviour {
 
+	[Header("Building common parameters")]
 	[SerializeField]
-	private Mesh Level1Model; 
+	private string buildingName;
 	[SerializeField]
-	private Mesh Level2Model;
+	public List<BuildingLevelParams> buildingLevels;
 	[SerializeField]
-	private Mesh Level3Model;
-
+	private GameObject currentModel;
+	private List<MeshRenderer> buildingRenderers;
 	private Renderer objRenderer;
 	private Color mainColor;
 	private IEnumerator blink;
 
-	//private GameObject relatedBuilding;
-
-	private void Awake(){
+	void Awake(){
 		blink = Blink ();
-		objRenderer = GetComponent<MeshRenderer> ();
-		SetModel (0);
+		buildingRenderers = new List<MeshRenderer> ();
+		setRenderers();
+
+		currentModel.transform.parent = this.gameObject.transform;
 	}
 
-	public void SetModel(int level){
-		switch (level) {
-			case 0:{
-				gameObject.GetComponent<MeshFilter> ().mesh = Level1Model;
-				break;
-			}
-			case 1:{
-				gameObject.GetComponent<MeshFilter> ().mesh = Level2Model;
-				break;
-			}
-			case 2:{
-				gameObject.GetComponent<MeshFilter> ().mesh = Level3Model;
-				break;
-			}
+	private void setRenderers(){
+		buildingRenderers.Clear ();
+		foreach(MeshRenderer renderer in gameObject.GetComponentsInChildren<MeshRenderer>()){
+			buildingRenderers.Add (renderer);
 		}
 	}
 
 	private IEnumerator Blink() {
 		float maxAlpha = 1f;
 		float minAlpha = 0.4f;
-		float alphaDelta = 0.01f;
+		float alphaDelta = 0.05f;
 		while(true){
-			if (objRenderer.material.color.a <= minAlpha || objRenderer.material.color.a >= maxAlpha)
+			if (buildingRenderers[0].material.color.a <= minAlpha || buildingRenderers[0].material.color.a >= maxAlpha)
 				alphaDelta = -alphaDelta;
-			objRenderer.material.SetColor("_Color", new Color(objRenderer.material.color.r,
-				objRenderer.material.color.g,
-				objRenderer.material.color.b,
-				objRenderer.material.color.a + alphaDelta));
-			yield return new WaitForSeconds(0.02f);
+			foreach (MeshRenderer obj in buildingRenderers) {
+				obj.material.SetColor("_Color", new Color(obj.material.color.r,
+					obj.material.color.g,
+					obj.material.color.b,
+					obj.material.color.a + alphaDelta));
+			}
+			yield return new WaitForSeconds(0.1f);
+		}
+	}
+
+	public void SetModel(int level){
+		if (currentModel != null) {
+			GameObject temp = null;
+			temp = (GameObject)Instantiate (buildingLevels [level - 1].model);
+			temp.transform.parent = currentModel.transform.parent;
+			temp.transform.localPosition = currentModel.transform.localPosition;
+			temp.transform.localRotation = currentModel.transform.localRotation;
+			temp.transform.localScale = currentModel.transform.localScale;
+			temp.transform.SetSiblingIndex (currentModel.transform.GetSiblingIndex ());
+			DestroyImmediate (currentModel);
+			//currentModel.SetActive (false);
+			currentModel = temp;
+			currentModel.SetActive (true);
+			setRenderers ();
 		}
 	}
 
@@ -60,11 +79,11 @@ public class VisualisationTools : MonoBehaviour {
 			StartCoroutine (blink);
 		else {
 			StopCoroutine (blink);
-			//objRenderer.material.color = gameObject.GetComponent<MeshRenderer>().material.color;
-			objRenderer.material.SetColor("_Color", new Color(gameObject.GetComponent<MeshRenderer>().material.color.r,
-				gameObject.GetComponent<MeshRenderer>().material.color.g,
-				gameObject.GetComponent<MeshRenderer>().material.color.b,
-				1));
+			foreach (MeshRenderer obj in buildingRenderers) {
+				obj.material.SetColor("_Color", new Color(obj.material.color.r,
+					obj.material.color.g,
+					obj.material.color.b, 1));
+			}
 		}
 	}
 }

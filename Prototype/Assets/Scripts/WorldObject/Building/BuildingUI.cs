@@ -22,7 +22,7 @@ public class BuildingUI : MonoBehaviour {
 	private GameObject hackersCount;
 	private GameObject warriorsCount;
 
-	void Start () {
+	/*void Start () {
 		UIBuilding = GameObject.Find ("BuildingPanel");
 		incomeField = GameObject.Find ("ResourceWidget");
 
@@ -42,8 +42,7 @@ public class BuildingUI : MonoBehaviour {
 	private void FixedUpdate () {
 		try{
 			incomeField.GetComponent<Text>().text = objBuilding.GetComponent<Building>().Money.ToString ();
-		}catch(Exception e){
-		}
+		}catch(Exception e){}
 		if (Input.GetMouseButtonDown (0) && clicks < 2) {
 			clicks++;
 		}
@@ -109,5 +108,5 @@ public class BuildingUI : MonoBehaviour {
 	public void BanishWarrior(){
 		objBuilding.GetComponent<Building> ().RemoveUnit (2);
 	}
-
+	*/
 }
