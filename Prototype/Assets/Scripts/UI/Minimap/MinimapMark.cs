@@ -21,7 +21,7 @@ public class MinimapMark : MonoBehaviour {
 
 		minimapMark = Instantiate(markPref, unit.transform) as GameObject;
 		minimapMark.transform.SetSiblingIndex(0);
-		minimapMark.transform.localPosition = new Vector3(0, 5, 0);
+		minimapMark.transform.localPosition = new Vector3(0, 30, 0);
 		minimapMark.transform.localScale = new Vector3(2,2,2);
 		minimapMark.GetComponent<MeshRenderer>().material = unit.GetComponent<MeshRenderer>().material;
 		minimapMark.GetComponent<MeshRenderer>().material.color = unit.GetComponent<Unit>().Owner.Color;

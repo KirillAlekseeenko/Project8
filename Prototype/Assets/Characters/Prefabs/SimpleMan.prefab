@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 114002198130010402}
   - component: {fileID: 195292312369743638}
   - component: {fileID: 114330429514769980}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SimpleMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1395,11 +1395,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8373fa886ee2457bae85a8ca74005f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitClassID: 7
   owner: {fileID: 0}
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
-  iconPrefab: {fileID: 0}
+  icon: {fileID: 0}
+  unitClassID: 7
   sex: 0
   weapon: 0
   animator: {fileID: 0}
@@ -1416,6 +1416,8 @@ MonoBehaviour:
   sneak: 0
   halfVisible: 1
   LOS: 0
+  possibleUpgrades: []
+  possibleRetrainning: []
   canvas: {fileID: 223623461909839362}
   healthBar: {fileID: 114406803481503006}
   perkList: []

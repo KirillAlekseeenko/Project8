@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 114042155516610014}
   - component: {fileID: 23972389502901328}
   - component: {fileID: 114050827182163160}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SimpleWoman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1396,11 +1396,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8373fa886ee2457bae85a8ca74005f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitClassID: 8
   owner: {fileID: 0}
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
-  iconPrefab: {fileID: 0}
+  icon: {fileID: 0}
+  unitClassID: 8
   sex: 1
   weapon: 0
   animator: {fileID: 95807562539006410}
@@ -1417,6 +1417,8 @@ MonoBehaviour:
   sneak: 0
   halfVisible: 1
   LOS: 0
+  possibleUpgrades: []
+  possibleRetrainning: []
   canvas: {fileID: 223209056784915090}
   healthBar: {fileID: 114431242915058058}
   perkList: []

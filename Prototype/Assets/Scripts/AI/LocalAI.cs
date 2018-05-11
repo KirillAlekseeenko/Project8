@@ -31,17 +31,12 @@ public class LocalAI : MonoBehaviour {
 	void Update()
 	{
 		if (!unitComponent.isAttacking ()) {
-			checkForEnemies ();
-			checkIdleness ();
+			CheckForEnemies ();
+			CheckIdleness ();
 		}
 	}
 
-	void OnDestroy()
-	{
-		
-	}
-
-	private void checkForEnemies()
+    private void CheckForEnemies()
 	{
 		
 		var colliders = Physics.OverlapSphere (transform.position, unitComponent.pLOS, LayerMask.GetMask("Unit"));
@@ -53,7 +48,7 @@ public class LocalAI : MonoBehaviour {
 			if (unitComponent.Owner != unit.Owner) { // DANGER если юнит не принадлежит к той же фракции
 				var vectorToEnemy = unit.transform.position - transform.position;
 				if (!Physics.Raycast (new Ray (transform.position, vectorToEnemy), vectorToEnemy.magnitude, LayerMask.GetMask("Building")) // проверка на отсутствие препятствий
-					&& (vectorToEnemy.magnitude < unitComponent.pLOS * RTS.Constants.HearRadiusCoefficient || isObjectInsideTheArc(unitComponent, unit) || unit.isAttacking())) { // + еще условия связанные с конусом, кругом слышимости и инвизом у юнита
+					&& (vectorToEnemy.magnitude < unitComponent.pLOS * RTS.Constants.HearRadiusCoefficient || IsObjectInsideTheArc(unitComponent, unit) || unit.isAttacking())) { // + еще условия связанные с конусом, кругом слышимости и инвизом у юнита
 
 					if (Player.HumanPlayer.isFriend (unitComponent.Owner) && !Player.HumanPlayer.isFriend(unit.Owner)) {
 						unit.SetVisible (); // если это союзник игрока и он видит не союзника игрока
@@ -63,14 +58,13 @@ public class LocalAI : MonoBehaviour {
 					{
 						unitComponent.AssignAction (new AttackInteraction (unitComponent, unit));
 						director.Alarm (unit, unitComponent.transform); // зовет всех на помощь (радиус у всех одинаковый и является свойством экземпляра Director)
-					}
-					
+					}				
 				}
 			}
 		}
 	}
 
-	private void checkIdleness()
+    private void CheckIdleness()
 	{
 		if (unitComponent.isIdle ()) {
 			time += Time.deltaTime;
@@ -84,7 +78,7 @@ public class LocalAI : MonoBehaviour {
 		}
 	}
 
-	private bool isObjectInsideTheArc(Unit unit, Unit enemy)
+    private bool IsObjectInsideTheArc(Unit unit, Unit enemy)
 	{
 		var vectorToEnemy = enemy.transform.position - unit.transform.position;
 		if (unitComponent.isEnemy(unit) && unit.HalfVisible && vectorToEnemy.magnitude > unit.pLOS / 2)
@@ -94,7 +88,5 @@ public class LocalAI : MonoBehaviour {
 		return Vector3.Angle (vectorToEnemy, direction) < RTS.Constants.VisionArcAngle / 2;
 
 	}
-
-
 
 }
