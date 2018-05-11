@@ -96,11 +96,11 @@ public class Battle : MonoBehaviour{
 		}
 	}
 
-	public void AddToBattlePlan(GameObject unit){
-		if (unit.GetComponent<Unit>().Owner == buildingOwner)
-			defenders.Add (unit.GetComponent<Unit>());
+	public void AddToBattlePlan(Unit unit){
+		if (unit.Owner == buildingOwner)
+			defenders.Add (unit);
 		else
-			attackers.Add (unit.GetComponent<Unit>());
+			attackers.Add (unit);
 	}
 
 	public Player BuildingOwner{
