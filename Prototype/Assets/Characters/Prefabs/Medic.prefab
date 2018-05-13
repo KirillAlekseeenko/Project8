@@ -1221,11 +1221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8373fa886ee2457bae85a8ca74005f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitClassID: 5
   owner: {fileID: 0}
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
   icon: {fileID: 21300000, guid: e03d607419b88b942ae5861e4fcffd07, type: 3}
+  unitClassID: 5
   sex: 0
   weapon: 0
   animator: {fileID: 95961284371509320}
@@ -1243,6 +1243,7 @@ MonoBehaviour:
   halfVisible: 1
   LOS: 12
   possibleUpgrades: []
+  possibleRetrainning: []
   canvas: {fileID: 223232549096917184}
   healthBar: {fileID: 114714467651696136}
   perkList: []
@@ -1392,7 +1393,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1962266221809930}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.7
+  m_Radius: 0.2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

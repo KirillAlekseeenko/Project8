@@ -1,59 +1,52 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ActionHandler : MonoBehaviour {
 
-	[SerializeField]
-	SelectionHandler selectionHandler;
+	[SerializeField] SelectionHandler selectionHandler;
 
-	[SerializeField]
-	KeyboardInput keyBoardInput;
+	[SerializeField] KeyboardInput keyBoardInput;
 
-	private float formationShift = 1.0f;
+    private const float FormationShift = 1.0f;
 
-	public void AssignAction( Vector3 clickPosition )
+    public static void Attack(Unit unit, ICollection<WorldObject> unitGroup)
+    {
+        EngageUnits(unitGroup, worldObject => true, worldObject =>
+        {
+            worldObject.AssignAction(new AttackInteraction(worldObject as Unit, unit));
+        });
+    }
+
+    public static void Enter(Building building, ICollection<WorldObject> unitGroup)
+    {
+        EngageUnits(unitGroup, worldObject => true, worldObject =>
+        {
+            worldObject.AssignAction(new EnterInteraction(worldObject as Unit, building));
+        });
+    }
+
+    public static void Heal(Unit unit, ICollection<WorldObject> unitGroup)
+    {
+        EngageUnits(unitGroup, worldObject => worldObject.GetComponent<Scientist>() != null, worldObject =>
+        {
+            worldObject.AssignAction(new HealInteraction(worldObject as Unit, unit));
+        });
+    }
+
+    public static void MoveUnitsWithFormation(Vector3 position, ICollection<WorldObject> unitGroup)
 	{
-		var ray = Camera.main.ScreenPointToRay (clickPosition);
-
-		RaycastHit hit;
-
-		if (Physics.Raycast (ray, out hit)) {
-			if (hit.collider.gameObject.layer == LayerMask.NameToLayer ("Ground")) {
-				moveObjets (hit.point);
-			} else {
-				var enemyUnit = hit.collider.gameObject.GetComponent<Unit> ();
-				var building = hit.collider.gameObject.GetComponent<Building> ();
-				if (enemyUnit != null && enemyUnit.IsVisible) {
-					if (Player.HumanPlayer.isEnemy(enemyUnit.Owner)) {
-						attack (enemyUnit);
-					} else if(Player.HumanPlayer.isFriend(enemyUnit.Owner)) {
-						heal (enemyUnit);
-					}
-				}
-				if (building != null) {
-					enter (building);
-				}
-			}
-
-		}
-	}
-
-	private void moveObjets(Vector3 position)
-	{
-		
 		Vector3 center = Vector3.zero;
 
-		foreach (WorldObject worldObject in selectionHandler.SelectedUnits) {
+        foreach (WorldObject worldObject in unitGroup) {
 			center += worldObject.transform.position; 
 		}
 
-		center /= selectionHandler.SelectedUnits.Count;
-
-
+        center /= unitGroup.Count;
 		float height = center.y;
 		
-		int squareSize = getNextSquare(selectionHandler.SelectedUnits.Count);
+        int squareSize = GetNextSquare(unitGroup.Count);
 
 		Vector3 direction = position - center;
 		direction = new Vector3 (direction.x, 0, direction.y);
@@ -63,18 +56,22 @@ public class ActionHandler : MonoBehaviour {
 		Vector3 rightForward;
 
 		if (squareSize % 2 == 0) {
-			rightForward = new Vector3 (formationShift * (squareSize / 2 - 0.5f), height, formationShift * (squareSize / 2 - 0.5f));
+			rightForward = new Vector3 (FormationShift * (squareSize / 2 - 0.5f), height,
+                                        FormationShift * (squareSize / 2 - 0.5f));
 		} else {
-			rightForward = new Vector3 (formationShift * (squareSize / 2), height, formationShift * (squareSize / 2));
+			rightForward = new Vector3 (FormationShift * (squareSize / 2), height,
+                                        FormationShift * (squareSize / 2));
 		}
 
 		int horizontal = 0;
 		int vertical = 0;
 
-		foreach (WorldObject worldObject in selectionHandler.SelectedUnits) {
+        foreach (WorldObject worldObject in unitGroup) {
 			if (worldObject is Unit && worldObject.Owner.IsHuman) {
 				
-				Vector3 unitPos = new Vector3 (rightForward.x - vertical * formationShift, height, rightForward.z - horizontal * formationShift);
+				Vector3 unitPos = new Vector3 (rightForward.x - vertical * FormationShift,
+                                               height, 
+                                               rightForward.z - horizontal * FormationShift);
 
 				unitPos += position;
 				horizontal++;
@@ -83,47 +80,69 @@ public class ActionHandler : MonoBehaviour {
 					vertical++;
 				}
 
-
 				MoveAction move = new MoveAction (worldObject as Unit, unitPos );
 				worldObject.AssignAction (move);
 			}
 		}
 	}
 
-	private void attack(Unit unit)
+	public static bool IsGroupIdle(ICollection<WorldObject> unitGroup)
 	{
-		foreach (WorldObject worldObject in selectionHandler.SelectedUnits) {
-			if (worldObject is Unit && worldObject.Owner.IsHuman) {
-				AttackInteraction action = new AttackInteraction (worldObject as Unit, unit);
-				worldObject.AssignAction (action);
-			}
-		}
-	}
-	private void heal(Unit unit)
-	{
-		foreach (WorldObject worldObject in selectionHandler.SelectedUnits) {
-			if (worldObject is Unit && worldObject.Owner.IsHuman && worldObject.GetComponent<Scientist>() != null) {
-				HealInteraction action = new HealInteraction (worldObject as Unit, unit);
-				worldObject.AssignAction (action);
-			}
-		}
-	}
-	private void enter(Building building)
-	{
-		foreach (WorldObject worldObject in selectionHandler.SelectedUnits) {
-			if (worldObject is Unit && worldObject.Owner.IsHuman) {
-				EnterInteraction action = new EnterInteraction (worldObject as Unit, building);
-				worldObject.AssignAction (action);
-			}
-		}
+		return unitGroup.All(worldObject => worldObject.isIdle());
 	}
 
-	private int getNextSquare(int x)
-	{
-		int result = 1;
-		while (result * result < x)
-			result++;
-		return result;
-	}
+    public void AssignAction(Vector3 clickPosition)
+    {
+        var ray = Camera.main.ScreenPointToRay(clickPosition);
 
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                MoveUnitsWithFormation(hit.point, selectionHandler.SelectedUnits);
+            }
+            else
+            {
+                var enemyUnit = hit.collider.gameObject.GetComponent<Unit>();
+                var building = hit.collider.gameObject.GetComponent<Building>();
+                if (enemyUnit != null && enemyUnit.IsVisible)
+                {
+                    if (Player.HumanPlayer.isEnemy(enemyUnit.Owner))
+                    {
+                        Attack(enemyUnit, selectionHandler.SelectedUnits);
+                    }
+                    else if (Player.HumanPlayer.isFriend(enemyUnit.Owner))
+                    {
+                        Heal(enemyUnit, selectionHandler.SelectedUnits);
+                    }
+                }
+                if (building != null)
+                {
+                    Enter(building, selectionHandler.SelectedUnits);
+                }
+            }
+
+        }
+    }
+
+    private static void EngageUnits(ICollection<WorldObject> unitGroup,
+                                    System.Func<WorldObject, bool> predicate,
+                                    System.Action<WorldObject> action)
+    {
+        foreach(var worldObject in unitGroup)
+        {
+            if (worldObject is Unit && worldObject.Owner.IsHuman && predicate(worldObject))
+                action(worldObject);
+        }
+    }
+
+    private static int GetNextSquare(int x)
+    {
+        int result = 1;
+        while (result * result < x)
+            result++;
+        return result;
+    }
 }
