@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 224812a15f7ad0a48b0e28c28b48ce85
+timeCreated: 1526326231
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Alien Encounters(RUS BY LYAJKA)
+  fontNames:
+  - Alien Encounters(RUS BY LYAJKA)
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

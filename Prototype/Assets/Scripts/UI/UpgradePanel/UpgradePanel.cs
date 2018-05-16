@@ -10,7 +10,9 @@ public class UpgradePanel : MonoBehaviour {
     public static event UpgradeEvents UpdateMaxCount;
 
     [SerializeField] private UpgradeIcon upgradeIcon;
-
+    [SerializeField] private GameObject leftBracket;
+    [SerializeField] private GameObject rightBracketPref;
+    private GameObject rightBracket;
     public ICollection<Unit> CurrentUnitSet { get; private set; }
 
 	private void OnEnable()
@@ -26,6 +28,11 @@ public class UpgradePanel : MonoBehaviour {
 	private void Start()
     {
         upgradeIcon.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gameObject.GetComponent<RectTransform>().rect.height);
+        leftBracket.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gameObject.GetComponent<RectTransform>().rect.height);
+        leftBracket.transform.position = new Vector2(leftBracket.transform.position.x, transform.position.y);
+        rightBracketPref.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gameObject.GetComponent<RectTransform>().rect.height);
+        rightBracketPref.transform.position = transform.position;
+        transform.position = leftBracket.transform.position + new Vector3(leftBracket.GetComponent<RectTransform>().rect.width+3,0,0);
     }
 	
     public void ShowUpgradeIcons(Unit unit, ICollection<Unit> units)
@@ -36,16 +43,22 @@ public class UpgradePanel : MonoBehaviour {
 
         var filteredUpgrades = unit.PossibleUpgrades.Where(filter);
         var filteredRetrainings = unit.PossibleRetrainings.Where(filter);
-
+        if(filteredUpgrades.Count()!=0)
+            leftBracket.SetActive(true);
         foreach (var upgrade in filteredUpgrades.Concat(filteredRetrainings))
         {
+            Destroy(rightBracket);
             var newUpgradeIcon = CreateUpgradeIcon(upgrade);
+            rightBracket = Instantiate(rightBracketPref,gameObject.transform);
+            rightBracket.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+            rightBracket.GetComponent<RectTransform>().pivot = new Vector2(0, 0);   
         }
         CurrentUnitSet = units;
     }
 
     public void HidePanel()
     {
+        leftBracket.SetActive(false);
         CleanPanel();
         gameObject.SetActive(false);
         CurrentUnitSet = null;

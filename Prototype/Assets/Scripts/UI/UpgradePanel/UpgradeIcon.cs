@@ -113,14 +113,16 @@ public class UpgradeIcon : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         unitsCounterPanel.SetActive(true);
         var spaceToFree = unitsCounterPanel.GetComponent<RectTransform>().rect.height;
-        GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, GetComponent<RectTransform>().rect.height + spaceToFree);
+        //GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, GetComponent<RectTransform>().rect.height + spaceToFree);
+        iconImage.transform.position = new Vector3(iconImage.transform.position.x, iconImage.transform.position.y + spaceToFree,0);
     }
 
     private void RemoveCounter()
     {
         unitsCounterPanel.SetActive(false);
         var spaceToFill = unitsCounterPanel.GetComponent<RectTransform>().rect.height;
-        GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, GetComponent<RectTransform>().rect.height - spaceToFill);
+        //GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, GetComponent<RectTransform>().rect.height - spaceToFill);
+        iconImage.transform.position = new Vector3(iconImage.transform.position.x, iconImage.transform.position.y - spaceToFill,0);
     }
 
     private void UpdateTextInfo()

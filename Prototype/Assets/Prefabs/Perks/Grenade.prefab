@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkName: Grenade
-  perkImage: {fileID: 21300000, guid: 55b85545a8d95434ea46043f11bdb470, type: 3}
+  perkImage: {fileID: 21300000, guid: 53364d24da7562d4a9db4e70fc94bc8f, type: 3}
   reloadTime: 10
   description: "\u0413\u0440\u0430\u043D\u0430\u0442\u0430. \u0428\u0442\u0443\u0440\u043C\u043E\u0432\u0438\u043A
     \u0431\u0440\u043E\u0441\u0430\u0435\u0442 \u0433\u0440\u0430\u043D\u0430\u0442\u0443,

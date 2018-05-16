@@ -7,6 +7,9 @@ using System.Linq;
 public class UPManager : MonoBehaviour
 {
     [SerializeField] private UnitIcon unitIconPref;
+    [SerializeField] private GameObject rightBracketPref;
+    [SerializeField] private GameObject connector;
+    private GameObject rightBracket;
     public GameObject unitInfoPanel;
 	public Image unitInfoImage;
     public Text HPOut;
@@ -28,6 +31,10 @@ public class UPManager : MonoBehaviour
 	void Start()
     {
         unitIconPref.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gameObject.GetComponent<RectTransform>().rect.height);
+         rightBracketPref.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gameObject.GetComponent<RectTransform>().rect.height);
+        rightBracketPref.transform.position = transform.position;       
+        connector.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gameObject.GetComponent<RectTransform>().rect.height);
+        connector.transform.position = new Vector2(connector.transform.position.x, transform.position.y);       
     }
 
     void OnEnable()
@@ -61,8 +68,12 @@ public class UPManager : MonoBehaviour
         if (icon.Count == 0)
         {
             icons.Remove(icon.ClassID);
+            Destroy(icon.gameObject);           
             unitInfoPanel.SetActive(false);
-            Destroy(icon.gameObject);
+            if(icons.Count == 0){
+                connector.SetActive(false);
+                Destroy(rightBracket);
+            }          
         }
     }
 
@@ -70,8 +81,17 @@ public class UPManager : MonoBehaviour
     {
         if(!icons.ContainsKey(unit.UnitClassID))
         {
+            Destroy(rightBracket);
+            if(transform.childCount == 0){
+                connector.SetActive(true);         
+            
+            }
             var newIcon = CreateNewIcon(unit);
-            icons.Add(unit.UnitClassID, newIcon);
+            icons.Add(unit.UnitClassID, newIcon);               
+             
+            rightBracket = Instantiate(rightBracketPref,gameObject.transform);
+            rightBracket.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+            rightBracket.GetComponent<RectTransform>().pivot = new Vector2(0, 0);         
         }
 
         icons[unit.UnitClassID].AddUnit(unit);
