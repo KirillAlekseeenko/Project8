@@ -1,0 +1,180 @@
+fileFormatVersion: 2
+guid: 98e1bc59f3488a24eb901cb873d873a8
+timeCreated: 1525534309
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: ' 1'
+    100002: spor_leg001
+    100004: spor_leg002
+    100006: spor_leg003
+    100008: //RootNode
+    100010: Spot_kreplenie
+    100012: Spot_kreplenie001
+    100014: Spot_kreplenie002
+    100016: Spot_kreplenie003
+    100018: spot_leg003
+    100020: spot_leg004
+    100022: spot_leg005
+    100024: spot_leg006
+    100026: spot_leg007
+    100028: spot_leg008
+    100030: spot_leg1
+    100032: spot_leg2
+    100034: spot_wheel
+    100036: spot_wheel001
+    100038: spot_wheel002
+    100040: spot_wheel003
+    400000: ' 1'
+    400002: spor_leg001
+    400004: spor_leg002
+    400006: spor_leg003
+    400008: //RootNode
+    400010: Spot_kreplenie
+    400012: Spot_kreplenie001
+    400014: Spot_kreplenie002
+    400016: Spot_kreplenie003
+    400018: spot_leg003
+    400020: spot_leg004
+    400022: spot_leg005
+    400024: spot_leg006
+    400026: spot_leg007
+    400028: spot_leg008
+    400030: spot_leg1
+    400032: spot_leg2
+    400034: spot_wheel
+    400036: spot_wheel001
+    400038: spot_wheel002
+    400040: spot_wheel003
+    2100000: No Name
+    2300000: ' 1'
+    2300002: Spot_kreplenie
+    2300004: Spot_kreplenie001
+    2300006: Spot_kreplenie002
+    2300008: Spot_kreplenie003
+    2300010: spot_leg003
+    2300012: spot_leg004
+    2300014: spot_leg005
+    2300016: spot_leg006
+    2300018: spot_leg007
+    2300020: spot_leg008
+    2300022: spot_leg1
+    2300024: spot_leg2
+    2300026: spot_wheel
+    2300028: spot_wheel001
+    2300030: spot_wheel002
+    2300032: spot_wheel003
+    3300000: ' 1'
+    3300002: Spot_kreplenie
+    3300004: Spot_kreplenie001
+    3300006: Spot_kreplenie002
+    3300008: Spot_kreplenie003
+    3300010: spot_leg003
+    3300012: spot_leg004
+    3300014: spot_leg005
+    3300016: spot_leg006
+    3300018: spot_leg007
+    3300020: spot_leg008
+    3300022: spot_leg1
+    3300024: spot_leg2
+    3300026: spot_wheel
+    3300028: spot_wheel001
+    3300030: spot_wheel002
+    3300032: spot_wheel003
+    4300000: Spot_kreplenie
+    4300004: Spot_kreplenie001
+    4300006: spot_leg003
+    4300008: spot_leg004
+    4300010: spot_wheel001
+    4300012: spot_leg007
+    4300014: spot_leg008
+    4300016: spot_wheel002
+    4300018: spot_leg2
+    4300020: spot_leg005
+    4300022: spot_leg006
+    4300024: spot_wheel003
+    4300026: Spot_kreplenie002
+    4300028: Spot_kreplenie003
+    4300030: spot_wheel
+    4300032: spot_leg1
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
