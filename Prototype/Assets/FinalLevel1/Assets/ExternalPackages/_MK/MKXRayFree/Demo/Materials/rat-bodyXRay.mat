@@ -83,11 +83,11 @@ Material:
     - _UVSec: 0
     - _UseDissolve: 1
     - _UseNoise: 0
-    - _XRayInside: 0.04
-    - _XRayRimSize: 1
+    - _XRayInside: 0.186
+    - _XRayRimSize: 0.622
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveAnimationDirection: {r: 0, g: 2.5, b: 0, a: 0}
-    - _EmissionColor: {r: 0.39846453, g: 0.48095542, b: 0.49264705, a: 1}
+    - _EmissionColor: {r: 0.01800391, g: 0.021555474, b: 0.022058845, a: 1}
     - _XRayRimColor: {r: 0, g: 2.0503042, b: 2.235294, a: 1}

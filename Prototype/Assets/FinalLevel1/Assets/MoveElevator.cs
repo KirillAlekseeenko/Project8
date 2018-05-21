@@ -5,6 +5,9 @@ using UnityEngine;
 public class MoveElevator : MonoBehaviour {
 
 	[SerializeField]
+	private AudioSource elevatorMusic;
+
+	[SerializeField]
 	private bool playing;
 	[SerializeField]
 	private Vector3 speed;
@@ -41,6 +44,8 @@ public class MoveElevator : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (playing) {
+			if (!elevatorMusic.isPlaying && (!(timer > 0)))
+				elevatorMusic.PlayOneShot (elevatorMusic.clip);
 			if (isLooped) {
 				if ((finishCoords.x - transform.position.x) * speed.x <= 0
 					&& (finishCoords.y - transform.position.y) * speed.y <= 0
