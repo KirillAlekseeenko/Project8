@@ -25,6 +25,16 @@ public static class UnitAnimations {
 					unit.animator.SetBool ("HasRifle", true);	
 					break;
 				}
+			case Unit.PeopleWeapon.SNIPER_RIFLE:
+				{
+					unit.animator.SetBool ("HasSniperRifle", true);	
+					break;
+				}
+			case Unit.PeopleWeapon.TWO_PISTOLS:
+				{
+					unit.animator.SetBool ("HasTwoPistols", true);	
+					break;
+				}
 			}
 		}
 

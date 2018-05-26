@@ -1,11 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PostProcessing\Editor\PostProcessingFactory.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\OldShit\Scripts\WorldObject\Unit\Unit.cs">
     <Files>
-      <File FileName="Assets\PostProcessing\Editor\Models\ColorGradingModelEditor.cs" Line="215" Column="44" />
-      <File FileName="Assets\PostProcessing\Editor\PostProcessingModelEditor.cs" Line="40" Column="1" />
-      <File FileName="Assets\PostProcessing\Editor\Utils\EditorGUIHelper.cs" Line="90" Column="115" />
-      <File FileName="Assets\PostProcessing\Editor\PostProcessingFactory.cs" Line="20" Column="33" />
+      <File FileName="Assets\PostProcessing\Editor\Models\ColorGradingModelEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets\PostProcessing\Editor\PostProcessingModelEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets\PostProcessing\Editor\Utils\EditorGUIHelper.cs" Line="1" Column="1" />
+      <File FileName="Assets\PostProcessing\Editor\PostProcessingFactory.cs" Line="1" Column="1" />
+      <File FileName="Assets\OldShit\Scripts\QuestSystem\QuestManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_KillEnemies.cs" Line="1" Column="1" />
+      <File FileName="Assets\OldShit\Scripts\UI\Tasks\QuestUIPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets\OldShit\Scripts\WorldObject\Building\BuildingComponents\VisualisationTools.cs" Line="5" Column="1" />
+      <File FileName="Assets\OldShit\Scripts\WorldObject\Unit\Unit.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

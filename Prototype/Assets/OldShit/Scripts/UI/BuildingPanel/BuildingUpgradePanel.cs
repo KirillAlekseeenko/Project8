@@ -17,6 +17,13 @@ public class BuildingUpgradePanel : MonoBehaviour {
 	[SerializeField] private Image level3Image;
 	[SerializeField] private Text level3Cost;
 
+	[SerializeField] private GameObject buildingLevelInfo;
+	[SerializeField] private Text gradeName;
+	[SerializeField] private Image gradeImage;
+	[SerializeField] private Text capacityInfo;
+	[SerializeField] private Text levelTechnologyName;
+	[SerializeField] private Image levelTechnologyImage;
+
 	void OnEnable(){
 		level1Image.sprite = bpManager.currentBuilding.vTools.buildingLevels [0].image;
 		level1Cost.text = bpManager.currentBuilding.vTools.buildingLevels [0].cost.ToString();
@@ -30,5 +37,41 @@ public class BuildingUpgradePanel : MonoBehaviour {
 
 	public void buyUpgrade(int upgradeLevel){
 		bpManager.UpgradeCurrentBuilding (upgradeLevel);
-	} 
+	}
+
+	public void ShowBuildingLevelInfo(bool enable, GameObject gradeButton){
+		buildingLevelInfo.SetActive (enable);
+		if (enable) {
+			int grade = 1;
+			gradeImage.sprite = level1Image.sprite;
+			if (gradeButton == level2Image.gameObject) {
+				grade = 2;
+				gradeImage.sprite = level2Image.sprite;
+			} else if (gradeButton == level3Image.gameObject) {
+				gradeImage.sprite = level3Image.sprite;
+				grade = 3;
+			}
+			gradeName.text = bpManager.currentBuilding.GradeName(grade).ToString();
+			capacityInfo.text = bpManager.currentBuilding.NonWarriorsAmountPerLevel(grade).ToString();
+			if (bpManager.currentBuilding.LevelTechnology (grade) != null) {
+				levelTechnologyName.text = bpManager.currentBuilding.LevelTechnology (grade).technologyName;
+				levelTechnologyImage.sprite = bpManager.currentBuilding.LevelTechnology (grade).technologyImage;
+				levelTechnologyImage.color = new Color (
+					levelTechnologyImage.color.r,
+					levelTechnologyImage.color.g,
+					levelTechnologyImage.color.b,
+					1
+				);
+			} else {
+				levelTechnologyName.text = "";
+				levelTechnologyImage.sprite = null;
+				levelTechnologyImage.color = new Color (
+					levelTechnologyImage.color.r,
+					levelTechnologyImage.color.g,
+					levelTechnologyImage.color.b,
+					0
+				);
+			}
+		}
+	}
 }

@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: StylizedWater_Mobile
   m_Shader: {fileID: 4800000, guid: 1dcaa891fd50ac749a178732c0268a03, type: 3}
-  m_ShaderKeywords: _WORLDSPACETILIBG_ON
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _WORLDSPACETILIBG_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

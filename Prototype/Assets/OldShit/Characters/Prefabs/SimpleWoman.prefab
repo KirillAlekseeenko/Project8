@@ -1400,7 +1400,7 @@ MonoBehaviour:
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
   icon: {fileID: 0}
-  unitClassID: 8
+  unitClassID: 1
   sex: 1
   weapon: 0
   animator: {fileID: 95807562539006410}

@@ -83,8 +83,8 @@ Material:
     - _UVSec: 0
     - _UseDissolve: 1
     - _UseNoise: 0
-    - _XRayInside: 0.186
-    - _XRayRimSize: 0.622
+    - _XRayInside: 0.23
+    - _XRayRimSize: 0.58
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
