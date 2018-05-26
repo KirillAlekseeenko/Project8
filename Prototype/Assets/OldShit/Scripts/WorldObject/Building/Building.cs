@@ -18,17 +18,15 @@ public class Building : WorldObject, IBuilding{
 	protected Vector3Int AmountOfHackersByLevel;
 	[SerializeField]
 	protected Vector3Int AmountOfScientistsByLevel;
-	[SerializeField]
-	protected Vector3Int AmountOfWarriorsByLevel;
 
 	[SerializeField]
 	protected List<Unit> unitsInside;
 
 	[Header("Technologies")]
 	[SerializeField] 
-	protected int connectedTechnologyID;
-	[SerializeField] 
 	protected TechTree techTree;
+	[SerializeField]
+	protected List<int> connectedTechnologiesIDs;
 	[SerializeField]
 	protected int Level;
 
@@ -149,11 +147,10 @@ public class Building : WorldObject, IBuilding{
 	public bool AddUnit(Unit unit){
 		if (unit.Owner == gameObject.GetComponentInParent<Building> ().Owner) {
 			if((unit.UnitClassID == scientistID
-				&& unitsInside.FindAll(x => x.UnitClassID == scientistID).Count < AmountOfScientistsByLevel[Level]) ||
+				&& unitsInside.FindAll(x => x.UnitClassID == scientistID).Count < AmountOfScientistsByLevel[Level - 1]) ||
 				(unit.UnitClassID == hackerID
-					&& unitsInside.FindAll(x => x.UnitClassID == hackerID).Count < AmountOfHackersByLevel[Level]) ||
-				(unit.UnitClassID != scientistID && unit.UnitClassID != hackerID
-					&& unitsInside.FindAll(x => x.UnitClassID != scientistID && x.UnitClassID != hackerID).Count < AmountOfWarriorsByLevel[Level])
+					&& unitsInside.FindAll(x => x.UnitClassID == hackerID).Count < AmountOfHackersByLevel[Level - 1]) ||
+				(unit.UnitClassID != scientistID && unit.UnitClassID != hackerID)
 			){
 				unitsInside.Add (unit);
 				unit.gameObject.SetActive (false);
@@ -180,10 +177,15 @@ public class Building : WorldObject, IBuilding{
 			foreach(Unit unit in units){
 				unitsInside.Add (unit);
 			}
-			if(this.Owner.IsHuman)
-				techTree.UnblockTechnology (connectedTechnologyID, true);
-			else
-				techTree.UnblockTechnology (connectedTechnologyID, false);
+			if (this.Owner.IsHuman) {
+				for (int i = 0; i < Level - 1; i++)
+					techTree.UnblockTechnology (connectedTechnologiesIDs[i], true);
+				//techTree.UnblockTechnology (connectedTechnologyID, true);
+			} else {
+				for (int i = 0; i < Level - 1; i++)
+					techTree.UnblockTechnology (connectedTechnologiesIDs[i], false);
+				//techTree.UnblockTechnology (connectedTechnologyID, false);
+			}
 		}
 	}
 		
@@ -213,17 +215,43 @@ public class Building : WorldObject, IBuilding{
 	public int CurrentLevel { 
 		get { return Level; }
 		set{
-			Debug.Log (value);
 			if (Player.HumanPlayer.ResourcesManager.IsEnoughMoney (vTools.buildingLevels [value - 1].cost)) {
 				Player.HumanPlayer.ResourcesManager.SpendMoney (vTools.buildingLevels [value - 1].cost);
 				Level = value;
+				techTree.UnblockTechnology (connectedTechnologiesIDs[value - 2], true);
 				vTools.SetModel (Level);
 			}
-		}}
+		}
+	}
 
+	public string GradeName(int level){
+		return vTools.buildingLevels [level - 1].name;
+	}
+
+	public Technology LevelTechnology(int level){
+		if (level > 1)
+			return techTree.FindTech (connectedTechnologiesIDs [level - 2]);
+		else
+			return null;
+	}
+
+	public int NonWarriorsAmountPerLevel(int level){
+		if (AmountOfHackersByLevel [0] != 0)
+			return AmountOfHackersByLevel [level - 1];
+		else if (AmountOfScientistsByLevel [0] != 0)
+			return AmountOfScientistsByLevel [level - 1];
+		else
+			return 0;
+	}
+
+	public string BuildingName{
+		get{ return vTools.BuildingName;}
+	}
+		
 	public List<Unit> UnitsInside { get{ return unitsInside;}}
 
 	public List<Unit> ScientistsInside { get { return unitsInside.FindAll(x => x.UnitClassID == scientistID); } }
 	public List<Unit> HackersInside { get { return unitsInside.FindAll (x => x.UnitClassID == hackerID);} }
 	public List<Unit> WarriorsInside { get { return unitsInside.FindAll (x => x.UnitClassID != scientistID && x.UnitClassID != hackerID);} }
+	public int NonWarriorsInside{get{ return unitsInside.FindAll (x => x.UnitClassID == scientistID || x.UnitClassID == hackerID).Count;}}
 }

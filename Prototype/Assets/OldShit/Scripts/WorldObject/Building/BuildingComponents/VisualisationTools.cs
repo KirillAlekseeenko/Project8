@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using NUnit.Framework;
 
 [System.Serializable]
 public class BuildingLevelParams{
 	public Sprite image;
+	public string name;
 	public GameObject model;
 	public int cost;
 }
@@ -20,6 +20,7 @@ public class VisualisationTools : MonoBehaviour {
 	public List<BuildingLevelParams> buildingLevels;
 	[SerializeField]
 	private GameObject currentModel;
+
 	private List<MeshRenderer> buildingRenderers;
 	private Renderer objRenderer;
 	private Color mainColor;
@@ -36,7 +37,8 @@ public class VisualisationTools : MonoBehaviour {
 	private void setRenderers(){
 		buildingRenderers.Clear ();
 		foreach(MeshRenderer renderer in gameObject.GetComponentsInChildren<MeshRenderer>()){
-			buildingRenderers.Add (renderer);
+			if(renderer.material.HasProperty("_Color"))
+				buildingRenderers.Add (renderer);
 		}
 	}
 
@@ -85,5 +87,9 @@ public class VisualisationTools : MonoBehaviour {
 					obj.material.color.b, 1));
 			}
 		}
+	}
+
+	public string BuildingName{
+		get{ return buildingName;}
 	}
 }

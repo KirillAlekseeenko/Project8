@@ -54,7 +54,6 @@ GameObject:
   - component: {fileID: 4436664158808670}
   - component: {fileID: 33308897119125648}
   - component: {fileID: 23564191129270194}
-  - component: {fileID: 95075022511461016}
   - component: {fileID: 82329381149618128}
   m_Layer: 0
   m_Name: SM_Prop_Aircon
@@ -410,23 +409,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!95 &95075022511461016
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377962625131244}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 6194f380ca99a444a82c44789d4413d1, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95381225037137318
 Animator:
   serializedVersion: 3

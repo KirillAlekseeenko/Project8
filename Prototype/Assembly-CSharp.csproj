@@ -44,10 +44,10 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed\UnityEngine.dll</HintPath>
+      <HintPath>G:/Unity/Editor/Data/Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>G:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -146,24 +146,6 @@
      <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\StylizedWater\Scripts\EnableDepthBuffer.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\StylizedWater\Scripts\StylizedWater.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\StylizedWater\Scripts\StylizedWaterInspector.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\AreaLight\Scripts\AreaLight.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\AreaLight\Scripts\AreaLight.Direct.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\AreaLight\Scripts\AreaLight.Shadow.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\AreaLight\Scripts\AreaLightLUT.DisneyDiffuse.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\AreaLight\Scripts\AreaLightLUT.GGX.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\AreaLight\Scripts\AreaLightLUT.Load.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\LightManager\Scripts\LightManager.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\LightManager\Scripts\LightManagerFogEllipsoids.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\LightManager\Scripts\LightManagerFogLights.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\LightOverride\LightOverride.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\MinValueAttribute\MinValueAttribute.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\TubeLight\Scripts\TubeLight.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\TubeLight\Scripts\TubeLightShadowPlane.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\VolumetricFog\Scripts\FogEllipsoid.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\VolumetricFog\Scripts\FogLight.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\VolumetricFog\Scripts\FogLight.DirectionalShadow.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\VolumetricFog\Scripts\VolumetricFog.cs" />
-     <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\Wind\Scripts\Wind.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\MoveCamera.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\MoveElevator.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\MoveSimulateFloor.cs" />
@@ -233,11 +215,8 @@
      <Compile Include="Assets\OldShit\Scripts\Selection\FrustumCollider.cs" />
      <Compile Include="Assets\OldShit\Scripts\Selection\SelectionHandler.cs" />
      <Compile Include="Assets\OldShit\Scripts\SpritePacker\CoinPartyExample\CoinParty.cs" />
-     <Compile Include="Assets\OldShit\Scripts\SpritePacker\ExplosionExample\ExplosionAnimator.cs" />
      <Compile Include="Assets\OldShit\Scripts\SpritePacker\HSBColor.cs" />
-     <Compile Include="Assets\OldShit\Scripts\SpritePacker\LegacyToShurikenConverter.cs" />
      <Compile Include="Assets\OldShit\Scripts\SpritePacker\Rotator.cs" />
-     <Compile Include="Assets\OldShit\Scripts\SpritePacker\SpritePacker.cs" />
      <Compile Include="Assets\OldShit\Scripts\SpritePacker\SpritePackerAnimation.cs" />
      <Compile Include="Assets\OldShit\Scripts\Static\Constants.cs" />
      <Compile Include="Assets\OldShit\Scripts\Static\UIUtils.cs" />
@@ -246,7 +225,11 @@
      <Compile Include="Assets\OldShit\Scripts\Timer.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\BuildingPanel\BuildingButton.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\BuildingPanel\BuildingPanelManager.cs" />
+     <Compile Include="Assets\OldShit\Scripts\UI\BuildingPanel\BuildingTechnology.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\BuildingPanel\BuildingUpgradePanel.cs" />
+     <Compile Include="Assets\OldShit\Scripts\UI\BuildingPanel\GradeButton.cs" />
+     <Compile Include="Assets\OldShit\Scripts\UI\BuildingPanel\TechButton.cs" />
+     <Compile Include="Assets\OldShit\Scripts\UI\BuildingPanel\TechnologyIcon.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\FieldOfViewHandler.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\FogProjector.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\ForceAspect.cs" />
@@ -270,6 +253,7 @@
      <Compile Include="Assets\OldShit\Scripts\UI\UpgradePanel\UpgradeInfo.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\UpgradePanel\UpgradePanel.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\VisionArcComponent.cs" />
+     <Compile Include="Assets\OldShit\Scripts\UI\WikiButton.cs" />
      <Compile Include="Assets\OldShit\Scripts\UnitAnimations.cs" />
      <Compile Include="Assets\OldShit\Scripts\UserInput\CameraMovement.cs" />
      <Compile Include="Assets\OldShit\Scripts\UserInput\InputModesHandler.cs" />
@@ -362,12 +346,9 @@
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceAmbientObscurance.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Shaders\LightBeamDoubleSidedColor.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\TubeLight\Shaders\TubeLightAttenuation.cginc" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\NFAA.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\VolumetricFog\Shaders\VolumetricFog.cginc" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\VolumetricFog\Shaders\Scatter.compute" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Shaders\LightBeamColor.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\VignetteShader.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
@@ -388,11 +369,9 @@
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\VolumetricFog\Shaders\Debug.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\StylizedWater\Changelog.txt" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\AreaLight\Shaders\AreaLight.shader" />
      <None Include="Assets\OldShit\Scripts\SpritePacker\CoinPartyExample\CoinShader.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\Chinatown\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-SimpleWater4.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Blit.shader" />
@@ -405,8 +384,6 @@
      <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />
      <None Include="Assets\OldShit\Scripts\SpritePacker\README.txt" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\VolumetricFog\Shaders\BlurShadowmap.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\VolumetricFog\Shaders\InjectLightingAndDensity.compute" />
      <None Include="Assets\OldShit\Scripts\SpritePacker\CoinPartyExample\Add+1.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
@@ -425,7 +402,6 @@
      <None Include="Assets\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\CreaseApply.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\UI\Trackball.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\TubeLight\Shaders\TubeLight.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\ChromaticAberrationShader.shader" />
      <None Include="Assets\FinalLevel1\Assets\Plugins\Excelsior\CSFHI\README - Setup.txt" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
@@ -433,7 +409,6 @@
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\GlobalFog.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\ProjectSettings\ProjectVersion.txt" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Luminance.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.cginc" />
@@ -450,11 +425,9 @@
      <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\StylizedWater\Shaders\StylizedWater_desktop.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\TubeLight\Shaders\TubeLight.cginc" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlur.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\Chinatown\Standard Assets\Water (Pro Only)\Sources\Shaders\FX-Water.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\GrainGen.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\VolumetricFog\Shaders\Shadowmap.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\DLAA.shader" />
      <None Include="Assets\OldShit\Scripts\SpritePacker\Shaders\AddSmooth+1.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\FXAA.shader" />
@@ -463,7 +436,6 @@
      <None Include="Assets\PostProcessing\Resources\Shaders\DiskKernels.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\VolumetricFog\Shaders\CopyShadowParams.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableBlur.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\MotionBlurClear.shader" />
@@ -476,7 +448,6 @@
      <None Include="Assets\OldShit\Scripts\SpritePacker\Shaders\PackedCutout.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrain.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\Scenes\Materials\StandardAlphaBlended-VolumetricFog.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\VignettingShader.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
@@ -486,7 +457,6 @@
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\StylizedWater\Shaders\StylizedWater_desktop_tesselation.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\TubeLight\Shaders\TubeLightShadowPlanes.cginc" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
@@ -499,51 +469,48 @@
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\Chinatown\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-Water4.shader" />
      <None Include="Assets\OldShit\Scripts\SpritePacker\Shaders\PackedAdd.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\Industry Props Pack 4\Shader\Glass.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\VolumetricFog\Shaders\ApplyToOpaque.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\SimpleClear.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_MK\MKXRayFree\Shader\MKXRayFree.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\AreaLight\Shaders\AreaLight.cginc" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
-     <None Include="Assets\FinalLevel1\Assets\ExternalPackages\VolumetricLighting-master\Assets\AreaLight\Shaders\AreaLightShadows.cginc" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Shaders\LightBeamTexture.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
      <None Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>G:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>G:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>G:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>G:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Timeline">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
+ <HintPath>G:/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UIAutomation">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
+ <HintPath>G:/Unity/Editor/Data/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.GoogleAudioSpatializer">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
+ <HintPath>G:/Unity/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ <HintPath>G:/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.SpatialTracking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+ <HintPath>G:/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Users/Serge/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>C:/Users/Batman/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Purchasing">
- <HintPath>C:/Users/Serge/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll</HintPath>
+ <HintPath>C:/Users/Batman/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

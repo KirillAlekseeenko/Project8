@@ -11,7 +11,9 @@ public class Unit : WorldObject {
 		NONE,
 		PISTOL,
 		FISTS,
-		RIFLE
+		RIFLE,
+		SNIPER_RIFLE,
+		TWO_PISTOLS
 	};
 
 	public enum Sex{

@@ -17,6 +17,7 @@ public class PerkRage : Perk {
 
 	protected override void derivedPerform (Unit performer, Vector3? place = default(Vector3?), Unit target = null)
 	{
+		performer.UsePerk();
 		Buff.AddBuff<RageBuff>(performer, time);
 	}
 
