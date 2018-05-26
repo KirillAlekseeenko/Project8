@@ -6,7 +6,8 @@ public class RevealGrade : Grade
 {
     protected override void SubscribeToEvents()
     {
-        
+		StreetCamera.AddGradePenaltyEvent += () => AddOngoingProcess(OngoingProcessType.UnderCamera);
+		StreetCamera.RemoveGradePenaltyEvent += () => RemoveOngoingProcess(OngoingProcessType.UnderCamera);
     }
 
     protected override void UnsubscribeFromEvents()

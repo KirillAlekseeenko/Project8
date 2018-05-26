@@ -81,7 +81,7 @@ public class LocalAI : MonoBehaviour {
     private bool IsObjectInsideTheArc(Unit unit, Unit enemy)
 	{
 		var vectorToEnemy = enemy.transform.position - unit.transform.position;
-		if (unitComponent.isEnemy(unit) && unit.HalfVisible && vectorToEnemy.magnitude > unit.pLOS / 2)
+		if (unit.isEnemy(enemy) && unit.HalfVisible && vectorToEnemy.magnitude > unit.pLOS / 2)
 			return false;
 		
 		var direction = unit.transform.TransformDirection (Vector3.forward);
