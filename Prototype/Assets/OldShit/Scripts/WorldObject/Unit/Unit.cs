@@ -20,14 +20,29 @@ public class Unit : WorldObject {
 		MALE,
 		FEMALE
 	};
+		
+	public AudioClip StepSound;
+	public AudioClip DeathSound;
+	public AudioClip ShootSound;
+	public AudioClip AbilitySound;
+
+	public AudioSource audioSource;
+
 	protected bool stopped;
 	protected Unit currentEnemyUnit;
 		
 	//Placeholder functions for Animation events
-	public void Hit(){}
-	public void Shoot(){}
-	public void FootR(){}
-	public void FootL(){}
+	public void Hit(){
+	}
+	public void Shoot(){
+		audioSource.PlayOneShot (ShootSound);
+	}
+	public void FootR(){
+		audioSource.PlayOneShot (StepSound);	
+	}
+	public void FootL(){
+		audioSource.PlayOneShot (StepSound);
+	}
 	public void Land(){}
 	public void WeaponSwitch(){}
 	///////////////////////////////////////////////////////////////
@@ -186,7 +201,8 @@ public class Unit : WorldObject {
 		//////////////////////////////////From Nikita animations
 		if(animator != null)
 			this.SetStartConditions();
-		///////////////////////////////////////////////////
+		audioSource = gameObject.GetComponent<AudioSource> ();
+			///////////////////////////////////////////////////
 	}
 
 	protected void Start()
@@ -341,7 +357,8 @@ public class Unit : WorldObject {
 		}
 		updateUI ();
 		if (hp <= 0) {
-			Invoke ("die", 5f);
+			Invoke ("die", 0.5f);
+			audioSource.PlayOneShot (DeathSound);
 			//die ();
 			//////////From Nikita animations
 			if(animator != null)

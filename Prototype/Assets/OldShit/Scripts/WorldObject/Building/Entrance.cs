@@ -17,7 +17,7 @@ public class Entrance : MonoBehaviour {
 	}
 
 	public bool UnitWithin(Unit unit){
-		if (Vector3.Distance (unit.gameObject.transform.position, gameObject.transform.position) <= 1f)
+		if (Vector3.Distance (unit.gameObject.transform.position, gameObject.transform.position) <= 2f)
 			return true;
 		else
 			return false;

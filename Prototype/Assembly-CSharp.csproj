@@ -161,6 +161,7 @@
      <Compile Include="Assets\OldShit\Scripts\Action\Action.cs" />
      <Compile Include="Assets\OldShit\Scripts\Action\ActionHandler.cs" />
      <Compile Include="Assets\OldShit\Scripts\Action\AttackInteraction.cs" />
+     <Compile Include="Assets\OldShit\Scripts\Action\CrackInteraction.cs" />
      <Compile Include="Assets\OldShit\Scripts\Action\EnterInteraction.cs" />
      <Compile Include="Assets\OldShit\Scripts\Action\HealInteraction.cs" />
      <Compile Include="Assets\OldShit\Scripts\Action\Interaction.cs" />
@@ -176,6 +177,9 @@
      <Compile Include="Assets\OldShit\Scripts\Buffs\BuffInfo.cs" />
      <Compile Include="Assets\OldShit\Scripts\Buffs\RageBuff.cs" />
      <Compile Include="Assets\OldShit\Scripts\Buffs\ShockedDebuff.cs" />
+     <Compile Include="Assets\OldShit\Scripts\Camera\ControllableItem.cs" />
+     <Compile Include="Assets\OldShit\Scripts\Camera\ControlPanel.cs" />
+     <Compile Include="Assets\OldShit\Scripts\Camera\StreetCamera.cs" />
      <Compile Include="Assets\OldShit\Scripts\CinematicCamera\CinematicCamera.cs" />
      <Compile Include="Assets\OldShit\Scripts\CinematicCamera\OverviewCamera.cs" />
      <Compile Include="Assets\OldShit\Scripts\Economy\ResourcesManager.cs" />
@@ -186,7 +190,9 @@
      <Compile Include="Assets\OldShit\Scripts\Grades\RevealGrade.cs" />
      <Compile Include="Assets\OldShit\Scripts\LevelStatistics.cs" />
      <Compile Include="Assets\OldShit\Scripts\Manager.cs" />
+     <Compile Include="Assets\OldShit\Scripts\MaveAdvices.cs" />
      <Compile Include="Assets\OldShit\Scripts\NonInteractableObjects\Grenade.cs" />
+     <Compile Include="Assets\OldShit\Scripts\OnEnterTrigger.cs" />
      <Compile Include="Assets\OldShit\Scripts\Particle\Explosion.cs" />
      <Compile Include="Assets\OldShit\Scripts\Particle\Trace.cs" />
      <Compile Include="Assets\OldShit\Scripts\Perks\Perk.cs" />
@@ -203,11 +209,14 @@
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\Task.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_CaptureBuilding.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_ClickOnObject.cs" />
+     <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_Hack_Building.cs" />
+     <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_Kill_Concrete_Enemies.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_KillEnemies.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_ObjectsAndNumbers.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_ReachDestinationPoint.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_ReceiveUnits.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_UpgradeBuilding.cs" />
+     <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_Warriors.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\TaskResolver.cs" />
      <Compile Include="Assets\OldShit\Scripts\RandomAnim.cs" />
      <Compile Include="Assets\OldShit\Scripts\RandomAnimationStart.cs" />
@@ -272,6 +281,7 @@
      <Compile Include="Assets\OldShit\Scripts\WorldObject\Components\Citizen.cs" />
      <Compile Include="Assets\OldShit\Scripts\WorldObject\Components\CitizenUpgrade.cs" />
      <Compile Include="Assets\OldShit\Scripts\WorldObject\Components\Hacker.cs" />
+     <Compile Include="Assets\OldShit\Scripts\WorldObject\Components\Mave.cs" />
      <Compile Include="Assets\OldShit\Scripts\WorldObject\Components\Recruiter.cs" />
      <Compile Include="Assets\OldShit\Scripts\WorldObject\Components\Scientist.cs" />
      <Compile Include="Assets\OldShit\Scripts\WorldObject\Spawn\CrowdZone.cs" />

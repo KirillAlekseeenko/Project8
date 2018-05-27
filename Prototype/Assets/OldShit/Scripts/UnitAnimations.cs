@@ -46,13 +46,19 @@ public static class UnitAnimations {
 	}
 
 	public static void HearAgitator(this Unit unit){
-		unit.animator.SetTrigger ("Interrupt");
+		Interrupt (unit);
 		unit.animator.SetInteger ("HearAgitVariants", 1);
 		unit.animator.SetTrigger ("HearAgit");
+		unit.audioSource.clip = unit.AbilitySound;
+		unit.audioSource.loop = true;
+		unit.audioSource.Play ();
 	}
 
 	public static void Interrupt(this Unit unit){
 		unit.animator.SetTrigger ("Interrupt");
+		unit.audioSource.clip = null;
+		unit.audioSource.loop = false;
+		unit.audioSource.Stop ();
 	}
 
 	public static void Idle(this Unit unit){
@@ -60,7 +66,7 @@ public static class UnitAnimations {
 	}
 
 	public static void UsePerk(this Unit unit){
-		unit.animator.SetTrigger ("Interrupt");
+		Interrupt (unit);
 		unit.animator.SetTrigger ("UsePerk");
 	}
 
@@ -81,22 +87,25 @@ public static class UnitAnimations {
 	} 
 
 	public static void ReceivedDamage(this Unit unit){
-		unit.animator.SetTrigger ("Interrupt");
+		Interrupt (unit);
 		unit.animator.SetTrigger ("Damage");
 	}
 
 	public static void Attack(this Unit unit){		
-		unit.animator.SetTrigger ("Interrupt");
+		Interrupt (unit);
 		unit.animator.SetTrigger ("Fight");
 	} 
 
 	public static void Dead(this Unit unit){
-		unit.animator.SetTrigger ("Interrupt");
+		Interrupt (unit);
 		unit.animator.SetBool ("Death", true);
 	}
 
 	public static void Talk(this Unit unit){
-		unit.animator.SetTrigger ("Interrupt");
+		Interrupt (unit);
+		unit.audioSource.clip = unit.AbilitySound;
+		unit.audioSource.loop = true;
+		unit.audioSource.Play ();
 		unit.animator.SetInteger ("Speed", 0);
 		unit.animator.SetTrigger ("Conversation");
 	}

@@ -32,6 +32,7 @@ public class Building : WorldObject, IBuilding{
 
 	protected Battle battlePlan;
 	protected bool battlePrepares;
+	protected bool hacked;
 
 	protected Entrance entrance;
 
@@ -75,7 +76,7 @@ public class Building : WorldObject, IBuilding{
 		//После того, как мы нажимаем кнопку "выгнать всех юнитов из здания"
 		if (banishUnits) {
 			foreach(Unit unit in unitsInside){
-				if (Vector3.Distance (unit.gameObject.transform.position, entrance.transform.position) > 1) {
+				if (Vector3.Distance (unit.gameObject.transform.position, entrance.transform.position) > 2) {
 					unit.gameObject.GetComponent<Rigidbody> ().MovePosition (entrance.transform.position);
 					unbanishedYet++;
 				} else {
@@ -107,6 +108,10 @@ public class Building : WorldObject, IBuilding{
 	protected void RefreshUnitsInside(){
 		foreach (Unit unit in unitsInside)
 			unit.gameObject.SetActive (false);
+	}
+
+	protected void UnblockHack(){
+		hacked = false;
 	}
 
 	public override bool IsSelected {
@@ -246,6 +251,14 @@ public class Building : WorldObject, IBuilding{
 
 	public string BuildingName{
 		get{ return vTools.BuildingName;}
+	}
+
+	public bool Hacked{
+		get{return hacked;}
+		set{
+			hacked = value;
+			//Invoke ("UnblockHack", 10f);
+		}
 	}
 		
 	public List<Unit> UnitsInside { get{ return unitsInside;}}

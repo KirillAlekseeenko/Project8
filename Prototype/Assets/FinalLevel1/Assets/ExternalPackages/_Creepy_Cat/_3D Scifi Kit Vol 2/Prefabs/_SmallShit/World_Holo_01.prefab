@@ -8,7 +8,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 470718}
-  - component: {fileID: 11419122}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -339,24 +338,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &11419122
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 128580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c59ea0232edd4c3d964a6265a4d7270, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TurnX: 0
-  TurnY: 3
-  TurnZ: 0
-  MoveX: 0
-  MoveY: 0
-  MoveZ: 0
-  World: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -41,6 +41,7 @@ public class SelectionHandler : MonoBehaviour
         allUnits = new HashSet<WorldObject>();
         perks = new PerkHandler (this, skillsPanelManager);
         citizenUpgradeHandler = new CitizenUpgradeHandler(this);
+
 	}
 
 	public void OnMouseHover (Vector3 mousePosition)
