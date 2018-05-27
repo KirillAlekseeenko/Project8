@@ -35,6 +35,16 @@ public class ActionHandler : MonoBehaviour {
         });
     }
 
+	public static void Crack(ControlPanel controlPanel, ICollection<WorldObject> unitGroup)
+    {
+        var firstHacker = unitGroup.FirstOrDefault(worldObject => worldObject.GetComponent<Hacker>() != null);
+        if (firstHacker != null)
+        {
+			Debug.Log ("U crack you");
+            firstHacker.AssignAction(new CrackInteraction(firstHacker as Unit, controlPanel));
+        }
+    }
+
     public static void MoveUnitsWithFormation(Vector3 position, ICollection<WorldObject> unitGroup)
 	{
 		Vector3 center = Vector3.zero;
@@ -44,6 +54,7 @@ public class ActionHandler : MonoBehaviour {
 		}
 
         center /= unitGroup.Count;
+		Debug.Log(center);
 		float height = center.y;
 		
         int squareSize = GetNextSquare(unitGroup.Count);
@@ -79,8 +90,8 @@ public class ActionHandler : MonoBehaviour {
 					horizontal = 0;
 					vertical++;
 				}
-
-				MoveAction move = new MoveAction (worldObject as Unit, unitPos );
+                
+				MoveAction move = new MoveAction (worldObject as Unit, new Vector3(unitPos.x, height, unitPos.z));
 				worldObject.AssignAction (move);
 			}
 		}
@@ -99,14 +110,17 @@ public class ActionHandler : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit))
         {
+			Debug.Log(LayerMask.LayerToName(hit.collider.gameObject.layer)); ////
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
+				Debug.Log(selectionHandler.SelectedUnits.Count);
                 MoveUnitsWithFormation(hit.point, selectionHandler.SelectedUnits);
             }
             else
             {
                 var enemyUnit = hit.collider.gameObject.GetComponent<Unit>();
                 var building = hit.collider.gameObject.GetComponent<Building>();
+				var item = hit.collider.gameObject.GetComponent<ControlPanel>();
                 if (enemyUnit != null && enemyUnit.IsVisible)
                 {
                     if (Player.HumanPlayer.isEnemy(enemyUnit.Owner))
@@ -118,6 +132,9 @@ public class ActionHandler : MonoBehaviour {
                         Heal(enemyUnit, selectionHandler.SelectedUnits);
                     }
                 }
+				if (item != null) {
+					Crack (item, selectionHandler.SelectedUnits);
+				}
                 if (building != null)
                 {
                     Enter(building, selectionHandler.SelectedUnits);

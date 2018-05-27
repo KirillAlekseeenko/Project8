@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ControlPanel : WorldObject {
 
-	[SerializeField] private float activationCooldown;
-	[SerializeField] private IControllableItem controllableItem;
+	[SerializeField] protected float activationCooldown;
+	[SerializeField] protected IControllableItem controllableItem;
 
-	private Timer activationTimer;
+	protected Timer activationTimer;
 
-	public bool IsActivated { get; private set; }
+	public virtual bool IsActivated { get; protected set; }
     
-	public void Activate()
+	public virtual void Activate()
     {
 		if (!IsActivated)
 		{
@@ -20,16 +20,16 @@ public class ControlPanel : WorldObject {
 		}
     }
 
-	private new void Start()
+	protected new void Start()
 	{
 		base.Start();
 		activationTimer = new Timer(activationCooldown);
 	}
 
-	private new void Update()
+	protected new void Update()
 	{
 		base.Update();
-		if (IsActivated)
+		if (activationTimer.CurrentProgress > 0.98f)
 		{
 			activationTimer.UpdateTimer(Time.deltaTime);
 			if (activationTimer.IsSet)

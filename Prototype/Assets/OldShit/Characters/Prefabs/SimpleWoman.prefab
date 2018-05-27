@@ -1367,7 +1367,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!82 &82928610359474592
 AudioSource:
@@ -1481,8 +1481,8 @@ MonoBehaviour:
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
   icon: {fileID: 21300000, guid: 74d1bcfc6b6e3b241a7faeb14cca3669, type: 3}
-  StepSound: {fileID: 0}
-  DeathSound: {fileID: 0}
+  StepSound: {fileID: 8300000, guid: 785f128916239774fb534e367ae4a71f, type: 3}
+  DeathSound: {fileID: 8300000, guid: 1fdb1d5a4bd083248afcaf473caaa2a6, type: 3}
   ShootSound: {fileID: 0}
   AbilitySound: {fileID: 0}
   audioSource: {fileID: 82928610359474592}

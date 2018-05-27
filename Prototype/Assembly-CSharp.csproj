@@ -146,6 +146,7 @@
      <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\StylizedWater\Scripts\EnableDepthBuffer.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\StylizedWater\Scripts\StylizedWater.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\StylizedWater\Scripts\StylizedWaterInspector.cs" />
+     <Compile Include="Assets\FinalLevel1\Assets\HackableBuilding.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\MoveCamera.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\MoveElevator.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\MoveSimulateFloor.cs" />
@@ -157,7 +158,9 @@
      <Compile Include="Assets\FinalLevel1\Assets\Plugins\Excelsior\CSFHI\Scripts\InterfaceAnimManager.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\Plugins\Excelsior\CSFHI\Scripts\InterfaceAnmElement.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\Plugins\Excelsior\CSFHI\Scripts\MouseOrbitImproved.cs" />
+     <Compile Include="Assets\FinalLevel1\Assets\Prop.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\StairsBlinking.cs" />
+     <Compile Include="Assets\FinalLevel1\Assets\WatchingCamera.cs" />
      <Compile Include="Assets\OldShit\Scripts\Action\Action.cs" />
      <Compile Include="Assets\OldShit\Scripts\Action\ActionHandler.cs" />
      <Compile Include="Assets\OldShit\Scripts\Action\AttackInteraction.cs" />

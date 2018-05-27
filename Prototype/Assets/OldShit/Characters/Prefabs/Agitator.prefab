@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 114501977895378182}
   - component: {fileID: 195064412586458482}
   - component: {fileID: 82084543819265798}
+  - component: {fileID: 114656528500644656}
   m_Layer: 10
   m_Name: Agitator
   m_TagString: Untagged
@@ -935,7 +936,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1552590572809730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.421026, y: 1.6499978, z: -35.34488}
+  m_LocalPosition: {x: 49.749275, y: 41.505142, z: 41.956955}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4838066902380346}
@@ -1439,7 +1440,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!82 &82084543819265798
 AudioSource:
@@ -1567,8 +1568,8 @@ MonoBehaviour:
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
   icon: {fileID: 21300000, guid: 3df1b17f4814fb44babcf357bae932a9, type: 3}
-  StepSound: {fileID: 0}
-  DeathSound: {fileID: 0}
+  StepSound: {fileID: 8300000, guid: 785f128916239774fb534e367ae4a71f, type: 3}
+  DeathSound: {fileID: 8300000, guid: 1fdb1d5a4bd083248afcaf473caaa2a6, type: 3}
   ShootSound: {fileID: 0}
   AbilitySound: {fileID: 0}
   audioSource: {fileID: 82084543819265798}
@@ -1624,6 +1625,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114656528500644656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1552590572809730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140103745abf44731a2c17150ba51755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recruitPower: 1
 --- !u!114 &114658700642178360
 MonoBehaviour:
   m_ObjectHideFlags: 1
