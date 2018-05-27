@@ -52,6 +52,13 @@ public class AttackInteraction : Interaction {
 			}
 				
 			var vectorToTarget = actionReceiver.transform.position - actionOwner.transform.position;
+
+			if(vectorToTarget.magnitude > (actionOwner as Unit).pLOS * 1.5)
+			{
+				navMeshAgentComponent.ResetPath();
+                return new ActionState(true, -1);
+			}
+
 			float unitWidth = 0.5f;
 
 			var attackRadius = (actionOwner as Unit).IsRange ? rangeAttackRadius : meleeAttackRadius;
