@@ -18,4 +18,9 @@ public class PopularityGrade : Grade
     {
         gradesViewController.SetPopularityGrade(currentValue);
     }
+
+	protected override void HandleValue()
+	{
+		// pass
+	}
 }

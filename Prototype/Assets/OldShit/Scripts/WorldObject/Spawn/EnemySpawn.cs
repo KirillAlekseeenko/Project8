@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour {
 
-	const float spawnInterval = 10.0f;
+	const float spawnInterval = 20.0f;
 
 	[SerializeField] private Player owner; // set in the editor
 
@@ -27,7 +27,11 @@ public class EnemySpawn : MonoBehaviour {
 	private IEnumerator spawning()
 	{
 		while (true) {
-			yield return new WaitForSeconds (spawnInterval);
+			var spawnCoefficient = owner.GetComponent<Director>().SpawnCoefficient;
+			if (Mathf.Approximately(spawnCoefficient, 0))
+				yield return new WaitForSeconds(2.0f);
+			var interval = spawnInterval / spawnCoefficient;
+			yield return new WaitForSeconds (interval);
 			spawn ();
 		}
 	}

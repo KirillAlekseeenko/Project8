@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class RecruiteeInteraction : Interaction
 {
-    const float distanceToRecruiter = 2f;
+    const float distanceToRecruiter = 1f;
 
     NavMeshAgent navMeshAgent;
     Citizen citizenComponent;
@@ -30,6 +30,7 @@ public class RecruiteeInteraction : Interaction
             }
             if(Vector3.Distance(actionOwner.transform.position, actionReceiver.transform.position) <= distanceToRecruiter)
             {
+				Debug.Log("clap");
                 if(navMeshAgent.hasPath)
                 {
                     navMeshAgent.ResetPath();

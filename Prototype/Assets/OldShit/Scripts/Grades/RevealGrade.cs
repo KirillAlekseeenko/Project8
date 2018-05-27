@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class RevealGrade : Grade
 {
+	public static event System.Action SafeStage;
+	public static event System.Action FirstStage;
+	public static event System.Action SecondStage;
+	public static event System.Action ThirdStage;
+
     protected override void SubscribeToEvents()
     {
 		StreetCamera.AddGradePenaltyEvent += () => AddOngoingProcess(OngoingProcessType.UnderCamera);
@@ -19,4 +24,25 @@ public class RevealGrade : Grade
     {
         gradesViewController.SetRevealGrade(currentValue);
     }
+
+	protected override void HandleValue()
+	{
+		var percentage = currentValue / maxValue * 100;
+		if(percentage > 60)
+		{
+			if (FirstStage != null) FirstStage();
+		}
+		else if(percentage > 80)
+		{
+			if (SecondStage != null) SecondStage();
+		}
+		else if(percentage > 90)
+		{
+			if (ThirdStage != null) ThirdStage();
+		}
+		else
+		{
+			if (SafeStage != null) SafeStage();
+		}
+	}
 }

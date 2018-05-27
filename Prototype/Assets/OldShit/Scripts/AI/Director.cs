@@ -5,7 +5,10 @@ using System.Linq;
 
 public class Director : MonoBehaviour {
 
-    private const int ActiveGroupSize = 5; // it will depend on grades values in future updates
+    private const int InitialActiveGroupSize = 5; // it will depend on grades values in future updates
+	private int activeGroupMultiplier = 1;
+
+	private Player player;
 
 	[SerializeField] private float alarmRadius;
     [SerializeField] List<Path> patrolPaths;
@@ -21,11 +24,31 @@ public class Director : MonoBehaviour {
 
     ICollection<Vector3> safePoints;
 
+	public float SpawnCoefficient { get; private set; }
+	private int ActiveGroupSize { get { return InitialActiveGroupSize * activeGroupMultiplier; }}
+
+	private void OnEnable()
+	{
+		RevealGrade.SafeStage += HandleSafeStage;
+		RevealGrade.FirstStage += HandleFirstStage;
+		RevealGrade.SecondStage += HandleSecondStage;
+		RevealGrade.ThirdStage += HandleThirdStage;
+	}
+
+	private void OnDisable()
+	{
+		RevealGrade.SafeStage -= HandleSafeStage;
+        RevealGrade.FirstStage -= HandleFirstStage;
+        RevealGrade.SecondStage -= HandleSecondStage;
+        RevealGrade.ThirdStage -= HandleThirdStage;
+	}
+
 	void Awake()
 	{
 		idleUnits = new HashSet<Unit> ();
         capturedBuildings = new HashSet<Building>();
         activeUnitGroup = new HashSet<WorldObject>();
+		player = GetComponent<Player>();
 	}
 
 	void Start()
@@ -129,5 +152,40 @@ public class Director : MonoBehaviour {
 			yield return new WaitForSeconds(1f);
 		}
 		ActionHandler.Enter(building, activeUnitGroup); // move them
+	}
+
+    private void HandleSafeStage()
+	{
+		if (Player.HumanPlayer.isEnemy(player))
+		{
+			SpawnCoefficient = 0;
+		}
+	}
+
+    private void HandleFirstStage()
+	{
+		if (Player.HumanPlayer.isEnemy(player))
+        {
+			SpawnCoefficient = 2;
+			activeGroupMultiplier = 2;
+        }
+	}
+
+    private void HandleSecondStage()
+	{
+		if (Player.HumanPlayer.isEnemy(player))
+        {
+			SpawnCoefficient = 3;
+			activeGroupMultiplier = 3;
+        }
+	}
+
+    private void HandleThirdStage()
+	{
+		if (Player.HumanPlayer.isEnemy(player))
+        {
+			SpawnCoefficient = 8;
+			activeGroupMultiplier = 4;
+        }
 	}
 }

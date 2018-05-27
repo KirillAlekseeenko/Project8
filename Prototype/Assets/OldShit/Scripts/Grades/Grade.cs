@@ -40,6 +40,7 @@ public abstract class Grade : MonoBehaviour
 	protected abstract void SubscribeToEvents();
     protected abstract void UnsubscribeFromEvents();
     protected abstract void UpdateViewController();
+	protected abstract void HandleValue();
 
     protected void HandleInstantEvent(float value)
     {
@@ -79,6 +80,7 @@ public abstract class Grade : MonoBehaviour
         }
 
         currentValue = Mathf.Clamp(currentValue, 0, maxValue);
+		HandleValue();
         UpdateViewController();
 
         yield return updateInterval;

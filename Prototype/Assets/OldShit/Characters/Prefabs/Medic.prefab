@@ -1332,19 +1332,19 @@ MonoBehaviour:
   sex: 0
   weapon: 0
   animator: {fileID: 95961284371509320}
-  baseHP: 10
+  baseHP: 140
   isRange: 0
-  meleeAttack: 10
+  meleeAttack: 3
   meleeAttackPerSecond: 1
-  meleeAttackRadius: 3
-  rangeAttack: 0
-  rangeAttackPerSecond: 0
-  rangeAttackRadius: 0
+  meleeAttackRadius: 2
+  rangeAttack: 12
+  rangeAttackPerSecond: 1
+  rangeAttackRadius: 10
   assaultSkill: 1
-  speed: 3
+  speed: 4
   sneak: 10
   halfVisible: 1
-  LOS: 12
+  LOS: 15
   possibleUpgrades: []
   possibleRetrainning: []
   canvas: {fileID: 223232549096917184}
