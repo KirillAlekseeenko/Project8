@@ -12,12 +12,7 @@ public class WatchingCamera : ControlPanel {
 		{
 			activationTimer.Reset();
 			IsActivated = true;
-			cameraBeam.material.SetColor ("_TintColor", new Color(
-				1f,
-				1f,
-				1f,
-				0f
-			));
+			cameraBeam.material.SetColor ("_TintColor", new Color(1f, 1f, 1f, 0f));
 		}
 	}
 
@@ -35,12 +30,7 @@ public class WatchingCamera : ControlPanel {
 			activationTimer.UpdateTimer(Time.deltaTime);
 			if (activationTimer.CurrentProgress > 0.98f) {
 				IsActivated = false;
-				cameraBeam.material.SetColor ("_TintColor", new Color(
-					1f,
-					1f,
-					0f,
-					0.1f
-				));
+				cameraBeam.material.SetColor ("_TintColor", new Color(1f, 1f, 0f, 0.1f));
 			}
 		}
 	}

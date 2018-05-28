@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class Mave : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	[SerializeField] private GameObject startPoint;
+
+
+	public void MoveToStart(){
+		transform.position = startPoint.transform.position;
 	}
 }

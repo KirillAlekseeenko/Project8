@@ -55,6 +55,9 @@ public class QuestManager : MonoBehaviour {
 			if (questList [i].id == questID && questList [i].questProgress == QuestProgress.AVAILABLE) {
 				currentQuestsList.Add (questList [i]);
 				questList [i].questProgress = QuestProgress.ACCEPTED;
+				foreach(Task task in questList[i].tasks){
+					task.taskProgress = QuestProgress.ACCEPTED;					
+				}
 				RenewQuestUiInfo.Invoke ();
 				break;
 			}

@@ -56,7 +56,7 @@ public class BuildingTechnology : MonoBehaviour {
 	public void buyTechnology(Technology tech){
 		if (tech.unblocked && Player.HumanPlayer.ResourcesManager.IsEnoughSciencePoints (tech.cost)) {
 			Player.HumanPlayer.ResourcesManager.SpendSciencePoints (tech.cost);
-			tech.bought = true;
+			technologies.PayForTech (tech.technologyID);
 			clearTechList ();
 			PanelOpened (true);
 		}

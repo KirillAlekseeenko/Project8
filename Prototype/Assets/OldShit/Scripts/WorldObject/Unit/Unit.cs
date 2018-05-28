@@ -357,12 +357,17 @@ public class Unit : WorldObject {
 		}
 		updateUI ();
 		if (hp <= 0) {
-			Invoke ("die", 0.5f);
-			audioSource.PlayOneShot (DeathSound);
-			//die ();
-			//////////From Nikita animations
-			if(animator != null)
-				this.Dead ();
+			if (gameObject.GetComponent<Mave> () == null) {
+				Invoke ("die", 0.5f);
+				audioSource.PlayOneShot (DeathSound);
+				//die ();
+				//////////From Nikita animations
+				if (animator != null)
+					this.Dead ();
+			} else {
+				hp = baseHP;
+				gameObject.GetComponent<Mave> ().MoveToStart ();
+			}
 		}
 	}
 
@@ -417,6 +422,7 @@ public class Unit : WorldObject {
 	private void die()
 	{
 		Destroy (gameObject);
+		
 	}
 		
 		

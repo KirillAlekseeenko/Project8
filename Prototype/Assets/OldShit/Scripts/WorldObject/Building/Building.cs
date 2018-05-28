@@ -13,6 +13,12 @@ interface IBuilding{
 
 public class Building : WorldObject, IBuilding{
 
+	public static event System.Action AddGradePenaltyEvent_Hacking;
+	public static event System.Action RemoveGradePenaltyEvent_Hacking;
+
+	public static event System.Action AddGradePenaltyEvent_WithoutHacking;
+	public static event System.Action RemoveGradePenaltyEvent_WithoutHacking;
+
 	[Header("Units Inside")]
 	[SerializeField]
 	protected Vector3Int AmountOfHackersByLevel;
@@ -185,11 +191,11 @@ public class Building : WorldObject, IBuilding{
 			if (this.Owner.IsHuman) {
 				for (int i = 0; i < Level - 1; i++)
 					techTree.UnblockTechnology (connectedTechnologiesIDs[i], true);
-				//techTree.UnblockTechnology (connectedTechnologyID, true);
+				AddGradePenaltyEvent_WithoutHacking ();
 			} else {
 				for (int i = 0; i < Level - 1; i++)
 					techTree.UnblockTechnology (connectedTechnologiesIDs[i], false);
-				//techTree.UnblockTechnology (connectedTechnologyID, false);
+				RemoveGradePenaltyEvent_WithoutHacking ();
 			}
 		}
 	}

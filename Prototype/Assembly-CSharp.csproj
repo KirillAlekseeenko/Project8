@@ -57,6 +57,7 @@
      <Compile Include="Assets\FinalLevel1\Assets\ColorPicker\DrawGUIOrderColorPicker.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\ColorPicker\ObjectColor.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\ColorPicker\PSColor.cs" />
+     <Compile Include="Assets\FinalLevel1\Assets\EndOfLevelConditions.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Scripts\BeamControl.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Scripts\CameraControl.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\ExternalPackages\_LightBeams\Scripts\GameControl.cs" />
@@ -213,6 +214,7 @@
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_CaptureBuilding.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_ClickOnObject.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_Hack_Building.cs" />
+     <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_Hack_Camera.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_Kill_Concrete_Enemies.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_KillEnemies.cs" />
      <Compile Include="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_ObjectsAndNumbers.cs" />

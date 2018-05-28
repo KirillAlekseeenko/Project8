@@ -12,12 +12,13 @@ public class RevealGrade : Grade
     protected override void SubscribeToEvents()
     {
 		StreetCamera.AddGradePenaltyEvent += () => AddOngoingProcess(OngoingProcessType.UnderCamera);
-		StreetCamera.RemoveGradePenaltyEvent += () => RemoveOngoingProcess(OngoingProcessType.UnderCamera);
+		Building.AddGradePenaltyEvent_WithoutHacking += () => AddOngoingProcess (OngoingProcessType.BuildingCapture);
     }
 
     protected override void UnsubscribeFromEvents()
-    {
-        
+    {      
+		StreetCamera.RemoveGradePenaltyEvent += () => RemoveOngoingProcess(OngoingProcessType.UnderCamera);
+		Building.RemoveGradePenaltyEvent_WithoutHacking += () => RemoveOngoingProcess(OngoingProcessType.BuildingCapture);
     }
 
     protected override void UpdateViewController()

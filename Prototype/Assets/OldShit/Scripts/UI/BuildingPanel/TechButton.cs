@@ -22,7 +22,7 @@ public class TechButton : MonoBehaviour, IPointerClickHandler {
 		if (eventData.button == PointerEventData.InputButton.Right) {
 			techIcon.showTechnologyInfo (this);
 		} else if (eventData.button == PointerEventData.InputButton.Left) {
-			techIcon.buyTechnology (this);
+			techIcon.buyTechnology (this);	
 		}
 	}
 

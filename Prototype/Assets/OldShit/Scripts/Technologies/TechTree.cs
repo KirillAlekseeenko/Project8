@@ -18,6 +18,14 @@ public class TechTree : MonoBehaviour {
 	public List<Technology> Technologies{
 		get{ return technologies;}
 	}
+
+	public void PayForTech(int techID){
+		FindTech (techID).bought = true;	
+		if (techID == 5)
+			Player.HumanPlayer.AvailableUpgrades.Add (9);
+		if(techID == 7)
+			Player.HumanPlayer.AvailableUpgrades.Add (11);
+	}
 }
 
 [System.Serializable]

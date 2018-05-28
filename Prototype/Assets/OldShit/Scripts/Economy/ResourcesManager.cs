@@ -39,7 +39,7 @@ public class ResourcesManager
 
     public void SpendSciencePoints(int cost)
     {
-        if (!IsEnoughMoney(cost))
+		if (!IsEnoughSciencePoints(cost))
             throw new UnityException("not enough sciencePoints");
         SciencePoints -= cost;
         UpdateSciencePointsUI();

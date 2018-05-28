@@ -1434,14 +1434,14 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1764252889048520}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 80
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 122
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!82 &82068453313108892
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1593,7 +1593,13 @@ MonoBehaviour:
   sneak: 1
   halfVisible: 1
   LOS: 12
-  possibleUpgrades: []
+  possibleUpgrades:
+  - upgrade: {fileID: 114371201249206468, guid: 10ca7d8765761471cb917c0562cd2fe9,
+      type: 2}
+    cost: 130
+  - upgrade: {fileID: 114161137432453794, guid: 2fea4780fba66493e8cb0c175448ba82,
+      type: 2}
+    cost: 100
   possibleRetrainning: []
   canvas: {fileID: 223479353070890780}
   healthBar: {fileID: 114774489491161866}
