@@ -98,9 +98,11 @@ public class CrowdZone : MonoBehaviour {
 					var citizen = findCitizen ();
 					if (citizen != null) {
 						citizen.changeOwner (recrData.Player);
+						citizen.Speed = 3;
                         findFreeCitizens(recrData.getRandomRecruiter(), 1);
 					} else {
 						baseUnit.Owner = recrData.Player;
+						baseUnit.Speed = 3;
 						attachedSpawn.SpawnUnit (baseUnit);
 					}
 				}

@@ -14,7 +14,7 @@ public class TechButton : MonoBehaviour, IPointerClickHandler {
 	void Start(){
 		color = GetComponent<Image> ().color;
 		if (!technology.unblocked) {
-			gameObject.GetComponent<Image> ().color = new Color (0f, 0f, 0f, 0.5f);
+			gameObject.GetComponent<Image> ().color = new Color (0.31f, 0.31f, 0.31f, 0.7f);
 		}
 	}
 
@@ -22,7 +22,7 @@ public class TechButton : MonoBehaviour, IPointerClickHandler {
 		if (eventData.button == PointerEventData.InputButton.Right) {
 			techIcon.showTechnologyInfo (this);
 		} else if (eventData.button == PointerEventData.InputButton.Left) {
-			techIcon.buyTechnology (this);	
+			techIcon.buyTechnology (this);
 		}
 	}
 

@@ -12,13 +12,15 @@ public class BuildingTechnology : MonoBehaviour {
 	[SerializeField] private Text currentTechName;
 	[SerializeField] private Image currentTech;
 	[SerializeField] private Image unitImage;
-
+	[SerializeField] private GameObject connector;
 	private List<GameObject> activeTechnologies;
 	private BuildingPanelManager buildPanel;
 
 	void Awake(){
 		activeTechnologies = new List<GameObject> ();
 		buildPanel = GameObject.FindObjectOfType<BuildingPanelManager> ();
+		techIcon.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gameObject.GetComponent<RectTransform>().rect.height);
+		connector.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gameObject.GetComponent<RectTransform>().rect.height);
 	}
 
 	private void clearTechList(){
@@ -27,10 +29,12 @@ public class BuildingTechnology : MonoBehaviour {
 			Destroy (activeTechnologies [i]);
 		}
 		activeTechnologies.Clear ();
+		connector.SetActive(false);
 	}
 
 	public void PanelOpened(bool enable){
 		if (enable && activeTechnologies.Count == 0) {
+			connector.SetActive(true);
 			//Все технологи первого уровня развития
 			foreach (Technology tech in technologies.Technologies.FindAll(x => x.nextTechnologyID != 0)) {
 				var icon = Instantiate (techIcon, gameObject.transform);

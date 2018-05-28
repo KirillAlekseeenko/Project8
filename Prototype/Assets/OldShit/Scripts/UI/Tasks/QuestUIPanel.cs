@@ -18,7 +18,8 @@ public class QuestUIPanel : MonoBehaviour {
 	private void Awake(){
 		questButtons = new List<GameObject> ();
 		taskButtons = new List<GameObject> ();
-	
+		questPrefab.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, gameObject.GetComponent<RectTransform>().rect.width);
+		taskPrefab.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, gameObject.GetComponent<RectTransform>().rect.width * 0.89f);
 		audio = GetComponent<AudioSource> ();
 	}
 

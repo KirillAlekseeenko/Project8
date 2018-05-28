@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 222201188959722908}
   - component: {fileID: 114529225985897948}
   - component: {fileID: 114232883876397574}
+  - component: {fileID: 114998880263742944}
   m_Layer: 5
   m_Name: TaskPrefab
   m_TagString: Untagged
@@ -179,7 +180,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 224812a15f7ad0a48b0e28c28b48ce85, type: 3}
-    m_FontSize: 10
+    m_FontSize: 7
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -191,6 +192,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Task
+--- !u!114 &114998880263742944
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1948651794120124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1254083943, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 8.8
 --- !u!222 &222201188959722908
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -245,7 +259,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 220, y: 25}
+  m_SizeDelta: {x: 160.2, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224435246803250000
 RectTransform:
@@ -254,7 +268,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1122652873282756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1200027, y: 0, z: 0}
+  m_LocalPosition: {x: 3.7527542, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224230619479030776}

@@ -478,6 +478,7 @@ GameObject:
   - component: {fileID: 114988105343621140}
   - component: {fileID: 195895005220292516}
   - component: {fileID: 82741916628549754}
+  - component: {fileID: 114501624898461232}
   m_Layer: 10
   m_Name: Mayv
   m_TagString: Untagged
@@ -2314,6 +2315,18 @@ MonoBehaviour:
   meshResolution: 0.3
   edgeResolveIterations: 4
   edgeDstThreshold: 0.5
+--- !u!114 &114501624898461232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1466402794175272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140103745abf44731a2c17150ba51755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recruitPower: 2
 --- !u!114 &114590761579591718
 MonoBehaviour:
   m_ObjectHideFlags: 1

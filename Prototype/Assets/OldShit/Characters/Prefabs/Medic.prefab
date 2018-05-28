@@ -785,7 +785,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1962266221809930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.896311, y: 1.6499978, z: -34.4326}
+  m_LocalPosition: {x: 51.154865, y: 41.610565, z: 36.29539}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4442572527112612}
@@ -1288,10 +1288,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   income: 0
-  healAmount: 0
-  healPerSecond: 0
-  healRadius: 0
-  healTrace: {fileID: 0}
+  healAmount: 10
+  healPerSecond: 5
+  healRadius: 5
+  healTrace: {fileID: 198577520321830218, guid: 4812a1ca209a54b26b63ee229588ea81,
+    type: 2}
 --- !u!114 &114500803648763852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1411,9 +1412,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1.9625735
+  m_Height: 1.9690669
   m_Direction: 1
-  m_Center: {x: 0, y: 1.1155915, z: 0}
+  m_Center: {x: 0, y: 1.1123449, z: 0}
 --- !u!137 &137549710327246896
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1506,7 +1507,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!222 &222196230789986432

@@ -23,8 +23,14 @@ public class BuildingUpgradePanel : MonoBehaviour {
 	[SerializeField] private Text capacityInfo;
 	[SerializeField] private Text levelTechnologyName;
 	[SerializeField] private Image levelTechnologyImage;
+	[SerializeField] private GameObject connector;
+	void Start(){
+		connector.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gameObject.GetComponent<RectTransform>().rect.height);
+        //connector.transform.position = new Vector2(connector.transform.position.x, transform.position.y);  
+	}
 
 	void OnEnable(){
+		connector.SetActive(true);
 		level1Image.sprite = bpManager.currentBuilding.vTools.buildingLevels [0].image;
 		level1Cost.text = bpManager.currentBuilding.vTools.buildingLevels [0].cost.ToString();
 
@@ -33,6 +39,9 @@ public class BuildingUpgradePanel : MonoBehaviour {
 
 		level3Image.sprite = bpManager.currentBuilding.vTools.buildingLevels [2].image;
 		level3Cost.text = bpManager.currentBuilding.vTools.buildingLevels [2].cost.ToString();
+	}
+	void OnDisable(){
+		connector.SetActive(false);
 	}
 
 	public void buyUpgrade(int upgradeLevel){

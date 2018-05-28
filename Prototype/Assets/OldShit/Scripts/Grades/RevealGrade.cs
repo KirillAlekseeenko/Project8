@@ -13,17 +13,21 @@ public class RevealGrade : Grade
     {
 		StreetCamera.AddGradePenaltyEvent += () => AddOngoingProcess(OngoingProcessType.UnderCamera);
 		Building.AddGradePenaltyEvent_WithoutHacking += () => AddOngoingProcess (OngoingProcessType.BuildingCapture);
+		Building.AddGradePenaltyEvent_FightInside += () => AddOngoingProcess(OngoingProcessType.BuildingRetreive);
+		LevelStatistics.AddGradePenaltyEvent_Fighting += () => AddOngoingProcess(OngoingProcessType.Battle);
     }
 
     protected override void UnsubscribeFromEvents()
     {      
 		StreetCamera.RemoveGradePenaltyEvent += () => RemoveOngoingProcess(OngoingProcessType.UnderCamera);
 		Building.RemoveGradePenaltyEvent_WithoutHacking += () => RemoveOngoingProcess(OngoingProcessType.BuildingCapture);
-    }
+		Building.RemoveGradePenaltyEvent_FightInside += () => RemoveOngoingProcess(OngoingProcessType.BuildingRetreive);
+		LevelStatistics.RemoveGradePenaltyEvent_Fighting += () => RemoveOngoingProcess(OngoingProcessType.Battle);
+   }
 
     protected override void UpdateViewController()
-    {
-        gradesViewController.SetRevealGrade(currentValue);
+	{	
+        gradesViewController.SetRevealGrade(currentValue / 100);
     }
 
 	protected override void HandleValue()
@@ -46,4 +50,11 @@ public class RevealGrade : Grade
 			if (SafeStage != null) SafeStage();
 		}
 	}
+
+	public void HandleInstantEvent(float value)
+	{
+		currentValue += value;
+		currentValue = Mathf.Clamp(currentValue, 0, maxValue);
+	}
+
 }

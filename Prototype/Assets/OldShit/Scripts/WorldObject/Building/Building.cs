@@ -19,6 +19,9 @@ public class Building : WorldObject, IBuilding{
 	public static event System.Action AddGradePenaltyEvent_WithoutHacking;
 	public static event System.Action RemoveGradePenaltyEvent_WithoutHacking;
 
+	public static event System.Action AddGradePenaltyEvent_FightInside;
+	public static event System.Action RemoveGradePenaltyEvent_FightInside;
+
 	[Header("Units Inside")]
 	[SerializeField]
 	protected Vector3Int AmountOfHackersByLevel;
@@ -63,6 +66,7 @@ public class Building : WorldObject, IBuilding{
 		vTools = gameObject.GetComponent<VisualisationTools>();
 		battlePlan = gameObject.AddComponent<Battle>();
 		battlePlan.BuildingOwner = Owner;
+
 	}
 
 	protected void Start(){
@@ -80,7 +84,7 @@ public class Building : WorldObject, IBuilding{
 		IsVisible = true;
 		unbanishedYet = 0;
 		//После того, как мы нажимаем кнопку "выгнать всех юнитов из здания"
-		if (banishUnits) {
+		if (banishUnits && this.Owner.IsHuman) {
 			foreach(Unit unit in unitsInside){
 				if (Vector3.Distance (unit.gameObject.transform.position, entrance.transform.position) > 2) {
 					unit.gameObject.GetComponent<Rigidbody> ().MovePosition (entrance.transform.position);
@@ -95,7 +99,7 @@ public class Building : WorldObject, IBuilding{
 			}
 		}
 		//После того, как выгоняем только одного из юнитов
-		else if (banishOneUnit) {
+		else if (banishOneUnit  && this.Owner.IsHuman) {
 			if (Vector3.Distance (banishedOne.transform.position, entrance.transform.position) > 1) {
 				banishedOne.GetComponent<Rigidbody> ().MovePosition (entrance.transform.position);
 				unbanishedYet++;
@@ -108,7 +112,9 @@ public class Building : WorldObject, IBuilding{
 	}
 
 	protected void startBattle(){
+		if(AddGradePenaltyEvent_FightInside != null) AddGradePenaltyEvent_FightInside ();
 		battlePlan.StartBattle();
+		Debug.Log ("FIIIIIIIGHT");
 	}
 
 	protected void RefreshUnitsInside(){
@@ -126,14 +132,14 @@ public class Building : WorldObject, IBuilding{
 		}
 		set {
 			base.IsSelected = value;
-			if (owner.IsHuman) {
+			//if (owner.IsHuman) {
 				if (value) {
 					uiHandler.showPanel(true, this);
 					vTools.SetBlinking (true);
 				} else {
 					vTools.SetBlinking (false);
 				}
-			}
+			//}
 
 		}
 	}
@@ -156,7 +162,7 @@ public class Building : WorldObject, IBuilding{
 	}
 
 	public bool AddUnit(Unit unit){
-		if (unit.Owner == gameObject.GetComponentInParent<Building> ().Owner) {
+		if (unit.Owner == this.Owner) {
 			if((unit.UnitClassID == scientistID
 				&& unitsInside.FindAll(x => x.UnitClassID == scientistID).Count < AmountOfScientistsByLevel[Level - 1]) ||
 				(unit.UnitClassID == hackerID
@@ -183,21 +189,27 @@ public class Building : WorldObject, IBuilding{
 		if (result == 1) {
 			this.Owner = newOwner;
 			GetComponent<MeshRenderer> ().material.color = owner.Color;
-
+		
+			Debug.Log (unitsInside.Count);
+			unitsInside.RemoveAll (x => x.HP <= 0);
 			unitsInside.Clear ();
-			foreach(Unit unit in units){
-				unitsInside.Add (unit);
-			}
 			if (this.Owner.IsHuman) {
 				for (int i = 0; i < Level - 1; i++)
 					techTree.UnblockTechnology (connectedTechnologiesIDs[i], true);
-				AddGradePenaltyEvent_WithoutHacking ();
+				foreach (Unit u in units) {
+					unitsInside.Add (u);
+					Debug.Log (u);
+				}
 			} else {
+				//Теряем здание
 				for (int i = 0; i < Level - 1; i++)
 					techTree.UnblockTechnology (connectedTechnologiesIDs[i], false);
-				RemoveGradePenaltyEvent_WithoutHacking ();
+				GameObject.FindObjectOfType<RevealGrade> ().HandleInstantEvent (10);
+				GameObject.FindObjectOfType<PopularityGrade> ().HandleInstantEvent (-20);
+				
 			}
 		}
+		if(RemoveGradePenaltyEvent_FightInside != null)RemoveGradePenaltyEvent_FightInside ();
 	}
 		
 	public bool InvadeUnit(Unit unit){
@@ -209,6 +221,7 @@ public class Building : WorldObject, IBuilding{
 			}
 			Invoke ("startBattle", 5f);
 		}
+
 		battlePlan.AddToBattlePlan(unit);
 		unit.gameObject.SetActive (false);
 		return true;
@@ -226,11 +239,12 @@ public class Building : WorldObject, IBuilding{
 	public int CurrentLevel { 
 		get { return Level; }
 		set{
-			if (Player.HumanPlayer.ResourcesManager.IsEnoughMoney (vTools.buildingLevels [value - 1].cost)) {
+			if (this.Owner.IsHuman && Player.HumanPlayer.ResourcesManager.IsEnoughMoney (vTools.buildingLevels [value - 1].cost)) {
 				Player.HumanPlayer.ResourcesManager.SpendMoney (vTools.buildingLevels [value - 1].cost);
 				Level = value;
 				techTree.UnblockTechnology (connectedTechnologiesIDs[value - 2], true);
 				vTools.SetModel (Level);
+				GameObject.FindObjectOfType<PopularityGrade> ().HandleInstantEvent (10);
 			}
 		}
 	}

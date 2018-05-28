@@ -23,8 +23,10 @@ public class Battle : MonoBehaviour{
 	private ArrayList defendersDamageDistribution;
 	private ArrayList attackersDamageDistribution;
 
+	private Building thisBuilding;
+
 	private void Awake(){
-		Building thisBuilding = gameObject.GetComponent <Building>();
+		thisBuilding = gameObject.GetComponent <Building>();
 		endBattleEvent = new EndBattle(thisBuilding.EndAutoBattle);
 
 		attackers = new List<Unit> ();
@@ -84,7 +86,7 @@ public class Battle : MonoBehaviour{
 		attackers.RemoveAll (item => item.HP <= 0);
 		defenders.RemoveAll (item => item.HP <= 0);
 		if (attackers.Count > 0 && defenders.Count > 0)
-			Invoke ("checkRound", 0.5f);
+			Invoke ("checkRound", 1f);
 		else {
 			if (defenders.Count <= 0) {
 				endBattleEvent (1, attackerOwner, attackers);	

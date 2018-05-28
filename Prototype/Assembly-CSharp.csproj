@@ -152,6 +152,7 @@
      <Compile Include="Assets\FinalLevel1\Assets\MoveElevator.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\MoveSimulateFloor.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\NeonBlinking.cs" />
+     <Compile Include="Assets\FinalLevel1\Assets\OnAgain.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\Plugins\Excelsior\CSFHI\Scripts\DoNotDestroyOnLoad_perName.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\Plugins\Excelsior\CSFHI\Scripts\ExampleCam.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\Plugins\Excelsior\CSFHI\Scripts\ExampleUI.cs" />
@@ -248,6 +249,7 @@
      <Compile Include="Assets\OldShit\Scripts\UI\FogProjector.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\ForceAspect.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\GradesViewController.cs" />
+     <Compile Include="Assets\OldShit\Scripts\UI\MainMenu.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\Minimap\Blip.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\Minimap\CameraFrustumCameraFrustum.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\Minimap\MiniMap.cs" />
@@ -261,6 +263,7 @@
      <Compile Include="Assets\OldShit\Scripts\UI\Tasks\QuestUIPanel.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\Tasks\TaskDisplay.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\Tasks\TaskRecieve.cs" />
+     <Compile Include="Assets\OldShit\Scripts\UI\Tooltip.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\UnitPanel\UnitIcon.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\UnitPanel\UPManager.cs" />
      <Compile Include="Assets\OldShit\Scripts\UI\UpgradePanel\UpgradeIcon.cs" />

@@ -23,6 +23,7 @@ public abstract class Grade : MonoBehaviour
 	private void OnEnable()
     {
         SubscribeToEvents();
+		UnsubscribeFromEvents();
     }
 
     private void OnDisable()
@@ -67,23 +68,21 @@ public abstract class Grade : MonoBehaviour
 
     private IEnumerator UpdateValue()
     {
-        if(ongoingProcesses.Count == 0)
-        {
-            Decay();
-        }
-        else
-        {
-            foreach(var process in ongoingProcesses)
-            {
-                HandleOngoingProcess(process);
-            }
-        }
+		while (true) {
+			if (ongoingProcesses.Count == 0) {	
+				Decay ();
+			} else {
+				foreach (var process in ongoingProcesses) {
+					HandleOngoingProcess (process);
+				}
+			}
 
-        currentValue = Mathf.Clamp(currentValue, 0, maxValue);
-		HandleValue();
-        UpdateViewController();
+			currentValue = Mathf.Clamp (currentValue, 0, maxValue);
+			HandleValue ();
+			UpdateViewController ();
 
-        yield return updateInterval;
+			yield return updateInterval;
+		}
     }
 
     private void Decay()

@@ -7,6 +7,14 @@ public class Recruiter : MonoBehaviour {
 	[SerializeField] private int recruitPower;
     private bool isRecruiting;
 
+	private RevealGrade revGrade;
+	private PopularityGrade popGrade;
+
+	void Awake(){
+		revGrade = GameObject.FindObjectOfType<RevealGrade> ();
+		popGrade = GameObject.FindObjectOfType<PopularityGrade> ();
+	}
+
     public bool IsRecruiting
     {
         get { return isRecruiting; }
@@ -24,6 +32,8 @@ public class Recruiter : MonoBehaviour {
 		if (crowdZone != null) {
 			crowdZone.StartRecruiting (this);
             IsRecruiting = true;
+			revGrade.HandleInstantEvent (5);
+			popGrade.HandleInstantEvent (10);
 		}
 	}
 	void OnTriggerExit(Collider other)

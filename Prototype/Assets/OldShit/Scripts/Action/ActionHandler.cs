@@ -54,7 +54,6 @@ public class ActionHandler : MonoBehaviour {
 		}
 
         center /= unitGroup.Count;
-		Debug.Log(center);
 		float height = center.y;
 		
         int squareSize = GetNextSquare(unitGroup.Count);
@@ -110,10 +109,8 @@ public class ActionHandler : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit))
         {
-			Debug.Log(LayerMask.LayerToName(hit.collider.gameObject.layer)); ////
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-				Debug.Log(selectionHandler.SelectedUnits.Count);
                 MoveUnitsWithFormation(hit.point, selectionHandler.SelectedUnits);
             }
             else

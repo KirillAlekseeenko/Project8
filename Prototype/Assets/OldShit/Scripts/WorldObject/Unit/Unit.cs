@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Unit : WorldObject {
 
+	public static event System.Action AddGradePenaltyEvent_Fighting;
+	public static event System.Action RemoveGradePenaltyEvent_Fighting;
+
 	//////////////////////////////////////////////////////////////
 	public enum PeopleWeapon{
 		NONE,
@@ -118,7 +121,7 @@ public class Unit : WorldObject {
 	private float visibilityUpdateTime = 0.5f;
 
     private bool firstEnableCalled = false;
-	public float Speed{ get { return speed; } }
+	public float Speed{ get { return speed; } set { speed = value;}}
     public int UnitClassID {get { return unitClassID; } }
 	public float Sneak { get { return sneak; } }
 	public bool HalfVisible { get { return halfVisible; } }
@@ -305,17 +308,9 @@ public class Unit : WorldObject {
 			if (animator != null) {
 					this.Attack ();
 			}
-			Invoke ("checkIfStopped", 0.4f);
-			// sound
-		}
-	}
-	/// ////////////////////////////////////////////////////
-	private void checkIfStopped(){
-		if (!stopped) {
 			currentEnemyUnit.SufferDamage ((int)(rangeAttack * MakeDamageMultiplier));
 			spawnParticleEffect (currentEnemyUnit);
-		} else {
-			stopped = false;
+			// sound
 		}
 	}
 
@@ -364,6 +359,8 @@ public class Unit : WorldObject {
 				//////////From Nikita animations
 				if (animator != null)
 					this.Dead ();
+				if (!Owner.IsHuman)
+					GameObject.FindObjectOfType<RevealGrade> ().HandleInstantEvent (5);
 			} else {
 				hp = baseHP;
 				gameObject.GetComponent<Mave> ().MoveToStart ();
