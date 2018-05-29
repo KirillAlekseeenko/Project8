@@ -59,7 +59,7 @@ public class UnitIcon : MonoBehaviour, IPointerClickHandler
             unitPanel.RADOunt.text = currentUnitType.RangeAttackRadius.ToString();
             unitPanel.SPOut.text = currentUnitType.Speed.ToString();
         }
-        if(eventData.button == PointerEventData.InputButton.Left){
+		if(eventData.button == PointerEventData.InputButton.Left && currentUnitType.Owner.IsHuman){
             upgradePanel.ShowUpgradeIcons(currentUnitType, unitSet);
             if (TurnOnUpgradeMode != null)
                 TurnOnUpgradeMode();

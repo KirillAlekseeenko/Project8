@@ -21,7 +21,7 @@ public class ResourcesManager
 
     public bool IsEnoughMoney(int cost)
     {
-        return Money > cost;
+        return Money >= cost;
     }
 
     public bool IsEnoughSciencePoints(int cost)
