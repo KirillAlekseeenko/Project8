@@ -11,6 +11,10 @@ public class StreetCamera : ControllableItem {
 	[SerializeField] private float viewRadius;
 	[SerializeField] [Range(0, 180)] private float angle;
 
+	private Transform cameraBeam;
+
+	[SerializeField] private List<string> visibleUnits = new List<string>(); 
+
 	private Timer checkSectorTimer = new Timer(1.0f);
 	private VisionArcComponent visionArcComponent;
 	private bool playerUnitsUnderCamera = false;
@@ -31,6 +35,7 @@ public class StreetCamera : ControllableItem {
 	private void Start()
 	{
 		visionArcComponent = GetComponent<VisionArcComponent>();
+		cameraBeam = transform.Find("CameraBeam");
 	}
 
 	private void Update()
@@ -45,14 +50,15 @@ public class StreetCamera : ControllableItem {
 			}
 		}
 	}
-
+    
     private void CheckSector()
 	{
-		var groundPosition = new Vector3(transform.position.x, 0, transform.position.z);
+		var groundPosition = cameraBeam.position;
+        
 		var playerUnits = Physics.OverlapSphere(groundPosition, viewRadius, LayerMask.GetMask("Unit"))
 								 .Select(collider => collider.GetComponent<Unit>())
 								 .Where(unit => unit != null)
-								 .Where(unit => unit.Owner == Player.HumanPlayer && IsObjectInsideTheArc(groundPosition, unit));
+		                         .Where(unit => unit.Owner == Player.HumanPlayer);
 		
 		if(playerUnits.Count() > 0)
 		{
