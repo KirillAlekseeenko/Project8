@@ -19,7 +19,7 @@ public class Spawn : MonoBehaviour {
 
 	void Update(){
 		if (moving) {
-			if (Vector3.Distance (movedUnit.transform.position, movePoint.position) > 0.1) {
+			if (Vector3.Distance (movedUnit.transform.position, movePoint.position) > 0.01) {
 				movedUnit.GetComponent<Rigidbody> ().MovePosition (movePoint.position);
 				moving = false;
 			}

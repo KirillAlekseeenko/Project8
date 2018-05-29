@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33705619229642658}
   - component: {fileID: 23057447337759390}
   - component: {fileID: 65383195388108316}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army5 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33091275731371666}
   - component: {fileID: 23590475842859444}
   - component: {fileID: 65021049622679868}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 33045844654305556}
   - component: {fileID: 23879949283345334}
   - component: {fileID: 65433819375191922}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 33698026945778934}
   - component: {fileID: 23255096770160340}
   - component: {fileID: 65213282934171480}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 33019228693634572}
   - component: {fileID: 23860657088857148}
   - component: {fileID: 65509416352175166}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 4990706188042214}
   - component: {fileID: 33462129655340370}
   - component: {fileID: 23055001499684972}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Net-Vent-Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4913256505033194}
   - component: {fileID: 33706168402236384}
   - component: {fileID: 23885117563180514}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Blades-Vent-Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 33644353769959416}
   - component: {fileID: 23856772491653664}
   - component: {fileID: 65976095554029874}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 33584738442287272}
   - component: {fileID: 23109903806098546}
   - component: {fileID: 65922366412664846}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 4927576790881866}
   - component: {fileID: 33190665614355446}
   - component: {fileID: 23318780792318088}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Vent-Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4788895310716304}
   - component: {fileID: 95988672214070186}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Vent-Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 33868561355177850}
   - component: {fileID: 23146017149748970}
   - component: {fileID: 65747816631384322}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 33672099266227876}
   - component: {fileID: 23419605346749414}
   - component: {fileID: 65283272446631184}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 33992284070035176}
   - component: {fileID: 23078960473470718}
   - component: {fileID: 65363383101682440}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4481436298158562}
   - component: {fileID: 95051714225489342}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Vent-Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 33414104643539026}
   - component: {fileID: 23740914437955612}
   - component: {fileID: 82236691208309190}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SM_Prop_Aircon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 33316213070012902}
   - component: {fileID: 23578408373020108}
   - component: {fileID: 65342643131918310}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 4792145569606376}
   - component: {fileID: 33524698190152658}
   - component: {fileID: 23406906169637208}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Vent-Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 33756832152198002}
   - component: {fileID: 23837751162054124}
   - component: {fileID: 65331719016552116}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army4 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 33438592934369716}
   - component: {fileID: 23732042611798512}
   - component: {fileID: 65557835594206732}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 33229971960590640}
   - component: {fileID: 23487447275220806}
   - component: {fileID: 82377168747119780}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SM_Prop_Aircon (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 33431051184977172}
   - component: {fileID: 23911133824085900}
   - component: {fileID: 65385505546903996}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 4551937482410128}
   - component: {fileID: 33057461701124990}
   - component: {fileID: 23211336115745786}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Blades-Vent-Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 33885350053291468}
   - component: {fileID: 23707245215357648}
   - component: {fileID: 65132323119544772}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4496723986558248}
   - component: {fileID: 82945854152638046}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 33347459750768786}
   - component: {fileID: 23259716898499914}
   - component: {fileID: 65127399972820740}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 33097863410130910}
   - component: {fileID: 23717870634008278}
   - component: {fileID: 65517286104505180}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 33668559525833510}
   - component: {fileID: 23874213928508604}
   - component: {fileID: 65481324400975236}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 33987519376486592}
   - component: {fileID: 23210945561864972}
   - component: {fileID: 65120166151209636}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 33245265051890832}
   - component: {fileID: 23772449362845588}
   - component: {fileID: 65516632256430476}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +548,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4317856710449876}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army_level2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 4041249948500608}
   - component: {fileID: 33561941234897532}
   - component: {fileID: 23408937853591040}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Net-Vent-Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 33661100753378334}
   - component: {fileID: 23189779161485100}
   - component: {fileID: 65324176869064804}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army3 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 33773764874793950}
   - component: {fileID: 23453695640400696}
   - component: {fileID: 65629850526812218}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: army5
   m_TagString: Untagged
   m_Icon: {fileID: 0}

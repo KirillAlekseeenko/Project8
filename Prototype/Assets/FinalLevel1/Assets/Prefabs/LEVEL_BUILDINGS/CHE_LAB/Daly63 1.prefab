@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33558095506470884}
   - component: {fileID: 23108529994508196}
   - component: {fileID: 65874827778527104}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NII_5 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33282129541675440}
   - component: {fileID: 23489826901149310}
   - component: {fileID: 65820195595182770}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly63_wall12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 33017943445991078}
   - component: {fileID: 23428824546657868}
   - component: {fileID: 65011567505138134}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly62_wall12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 33052449111650674}
   - component: {fileID: 23566680637359910}
   - component: {fileID: 65318030084573480}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly62_colum (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 4403230383861170}
   - component: {fileID: 33086016243712860}
   - component: {fileID: 23644165054058904}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: daly22 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 33145621070691006}
   - component: {fileID: 23017937085521632}
   - component: {fileID: 65359111287144882}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: daly1 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 33496103898782660}
   - component: {fileID: 23234210712313472}
   - component: {fileID: 65113846726598994}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly62_wall23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 4028470142895150}
   - component: {fileID: 33314341001881712}
   - component: {fileID: 23028375820244818}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly63_wall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 33669019356228904}
   - component: {fileID: 23874120293969468}
   - component: {fileID: 65837132149543908}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly62_colum (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 4468974925511912}
   - component: {fileID: 33182266105000110}
   - component: {fileID: 23884722003659310}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: daly12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 33447645165605616}
   - component: {fileID: 23886527167697846}
   - component: {fileID: 65088951947525730}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly62_colum (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4236494908773068}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly63 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 33571329364890234}
   - component: {fileID: 23266398741812260}
   - component: {fileID: 65022934315982978}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NII_5 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 4804013593537400}
   - component: {fileID: 33859417724398118}
   - component: {fileID: 23568590643003972}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NII_5 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 33198359386483616}
   - component: {fileID: 23880075014204486}
   - component: {fileID: 65224098404161738}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly63_wall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 33623315262512284}
   - component: {fileID: 23922942627546608}
   - component: {fileID: 65756427407480738}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: daly_ciling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 4213506890893322}
   - component: {fileID: 33954354465259016}
   - component: {fileID: 23800762748268624}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: daly22 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 33067156345488332}
   - component: {fileID: 23265158920973380}
   - component: {fileID: 65881568736706254}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly62_colum (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 33281535030079930}
   - component: {fileID: 23688857423426646}
   - component: {fileID: 65712422736271846}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly62_colum (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 4925801105080776}
   - component: {fileID: 33055551370898114}
   - component: {fileID: 23046109903762188}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: daly_ciling (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 4188218502567898}
   - component: {fileID: 33949066383375298}
   - component: {fileID: 23358453855040146}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly63_wall2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 33242630595023598}
   - component: {fileID: 23725130632363948}
   - component: {fileID: 65611190037934486}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Daly62_colum (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
