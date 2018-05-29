@@ -5,7 +5,7 @@ using UnityEngine;
 public class Task_Kill_Concrete_Enemies : TaskResolver {
 
 	[SerializeField]
-	private List<Unit> enemiesToBeMurdered;
+	private List<GameObject> enemiesToBeMurdered;
 
 	void Start(){
 		StartCoroutine (checkCondition ());
@@ -15,13 +15,14 @@ public class Task_Kill_Concrete_Enemies : TaskResolver {
 
 	protected IEnumerator checkCondition(){
 		while(true){
-			foreach (Unit unit in enemiesToBeMurdered) {
-				if (unit.HP < 0)
+			foreach (GameObject unit in enemiesToBeMurdered) {
+				if (unit.GetComponent<Unit>().HP < 0)
 					enemiesToBeMurdered.Remove (unit);
 			}
 			//Если все враги из этого списка были убиты, то задание выполнено
 			if (enemiesToBeMurdered.Count == 0)
 				break;
+			yield return new WaitForSeconds (1);
 		}
 		completeTask ();
 		yield return null;

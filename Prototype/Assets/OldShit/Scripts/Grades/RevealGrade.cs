@@ -57,4 +57,8 @@ public class RevealGrade : Grade
 		currentValue = Mathf.Clamp(currentValue, 0, maxValue);
 	}
 
+	public float CurrentValue{
+		get{return currentValue;}
+	}
+
 }
