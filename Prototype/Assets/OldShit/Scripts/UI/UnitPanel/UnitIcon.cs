@@ -63,7 +63,8 @@ public class UnitIcon : MonoBehaviour, IPointerClickHandler
             unitPanel.SPOut.text = currentUnitType.Speed.ToString();
 			//SoundMain.instance.Play (rightClick);
         }
-		if(eventData.button == PointerEventData.InputButton.Left){
+
+		if(eventData.button == PointerEventData.InputButton.Left && currentUnitType.Owner.IsHuman){
             upgradePanel.ShowUpgradeIcons(currentUnitType, unitSet);
 			SoundMain.instance.Play (leftClick);
 			if (TurnOnUpgradeMode != null)

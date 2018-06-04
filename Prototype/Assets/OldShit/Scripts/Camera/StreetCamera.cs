@@ -9,11 +9,8 @@ public class StreetCamera : ControllableItem {
 	public static event System.Action RemoveGradePenaltyEvent;
 
 	[SerializeField] private float viewRadius;
-	[SerializeField] [Range(0, 180)] private float angle;
 
 	private Transform grounds;
-
-	[SerializeField] private List<string> visibleUnits = new List<string>(); 
 
 	private Timer checkSectorTimer = new Timer(1.0f);
 	private VisionArcComponent visionArcComponent;
@@ -56,9 +53,10 @@ public class StreetCamera : ControllableItem {
 		var groundPosition = grounds.position;
         
 		var playerUnits = Physics.OverlapSphere(groundPosition, viewRadius, LayerMask.GetMask("Unit"))
+
 								 .Select(collider => collider.GetComponent<Unit>())
 								 .Where(unit => unit != null)
-		                         .Where(unit => unit.Owner == Player.HumanPlayer);
+		                         .Where(unit => unit.Owner.IsHuman);
 		
 		if(playerUnits.Count() > 0)
 		{
@@ -77,12 +75,4 @@ public class StreetCamera : ControllableItem {
 			}
 		}
 	}
-
-	private bool IsObjectInsideTheArc(Vector3 groundPosition, Unit enemy)
-    {
-		var vectorToEnemy = enemy.transform.position - groundPosition;
-
-        var direction = transform.TransformDirection(Vector3.forward);
-		return Vector3.Angle(vectorToEnemy, direction) < RTS.Constants.VisionArcAngle / 2;
-    }
 }
