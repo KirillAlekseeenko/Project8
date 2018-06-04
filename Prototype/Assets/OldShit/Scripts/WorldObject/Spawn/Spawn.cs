@@ -15,6 +15,7 @@ public class Spawn : MonoBehaviour {
 	{
 		movedUnit = Instantiate (unit.gameObject, transform.position, Quaternion.identity).GetComponent<Unit>();
 		moving = true;
+		movedUnit.GetComponent<Citizen> ().StopClapping ();
 	}
 
 	void Update(){

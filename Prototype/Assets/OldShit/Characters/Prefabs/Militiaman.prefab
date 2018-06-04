@@ -1062,7 +1062,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1764252889048520}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.206192, y: 41.219395, z: -7.8483553}
+  m_LocalPosition: {x: 44.992516, y: 41.23939, z: 34.6442}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4123126619928870}
@@ -1452,7 +1452,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1462,7 +1462,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 10
+  MaxDistance: 18
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -1723,9 +1723,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1.9322026
+  m_Height: 1.8727467
   m_Direction: 1
-  m_Center: {x: 0, y: 1.0260302, z: 0}
+  m_Center: {x: 0, y: 1.0557581, z: 0}
 --- !u!137 &137071119557000536
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

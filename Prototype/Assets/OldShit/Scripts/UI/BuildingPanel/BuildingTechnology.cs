@@ -13,6 +13,9 @@ public class BuildingTechnology : MonoBehaviour {
 	[SerializeField] private Image currentTech;
 	[SerializeField] private Image unitImage;
 	[SerializeField] private GameObject connector;
+
+	[SerializeField] private AudioClip buyTech;
+
 	private List<GameObject> activeTechnologies;
 	private BuildingPanelManager buildPanel;
 
@@ -63,6 +66,7 @@ public class BuildingTechnology : MonoBehaviour {
 			technologies.PayForTech (tech.technologyID);
 			clearTechList ();
 			PanelOpened (true);
+			SoundMain.instance.Play (buyTech);
 		}
 		
 	}

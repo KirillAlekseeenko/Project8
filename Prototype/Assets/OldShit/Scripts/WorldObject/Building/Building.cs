@@ -22,6 +22,9 @@ public class Building : WorldObject, IBuilding{
 	public static event System.Action AddGradePenaltyEvent_FightInside;
 	public static event System.Action RemoveGradePenaltyEvent_FightInside;
 
+	[SerializeField] private AudioClip openBuilding;
+	[SerializeField] private AudioClip upgradeBuilding;
+
 	[Header("Units Inside")]
 	[SerializeField]
 	protected Vector3Int AmountOfHackersByLevel;
@@ -134,6 +137,7 @@ public class Building : WorldObject, IBuilding{
 			base.IsSelected = value;
 			//if (owner.IsHuman) {
 				if (value) {
+				SoundMain.instance.Play (openBuilding);
 					uiHandler.showPanel(true, this);
 					vTools.SetBlinking (true);
 				} else {
@@ -245,6 +249,7 @@ public class Building : WorldObject, IBuilding{
 				techTree.UnblockTechnology (connectedTechnologiesIDs[value - 2], true);
 				vTools.SetModel (Level);
 				GameObject.FindObjectOfType<PopularityGrade> ().HandleInstantEvent (10);
+				SoundMain.instance.Play (upgradeBuilding);
 			}
 		}
 	}

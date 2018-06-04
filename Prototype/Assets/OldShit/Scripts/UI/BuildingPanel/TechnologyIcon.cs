@@ -12,6 +12,7 @@ public class TechnologyIcon : MonoBehaviour {
 	[SerializeField] private Image techLevel1Image;
 	[SerializeField] private Image techLevel2Image;
 
+
 	private BuildingTechnology techPanel;
 	private Technology techFirst;
 	private Technology techSecond;

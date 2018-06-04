@@ -39,7 +39,7 @@ public class UpgradePanel : MonoBehaviour {
     {
         CleanPanel();
         gameObject.SetActive(true);
-        System.Func<UpgradeInfo, bool> filter = upgrade => unit.Owner.AvailableUpgrades.Contains(upgrade.Upgrade.UnitClassID);
+		System.Func<UpgradeInfo, bool> filter = upgrade => unit.Owner.AvailableUpgrades.Contains(upgrade.Upgrade.UnitClassID) && unit.Owner.IsHuman;
 
         var filteredUpgrades = unit.PossibleUpgrades.Where(filter);
         var filteredRetrainings = unit.PossibleRetrainings.Where(filter);

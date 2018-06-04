@@ -161,6 +161,7 @@
      <Compile Include="Assets\FinalLevel1\Assets\Plugins\Excelsior\CSFHI\Scripts\InterfaceAnmElement.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\Plugins\Excelsior\CSFHI\Scripts\MouseOrbitImproved.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\Prop.cs" />
+     <Compile Include="Assets\FinalLevel1\Assets\SoundMain.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\StairsBlinking.cs" />
      <Compile Include="Assets\FinalLevel1\Assets\WatchingCamera.cs" />
      <Compile Include="Assets\OldShit\Scripts\Action\Action.cs" />

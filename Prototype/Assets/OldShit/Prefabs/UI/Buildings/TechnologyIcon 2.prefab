@@ -319,6 +319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   techIcon: {fileID: 114207736231545444}
+  rightClick: {fileID: 8300000, guid: d67f05ec64b0f4e44bed75984b58b0f9, type: 3}
+  leftClick: {fileID: 8300000, guid: 8a399f7d512ac134bba02d0b61b0f938, type: 3}
   technology:
     bought: 0
     cost: 0
@@ -519,6 +521,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   techIcon: {fileID: 114207736231545444}
+  rightClick: {fileID: 8300000, guid: d67f05ec64b0f4e44bed75984b58b0f9, type: 3}
+  leftClick: {fileID: 8300000, guid: 8a399f7d512ac134bba02d0b61b0f938, type: 3}
   technology:
     bought: 0
     cost: 0

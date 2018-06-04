@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Citizen : MonoBehaviour
 {
+	[SerializeField] private Material convertedManMaterial;
+	[SerializeField] private Material convertedWomanMaterial;
+
     public bool IsFree
     {
         get
@@ -18,16 +21,21 @@ public class Citizen : MonoBehaviour
 
 	public void StartClapping()
     {
-        Debug.Log(gameObject.name + " started clapping");
 		GetComponent<Unit> ().HearAgitator ();
     }
 
     public void StopClapping()
     {
-        Debug.Log(gameObject.name + " stopped clapping");
-		GetComponent<Unit> ().Interrupt();
-		GetComponent<Unit> ().Idle();
-		//ОЧень грубо, но придется пока так сделать
-		GetComponentInChildren<SkinnedMeshRenderer>().material.EnableKeyword("_EMISSION");
+		Unit unit = GetComponent<Unit> ();
+		unit.Interrupt();
+		unit.Idle();
+		unit.animator.SetInteger ("HearAgitVariants", 0);
+		if (unit.Owner.IsHuman) {
+			if (unit.sex == Unit.Sex.FEMALE) {
+				GetComponentInChildren<SkinnedMeshRenderer> ().material = convertedWomanMaterial;
+			} else {
+				GetComponentInChildren<SkinnedMeshRenderer> ().material = convertedManMaterial;
+			}
+		}
 	}
 }

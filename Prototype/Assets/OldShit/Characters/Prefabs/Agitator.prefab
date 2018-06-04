@@ -1452,7 +1452,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1462,7 +1462,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 10
+  MaxDistance: 18
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -1571,7 +1571,7 @@ MonoBehaviour:
   StepSound: {fileID: 8300000, guid: 785f128916239774fb534e367ae4a71f, type: 3}
   DeathSound: {fileID: 8300000, guid: 1fdb1d5a4bd083248afcaf473caaa2a6, type: 3}
   ShootSound: {fileID: 0}
-  AbilitySound: {fileID: 0}
+  AbilitySound: {fileID: 8300000, guid: 9fa0387350a36004bb6998eb1d94204e, type: 3}
   audioSource: {fileID: 82084543819265798}
   unitClassID: 5
   sex: 0

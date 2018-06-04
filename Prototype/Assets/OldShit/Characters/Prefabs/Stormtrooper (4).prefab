@@ -1402,7 +1402,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1801469450847678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.931942, y: 41.219395, z: -7.779619}
+  m_LocalPosition: {x: 6.3188877, y: 41.23939, z: 34.176403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4985661089195932}
@@ -1569,7 +1569,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1579,7 +1579,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 10
+  MaxDistance: 18
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -1827,9 +1827,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2.11437
+  m_Height: 1.934118
   m_Direction: 1
-  m_Center: {x: 0, y: 1.021964, z: 0}
+  m_Center: {x: 0, y: 1.11209, z: 0}
 --- !u!137 &137161599996561926
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2157,7 +2157,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1593300488160718}
   m_LocalRotation: {x: 0.3749303, y: -0, z: -0, w: 0.92705303}
-  m_LocalPosition: {x: -2.2473893, y: 2.27, z: 0.54761505}
+  m_LocalPosition: {x: 0, y: 2.27, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 224037796679558152}
@@ -2167,6 +2167,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 44.04, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.2473893, y: 2.27}
+  m_AnchoredPosition: {x: 0, y: 2.27}
   m_SizeDelta: {x: 2, y: 0.16}
   m_Pivot: {x: 0.5, y: 0.5}

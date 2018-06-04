@@ -8,6 +8,9 @@ public class TechButton : MonoBehaviour, IPointerClickHandler {
 
 	[SerializeField] private TechnologyIcon techIcon;
 
+	[SerializeField] private AudioClip rightClick;
+	[SerializeField] private AudioClip leftClick;
+
 	public Technology technology;
 	public Color color;
 
@@ -21,8 +24,10 @@ public class TechButton : MonoBehaviour, IPointerClickHandler {
 	public void OnPointerClick(PointerEventData eventData){
 		if (eventData.button == PointerEventData.InputButton.Right) {
 			techIcon.showTechnologyInfo (this);
+			SoundMain.instance.Play (rightClick);
 		} else if (eventData.button == PointerEventData.InputButton.Left) {
 			techIcon.buyTechnology (this);
+			SoundMain.instance.Play (leftClick);
 		}
 	}
 

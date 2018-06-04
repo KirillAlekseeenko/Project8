@@ -121,7 +121,7 @@ public class Unit : WorldObject {
 	private float visibilityUpdateTime = 0.5f;
 
     private bool firstEnableCalled = false;
-	public float Speed{ get { return speed; } set { speed = value;}}
+	public float Speed{ get { return speed; } set { speed = value; gameObject.GetComponent<NavMeshAgent> ().speed = value;}}
     public int UnitClassID {get { return unitClassID; } }
 	public float Sneak { get { return sneak; } }
 	public bool HalfVisible { get { return halfVisible; } }
@@ -359,8 +359,6 @@ public class Unit : WorldObject {
 				//////////From Nikita animations
 				if (animator != null)
 					this.Dead ();
-				if (!Owner.IsHuman)
-					GameObject.FindObjectOfType<RevealGrade> ().HandleInstantEvent (5);
 			} else {
 				hp = baseHP;
 				gameObject.GetComponent<Mave> ().MoveToStart ();
@@ -418,6 +416,8 @@ public class Unit : WorldObject {
 
 	private void die()
 	{
+		if (!Owner.IsHuman)
+			GameObject.FindObjectOfType<RevealGrade> ().HandleInstantEvent (10);
 		Destroy (gameObject);
 		
 	}

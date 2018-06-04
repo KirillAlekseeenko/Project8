@@ -11,7 +11,7 @@ public class StreetCamera : ControllableItem {
 	[SerializeField] private float viewRadius;
 	[SerializeField] [Range(0, 180)] private float angle;
 
-	private Transform cameraBeam;
+	private Transform grounds;
 
 	[SerializeField] private List<string> visibleUnits = new List<string>(); 
 
@@ -35,7 +35,7 @@ public class StreetCamera : ControllableItem {
 	private void Start()
 	{
 		visionArcComponent = GetComponent<VisionArcComponent>();
-		cameraBeam = transform.Find("CameraBeam");
+		grounds = transform.Find("Grounds");
 	}
 
 	private void Update()
@@ -53,7 +53,7 @@ public class StreetCamera : ControllableItem {
     
     private void CheckSector()
 	{
-		var groundPosition = cameraBeam.position;
+		var groundPosition = grounds.position;
         
 		var playerUnits = Physics.OverlapSphere(groundPosition, viewRadius, LayerMask.GetMask("Unit"))
 								 .Select(collider => collider.GetComponent<Unit>())

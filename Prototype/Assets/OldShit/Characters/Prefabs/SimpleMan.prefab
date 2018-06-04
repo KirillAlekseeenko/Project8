@@ -405,6 +405,7 @@ GameObject:
   - component: {fileID: 195292312369743638}
   - component: {fileID: 114330429514769980}
   - component: {fileID: 82767392012509794}
+  - component: {fileID: 114760797445713636}
   m_Layer: 10
   m_Name: SimpleMan
   m_TagString: Untagged
@@ -1378,7 +1379,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1388,7 +1389,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 10
+  MaxDistance: 18
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -1498,7 +1499,7 @@ MonoBehaviour:
   rangeAttackPerSecond: 0
   rangeAttackRadius: 0
   assaultSkill: 0
-  speed: 2
+  speed: 3
   sneak: 0
   halfVisible: 1
   LOS: 8
@@ -1627,6 +1628,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114760797445713636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1448134024256592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5abda9d0d3aa40fbbc5fe87d69026c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convertedManMaterial: {fileID: 2100000, guid: 7609567944813dd44a6aa8df2c86224d,
+    type: 2}
+  convertedWomanMaterial: {fileID: 2100000, guid: b31f9eeff5425c14bb191bd7a9d8ff7d,
+    type: 2}
 --- !u!136 &136885404571550494
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1729,7 +1745,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

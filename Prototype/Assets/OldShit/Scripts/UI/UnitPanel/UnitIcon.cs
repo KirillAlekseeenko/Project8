@@ -11,11 +11,14 @@ public class UnitIcon : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private Image iconImage;
     [SerializeField] private Text unitsCount;
+	[SerializeField] private AudioClip rightClick;
+	[SerializeField] private AudioClip leftClick;
     //private GameObject unitPanel;
     [SerializeField] private UPManager unitPanel;
     Unit currentUnitType;
     HashSet<Unit> unitSet;
     UpgradePanel upgradePanel;
+
 
     public Image IconImage { get { return iconImage; } }
     public int ClassID { get { return currentUnitType.UnitClassID; } }
@@ -35,10 +38,10 @@ public class UnitIcon : MonoBehaviour, IPointerClickHandler
 
     public void AddUnit(Unit unit)
     {
-        unitSet.Add(unit);
-        if (currentUnitType == null)
-            currentUnitType = unit;
-        UpdateUnitsCountText();
+		unitSet.Add (unit);
+		if (currentUnitType == null)
+			currentUnitType = unit;
+		UpdateUnitsCountText ();
     }
 
     public void RemoveUnit(Unit unit)
@@ -58,10 +61,12 @@ public class UnitIcon : MonoBehaviour, IPointerClickHandler
             unitPanel.RAOut.text = currentUnitType.RangeAttack.ToString();
             unitPanel.RADOunt.text = currentUnitType.RangeAttackRadius.ToString();
             unitPanel.SPOut.text = currentUnitType.Speed.ToString();
+			//SoundMain.instance.Play (rightClick);
         }
-        if(eventData.button == PointerEventData.InputButton.Left){
+		if(eventData.button == PointerEventData.InputButton.Left){
             upgradePanel.ShowUpgradeIcons(currentUnitType, unitSet);
-            if (TurnOnUpgradeMode != null)
+			SoundMain.instance.Play (leftClick);
+			if (TurnOnUpgradeMode != null)
                 TurnOnUpgradeMode();
         }
     }

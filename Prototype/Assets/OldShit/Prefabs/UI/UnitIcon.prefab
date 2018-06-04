@@ -216,6 +216,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconImage: {fileID: 114108058432696080}
   unitsCount: {fileID: 114546420686660364}
+  rightClick: {fileID: 8300000, guid: d67f05ec64b0f4e44bed75984b58b0f9, type: 3}
+  leftClick: {fileID: 8300000, guid: 8a399f7d512ac134bba02d0b61b0f938, type: 3}
   unitPanel: {fileID: 0}
 --- !u!114 &114811970224334252
 MonoBehaviour:

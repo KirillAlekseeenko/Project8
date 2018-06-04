@@ -123,7 +123,7 @@ public class SelectionHandler : MonoBehaviour
 		if (worldObject is Unit) {
             if (OnUnitSelected != null)
                 OnUnitSelected(worldObject as Unit);
-            if(worldObject.Owner.IsHuman)
+            //if(worldObject.Owner.IsHuman)
 			    perks.AddPerks (worldObject as Unit);
 		}
 	}

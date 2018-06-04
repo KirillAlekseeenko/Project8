@@ -557,6 +557,7 @@ GameObject:
   - component: {fileID: 23972389502901328}
   - component: {fileID: 114050827182163160}
   - component: {fileID: 82928610359474592}
+  - component: {fileID: 114057910626911226}
   m_Layer: 10
   m_Name: SimpleWoman
   m_TagString: Untagged
@@ -1379,7 +1380,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1389,7 +1390,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 10
+  MaxDistance: 18
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -1525,6 +1526,21 @@ MonoBehaviour:
   meshResolution: 0.3
   edgeResolveIterations: 4
   edgeDstThreshold: 0.5
+--- !u!114 &114057910626911226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713457505263022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5abda9d0d3aa40fbbc5fe87d69026c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convertedManMaterial: {fileID: 2100000, guid: 7609567944813dd44a6aa8df2c86224d,
+    type: 2}
+  convertedWomanMaterial: {fileID: 2100000, guid: b31f9eeff5425c14bb191bd7a9d8ff7d,
+    type: 2}
 --- !u!114 &114172976195226088
 MonoBehaviour:
   m_ObjectHideFlags: 1

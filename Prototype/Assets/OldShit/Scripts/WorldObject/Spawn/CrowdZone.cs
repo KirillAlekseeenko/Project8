@@ -97,6 +97,7 @@ public class CrowdZone : MonoBehaviour {
 				if (recrData.ReadyToSpawn (enemiesInside (recrData.Player))) {
 					var citizen = findCitizen ();
 					if (citizen != null) {
+						Debug.Log ("I converted one of them");
 						citizen.changeOwner (recrData.Player);
 						citizen.Speed = 3;
                         findFreeCitizens(recrData.getRandomRecruiter(), 1);
@@ -122,7 +123,7 @@ public class CrowdZone : MonoBehaviour {
 	private Unit findCitizen()
 	{
 		foreach (var unit in unitsInside) {
-            if (unit.Owner.Citizen && !unit.GetComponent<Citizen>().IsFree)
+			if (unit.Owner.Citizen && !unit.GetComponent<Citizen>().IsFree)
 				return unit;
 		}
 		return null;

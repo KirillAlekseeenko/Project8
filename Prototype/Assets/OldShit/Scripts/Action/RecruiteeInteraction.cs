@@ -30,7 +30,6 @@ public class RecruiteeInteraction : Interaction
             }
             if(Vector3.Distance(actionOwner.transform.position, actionReceiver.transform.position) <= distanceToRecruiter)
             {
-				Debug.Log("clap");
                 if(navMeshAgent.hasPath)
                 {
                     navMeshAgent.ResetPath();

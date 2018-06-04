@@ -15,9 +15,9 @@ public class Task_Kill_Concrete_Enemies : TaskResolver {
 
 	protected IEnumerator checkCondition(){
 		while(true){
-			foreach (GameObject unit in enemiesToBeMurdered) {
-				if (unit.GetComponent<Unit>().HP < 0)
-					enemiesToBeMurdered.Remove (unit);
+			for(int i = 0; i < enemiesToBeMurdered.Count; i++) {
+				if (enemiesToBeMurdered[i] == null || enemiesToBeMurdered[i].GetComponent<Unit>().HP < 0)
+					enemiesToBeMurdered.Remove (enemiesToBeMurdered[i]);
 			}
 			//Если все враги из этого списка были убиты, то задание выполнено
 			if (enemiesToBeMurdered.Count == 0)
