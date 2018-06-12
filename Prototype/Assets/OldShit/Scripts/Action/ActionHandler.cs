@@ -118,7 +118,7 @@ public class ActionHandler : MonoBehaviour {
                 var enemyUnit = hit.collider.gameObject.GetComponent<Unit>();
                 var building = hit.collider.gameObject.GetComponent<Building>();
 				var item = hit.collider.gameObject.GetComponent<ControlPanel>();
-                if (enemyUnit != null && enemyUnit.IsVisible)
+                if (enemyUnit != null && enemyUnit.IsVisibleInGame)
                 {
                     if (Player.HumanPlayer.isEnemy(enemyUnit.Owner))
                     {

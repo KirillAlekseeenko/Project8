@@ -53,7 +53,12 @@ public class AttackInteraction : Interaction {
 				
 			var vectorToTarget = actionReceiver.transform.position - actionOwner.transform.position;
 
-			if(vectorToTarget.magnitude > (actionOwner as Unit).pLOS * 1.5)
+			if(actionReceiver.Owner.IsHuman)
+			{
+				(actionReceiver as Unit).SetVisible();
+			}
+
+			if(!actionOwner.Owner.IsHuman && vectorToTarget.magnitude > (actionOwner as Unit).pLOS * 1.2)
 			{
 				navMeshAgentComponent.ResetPath();
                 return new ActionState(true, -1);
@@ -66,7 +71,8 @@ public class AttackInteraction : Interaction {
 			var rayLength = Mathf.Min (attackRadius, vectorToTarget.magnitude + unitWidth);
 			RaycastHit hit;
 
-			if (!Physics.Raycast (ray, out hit, rayLength, ~LayerMask.GetMask("Unit")) && rayLength < attackRadius) { // проверка на отсутствие препятствий
+			if (!Physics.Raycast (ray, out hit, rayLength, ~LayerMask.GetMask("Unit")) && rayLength < attackRadius) // проверка на отсутствие препятствий
+			{ 
 
 				navMeshAgentComponent.ResetPath (); // остановка
 				actionOwner.transform.LookAt(actionReceiver.transform.position);  // поворот
@@ -76,8 +82,10 @@ public class AttackInteraction : Interaction {
 					(actionOwner as Unit).PerformRangeAttack (actionReceiver as Unit);
 				}
 
-			} else { 
-				if (targetPosition != actionReceiver.transform.position || !navMeshAgentComponent.hasPath) { // положение цели изменилось или юнит не имеет никаких указаний
+			} else 
+			{ 
+				if (targetPosition != actionReceiver.transform.position || !navMeshAgentComponent.hasPath) // положение цели изменилось или юнит не имеет никаких указаний
+				{
 					targetPosition = actionReceiver.transform.position;
 					navMeshAgentComponent.SetDestination (targetPosition);
 				}

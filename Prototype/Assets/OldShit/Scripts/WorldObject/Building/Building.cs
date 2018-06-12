@@ -84,7 +84,7 @@ public class Building : WorldObject, IBuilding{
 
 	protected void Update(){
 		base.Update ();
-		IsVisible = true;
+		IsVisibleInGame = true;
 		unbanishedYet = 0;
 		//После того, как мы нажимаем кнопку "выгнать всех юнитов из здания"
 		if (banishUnits && this.Owner.IsHuman) {

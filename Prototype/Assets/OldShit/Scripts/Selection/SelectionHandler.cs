@@ -28,7 +28,7 @@ public class SelectionHandler : MonoBehaviour
 
     public HashSet<WorldObject> ObjectsInsideFrustum { get { return objectsInsideFrustum; } }
     public HashSet<WorldObject> SelectedUnits { get { return selectedUnits; } }
-    public HashSet<WorldObject> AllUnits { get { return allUnits; } }
+    public HashSet<WorldObject> AllPlayerUnits { get { return allUnits; } }
     public PerkHandler Perks { get { return perks; } }
     public CitizenUpgradeHandler CitizenUpgradeHandler { get { return citizenUpgradeHandler; } }
     public MouseInput MouseInput { get { return mouseInput; } }
@@ -54,7 +54,7 @@ public class SelectionHandler : MonoBehaviour
 
 			if (worldObject != null && !selectedUnits.Contains(worldObject)) { // НАДО ЧТО-ТО ДЕЛАТЬ С КОДОМ В ЭТОМ IF!!11
 
-				if (!worldObject.IsVisible)
+				if (!worldObject.IsVisibleInGame)
 					return;
 
 				if (currentlyHighlightedObject != null && !selectedUnits.Contains(currentlyHighlightedObject)) {
@@ -83,7 +83,7 @@ public class SelectionHandler : MonoBehaviour
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit)) {
 			var worldObject = hit.collider.gameObject.GetComponent<WorldObject> ();
-            if (worldObject != null && worldObject.IsVisible) {
+            if (worldObject != null && worldObject.IsVisibleInGame) {
                 if (!worldObject.IsSelected)
                     SelectObject(worldObject);
                 currentlySelected = worldObject;

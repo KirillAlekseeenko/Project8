@@ -54,7 +54,7 @@ public abstract class WorldObject : MonoBehaviour {
 		}
 	}
 
-	public virtual bool IsVisible { get; protected set;}
+	public virtual bool IsVisibleInGame { get; protected set;}
 		
 
     public Sprite Icon {

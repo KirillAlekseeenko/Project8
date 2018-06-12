@@ -5,6 +5,6 @@ using UnityEngine;
 public class Task_KillEnemies : Task_ObjectsAndNumbers {
 
 	protected override int getNecessaryNumber (){
-		return LevelStatistics.instance.DeadEnemyInitsIDs.FindAll (x => x == checkedUnitID).Count;
+		return LevelStatistics.instance.DeadEnemyInitsID.FindAll (x => x == checkedUnitID).Count;
 	}
 }

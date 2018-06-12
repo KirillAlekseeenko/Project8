@@ -118,7 +118,7 @@ public class Unit : WorldObject {
 	[SerializeField] private bool _isVisible = false;
 	protected MeshRenderer meshRenderer;
 	private float visibilityCounter;
-	private float visibilityUpdateTime = 0.5f;
+	private float visibilityUpdateTime = 1.0f;
 
     private bool firstEnableCalled = false;
 	public float Speed{ get { return speed; } set { speed = value; gameObject.GetComponent<NavMeshAgent> ().speed = value;}}
@@ -136,7 +136,9 @@ public class Unit : WorldObject {
 	public float HP { get{ return hp; } }
 	public float AssaultSkill { get{ return assaultSkill; } }
 
-	public override bool IsVisible {
+	public bool IsVisibleByEnemy { get; private set; }
+
+	public override bool IsVisibleInGame {
 		get {
 			return _isVisible || Player.HumanPlayer.isFriend(owner);
 		}
@@ -162,7 +164,7 @@ public class Unit : WorldObject {
 	{
 		if (owner.IsHuman) {
 			Manager.Instance.selectionHandler.ObjectsInsideFrustum.Remove (this);
-            Manager.Instance.selectionHandler.AllUnits.Remove(this);
+            Manager.Instance.selectionHandler.AllPlayerUnits.Remove(this);
 		} else {
 			Manager.Instance.fieldOfViewHandler.Remove (this);
 		}
@@ -177,7 +179,7 @@ public class Unit : WorldObject {
 	protected void OnEnable()
 	{
         if (firstEnableCalled && Owner.IsHuman)
-            Manager.Instance.selectionHandler.AllUnits.Add(this);
+            Manager.Instance.selectionHandler.AllPlayerUnits.Add(this);
         
         firstEnableCalled = true;
 	}
@@ -218,7 +220,7 @@ public class Unit : WorldObject {
 		}
 
         if (Owner.IsHuman)
-            Manager.Instance.selectionHandler.AllUnits.Add(this);
+            Manager.Instance.selectionHandler.AllPlayerUnits.Add(this);
 
 
 		var navMesh = GetComponent<NavMeshAgent> ().speed = this.speed;
@@ -242,7 +244,8 @@ public class Unit : WorldObject {
 			visibilityCounter += Time.deltaTime;
 		} else {
 			visibilityCounter = 0;
-			IsVisible = false;
+			IsVisibleByEnemy = false;
+			IsVisibleInGame = false;
 		}
 
         updateCanvasPosition();
@@ -397,7 +400,8 @@ public class Unit : WorldObject {
 		
 	public void SetVisible()
 	{
-		IsVisible = true;
+		IsVisibleInGame = true;
+		IsVisibleByEnemy = true;
 		visibilityCounter = 0;
 	}
 

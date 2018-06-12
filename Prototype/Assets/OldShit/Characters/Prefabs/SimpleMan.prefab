@@ -1523,6 +1523,7 @@ MonoBehaviour:
   traceParticle: {fileID: 0}
   Weapon: {fileID: 0}
   _isVisible: 0
+  visibilityCounter: 0
 --- !u!114 &114064585621165330
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -61,7 +61,7 @@ public class SkillsPanelManager : MonoBehaviour {
         selectAllButton.interactable = true;
         selectAllButton.onClick.AddListener(() =>
         {
-            foreach(var unit in selectionHandler.AllUnits)
+            foreach(var unit in selectionHandler.AllPlayerUnits)
             {
                 selectionHandler.SelectObject(unit);
             }

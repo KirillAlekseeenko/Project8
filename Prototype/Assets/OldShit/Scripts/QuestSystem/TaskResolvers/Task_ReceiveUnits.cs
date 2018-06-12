@@ -13,7 +13,7 @@ public class Task_ReceiveUnits : Task_ObjectsAndNumbers {
 
 	protected override int getNecessaryNumber (){
 		int n = 0;
-		foreach (Unit unit in sHandler.AllUnits) {
+		foreach (Unit unit in sHandler.AllPlayerUnits) {
 			if (unit.UnitClassID == checkedUnitID)
 				n++;
 		}

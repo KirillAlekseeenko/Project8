@@ -26,7 +26,7 @@ public class Task_Warriors : TaskResolver{
 
 	protected int getNecessaryNumber (){
 		int n = 0;
-		foreach (Unit unit in sHandler.AllUnits) {
+		foreach (Unit unit in sHandler.AllPlayerUnits) {
 			//If not scientist not hacker and not agitator
 			if (unit.UnitClassID != 1 && unit.UnitClassID != 3 && unit.UnitClassID != 4 && unit.UnitClassID != 5)
 				n++;

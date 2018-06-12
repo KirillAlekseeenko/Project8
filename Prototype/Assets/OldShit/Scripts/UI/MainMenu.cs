@@ -10,63 +10,99 @@ public class MainMenu : MonoBehaviour {
 	[SerializeField] private List<ComicsStrip> comicsStrips;
 	[SerializeField] private AudioSource audioSource;
 
-	private void startShowing(){
+	private State currentState;
+
+	public void StartGame()
+	{
+		StartShowing();
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+   
+	private void Awake()
+	{
+		currentState = State.MENU;
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+			OnEscapeDown();	
+	}
+
+	private void StartShowing()
+	{
+		currentState = State.COMICS;
 		comicsPanel.SetActive (true);
 		comicsPanel.GetComponent<AudioSource> ().Play ();
 		audioSource.Stop();
 		audioSource.loop = false;
-		StartCoroutine (showComics ());
+		StartCoroutine (ShowComics ());
 	}
 
-	private IEnumerator showComics(){
-		for(int i = 0; i < comicsStrips.Count; i++){
+	private IEnumerator ShowComics()
+	{
+		for(int i = 0; i < comicsStrips.Count; i++)
+		{
 			comicsStrips [i].stripImage.gameObject.SetActive (true);
 			if (comicsStrips [i].clip != null)
 				audioSource.PlayOneShot (comicsStrips [i].clip);
-			else {
+			else 
+			{
 				if(i< 9)
 					audioSource.Stop ();
 			}
-			if (i == 5) {
-				for (int j = 0; j < 5; j++) {
+			if (i == 5) 
+			{
+				for (int j = 0; j < 5; j++)
 					comicsStrips [j].stripImage.gameObject.SetActive (false);
-				}
 			}
-			StartCoroutine (lighten (comicsStrips [i].stripImage));
+			StartCoroutine (LightenComicsStrip (comicsStrips [i].stripImage));
 			yield return new WaitForSecondsRealtime (comicsStrips [i].showTime);
 		}
-		loadingPanel.SetActive(true);
-		gameObject.SetActive(false);
-		comicsPanel.SetActive (false);
-		SceneManager.LoadScene(1);
+		LoadGame();
 	}
 
-	private IEnumerator lighten(Image comicsImage){
-		while (comicsImage.color.a < 1) {
-			comicsImage.color = new Color (
-				comicsImage.color.r,
-				comicsImage.color.g,
-				comicsImage.color.b,  comicsImage.color.a + 0.05f);
-			yield return new WaitForSecondsRealtime (0.01f);
+	private IEnumerator LightenComicsStrip(Image comicsImage)
+    {
+        while (comicsImage.color.a < 1)
+        {
+            comicsImage.color = new Color(
+                comicsImage.color.r,
+                comicsImage.color.g,
+                comicsImage.color.b, comicsImage.color.a + 0.05f);
+            yield return new WaitForSecondsRealtime(0.01f);
 
+        }
+    }
+    
+    private void LoadGame()
+	{
+		currentState = State.LOADING;
+		loadingPanel.SetActive(true);
+        gameObject.SetActive(false);
+        comicsPanel.SetActive(false);
+        SceneManager.LoadScene(1);
+	}
+
+    private void OnEscapeDown()
+	{
+		if(currentState == State.COMICS)
+		{
+			LoadGame();
 		}
 	}
-
-	public void StartGame(){
-		startShowing ();
-		//SceneManager.LoadScene(1);
-		//loadingPanel.SetActive(true);
-		//gameObject.SetActive(false);
-
-	}
-	public void ExitGame(){
-		Application.Quit();
-	}
+   
+	private enum State {MENU, COMICS, LOADING}
 }
 
 
 [System.Serializable]
-public class ComicsStrip{
+public class ComicsStrip
+{
 	public Image stripImage;
 	public float showTime;
 	public AudioClip clip;

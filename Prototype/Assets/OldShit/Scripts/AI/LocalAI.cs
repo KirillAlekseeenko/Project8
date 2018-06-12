@@ -49,6 +49,7 @@ public class LocalAI : MonoBehaviour {
 				var vectorToEnemy = unit.transform.position - transform.position;
 				if (!Physics.Raycast (new Ray (transform.position, vectorToEnemy), vectorToEnemy.magnitude, LayerMask.GetMask("Building")) // проверка на отсутствие препятствий
 					&& (vectorToEnemy.magnitude < unitComponent.pLOS * RTS.Constants.HearRadiusCoefficient || IsObjectInsideTheArc(unitComponent, unit) || unit.isAttacking())) { // + еще условия связанные с конусом, кругом слышимости и инвизом у юнита
+    
 
 					if (Player.HumanPlayer.isFriend (unitComponent.Owner) && !Player.HumanPlayer.isFriend(unit.Owner)) {
 						unit.SetVisible (); // если это союзник игрока и он видит не союзника игрока
@@ -56,6 +57,8 @@ public class LocalAI : MonoBehaviour {
 
 					if(unitComponent.isEnemy(unit))
 					{
+						if (unit.Owner == Player.HumanPlayer)
+							unit.SetVisible();
 						unitComponent.AssignAction (new AttackInteraction (unitComponent, unit));
 						director.Alarm (unit, unitComponent.transform); // зовет всех на помощь (радиус у всех одинаковый и является свойством экземпляра Director)
 					}				

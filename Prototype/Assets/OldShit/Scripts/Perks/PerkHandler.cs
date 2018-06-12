@@ -160,7 +160,7 @@ public class PerkHandler
         if (Physics.Raycast(ray, out hit))
         {
             var unit = hit.collider.gameObject.GetComponent<Unit>();
-            if (unit != null && unit.IsVisible && Player.HumanPlayer.isEnemy(unit.Owner))
+            if (unit != null && unit.IsVisibleInGame && Player.HumanPlayer.isEnemy(unit.Owner))
             {
                 performPerk(unit.transform.position, unit);
             }

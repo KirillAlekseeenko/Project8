@@ -9,70 +9,89 @@ public class LevelStatistics : MonoBehaviour {
 
 	public static LevelStatistics instance;
 
-	private List<int> deadPlayerUnitsIds;
-	private List<int> deadEnemyUnitsIds;
+	private List<int> deadPlayerUnitsIds = new List<int>();
+	private List<int> deadEnemyUnitsIds = new List<int>();
 
-	private SelectionHandler sHandler;
-	private bool fight;
-	private bool alert;
+	private SelectionHandler selectionHandler;
 
-	private RevealGrade rGrade;
+	private RevealGrade revealGrade;
 
-	void Awake(){
+	public List<int> DeadPlayerInitsIDs { get { return deadPlayerUnitsIds; } } 
+    public List<int> DeadEnemyInitsID { get { return deadEnemyUnitsIds; } }
+	public bool Fighting { get; private set; }
+    public bool Visibility { get; private set; }
+
+	public void AddToDeadList(Unit unit)
+	{
+        if (unit.Owner.IsHuman)
+            deadPlayerUnitsIds.Add (unit.UnitClassID);
+        else
+            deadEnemyUnitsIds.Add (unit.UnitClassID);
+    }
+
+    public void LevelCompleteEvent(bool success)
+	{
+        //Show level complete panel
+    }
+
+	void Awake()
+	{
 		if (instance == null)
 			instance = this;
 		if (instance != this)
 			Destroy (gameObject);
 
-		sHandler = GameObject.FindObjectOfType<SelectionHandler> ();
-		rGrade = GameObject.FindObjectOfType<RevealGrade> ();
+		selectionHandler = FindObjectOfType<SelectionHandler>();
+		revealGrade = FindObjectOfType<RevealGrade>();
 	}
 
-	void Start(){
-		StartCoroutine (checkFighting ());
+	void Start()
+	{
+		StartCoroutine (СheckFighting ());
 	}
 
-	private IEnumerator checkFighting(){
-		while (true) {
-			foreach (Unit unit in sHandler.AllUnits) {
-				if (!unit.Owner.IsHuman && unit.isAttacking () && !fight && !alert) {
-					alert = true;
-					rGrade.HandleInstantEvent (10);//Вас заметили
-				}
-				if (unit.Owner.IsHuman && unit.isAttacking ()) {
-					if (!fight) {
-						if(AddGradePenaltyEvent_Fighting != null) AddGradePenaltyEvent_Fighting ();
-						fight = true;
-						yield return new WaitForSeconds (1);
-					}
+	private IEnumerator СheckFighting()
+	{
+		while (true) 
+		{
+			var currentVisibility = false;
+			var currentFighting = false;
+
+			foreach (Unit unit in selectionHandler.AllPlayerUnits)
+			{
+				if (unit.IsVisibleByEnemy && !currentVisibility)
+					currentVisibility = true;
+				if(unit.isAttacking())
+				{
+					currentFighting = true;
+					currentVisibility = true;
+					break;
 				}
 			}
-			if (fight) {
-				if (RemoveGradePenaltyEvent_Fighting != null)
-					RemoveGradePenaltyEvent_Fighting ();
-				fight = false;
-				alert = false;
+
+			if(!Visibility && currentVisibility)
+			{
+				revealGrade.HandleInstantEvent(10);  //Вас заметили
 			}
+
+			if(Fighting != currentFighting)
+			{
+				if(currentFighting)
+				{
+					if (AddGradePenaltyEvent_Fighting != null) AddGradePenaltyEvent_Fighting();
+				}
+				else
+				{
+					if (RemoveGradePenaltyEvent_Fighting != null) RemoveGradePenaltyEvent_Fighting();
+				}
+			}
+
+			Visibility = currentVisibility;
+			Fighting = currentFighting;
+
 			yield return new WaitForSeconds (1);
 		}
 	}
 
-	public void AddToDeadList(Unit unit){
-		if (unit.Owner.IsHuman)
-			deadPlayerUnitsIds.Add (unit.UnitClassID);
-		else
-			deadEnemyUnitsIds.Add (unit.UnitClassID);
-	}
-
-	public void LevelCompleteEvent(bool success){
-		//Show level complete panel
-	}
-
-	public List<int> DeadPlayerInitsIDs{
-		get{ return deadPlayerUnitsIds;}
-	} 
-
-	public List<int> DeadEnemyInitsIDs{
-		get{ return deadEnemyUnitsIds;}
-	} 
+    
 }
