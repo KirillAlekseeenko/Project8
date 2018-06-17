@@ -22,7 +22,7 @@ public class Task_ObjectsAndNumbers : TaskResolver {
 
 	protected int num;
 
-	void Start(){
+	void OnEnable(){
 		StartCoroutine (checkCondition ());
 	}
 
@@ -30,14 +30,14 @@ public class Task_ObjectsAndNumbers : TaskResolver {
 
 	protected IEnumerator checkCondition(){
 		while(true){
+			yield return new WaitForSeconds (secondsBetweenUpdates);
 			num = getNecessaryNumber ();
-			if (comparison == Comparison.EQUALS && num == necessaryNumber)
+			if (comparison == Comparison.EQUALS && num >= necessaryNumber)
 				break;
 			else if (comparison == Comparison.LESS && num < necessaryNumber)
 				break;
 			else if (comparison == Comparison.MORE && num > necessaryNumber)
 				break;
-			yield return new WaitForSeconds (2);
 		}
 		completeTask ();
 		yield return null;

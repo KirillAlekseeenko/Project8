@@ -10,15 +10,15 @@ public class Task_UpgradeBuilding : TaskResolver {
 	[SerializeField]
 	private int necessaryLevel;
 
-	private void Start(){
+	private void OnEnable(){
 		StartCoroutine (checkCondition());
 	}
 
 	protected IEnumerator checkCondition(){
 		while(true){
-			if (checkedBuilding.CurrentLevel == necessaryLevel)
+			yield return new WaitForSeconds (secondsBetweenUpdates);
+			if (checkedBuilding.CurrentLevel >= necessaryLevel)
 				break;
-			yield return new WaitForSeconds (2);
 		}
 		completeTask ();
 		yield return null;

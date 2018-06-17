@@ -7,7 +7,7 @@ public class Task_Kill_Concrete_Enemies : TaskResolver {
 	[SerializeField]
 	private List<GameObject> enemiesToBeMurdered;
 
-	void Start(){
+	void OnEnable(){
 		StartCoroutine (checkCondition ());
 	}
 
@@ -15,6 +15,7 @@ public class Task_Kill_Concrete_Enemies : TaskResolver {
 
 	protected IEnumerator checkCondition(){
 		while(true){
+			yield return new WaitForSeconds (secondsBetweenUpdates);
 			for(int i = 0; i < enemiesToBeMurdered.Count; i++) {
 				if (enemiesToBeMurdered[i] == null || enemiesToBeMurdered[i].GetComponent<Unit>().HP < 0)
 					enemiesToBeMurdered.Remove (enemiesToBeMurdered[i]);
@@ -22,7 +23,6 @@ public class Task_Kill_Concrete_Enemies : TaskResolver {
 			//Если все враги из этого списка были убиты, то задание выполнено
 			if (enemiesToBeMurdered.Count == 0)
 				break;
-			yield return new WaitForSeconds (1);
 		}
 		completeTask ();
 		yield return null;

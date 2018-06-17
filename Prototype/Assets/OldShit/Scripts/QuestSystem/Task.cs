@@ -10,4 +10,5 @@ public class Task{
 	public string explanation;
 	public AudioClip audioExplanation;
 	public QuestProgress taskProgress;
+	public TaskResolver taskObserver;
 }

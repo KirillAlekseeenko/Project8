@@ -1,22 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\OldShit\Scripts\WorldObject\Spawn\CrowdZone.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\OldShit\Scripts\WorldObject\Building\Building.cs">
     <Files>
-      <File FileName="Assets\OldShit\Scripts\WorldObject\Spawn\Spawn.cs" Line="1" Column="1" />
-      <File FileName="Assets\OldShit\Scripts\UI\UpgradePanel\UpgradeIcon.cs" Line="1" Column="1" />
-      <File FileName="Assets\OldShit\Scripts\UI\UpgradePanel\UpgradePanel.cs" Line="1" Column="1" />
-      <File FileName="Assets\OldShit\Scripts\WorldObject\Unit\Unit.cs" Line="1" Column="1" />
-      <File FileName="Assets\OldShit\Scripts\AI\Director.cs" Line="1" Column="1" />
-      <File FileName="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_Warriors.cs" Line="1" Column="1" />
-      <File FileName="Assets\OldShit\Scripts\QuestSystem\TaskResolvers\Task_Kill_Concrete_Enemies.cs" Line="1" Column="1" />
-      <File FileName="Assets\OldShit\Scripts\UI\BuildingPanel\BuildingPanelManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\OldShit\Scripts\UI\UnitPanel\UPManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\OldShit\Scripts\UnitAnimations.cs" Line="48" Column="33" />
-      <File FileName="Assets\OldShit\Scripts\WorldObject\Spawn\CrowdZone.cs" Line="100" Column="45" />
-      <File FileName="Assets\OldShit\Scripts\WorldObject\Spawn\EnemySpawn.cs" Line="1" Column="1" />
-      <File FileName="Assets\OldShit\Scripts\WorldObject\Unit\CitizenUpgradeHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets\OldShit\Scripts\WorldObject\Components\Citizen.cs" Line="32" Column="46" />
-      <File FileName="Assets\OldShit\Scripts\RandomStateMashineAnim.cs" Line="1" Column="1" />
+      <File FileName="Assets\OldShit\Scripts\WorldObject\Building\Building.cs" Line="23" Column="72" />
+      <File FileName="Assets\OldShit\Scripts\Grades\PopularityGrade.cs" Line="1" Column="1" />
+      <File FileName="Assets\OldShit\Scripts\Grades\Grade.cs" Line="1" Column="1" />
+      <File FileName="Assets\OldShit\Scripts\Grades\RevealGrade.cs" Line="1" Column="1" />
+      <File FileName="Assets\OldShit\Scripts\WorldObject\Unit\Unit.cs" Line="251" Column="32" />
+      <File FileName="Assets\FinalLevel1\Assets\CanvasMark.cs" Line="10" Column="47" />
+      <File FileName="Assets\FinalLevel1\Assets\BuildingMark.cs" Line="14" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

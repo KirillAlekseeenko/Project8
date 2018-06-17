@@ -20,7 +20,7 @@ public class Task_Warriors : TaskResolver{
 
 	protected int num;
 
-	void Start(){
+	void OnEnable(){
 		StartCoroutine (checkCondition ());
 	}		
 
@@ -37,13 +37,13 @@ public class Task_Warriors : TaskResolver{
 	protected IEnumerator checkCondition(){
 		while(true){
 			num = getNecessaryNumber ();
+			yield return new WaitForSeconds (secondsBetweenUpdates);
 			if (comparison == Comparison.EQUALS && num == necessaryNumber)
 				break;
 			else if (comparison == Comparison.LESS && num < necessaryNumber)
 				break;
 			else if (comparison == Comparison.MORE && num > necessaryNumber)
 				break;
-			yield return new WaitForSeconds (2);
 		}
 		completeTask ();
 		yield return null;

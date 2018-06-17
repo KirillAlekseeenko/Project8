@@ -56,7 +56,9 @@ public class QuestManager : MonoBehaviour {
 				currentQuestsList.Add (questList [i]);
 				questList [i].questProgress = QuestProgress.ACCEPTED;
 				foreach(Task task in questList[i].tasks){
-					task.taskProgress = QuestProgress.ACCEPTED;					
+					task.taskProgress = QuestProgress.ACCEPTED;
+					task.taskObserver.gameObject.SetActive (true);
+					task.taskObserver.ConnectedTask (questList[i].id, task.id);
 				}
 				RenewQuestUiInfo.Invoke ();
 				break;
@@ -97,7 +99,6 @@ public class QuestManager : MonoBehaviour {
 				for (int j = 0; j < currentQuestsList [i].tasks.Count; j++) {
 					if (currentQuestsList [i].tasks [j].id == taskID 
 						&& currentQuestsList [i].tasks [j].taskProgress == QuestProgress.ACCEPTED) {
-					
 						currentQuestsList [i].tasks [j].taskProgress = QuestProgress.COMPLETE;
 
 						//Check if we complete the entire quest

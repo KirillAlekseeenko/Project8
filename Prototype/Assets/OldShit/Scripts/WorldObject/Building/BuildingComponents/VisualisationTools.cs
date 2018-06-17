@@ -42,6 +42,35 @@ public class VisualisationTools : MonoBehaviour {
 		}
 	}
 
+	private void setTransparentMode(Material mat){
+		mat.SetFloat ("_Mode", 3f);
+		mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+		mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+		mat.SetInt("_ZWrite", 0);
+		mat.DisableKeyword("_ALPHATEST_ON");
+		mat.EnableKeyword("_ALPHABLEND_ON");
+		mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+		mat.renderQueue = 3000;
+	}
+
+	private void setOpaqueMode(Material mat){
+		mat.SetFloat ("_Mode", 0f);
+		mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+		mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+		mat.SetInt("_ZWrite", 1);
+		mat.EnableKeyword("_ALPHATEST_ON");
+		mat.DisableKeyword("_ALPHABLEND_ON");
+		mat.EnableKeyword("_ALPHAPREMULTIPLY_ON");
+		mat.renderQueue = 3000;
+	}
+
+	private void resetAlphaChannel(Material mat){
+		mat.SetColor ("_Color", new Color (
+			mat.color.r,
+			mat.color.g,
+			mat.color.b, 1));
+	}
+
 	private IEnumerator Blink() {
 		float maxAlpha = 1f;
 		float minAlpha = 0.4f;
@@ -69,7 +98,6 @@ public class VisualisationTools : MonoBehaviour {
 			temp.transform.localScale = currentModel.transform.localScale;
 			temp.transform.SetSiblingIndex (currentModel.transform.GetSiblingIndex ());
 			DestroyImmediate (currentModel);
-			//currentModel.SetActive (false);
 			currentModel = temp;
 			currentModel.SetActive (true);
 			setRenderers ();
@@ -77,14 +105,20 @@ public class VisualisationTools : MonoBehaviour {
 	}
 
 	public void SetBlinking(bool blinking){
-		if (blinking)
+		if (blinking) {
+			foreach (MeshRenderer obj in buildingRenderers) {
+				foreach(Material mat in obj.materials)
+					setTransparentMode (mat);
+			}
 			StartCoroutine (blink);
-		else {
+		}
+			else {
 			StopCoroutine (blink);
 			foreach (MeshRenderer obj in buildingRenderers) {
-				obj.material.SetColor("_Color", new Color(obj.material.color.r,
-					obj.material.color.g,
-					obj.material.color.b, 1));
+				foreach (Material mat in obj.materials) {
+					setOpaqueMode (mat);
+					resetAlphaChannel (mat);
+				}
 			}
 		}
 	}

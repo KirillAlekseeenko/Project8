@@ -117,7 +117,6 @@ public class Building : WorldObject, IBuilding{
 	protected void startBattle(){
 		if(AddGradePenaltyEvent_FightInside != null) AddGradePenaltyEvent_FightInside ();
 		battlePlan.StartBattle();
-		Debug.Log ("FIIIIIIIGHT");
 	}
 
 	protected void RefreshUnitsInside(){

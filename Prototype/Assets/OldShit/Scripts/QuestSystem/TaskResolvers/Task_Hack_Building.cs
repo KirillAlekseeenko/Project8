@@ -6,16 +6,16 @@ public class Task_Hack_Building : TaskResolver {
 
 	private ControlPanel controlPanel;
 
-	private void Start(){
+	private void OnEnable(){
 		controlPanel = gameObject.GetComponent<ControlPanel> (); 
 		StartCoroutine (checkCondition());
 	}
 
 	protected IEnumerator checkCondition(){
 		while(true){
+			yield return new WaitForSeconds (secondsBetweenUpdates);
 			if (controlPanel.IsActivated)
 				break;
-			yield return new WaitForSeconds (2);
 		}
 		completeTask ();
 		yield return null;

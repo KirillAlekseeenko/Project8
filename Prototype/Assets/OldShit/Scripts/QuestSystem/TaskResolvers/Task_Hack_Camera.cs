@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class Task_Hack_Camera : TaskResolver {
 
-	private WatchingCamera camera;
+	[SerializeField] private WatchingCamera camera;
 
-	private void Start(){
-		camera = gameObject.GetComponent<WatchingCamera> (); 
+	private void OnEnable(){
 		StartCoroutine (checkCondition());
 	}
 
 	protected IEnumerator checkCondition(){
 		while(true){
+			yield return new WaitForSeconds (secondsBetweenUpdates);
 			if (camera.IsActivated)
 				break;
-			yield return new WaitForSeconds (2);
 		}
 		completeTask ();
 		yield return null;
