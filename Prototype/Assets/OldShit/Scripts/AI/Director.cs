@@ -70,7 +70,7 @@ public class Director : MonoBehaviour {
 		}
 	}
 
-	public void Alarm(Unit enemy, Transform origin)
+	public void Alarm(Vector3 enemyPosition, Transform origin)
     {
         foreach (Unit unit in units)
         {
@@ -78,7 +78,7 @@ public class Director : MonoBehaviour {
             {
                 if (!unit.isAttacking())
                 {
-                    unit.AssignAction(new AttackInteraction(unit, enemy));
+                    unit.AssignAction(new MoveAction(unit, enemyPosition));
                 }
             }
         }

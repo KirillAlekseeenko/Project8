@@ -34,7 +34,7 @@ public class FieldOfViewHandler : MonoBehaviour {
 		set {
 			foreach (Unit unit in visibleObjects) {
 				if (value) {
-					unit.GetComponent<VisionArcComponent> ().IsTurnedOn = true;
+                    unit.GetComponent<VisionArcComponent> ().IsTurnedOn = true;
 				} else {
 					unit.GetComponent<VisionArcComponent> ().IsTurnedOn = false;
 				}

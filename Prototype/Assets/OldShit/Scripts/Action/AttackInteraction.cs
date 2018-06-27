@@ -28,10 +28,12 @@ public class AttackInteraction : Interaction {
 		this.navMeshAgentComponent = actionOwner.GetComponent<NavMeshAgent> ();
 		this.targetPosition = actionReceiver.transform.position;
 	}
-	
-	#region implemented abstract members of Action
 
-	public override void Perform ()
+    public Vector3 EnemyPosition { get { return actionReceiver.transform.position; } }
+
+    #region implemented abstract members of Action
+
+    public override void Perform ()
 	{
 		if (actionReceiver == null) {
 			return;
@@ -58,12 +60,6 @@ public class AttackInteraction : Interaction {
 				(actionReceiver as Unit).SetVisible();
 			}
 
-			if(!actionOwner.Owner.IsHuman && vectorToTarget.magnitude > (actionOwner as Unit).pLOS * 1.2)
-			{
-				navMeshAgentComponent.ResetPath();
-                return new ActionState(true, -1);
-			}
-
 			float unitWidth = 0.5f;
 
 			var attackRadius = (actionOwner as Unit).IsRange ? rangeAttackRadius : meleeAttackRadius;
@@ -71,7 +67,7 @@ public class AttackInteraction : Interaction {
 			var rayLength = Mathf.Min (attackRadius, vectorToTarget.magnitude + unitWidth);
 			RaycastHit hit;
 
-			if (!Physics.Raycast (ray, out hit, rayLength, ~LayerMask.GetMask("Unit")) && rayLength < attackRadius) // проверка на отсутствие препятствий
+			if (!Physics.Raycast (ray, out hit, rayLength, ~LayerMask.GetMask("Unit", "Ignore Raycast")) && rayLength < attackRadius) // проверка на отсутствие препятствий
 			{ 
 
 				navMeshAgentComponent.ResetPath (); // остановка
@@ -83,7 +79,7 @@ public class AttackInteraction : Interaction {
 				}
 
 			} else 
-			{ 
+			{
 				if (targetPosition != actionReceiver.transform.position || !navMeshAgentComponent.hasPath) // положение цели изменилось или юнит не имеет никаких указаний
 				{
 					targetPosition = actionReceiver.transform.position;

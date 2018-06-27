@@ -73,8 +73,8 @@ public class VisionArcComponent : MonoBehaviour {
 	{
 		if(isTurnedOn || Player.HumanPlayer.isFriend(unitComponent.Owner))
 			DrawFieldOfView ();
-		if(viewGameObject != null)
-			viewGameObject.transform.localPosition = viewGameObjectLocalPosition;
+        if (viewGameObject != null)
+            viewGameObject.transform.localPosition = Vector3.zero;
 		if (Vector3.Distance (lastPosition, transform.position) > updateDistance && Player.HumanPlayer.isFriend(unitComponent.Owner)) {
 			lastPosition = transform.position;
 			Manager.Instance.fogOfWarHanlder.UpdateFogQuery ();

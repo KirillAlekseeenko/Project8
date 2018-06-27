@@ -93,7 +93,6 @@ public class CameraMovement : MonoBehaviour {
     private void rotate()
     {
         camera.transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * MovementSpeed, Space.World);
-        Debug.Log(transform.TransformDirection(transform.right));
     }
 
 

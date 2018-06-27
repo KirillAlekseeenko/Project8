@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class LocalAI : MonoBehaviour {
 
-	private Unit unitComponent;
-	private Director director;
+    private const float TimeForIdleness = 1.0f;
+    private const float LostSightTime = 5.0f;
+    private const float DirectorNotificationInterval = 20.0f;
 
-	private float timeForIdleness = 1.0f;
+    private Unit unitComponent;
+	private Director director;
+	
 	private float time = 0;
+
+    private Timer lostSightTimer;
+    private Timer directorNotificationTimer;
 
 	void Awake()
 	{
+        lostSightTimer = new Timer(LostSightTime);
+        directorNotificationTimer = new Timer(DirectorNotificationInterval);
 		unitComponent = GetComponent<Unit> ();
 	}
 
@@ -30,10 +38,40 @@ public class LocalAI : MonoBehaviour {
 
 	void Update()
 	{
-		if (!unitComponent.isAttacking ()) {
-			CheckForEnemies ();
-			CheckIdleness ();
-		}
+		if (unitComponent.isAttacking ())
+        {
+            var enemyUnitPos = ((AttackInteraction)unitComponent.ActionQueue.Peek()).EnemyPosition;
+            directorNotificationTimer.UpdateTimer(Time.deltaTime);
+
+            if (Vector3.Distance(enemyUnitPos, transform.position) > unitComponent.pLOS)  // visibility is not taken into account
+            {
+                lostSightTimer.UpdateTimer(Time.deltaTime);
+            }
+            else
+            {
+                if (lostSightTimer.CurrentProgress > 0) lostSightTimer.Reset();
+            }
+
+
+            if(lostSightTimer.IsSet)
+            {
+                unitComponent.Stop();
+                lostSightTimer.Reset();
+            }
+            if(directorNotificationTimer.IsSet)
+            {
+                director.Alarm(enemyUnitPos, transform);
+                directorNotificationTimer.Reset();
+            }
+		} 
+        else
+        {
+            if (lostSightTimer.CurrentProgress > 0) lostSightTimer.Reset();
+            if (directorNotificationTimer.CurrentProgress > 0) directorNotificationTimer.Reset();
+
+            CheckForEnemies();
+            CheckIdleness();
+        }
 	}
 
     private void CheckForEnemies()
@@ -60,7 +98,7 @@ public class LocalAI : MonoBehaviour {
 						if (unit.Owner == Player.HumanPlayer)
 							unit.SetVisible();
 						unitComponent.AssignAction (new AttackInteraction (unitComponent, unit));
-						director.Alarm (unit, unitComponent.transform); // зовет всех на помощь (радиус у всех одинаковый и является свойством экземпляра Director)
+						director.Alarm (unit.transform.position, unitComponent.transform); // зовет всех на помощь (радиус у всех одинаковый и является свойством экземпляра Director)
 					}				
 				}
 			}
@@ -71,7 +109,7 @@ public class LocalAI : MonoBehaviour {
 	{
 		if (unitComponent.isIdle ()) {
 			time += Time.deltaTime;
-			if (time >= timeForIdleness) {
+			if (time >= TimeForIdleness) {
 				director.becameIdle (unitComponent);
 				time = 0;
 			}

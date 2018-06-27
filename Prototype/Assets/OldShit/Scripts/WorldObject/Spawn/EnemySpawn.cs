@@ -28,8 +28,11 @@ public class EnemySpawn : MonoBehaviour {
 	{
 		while (true) {
 			var spawnCoefficient = owner.GetComponent<Director>().SpawnCoefficient;
-			if (Mathf.Approximately(spawnCoefficient, 0))
-				yield return new WaitForSeconds(2.0f);
+            if (Mathf.Approximately(spawnCoefficient, 0))
+            {
+                yield return new WaitForSeconds(2.0f);
+                continue;
+            }
 			var interval = spawnInterval / spawnCoefficient;
 			yield return new WaitForSeconds (interval);
 			spawn ();
