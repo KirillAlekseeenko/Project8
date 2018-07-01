@@ -43,7 +43,7 @@ public class LocalAI : MonoBehaviour {
             var enemyUnitPos = ((AttackInteraction)unitComponent.ActionQueue.Peek()).EnemyPosition;
             directorNotificationTimer.UpdateTimer(Time.deltaTime);
 
-            if (Vector3.Distance(enemyUnitPos, transform.position) > unitComponent.pLOS)  // visibility is not taken into account
+            if (Vector3.Distance(enemyUnitPos, transform.position) > unitComponent.LOS)  // visibility is not taken into account
             {
                 lostSightTimer.UpdateTimer(Time.deltaTime);
             }
@@ -77,7 +77,7 @@ public class LocalAI : MonoBehaviour {
     private void CheckForEnemies()
 	{
 		
-		var colliders = Physics.OverlapSphere (transform.position, unitComponent.pLOS, LayerMask.GetMask("Unit"));
+		var colliders = Physics.OverlapSphere (transform.position, unitComponent.LOS, LayerMask.GetMask("Unit"));
 
 		foreach (var collider in colliders) {
 			var unit = collider.gameObject.GetComponent<Unit> ();
@@ -86,7 +86,7 @@ public class LocalAI : MonoBehaviour {
 			if (unitComponent.Owner != unit.Owner) { // DANGER если юнит не принадлежит к той же фракции
 				var vectorToEnemy = unit.transform.position - transform.position;
 				if (!Physics.Raycast (new Ray (transform.position, vectorToEnemy), vectorToEnemy.magnitude, LayerMask.GetMask("Building")) // проверка на отсутствие препятствий
-					&& (vectorToEnemy.magnitude < unitComponent.pLOS * RTS.Constants.HearRadiusCoefficient || IsObjectInsideTheArc(unitComponent, unit) || unit.isAttacking())) { // + еще условия связанные с конусом, кругом слышимости и инвизом у юнита
+					&& (vectorToEnemy.magnitude < unitComponent.LOS * RTS.Constants.HearRadiusCoefficient || IsObjectInsideTheArc(unitComponent, unit) || unit.isAttacking())) { // + еще условия связанные с конусом, кругом слышимости и инвизом у юнита
     
 
 					if (Player.HumanPlayer.isFriend (unitComponent.Owner) && !Player.HumanPlayer.isFriend(unit.Owner)) {
@@ -122,7 +122,7 @@ public class LocalAI : MonoBehaviour {
     private bool IsObjectInsideTheArc(Unit unit, Unit enemy)
 	{
 		var vectorToEnemy = enemy.transform.position - unit.transform.position;
-		if (unit.isEnemy(enemy) && unit.HalfVisible && vectorToEnemy.magnitude > unit.pLOS / 2)
+		if (unit.isEnemy(enemy) && unit.HalfVisible && vectorToEnemy.magnitude > unit.LOS / 2)
 			return false;
 		
 		var direction = unit.transform.TransformDirection (Vector3.forward);

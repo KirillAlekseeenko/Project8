@@ -9,22 +9,32 @@ public interface IControllableItem
 	bool Captured { get; }
 }
 
-public abstract class ControllableItem : MonoBehaviour, IControllableItem {
-
-	protected Player owner;        // const
-	protected Player currentOwner;
+public abstract class ControllableItem : WorldObject, IControllableItem {
+    
+	protected Player permanentOwner;
 
 	public bool Captured { get; private set; }
+
+    protected new void Awake()
+    {
+        base.Awake();
+    }
+
+    protected new void Start()
+    {
+       // base.Start();    // не работает цвет
+        permanentOwner = Owner;
+    }
 	
 	public virtual void ResetOwner()
 	{
-		currentOwner = owner;
+        ChangeOwner(permanentOwner);
 		Captured = false;
 	}
 
 	public virtual void SetOwner(Player player)
 	{
-		currentOwner = player;
+        ChangeOwner(player);
 		Captured = true;
 	}
 }

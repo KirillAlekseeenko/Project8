@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WatchingCamera : ControlPanel {
+/*public class WatchingCamera : ControlPanel {
 
 	[SerializeField] private Renderer cameraBeam;
 
@@ -34,4 +34,4 @@ public class WatchingCamera : ControlPanel {
 			}
 		}
 	}
-}
+}*/

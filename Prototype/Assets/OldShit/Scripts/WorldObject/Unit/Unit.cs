@@ -86,7 +86,7 @@ public class Unit : WorldObject {
 	[SerializeField] protected float sneak; // 0 to 1
 	[SerializeField] protected bool halfVisible;
 
-	[SerializeField] protected float LOS; // line of sight
+
 
 	// buffs or debuffs
 	public float SufferDamageMultiplier { get; set; }
@@ -128,7 +128,6 @@ public class Unit : WorldObject {
 	public bool IsRange { get { return isRange; } }
 	public int MeleeAttack { get { return meleeAttack; } }
 	public int RangeAttack { get { return rangeAttack; } }
-	public float pLOS { get { return LOS; } }
 	public float RangeAttackPerSecond { get { return rangeAttackPerSecond; } }
 	public float RangeAttackRadius { get { return rangeAttackRadius; } }
 	public float MeleeAttackRadius { get { return meleeAttackRadius; } }
@@ -442,10 +441,10 @@ public class Unit : WorldObject {
 		return owner.isFriend (otherUnit.owner);
 	}
 
-	public void changeOwner(Player newOwner)
+	public override void ChangeOwner(Player newOwner)
 	{
-		owner = newOwner;
-		GetComponent<MeshRenderer> ().material.color = owner.Color;
+        base.ChangeOwner(newOwner);
+		GetComponent<MeshRenderer> ().material.color = owner.Color; // что-то придумать по цвету
 
 		Stop ();
 
@@ -453,17 +452,17 @@ public class Unit : WorldObject {
 			Destroy (GetComponent<LocalAI> ());
 			gameObject.AddComponent<PlayerLocalAI> ();
 			Manager.Instance.selectionHandler.ObjectsInsideFrustum.Add (this);
-
-		} else {
+            Manager.Instance.selectionHandler.AllPlayerUnits.Add(this);
+            Manager.Instance.fieldOfViewHandler.Remove(this);
+        } else {
 			Destroy (GetComponent<PlayerLocalAI> ());
 			gameObject.AddComponent<LocalAI> ();
 			Manager.Instance.selectionHandler.ObjectsInsideFrustum.Remove (this);
-		}
+            Manager.Instance.selectionHandler.AllPlayerUnits.Remove(this);
+            Manager.Instance.fieldOfViewHandler.Add(this);
+        }
 
-
-
-		Destroy (GetComponent<VisionArcComponent> ());
-		gameObject.AddComponent<VisionArcComponent>();
+        IsVisibleByEnemy = false;
 	}
 
 }

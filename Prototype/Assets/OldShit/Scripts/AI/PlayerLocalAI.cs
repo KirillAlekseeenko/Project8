@@ -37,7 +37,7 @@ public class PlayerLocalAI : MonoBehaviour {
 
 	private void checkForEnemies()
 	{
-		var colliders = Physics.OverlapSphere (transform.position, unitComponent.pLOS, LayerMask.GetMask ("Unit"));
+		var colliders = Physics.OverlapSphere (transform.position, unitComponent.LOS, LayerMask.GetMask ("Unit"));
 
 		Unit closestEnemyUnit = null;
 		Unit closestFriendlyUnit = null;

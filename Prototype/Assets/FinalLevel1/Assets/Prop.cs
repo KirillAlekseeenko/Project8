@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Prop : ControllableItem {
+/*public class Prop : ControllableItem {
 
 	public void ResetOwner()
 	{
@@ -13,4 +13,4 @@ public class Prop : ControllableItem {
 	{
 		currentOwner = player;
 	}
-}
+}*/

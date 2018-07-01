@@ -26,52 +26,23 @@ public abstract class WorldObject : MonoBehaviour {
 	[SerializeField] protected GameObject haloPrefab;
 	[SerializeField] protected Sprite icon;
 
-	// hp, armor etc
+    [SerializeField] protected float lOS; // line of sight
 
+    public Player Owner { get { return owner; } set { owner = value; } }
+    public Queue<Action> ActionQueue { get { return actionQueue; } }
 
-	public Player Owner {
-		get {
-			return owner;
-		}
-		set{ 
-			owner = value;
-		}
-	}
-
-	public Queue<Action> ActionQueue {
-		get {
-			return actionQueue; 
-		}
-	}
-
-
-	public virtual bool IsSelected {
-		get {
-			return isSelected;
-		}
-		set {
-			isSelected = value;
-		}
-	}
-
+    public virtual bool IsSelected { get { return isSelected; } set { isSelected = value; } }
 	public virtual bool IsVisibleInGame { get; protected set;}
-		
-
-    public Sprite Icon {
-		get {
-			return icon; 
-		}
-	}
+    public Sprite Icon { get { return icon; } }
+    public float LOS { get { return lOS; } }
 
 	public virtual void Highlight()
 	{
 		halo.SetActive (true);
-		// hp
 	}
 	public virtual void Dehighlight()
 	{
 		halo.SetActive (false);
-		// hp
 	}
 
 	protected void Awake()
@@ -156,9 +127,14 @@ public abstract class WorldObject : MonoBehaviour {
 		return GetInstanceID () == worldObject.GetInstanceID ();
 	}
 
-	protected void OnDestroy()
-	{
-		
-	}
-
+    public virtual void ChangeOwner(Player newOwner)
+    {
+        owner = newOwner;
+        var visionArc = GetComponent<VisionArcComponent>();
+        if(visionArc != null)
+        {
+            Destroy(GetComponent<VisionArcComponent>());
+            gameObject.AddComponent<VisionArcComponent>();
+        }
+    }
 }

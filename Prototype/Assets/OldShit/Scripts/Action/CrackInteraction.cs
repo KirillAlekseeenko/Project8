@@ -25,8 +25,9 @@ public class CrackInteraction : Interaction
 
 			if (Utils.Distance(actionOwnerPos, receiverPos, y: false) < hackerComponent.CrackDistance)
 			{
-				(actionReceiver as ControlPanel).Activate(); // bad
-				return new ActionState(true, -1);
+				(actionReceiver as ControlPanel).Activate(actionOwner.Owner);
+                navMeshAgentComponent.ResetPath();
+                return new ActionState(true, -1);
 			}
 			else
 			{

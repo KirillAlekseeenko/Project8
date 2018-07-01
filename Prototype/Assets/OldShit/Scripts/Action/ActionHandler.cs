@@ -40,7 +40,6 @@ public class ActionHandler : MonoBehaviour {
         var firstHacker = unitGroup.FirstOrDefault(worldObject => worldObject.GetComponent<Hacker>() != null);
         if (firstHacker != null)
         {
-			Debug.Log ("U crack you");
             firstHacker.AssignAction(new CrackInteraction(firstHacker as Unit, controlPanel));
         }
     }

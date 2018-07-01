@@ -5,16 +5,17 @@ using UnityEngine;
 public class ControlPanel : WorldObject {
 
 	[SerializeField] protected float activationCooldown;
-	[SerializeField] protected IControllableItem controllableItem;
+	[SerializeField] protected ControllableItem controllableItem;
 
 	protected Timer activationTimer;
 
 	public virtual bool IsActivated { get; protected set; }
     
-	public virtual void Activate()
+	public virtual void Activate(Player player)
     {
 		if (!IsActivated)
 		{
+            controllableItem.SetOwner(player);
 			activationTimer.Reset();
 			IsActivated = true;
 		}
@@ -22,18 +23,22 @@ public class ControlPanel : WorldObject {
 
 	protected new void Start()
 	{
-		base.Start();
 		activationTimer = new Timer(activationCooldown);
 	}
 
 	protected new void Update()
 	{
-		base.Update();
-		if (activationTimer.CurrentProgress > 0.98f)
+		if (IsActivated)
 		{
 			activationTimer.UpdateTimer(Time.deltaTime);
-			if (activationTimer.IsSet)
-				IsActivated = false;
+            if (activationTimer.IsSet)
+                Deactivate();
 		}
 	}
+
+    protected void Deactivate()
+    {
+        IsActivated = false;
+        controllableItem.ResetOwner();
+    }
 }

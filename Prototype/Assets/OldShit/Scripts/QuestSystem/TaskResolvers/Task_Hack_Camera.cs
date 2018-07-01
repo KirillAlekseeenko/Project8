@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Task_Hack_Camera : TaskResolver {
 
-	[SerializeField] private WatchingCamera camera;
+	[SerializeField] private ControlPanel cameraControlBox;
 
 	private void OnEnable(){
 		StartCoroutine (checkCondition());
@@ -13,7 +13,7 @@ public class Task_Hack_Camera : TaskResolver {
 	protected IEnumerator checkCondition(){
 		while(true){
 			yield return new WaitForSeconds (secondsBetweenUpdates);
-			if (camera.IsActivated)
+			if (cameraControlBox.IsActivated)
 				break;
 		}
 		completeTask ();

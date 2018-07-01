@@ -18,6 +18,20 @@ public class Citizen : MonoBehaviour
                 return true;
         }
     }
+    
+    public Player RercruiterOwner
+    {
+        get
+        {
+            if (GetComponent<Unit>().ActionQueue.Count > 0)
+            {
+                var currentAction = GetComponent<Unit>().ActionQueue.Peek();
+                if (currentAction is RecruiteeInteraction)
+                    return (currentAction as RecruiteeInteraction).RecruiterOwner;
+            }
+            return null;
+        }
+    }
 
 	public void StartClapping()
     {

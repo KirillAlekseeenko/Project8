@@ -5,9 +5,7 @@ using UnityEngine;
 public class Recruiter : MonoBehaviour {
 
 	[SerializeField] private int recruitPower;
-    private bool isRecruiting;
-
-	private RevealGrade revGrade;
+    private RevealGrade revGrade;
 	private PopularityGrade popGrade;
 
 	void Awake(){
@@ -15,16 +13,8 @@ public class Recruiter : MonoBehaviour {
 		popGrade = GameObject.FindObjectOfType<PopularityGrade> ();
 	}
 
-    public bool IsRecruiting
-    {
-        get { return isRecruiting; }
-        set 
-        {
-            isRecruiting = value;
-            // pass value to the animator
-        }
-    }
-	public int RecruitPower { get { return recruitPower; } }
+    public bool IsRecruiting { get; set; }
+    public int RecruitPower { get { return recruitPower; } }
 
 	void OnTriggerEnter(Collider other)
 	{

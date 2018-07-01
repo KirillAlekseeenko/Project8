@@ -1797,6 +1797,7 @@ MonoBehaviour:
   currentActionType: 
   haloPrefab: {fileID: 1546556071653546, guid: b96ad27bdac414c28b20d3d7324a3282, type: 2}
   icon: {fileID: 21300000, guid: a7da95d5e895af24b95a4d42586736dd, type: 3}
+  lOS: 10
   StepSound: {fileID: 8300000, guid: 785f128916239774fb534e367ae4a71f, type: 3}
   DeathSound: {fileID: 8300000, guid: 1fdb1d5a4bd083248afcaf473caaa2a6, type: 3}
   ShootSound: {fileID: 0}
@@ -1818,7 +1819,6 @@ MonoBehaviour:
   speed: 3
   sneak: 1
   halfVisible: 0
-  LOS: 15
   possibleUpgrades: []
   possibleRetrainning: []
   canvas: {fileID: 223225987419469332}

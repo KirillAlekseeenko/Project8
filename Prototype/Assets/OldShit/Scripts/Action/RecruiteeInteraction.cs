@@ -4,11 +4,12 @@ using UnityEngine.AI;
 
 public class RecruiteeInteraction : Interaction
 {
-    const float distanceToRecruiter = 1f;
+    const float distanceToRecruiter = 2f;
 
     NavMeshAgent navMeshAgent;
     Citizen citizenComponent;
     Recruiter recruiterComponent;
+    readonly Player recruiterOwner;
 
     public RecruiteeInteraction(Unit citizen, Unit recruiter)
     {
@@ -17,7 +18,10 @@ public class RecruiteeInteraction : Interaction
         navMeshAgent = citizen.GetComponent<NavMeshAgent>();
         citizenComponent = citizen.GetComponent<Citizen>();
         recruiterComponent = recruiter.GetComponent<Recruiter>();
+        recruiterOwner = recruiter.Owner;
     }
+
+    public Player RecruiterOwner { get { return recruiterOwner; } }
 
     public override ActionState State
     {

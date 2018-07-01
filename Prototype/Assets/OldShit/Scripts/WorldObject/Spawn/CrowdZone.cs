@@ -73,8 +73,6 @@ public class CrowdZone : MonoBehaviour {
 			players.Add (owner, new RecruitmentData (owner));
 		}
 		players [owner].AddRecruiter (recruiter);
-        findFreeCitizens(recruiter, 3); // магическое число )))
-
 	}
 
 	public void StopRecruiting(Recruiter recruiter)
@@ -95,19 +93,18 @@ public class CrowdZone : MonoBehaviour {
 			yield return waitRecruitingInterval;
 			foreach (var recrData in players.Values) {
 				if (recrData.ReadyToSpawn (enemiesInside (recrData.Player))) {
-					var citizen = findCitizen ();
+					var citizen = findCitizen (recrData.Player);
 					if (citizen != null) {
-						Debug.Log ("I converted one of them");
-						citizen.changeOwner (recrData.Player);
-						citizen.Speed = 3;
-                        findFreeCitizens(recrData.getRandomRecruiter(), 1);
+						citizen.ChangeOwner (recrData.Player);
+						citizen.Speed = 3;   // ?????                    
 					} else {
 						baseUnit.Owner = recrData.Player;
-						baseUnit.Speed = 3;
+						baseUnit.Speed = 3; // ?????
 						attachedSpawn.SpawnUnit (baseUnit);
 					}
 				}
-			}
+                findFreeCitizens(recrData.getRandomRecruiter(), 1);
+            }
 		}
 	}
 		
@@ -120,13 +117,9 @@ public class CrowdZone : MonoBehaviour {
 		return false;
 	}
 
-	private Unit findCitizen()
+	private Unit findCitizen(Player recruiterOwner)
 	{
-		foreach (var unit in unitsInside) {
-			if (unit.Owner.Citizen && !unit.GetComponent<Citizen>().IsFree)
-				return unit;
-		}
-		return null;
+        return unitsInside.FirstOrDefault(unit => unit.Owner.Citizen && !unit.GetComponent<Citizen>().IsFree && unit.GetComponent<Citizen>().RercruiterOwner == recruiterOwner);
 	}
 
     private void findFreeCitizens(Recruiter recruiter, int number)
@@ -152,21 +145,20 @@ public class CrowdZone : MonoBehaviour {
 
 	private class RecruitmentData
 	{
-		Player player;
-		int recruitmentPower;
+        int recruitmentPower;
 		int currentProgress;
         readonly List<Recruiter> recruiters;
 
 		public RecruitmentData (Player player)
 		{
-			this.player = player;
+			this.Player = player;
 			this.recruitmentPower = 0;
 			RecruiterCount = 0;
             recruiters = new List<Recruiter>();
 		}
 
-		public Player Player { get { return player; } }
-		public int RecruiterCount { get; set; }
+        public Player Player { get; private set; }
+        public int RecruiterCount { get; set; }
 		
 		public bool ReadyToSpawn (bool enemiesInside)
 		{

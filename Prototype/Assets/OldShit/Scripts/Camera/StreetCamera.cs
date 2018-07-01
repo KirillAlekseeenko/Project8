@@ -8,34 +8,18 @@ public class StreetCamera : ControllableItem {
 	public static event System.Action AddGradePenaltyEvent;
 	public static event System.Action RemoveGradePenaltyEvent;
 
-	[SerializeField] private float viewRadius;
-
 	private Transform grounds;
 
 	private Timer checkSectorTimer = new Timer(1.0f);
-	private VisionArcComponent visionArcComponent;
 	private bool playerUnitsUnderCamera = false;
 
-	public override void ResetOwner()
+	private new void Start()
 	{
-		base.ResetOwner();
-		visionArcComponent.gameObject.SetActive(false);
-	}
-
-	public override void SetOwner(Player player)
-	{
-		base.SetOwner(player);
-		if (player == Player.HumanPlayer)
-			visionArcComponent.gameObject.SetActive(true);
-	}
-
-	private void Start()
-	{
-		visionArcComponent = GetComponent<VisionArcComponent>();
+        base.Start();
 		grounds = transform.Find("Grounds");
 	}
 
-	private void Update()
+	private new void Update()
 	{
 		if(!Captured)
 		{
@@ -51,12 +35,11 @@ public class StreetCamera : ControllableItem {
     private void CheckSector()
 	{
 		var groundPosition = grounds.position;
-        
-		var playerUnits = Physics.OverlapSphere(groundPosition, viewRadius, LayerMask.GetMask("Unit"))
 
-								 .Select(collider => collider.GetComponent<Unit>())
-								 .Where(unit => unit != null)
-		                         .Where(unit => unit.Owner.IsHuman);
+        var playerUnits = Physics.OverlapSphere(groundPosition, LOS, LayerMask.GetMask("Unit"))
+                                 .Select(collider => collider.GetComponent<Unit>())
+                                 .Where(unit => unit != null)
+                                 .Where(unit => unit.Owner.IsHuman);
 		
 		if(playerUnits.Count() > 0)
 		{
