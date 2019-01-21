@@ -33,22 +33,22 @@ public class RevealGrade : Grade
 	protected override void HandleValue()
 	{
 		var percentage = currentValue / maxValue * 100;
-		if(percentage > 60)
+		if(percentage < 60)
 		{
-			if (FirstStage != null) FirstStage();
-		}
-		else if(percentage > 80)
+            SafeStage?.Invoke();
+        }
+		else if(percentage < 80)
 		{
-			if (SecondStage != null) SecondStage();
-		}
-		else if(percentage > 90)
+            FirstStage?.Invoke();
+        }
+		else if(percentage < 90)
 		{
-			if (ThirdStage != null) ThirdStage();
-		}
+            SecondStage?.Invoke();
+        }
 		else
 		{
-			if (SafeStage != null) SafeStage();
-		}
+            ThirdStage?.Invoke();
+        }
 	}
 
 	public void HandleInstantEvent(float value)

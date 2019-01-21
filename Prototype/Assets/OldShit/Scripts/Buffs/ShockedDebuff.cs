@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShockedDebuff : Buff {
 
 	private float multiplier = 1.5f;
-	private int damage = 1;
+    private int damage;
 
 	private Coroutine damageCoroutine;
 
@@ -18,7 +18,12 @@ public class ShockedDebuff : Buff {
 		damageCoroutine = StartCoroutine (sufferDamage ());
 	}
 
-	protected override void removeEffect ()
+    protected override void init()
+    {
+        damage = parameters.Damage;
+    }
+
+    protected override void removeEffect ()
 	{
 		StopCoroutine (damageCoroutine);
 		unit.SufferDamageMultiplier /= multiplier;

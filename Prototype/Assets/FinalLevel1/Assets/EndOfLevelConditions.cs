@@ -22,8 +22,7 @@ public class EndOfLevelConditions : MonoBehaviour {
 			mainText.text = "Победа";
 			subText.text = "Вам удалось пройти обучающий уровень";
 		} 
-		if (!firstBuilding.Owner.IsHuman  ||
-			revGrade.CurrentValue > 98) {
+		if (!firstBuilding.Owner.IsHuman) {
 			endPanel.SetActive (true);
 			mainText.text = "Поражение";
 			subText.text = "Вы потерпели сокрушительное поражение";

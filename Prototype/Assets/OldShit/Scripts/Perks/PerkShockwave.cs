@@ -7,7 +7,7 @@ public class PerkShockwave : Perk {
 
 	[SerializeField] private float range;
 	[SerializeField] private float waveRange;
-	[SerializeField] private float damage;
+	[SerializeField] private int damage;
 	[SerializeField] private float initialTime;
 	[SerializeField] private ParticleSystem lightningPrefab;
 
@@ -21,7 +21,7 @@ public class PerkShockwave : Perk {
 			if (preUnit == null || currentUnit == null)
 				break;
 			//spawnLightning (preUnit.transform.position, currentUnit.transform.position); пока не нужно, т.к. нет нормального партикла))
-			Buff.AddBuff<ShockedDebuff> (currentUnit, time);
+			Buff.AddBuff<ShockedDebuff> (currentUnit, time, new BuffParameters(damage));
 			time -= 1.0f;
 			var colliders = Physics.OverlapSphere (currentUnit.transform.position, waveRange, LayerMask.GetMask ("Unit"));
 			Unit closestUnit = null;

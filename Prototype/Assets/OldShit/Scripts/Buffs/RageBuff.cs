@@ -19,7 +19,12 @@ public class RageBuff : Buff {
 		unit.LifeSteal = lifeStealModifier;
 	}
 
-	protected override void removeEffect ()
+    protected override void init()
+    {
+        
+    }
+
+    protected override void removeEffect ()
 	{
 		unit.SufferDamageMultiplier /= multiplier;
 		unit.AttackSpeedModifier /= multiplier;

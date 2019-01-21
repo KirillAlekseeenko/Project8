@@ -5,27 +5,27 @@ using System.Linq;
 
 public class Director : MonoBehaviour {
 
-    private const int InitialActiveGroupSize = 5; // it will depend on grades values in future updates
-	private int activeGroupMultiplier = 1;
+    private const int GroupsCount = 10;  // move it to config or sth like this
+    private const int InitialActiveGroupSize = 2; // it will depend on grades values in future updates
+	private int activeGroupMultiplier = 0;
 
 	private Player player;
 
 	[SerializeField] private float alarmRadius;
     [SerializeField] List<Path> patrolPaths;
-    [SerializeField] List<Transform> serializedSafePoints;
+    [SerializeField] List<Transform> keyPoints;
+    [SerializeField] List<Building> enemyBuildings;
 
-	HashSet<Unit> units;
+    HashSet<Unit> units;
 	HashSet<Unit> idleUnits;
 
-	HashSet<Building> capturedBuildings;
+    private Queue<IUnitGroup> pendingUnitGroups = new Queue<IUnitGroup>();
+    private List<IUnitGroup> unitGroups = new List<IUnitGroup>();
 
-    ICollection<WorldObject> activeUnitGroup; // group logic will be incapsulated in a class
-	bool groupIsActive = false;
-
-    ICollection<Vector3> safePoints;
+    private Timer updateGroupTimer = new Timer(2.0f);
 
 	public float SpawnCoefficient { get; private set; }
-	private int ActiveGroupSize { get { return InitialActiveGroupSize * activeGroupMultiplier; }}
+	private int GroupSize { get { return InitialActiveGroupSize * activeGroupMultiplier; }}
 
 	private void OnEnable()
 	{
@@ -46,28 +46,22 @@ public class Director : MonoBehaviour {
 	void Awake()
 	{
 		idleUnits = new HashSet<Unit> ();
-        capturedBuildings = new HashSet<Building>();
-        activeUnitGroup = new HashSet<WorldObject>();
 		player = GetComponent<Player>();
-	}
-
-	void Start()
-	{
-        safePoints = serializedSafePoints.Select(transform => transform.position).ToList();
-	}
+        unitGroups.AddRange(Enumerable.Range(0, GroupsCount).Select(i => new UnitGroup(player)));
+    }
 
 	void Update()
 	{
-		if (idleUnits.Count > 0) {
-            if(capturedBuildings.Count > 0)
-            {
-				MoveGroupToTheBuilding(capturedBuildings.First());
-            }
-            else
-            {
-                engageUnits();
-            }
-		}
+        if (idleUnits.Count > 0)
+        {
+            engageUnits();
+        }
+        updateGroupTimer.UpdateTimer(Time.deltaTime);
+        if(updateGroupTimer.IsSet)
+        {
+            UpdateGroups();
+            updateGroupTimer.Reset();
+        }
 	}
 
 	public void Alarm(Vector3 enemyPosition, Transform origin)
@@ -90,20 +84,20 @@ public class Director : MonoBehaviour {
         {
             units = new HashSet<Unit>();
         }
-        else
-        {
-            units.Add(unit);
-        }
+
+        if (pendingUnitGroups.Count == 0) return;
+
+        var groupToSupplement = pendingUnitGroups.Peek();
+
+        if (groupToSupplement.Count < GroupSize) groupToSupplement.AddUnit(unit, GroupSize);
+        else pendingUnitGroups.Dequeue();
+        units.Add(unit);
     }
 
     public void becameIdle(Unit unit)
     {
-		if(activeUnitGroup.Contains(unit) && groupIsActive)
-		{
-			return; // don't interrupt active group while they're moving to the building
-		}
-        if (patrolPaths.Count == 0)
-            return;
+        if (unitGroups.Any(g => g.Contains(unit))) return;
+        if (patrolPaths.Count == 0) return;
         int i = Random.Range(0, patrolPaths.Count);
         patrolPaths[i].AssignPath(unit, 20);
     }
@@ -112,7 +106,17 @@ public class Director : MonoBehaviour {
     {
         units.Remove(unit);
         idleUnits.Remove(unit);
-        activeUnitGroup.Remove(unit);
+        unitGroups.ForEach(ug => ug.RemoveUnit(unit)); //TODO: optimize
+    }
+
+    public void OnBuildingCapture(Building building)
+    {
+
+    }
+
+    public void OnBuildingReturn(Building building)
+    {
+
     }
 
 	private void engageUnits()
@@ -121,11 +125,7 @@ public class Director : MonoBehaviour {
 		int modulo = idleUnits.Count % patrolPaths.Count;
 
 		int i = 0, j = 0;
-		foreach (var unit in idleUnits) {
-            if (activeUnitGroup.Count < ActiveGroupSize)
-            {
-                activeUnitGroup.Add(unit);
-            }   
+		foreach (var unit in idleUnits) { 
 			patrolPaths [i].AssignPath (unit, 20);
 			j++;
 			if (j == averageCount) {
@@ -134,24 +134,7 @@ public class Director : MonoBehaviour {
 			}
 		}
 
-		idleUnits.Clear ();
-	}
-
-    private void MoveGroupToTheBuilding(Building building)
-    {
-        var buildingPos = building.transform.position;
-		var closestSafePoint = safePoints.Min(vector3 => Vector3.Distance(buildingPos, vector3));
-		StartCoroutine(GroupMovement(closestSafePoint, building));
-    }
-
-	private IEnumerator GroupMovement(Vector3 safePoint, Building building)
-	{
-		ActionHandler.MoveUnitsWithFormation(safePoint, activeUnitGroup); // gather all units
-		while(ActionHandler.IsGroupIdle(activeUnitGroup))
-		{
-			yield return new WaitForSeconds(1f);
-		}
-		ActionHandler.Enter(building, activeUnitGroup); // move them
+		idleUnits.Clear();
 	}
 
     private void HandleSafeStage()
@@ -159,6 +142,7 @@ public class Director : MonoBehaviour {
 		if (Player.HumanPlayer.isEnemy(player))
 		{
 			SpawnCoefficient = 0;
+            activeGroupMultiplier = 0;
 		}
 	}
 
@@ -188,4 +172,22 @@ public class Director : MonoBehaviour {
 			activeGroupMultiplier = 4;
         }
 	}
+
+    private void UpdateGroups()
+    {
+        unitGroups.Where(ug => ug.Count == 0).ToList().ForEach(ug => pendingUnitGroups.Enqueue(ug));
+
+        var activeGroups = unitGroups.Where(ug => ug.IsLocked).ToList();
+        activeGroups.ForEach(ug => ug.Update());
+        activeGroups.Where(ug => ug.IsIdle).ToList().ForEach(ug =>
+        {
+            var target = GetNextTarget();
+            if (target != null) ug.Enter(target);
+        });
+    }
+
+    private Building GetNextTarget()
+    {
+        return enemyBuildings.FirstOrDefault();
+    }
 }
